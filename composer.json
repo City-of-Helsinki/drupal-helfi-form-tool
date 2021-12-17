@@ -25,6 +25,7 @@
         "drupal/helfi_tpr": "^1.0",
         "drupal/helfi_tunnistamo": "^2.0",
         "drupal/paragraphs": "^1.12",
+        "drupal/seckit": "^2.0",
         "drupal/smtp": "^1.0",
         "drupal/twig_debugger": "^1.1",
         "drupal/webform": "^6.0",
