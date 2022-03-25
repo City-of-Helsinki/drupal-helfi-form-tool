@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.esitiedot
   module:
+    - form_tool_share
     - node
     - path
     - scheduler
@@ -18,6 +19,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access form_tool_shared form'
   - 'access site in maintenance mode'
   - 'access toolbar'
   - 'access webform overview'

@@ -1,0 +1,18 @@
+services:
+  form_tool_share.authentication.auth_token:
+    class: Drupal\form_tool_share\Authentication\AuthToken
+    arguments: ['@config.factory', '@entity_type.manager', '@helfi_helsinki_profiili.userdata', '@logger.factory']
+    tags:
+      - { name: authentication_provider, provider_id: 'token_auth', priority: 0 }
+
+#  form_tool_share.page_cache_request_policy.disallow_basic_auth_requests:
+#    class: Drupal\form_tool_share\PageCache\DisallowBasicAuthRequests
+#    public: false
+#    tags:
+#      - { name: page_cache_request_policy }
+
+  form_tool_share.event_subscriber:
+    class: Drupal\form_tool_share\EventSubscriber\FormToolShareSubscriber
+    arguments: ['@messenger']
+    tags:
+      - { name: event_subscriber }

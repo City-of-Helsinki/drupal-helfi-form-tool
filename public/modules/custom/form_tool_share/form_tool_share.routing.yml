@@ -1,0 +1,7 @@
+form_tool_share.init_form:
+  path: '/form-tool-share/init-form'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\form_tool_share\Controller\FormToolShareController::build'
+  requirements:
+    _permission: 'access form_tool_shared form'

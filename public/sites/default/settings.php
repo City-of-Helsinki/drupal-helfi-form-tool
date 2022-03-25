@@ -1,5 +1,9 @@
 <?php
 
+ini_set('session.cache_expire',     300);
+ini_set('session.cookie_lifetime',  0);
+ini_set('session.gc_maxlifetime',   300);
+
 if (PHP_SAPI === 'cli') {
   ini_set('memory_limit', '512M');
 }
@@ -79,6 +83,9 @@ foreach ($routes as $route) {
   $trusted_host = str_replace('.', '\.', $host);
   $settings['trusted_host_patterns'][] = '^' . $trusted_host . '$';
 }
+
+$trusted_host = str_replace('.', '\.', 'hel-fi-form-tool-app');
+$settings['trusted_host_patterns'][] = '^' . $trusted_host . '$';
 
 $drush_options_uri = getenv('DRUSH_OPTIONS_URI');
 

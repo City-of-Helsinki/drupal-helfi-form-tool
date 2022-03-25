@@ -13,6 +13,7 @@ dependencies:
   module:
     - block
     - config_translation
+    - content_lock
     - content_translation
     - eu_cookie_compliance
     - file
@@ -32,7 +33,6 @@ dependencies:
     - taxonomy
     - toolbar
     - view_unpublished
-    - content_lock
 _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
@@ -61,6 +61,7 @@ permissions:
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
+  - 'break content lock'
   - 'cancel account'
   - 'change own username'
   - 'create content translations'
@@ -143,4 +144,3 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'break content lock'

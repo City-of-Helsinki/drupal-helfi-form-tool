@@ -35,7 +35,8 @@
         "drupal/webform": "^6.0",
         "drupal/webform_rest": "^4.0",
         "drupal/x_frame_options_configuration": "^1.2",
-        "drush/drush": "^10.4"
+        "drush/drush": "^10.4",
+        "jumbojett/openid-connect-php": "^0.9.5"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
