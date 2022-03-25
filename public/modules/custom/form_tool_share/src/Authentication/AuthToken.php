@@ -104,8 +104,8 @@ class AuthToken implements AuthenticationProviderInterface {
     $token = $request->headers->get('X-Auth-Token');
 
     $oidc = new OpenIDConnectClient('https://tunnistamo.test.hel.ninja',
-      'lomaketyokalu-ui-dev',
-      '0cf09212235cc0fa16f6b7c3194fc3bde81c7d920ff3b2773a047a7b');
+      getenv('TUNNISTAMO_CLIENT_ID'),
+      getenv('TUNNISTAMO_CLIENT_SECRET'));
 
     try {
       if ($oidc->canVerifySignatures() && $oidc->verifyJWTsignature($token)) {
