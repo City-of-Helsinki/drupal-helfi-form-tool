@@ -1,0 +1,44 @@
+.thankyou-page {
+  padding: var(--spacing-4-xl);
+  background-color: var(--color-fog-light);
+  text-align: center;
+
+  &__icon,
+  &__content {
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      width: auto;
+    }
+  }
+
+  &__content {
+    margin-left: 0;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: var(--spacing-layout-s);
+    }
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  p {
+    margin-bottom: var(--spacing-s)
+  }
+
+  .hds-button {
+    width: 100%;
+    margin-bottom: var(--spacing-s);
+
+    @include breakpoint($breakpoint-m) {
+      width: auto;
+    }
+  }
+
+  @include breakpoint($breakpoint-m) {
+    text-align: left;
+    display: flex;
+  }
+}

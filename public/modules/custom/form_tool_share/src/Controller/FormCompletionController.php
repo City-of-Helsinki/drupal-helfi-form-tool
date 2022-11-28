@@ -64,6 +64,9 @@ class FormCompletionController extends ControllerBase {
       '@link' => Link::fromTextAndUrl('here', $url)->toString(),
     ];
 
+    $title = $entity->getWebform()->getSetting('confirmation_title');
+    $message = $entity->getWebform()->getSetting('confirmation_message');
+
     $msg = $this->t(
       'Form submission (@number) saved, see submitted data from @link',
       $t_args
@@ -73,7 +76,8 @@ class FormCompletionController extends ControllerBase {
       '#theme' => 'form_tool_share_completion',
       '#submissionId' => $submission_id,
       '#submissionData' => $entity->getData(),
-      '#message' => $msg,
+      '#message' => $message,
+      '#confirmationtitle' => $title,
     ];
   }
 

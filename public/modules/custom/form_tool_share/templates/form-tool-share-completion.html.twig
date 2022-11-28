@@ -1,12 +1,19 @@
 {% if submissionId %}
-    <div style="padding: 4em;">
-        Tässä kiitossivu
-        <div>
-            {{ message }}
-        </div>
+
+  <div class="thankyou-page">
+    <div class="thankyou-page__icon">
+      <span class="hds-icon hds-icon--check-circle hds-icon--size-xl" aria-hidden="true"></span>
     </div>
+    <div class="thankyou-page__content">
+      <h2>{{ confirmationtitle }}</h2>
+      <p>{{ message|raw }}</p>
+      <a href="#" class="hds-button hds-button--primary">Palaa takaisin palvelusivulle <span class="hds-icon hds-icon--arrow-right hds-icon--size-xs" aria-hidden="true"></span></a>
+      <a href="#" class="hds-button hds-button--secondary">Avaa lähetetty lomake <span class="hds-icon hds-icon--eye hds-icon--size-xs" aria-hidden="true"></span></a>
+    </div>
+  </div>
 {% else %}
     <div>
         {{ message }}
     </div
 {% endif %}
+
