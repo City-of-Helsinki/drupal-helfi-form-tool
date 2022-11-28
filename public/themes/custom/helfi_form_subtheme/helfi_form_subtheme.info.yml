@@ -27,4 +27,4 @@ regions:
 # Libraries
 libraries:
   - helfi_form_subtheme/global-styling
-  - helfi_form_subtheme/global-scripting
+#  - helfi_form_subtheme/global-scripting
