@@ -1,0 +1,19 @@
+parameters:
+  audit_log_provider: 'helfi_audit_log.auditlog_provider'
+
+services:
+  helfi_audit_log.audit_log:
+    class: Drupal\helfi_audit_log\AuditLogService
+    arguments: ['@database']
+    calls:
+      - [setProvider, ['@helfi_audit_log.auditlog_provider']]
+
+  helfi_audit_log.event_subscriber:
+    class: Drupal\helfi_audit_log\EventSubscriber\AuditLogExceptionSubscriber
+    arguments: [ '@helfi_audit_log.audit_log' ]
+    tags:
+      - { name: event_subscriber }
+
+  helfi_audit_log.auditlog_provider:
+    class: Drupal\helfi_audit_log\HelfiAuditLogProvider
+    arguments: [ '@messenger' ]

@@ -73,6 +73,12 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link(array $fo
  * Implememts hook_form_alter()
  */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  /** @var \Drupal\helfi_audit_log\AuditLogService $auditLog */
+  $auditLog = \Drupal::service('helfi_audit_log.audit_log');
+
+  $auditLog->log([]);
+
   if (!Drupal::service('router.admin_context')->isAdminRoute()) {
     if (array_key_exists('#webform_id', $form)) {
       $webform = Webform::load($form['#webform_id']);
