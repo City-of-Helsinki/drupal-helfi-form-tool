@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Form Tool Audit Log module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\form_tool_audit_log\FormToolAuditLogService;
+
+/**
+ * Implements hook_user_login().
+ */
+function form_tool_audit_log_user_login(AccountInterface $account) {
+
+  $service = new FormToolAuditLogService();
+
+  $service->log([
+    "operation" => "DRUPAL_LOGIN",
+    "status" => "SUCCESS",
+    "target" => [
+      "id" => $account->id(),
+      "type" => "USER",
+      "name" => "User Login"
+    ]
+  ]);
+
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function form_tool_audit_log_user_logout(AccountInterface $account) {
+
+  $service = new FormToolAuditLogService();
+
+  $service->log([
+    "operation" => "DRUPAL_LOGOUT",
+    "status" => "SUCCESS",
+    "target" => [
+      "id" => $account->id(),
+      "type" => "USER",
+      "name" => "User Logout"
+    ]
+  ]);
+
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function form_tool_audit_log_entity_view(array &$build, EntityInterface $entity) {
+
+  // Only trigger event for webform content.
+  if ($entity->bundle() == "webform") {
+
+    $service = new FormToolAuditLogService();
+
+    $service->log([
+      "operation" => "READ",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => "WEBFORM",
+        "name" => "Form Viewed"
+      ]
+    ]);
+
+  }
+
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function form_tool_audit_log_entity_insert(EntityInterface $entity) {
+
+  // Trigger event only for users and webform nodes.
+  if ($entity->getEntityTypeId() == "user" || ($entity->getEntityTypeId() == "node" && $entity->bundle() == "webform")) {
+
+    $service = new FormToolAuditLogService();
+
+    $service->log([
+      "operation" => "CREATE",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => mb_strtoupper($entity->bundle()),
+        "name" => "Entity Created"
+      ]
+    ]);
+
+  }
+
+}

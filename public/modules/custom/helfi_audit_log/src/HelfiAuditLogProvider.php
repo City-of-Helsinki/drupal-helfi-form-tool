@@ -2,8 +2,14 @@
 
 namespace Drupal\helfi_audit_log;
 
+/**
+ *
+ */
 class HelfiAuditLogProvider extends HelfiAuditLogProviderBase {
 
+  /**
+   *
+   */
   public function getLogStructure(): array {
     return [
       'origin',
@@ -12,14 +18,17 @@ class HelfiAuditLogProvider extends HelfiAuditLogProviderBase {
       'date_time_epoch',
       'date_time',
       'actor' => [
-        'role', 'user_id', 'ip_address'
+        'role', 'user_id', 'ip_address',
       ],
       'target' => [
-        'id', 'type', 'name', 'diff'
+        'id', 'type', 'name', 'diff',
       ],
     ];
   }
 
+  /**
+   *
+   */
   public function logData(array $logData) {
 
     return $this->getLogStructure();

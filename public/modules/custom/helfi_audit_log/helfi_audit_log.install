@@ -35,7 +35,7 @@ function helfi_audit_log_schema() {
         'size' => 'tiny',
         'unsigned' => TRUE,
         'default' => 0,
-      ]
+      ],
     ],
     'primary key' => ['id'],
     'indexes' => [

@@ -15,7 +15,7 @@ class AuditLogExceptionSubscriber implements EventSubscriberInterface {
   /**
    * Save audit log to database.
    *
-   * @var AuditLogService
+   * @var \Drupal\helfi_audit_log\AuditLogService
    */
   protected AuditLogService $auditLogService;
 

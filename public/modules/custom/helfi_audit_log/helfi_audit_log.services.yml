@@ -18,12 +18,7 @@ services:
     class: Drupal\helfi_audit_log\HelfiAuditLogProvider
     arguments: [ '@messenger' ]
 
-  helfi_audit_log.user_event_subscriber:
-    class: Drupal\helfi_audit_log\EventSubscriber\UserEventSubscriber
-    tags:
-      - { name: event_subscriber }
-
-  helfi_audit_log.entity_event_subscriber:
-    class: Drupal\helfi_audit_log\EventSubscriber\EntityEventSubscriber
+  helfi_audit_log.log_event_subscriber:
+    class: Drupal\helfi_audit_log\EventSubscriber\AuditLogEventSubscriber
     tags:
       - { name: event_subscriber }
