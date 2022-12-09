@@ -28,8 +28,7 @@ class AuditLogService {
    * Operation that logs the message to database.
    *
    * @param array $message
-   * Message that is merged with generic data and logged to database
-   *
+   *   Message that is merged with generic data and logged to database.
    */
   public function logOperation(array $message) {
 

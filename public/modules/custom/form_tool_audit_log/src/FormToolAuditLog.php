@@ -7,16 +7,20 @@ use Drupal\helfi_audit_log\Event\AuditLogEvent;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
 
 /**
- * Form Tool Audit Log Service
+ * Form Tool Audit Log Logger.
  */
-class FormToolAuditLogService {
+class FormToolAuditLog {
 
-  public function log(array $message) {
+  /**
+   *
+   */
+  public static function log(array $message) {
 
-    // Populate some context info from environment
+    // Populate some context info from environment.
     $message["context"] = [
       "environment" => FormToolWebformHandler::getAppEnv(),
-      "app_version" => "1.0" // TODO
+    // @todo .
+      "app_version" => "1.0",
     ];
 
     // Instantiate logging event.

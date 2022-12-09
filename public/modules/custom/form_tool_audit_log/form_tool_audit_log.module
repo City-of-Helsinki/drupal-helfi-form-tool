@@ -11,23 +11,21 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\form_tool_audit_log\FormToolAuditLogService;
+use Drupal\form_tool_audit_log\FormToolAuditLog;
 
 /**
  * Implements hook_user_login().
  */
 function form_tool_audit_log_user_login(AccountInterface $account) {
 
-  $service = new FormToolAuditLogService();
-
-  $service->log([
+  FormToolAuditLog::log([
     "operation" => "DRUPAL_LOGIN",
     "status" => "SUCCESS",
     "target" => [
       "id" => $account->id(),
       "type" => "USER",
-      "name" => "User Login"
-    ]
+      "name" => "User Login",
+    ],
   ]);
 
 }
@@ -37,16 +35,14 @@ function form_tool_audit_log_user_login(AccountInterface $account) {
  */
 function form_tool_audit_log_user_logout(AccountInterface $account) {
 
-  $service = new FormToolAuditLogService();
-
-  $service->log([
+  FormToolAuditLog::log([
     "operation" => "DRUPAL_LOGOUT",
     "status" => "SUCCESS",
     "target" => [
       "id" => $account->id(),
       "type" => "USER",
-      "name" => "User Logout"
-    ]
+      "name" => "User Logout",
+    ],
   ]);
 
 }
@@ -56,19 +52,30 @@ function form_tool_audit_log_user_logout(AccountInterface $account) {
  */
 function form_tool_audit_log_entity_view(array &$build, EntityInterface $entity) {
 
-  // Only trigger event for webform content.
+  // Only trigger event for webform nodes and submissions.
   if ($entity->bundle() == "webform") {
 
-    $service = new FormToolAuditLogService();
-
-    $service->log([
+    FormToolAuditLog::log([
       "operation" => "READ",
       "status" => "SUCCESS",
       "target" => [
         "id" => $entity->id(),
         "type" => "WEBFORM",
-        "name" => "Form Viewed"
-      ]
+        "name" => "Form Viewed",
+      ],
+    ]);
+
+  }
+  elseif ($entity->getEntityTypeId() == "webform_submission") {
+
+    FormToolAuditLog::log([
+      "operation" => "READ",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => "WEBFORM_SUBMISSION",
+        "name" => "Form Submission Viewed",
+      ],
     ]);
 
   }
@@ -80,19 +87,100 @@ function form_tool_audit_log_entity_view(array &$build, EntityInterface $entity)
  */
 function form_tool_audit_log_entity_insert(EntityInterface $entity) {
 
-  // Trigger event only for users and webform nodes.
+  // Trigger event only for users, webform nodes and webform submissions.
   if ($entity->getEntityTypeId() == "user" || ($entity->getEntityTypeId() == "node" && $entity->bundle() == "webform")) {
 
-    $service = new FormToolAuditLogService();
-
-    $service->log([
+    FormToolAuditLog::log([
       "operation" => "CREATE",
       "status" => "SUCCESS",
       "target" => [
         "id" => $entity->id(),
         "type" => mb_strtoupper($entity->bundle()),
-        "name" => "Entity Created"
-      ]
+        "name" => "Entity Created",
+      ],
+    ]);
+
+  }
+  elseif ($entity->getEntityTypeId() == "webform_submission") {
+
+    FormToolAuditLog::log([
+      "operation" => "CREATE",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => mb_strtoupper($entity->getEntityTypeId()),
+        "name" => "Entity Created",
+      ],
+    ]);
+
+  }
+
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function form_tool_audit_log_entity_delete(EntityInterface $entity) {
+
+  // Trigger event only for users, webform nodes and webform submissions.
+  if ($entity->getEntityTypeId() == "user" || ($entity->getEntityTypeId() == "node" && $entity->bundle() == "webform")) {
+
+    FormToolAuditLog::log([
+      "operation" => "DELETE",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => mb_strtoupper($entity->bundle()),
+        "name" => "Entity Deleted",
+      ],
+    ]);
+
+  }
+  elseif ($entity->getEntityTypeId() == "webform_submission") {
+
+    FormToolAuditLog::log([
+      "operation" => "DELETE",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => mb_strtoupper($entity->getEntityTypeId()),
+        "name" => "Entity Deleted",
+      ],
+    ]);
+
+  }
+
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function form_tool_audit_log_entity_update(EntityInterface $entity) {
+
+  // Trigger event only for users, webform nodes and webform submissions.
+  if ($entity->getEntityTypeId() == "user" || ($entity->getEntityTypeId() == "node" && $entity->bundle() == "webform")) {
+
+    FormToolAuditLog::log([
+      "operation" => "UPDATE",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => mb_strtoupper($entity->bundle()),
+        "name" => "Entity Updated",
+      ],
+    ]);
+
+  }
+  elseif ($entity->getEntityTypeId() == "webform_submission") {
+
+    FormToolAuditLog::log([
+      "operation" => "UPDATE",
+      "status" => "SUCCESS",
+      "target" => [
+        "id" => $entity->id(),
+        "type" => mb_strtoupper($entity->getEntityTypeId()),
+        "name" => "Entity Updated",
+      ],
     ]);
 
   }
