@@ -29,9 +29,9 @@ class HelfiAuditLogProvider extends HelfiAuditLogProviderBase {
   /**
    *
    */
-  public function logData(array $logData) {
+  public function logData(array $logData) : AuditLogOperation {
 
-    return $this->getLogStructure();
+    return new AuditLogOperation($this);
   }
 
 }

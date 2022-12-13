@@ -2,9 +2,11 @@
 
 namespace Drupal\helfi_audit_log;
 
-use Drupal;
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Http\RequestStack;
+use Drupal\Core\Session\AccountProxyInterface;
 use Exception;
 
 /**
@@ -20,8 +22,11 @@ class AuditLogService {
   /**
    * Constructs a HelfiAuditLog object.
    */
-  public function __construct() {
-    $this->connection = Drupal::database();
+  public function __construct(AccountProxyInterface $accountProxy, Connection $connection, TimeInterface $time, RequestStack $requestStack) {
+    $this->currentUser = $accountProxy;
+    $this->connection = $connection;
+    $this->time = $time;
+    $this->request = $requestStack->getCurrentRequest();
   }
 
   /**
@@ -32,12 +37,10 @@ class AuditLogService {
    */
   public function logOperation(array $message) {
 
-    $current_timestamp = Drupal::time()->getCurrentMicroTime();
-
-    $user = Drupal::currentUser();
+    $current_timestamp = $this->time->getCurrentMicroTime();
 
     // Determine user role based on if user has admin role.
-    $role = in_array("admin", $user->getRoles()) ? "ADMIN" : "USER";
+    $role = in_array("admin", $this->currentUser->getRoles()) ? "ADMIN" : "USER";
 
     $operation_data = [
       "origin" => "AVUSTUSASIOINTI-DRUPAL",
@@ -51,8 +54,8 @@ class AuditLogService {
       "Z",
       "actor" => [
         "role" => $role,
-        "user_id" => $user->id(),
-        "ip_address" => Drupal::request()->getClientIp(),
+        "user_id" => $this->currentUser->id(),
+        "ip_address" => $this->request->getClientIp(),
       ],
     ];
 
@@ -62,7 +65,7 @@ class AuditLogService {
     try {
       $result = $this->connection->insert('helfi_audit_logs')
         ->fields([
-          'created_at' => Drupal::time()->getRequestTime(),
+          'created_at' => $this->time->getRequestTime(),
           'is_sent' => 0,
           'message' => Json::encode(['audit_event' => $operation_data]),
         ])
@@ -70,6 +73,12 @@ class AuditLogService {
     }
     catch (Exception $e) {
     }
+
+  }
+
+  public function setProvider() {
+
+
 
   }
 

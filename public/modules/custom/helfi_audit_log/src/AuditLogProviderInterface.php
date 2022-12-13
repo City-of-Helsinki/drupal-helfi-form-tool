@@ -10,11 +10,11 @@ interface AuditLogProviderInterface {
   /**
    * Structure for log data.
    */
-  public function getLogStructure();
+  public function getLogStructure() : array;
 
   /**
    * Logging data.
    */
-  public function logData(array $logData);
+  public function logData(array $logData) : AuditLogOperation;
 
 }

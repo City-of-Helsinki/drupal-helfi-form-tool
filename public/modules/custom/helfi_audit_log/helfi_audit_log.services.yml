@@ -4,21 +4,10 @@ parameters:
 services:
   helfi_audit_log.audit_log:
     class: Drupal\helfi_audit_log\AuditLogService
-    arguments: ['@database']
+    arguments: ['@current_user', '@database', '@datetime.time', '@request_stack']
     calls:
       - [setProvider, ['@helfi_audit_log.auditlog_provider']]
-
-  helfi_audit_log.event_subscriber:
-    class: Drupal\helfi_audit_log\EventSubscriber\AuditLogExceptionSubscriber
-    arguments: [ '@helfi_audit_log.audit_log' ]
-    tags:
-      - { name: event_subscriber }
 
   helfi_audit_log.auditlog_provider:
     class: Drupal\helfi_audit_log\HelfiAuditLogProvider
     arguments: [ '@messenger' ]
-
-  helfi_audit_log.log_event_subscriber:
-    class: Drupal\helfi_audit_log\EventSubscriber\AuditLogEventSubscriber
-    tags:
-      - { name: event_subscriber }
