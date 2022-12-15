@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Default theme implementation to webform confirmation.
+ *
+ * Available variables:
+ * - progress: Progress bar.
+ * - message: Confirmation message.
+ * - back_url: URL to the previous webform submission.
+ *
+ * @see template_preprocess_webform_confirmation()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('webform/webform.confirmation') }}
+
+{% if progress %}
+  {{ progress }}
+{% endif %}
+
+<article role="article" class="webform-confirmation">
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: [
+        'component--banner',
+        'component--banner-align-left',
+        'component--banner-has-icon',
+        'component--banner-secondary'
+      ],
+      component_content_class: 'banner',
+    }
+    %}
+    {% block component_content %}
+      <div class="banner__icon">{% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', class: 'hds-icon--size-l'} %}</div>
+      <div class="banner__content-wrapper">
+        <div class="banner__content">
+          {% if message %}
+            <div class="banner__desc">{{ message }}</div>
+          {% endif %}
+        </div>
+        {% include '@hdbt/navigation/link-button.html.twig' with {
+          type: 'primary',
+          label: 'Sulje ja kirjaudu ulos',
+          url: 'https://hel-fi-form-tool.docker.so/',
+          class: 'banner__button',
+          icon: false,
+        } %}
+        {% include '@hdbt/navigation/link-button.html.twig' with {
+          type: 'secondary',
+          label: 'Katso lähettämäsi tiedot',
+          url: 'https://hel-fi-form-tool.docker.so/',
+          class: 'banner__button',
+          icon: false,
+        } %}
+      </div>
+    {% endblock component_content %}
+  {% endembed %}
+</article>
