@@ -7,7 +7,7 @@ dependencies:
     - webform
 id: helsinkiprofiili_vahva
 label: 'HelsinkiProfiili Vahva'
-weight: -6
+weight: -3
 is_admin: null
 permissions:
   - 'access form data page'
