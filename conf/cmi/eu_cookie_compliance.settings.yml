@@ -5,8 +5,8 @@ uuid: 794fc11b-a1b4-41a7-a351-aaa84516c2c5
 popup_enabled: true
 popup_clicking_confirmation: false
 popup_scrolling_confirmation: false
-eu_only: null
-eu_only_js: null
+eu_only: false
+eu_only_js: false
 popup_position: false
 fixed_top_position: true
 popup_info:
@@ -27,7 +27,7 @@ popup_agreed:
   format: full_html
 popup_find_more_button_message: 'Show cookies'
 popup_hide_button_message: Hide
-popup_link: /node/1
+popup_link: /cookie-information-and-settings
 popup_link_new_window: false
 popup_height: null
 popup_width: ''
@@ -45,6 +45,7 @@ set_cookie_session_zero_on_disagree: 0
 cookie_lifetime: 100
 use_mobile_message: false
 use_bare_css: true
+use_olivero_css: false
 disagree_do_not_show_popup: false
 reload_page: true
 reload_options: 0
@@ -79,3 +80,6 @@ close_button_action: close_banner
 reject_button_label: ''
 reject_button_enabled: false
 close_button_enabled: false
+dependencies:
+  config:
+    - filter.format.full_html
