@@ -5,6 +5,7 @@ dependencies:
   config:
     - filter.format.full_html
     - media.type.file
+    - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
@@ -33,7 +34,7 @@ _core:
   default_config_hash: EVzxFtbOrGVTXWw2GTh1fEzzqruPEqSo84k10-BF6eA
 id: content_producer
 label: 'Content producer'
-weight: -5
+weight: -7
 is_admin: null
 permissions:
   - 'access content overview'
@@ -50,6 +51,7 @@ permissions:
   - 'change own username'
   - 'create announcement content'
   - 'create file media'
+  - 'create helfi_chart media'
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
@@ -62,6 +64,7 @@ permissions:
   - 'delete media'
   - 'delete own announcement content'
   - 'delete own file media'
+  - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
   - 'delete own page content'
@@ -77,16 +80,19 @@ permissions:
   - 'edit any webform content'
   - 'edit own announcement content'
   - 'edit own file media'
+  - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
   - 'edit own page content'
   - 'edit own remote_video media'
   - 'edit own soundcloud media'
+  - 'edit own webform content'
   - 'edit paragraph library item'
   - 'edit terms in keywords'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
+  - 'revert webform revisions'
   - 'schedule publishing of nodes'
   - 'set announcement published on date'
   - 'set landing_page published on date'
@@ -109,3 +115,4 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
+  - 'view webform revisions'

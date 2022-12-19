@@ -5,12 +5,14 @@ dependencies:
   config:
     - filter.format.full_html
     - media.type.file
+    - media.type.helfi_chart
     - media.type.image
     - media.type.remote_video
     - media.type.soundcloud
     - node.type.announcement
     - node.type.landing_page
     - node.type.page
+    - node.type.webform
     - taxonomy.vocabulary.keywords
   module:
     - content_translation
@@ -33,7 +35,7 @@ dependencies:
     - view_unpublished
 id: editor
 label: Editor
-weight: 4
+weight: -6
 is_admin: null
 permissions:
   - 'access administration pages'
@@ -54,6 +56,7 @@ permissions:
   - 'create announcement content'
   - 'create content translations'
   - 'create file media'
+  - 'create helfi_chart media'
   - 'create image media'
   - 'create landing_page content'
   - 'create media'
@@ -64,48 +67,59 @@ permissions:
   - 'create soundcloud media'
   - 'create terms in keywords'
   - 'create url aliases'
+  - 'create webform content'
   - 'delete announcement revisions'
   - 'delete any announcement content'
   - 'delete any file media'
+  - 'delete any helfi_chart media'
   - 'delete any image media'
   - 'delete any landing_page content'
   - 'delete any media'
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete any soundcloud media'
+  - 'delete any webform content'
   - 'delete content translations'
   - 'delete landing_page revisions'
   - 'delete media'
   - 'delete own announcement content'
   - 'delete own file media'
+  - 'delete own helfi_chart media'
   - 'delete own image media'
   - 'delete own landing_page content'
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
+  - 'delete own webform content'
   - 'delete page revisions'
   - 'delete remote entities'
   - 'delete terms in keywords'
+  - 'delete webform revisions'
   - 'edit any announcement content'
   - 'edit any file media'
+  - 'edit any helfi_chart media'
   - 'edit any image media'
   - 'edit any landing_page content'
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
+  - 'edit any webform content'
   - 'edit own announcement content'
   - 'edit own file media'
+  - 'edit own helfi_chart media'
   - 'edit own image media'
   - 'edit own landing_page content'
   - 'edit own page content'
   - 'edit own remote_video media'
   - 'edit own soundcloud media'
+  - 'edit own webform content'
   - 'edit paragraph library item'
   - 'edit remote entities'
   - 'edit terms in keywords'
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
+  - 'revert webform revisions'
   - 'schedule publishing of nodes'
   - 'set announcement published on date'
   - 'set landing_page published on date'
@@ -122,6 +136,7 @@ permissions:
   - 'translate page node'
   - 'translate remote_video media'
   - 'translate soundcloud media'
+  - 'translate webform node'
   - 'update any media'
   - 'update content translations'
   - 'update media'
@@ -139,3 +154,4 @@ permissions:
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
+  - 'view webform revisions'
