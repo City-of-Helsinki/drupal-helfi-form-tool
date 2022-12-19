@@ -1,3 +1,6 @@
 # Swedish translations
-msgid ""
-msgstr ""
+msgid "Close and logout"
+msgstr "Stäng och logga ut"
+
+msgid "View your submission"
+msgstr "Se ditt bidrag"

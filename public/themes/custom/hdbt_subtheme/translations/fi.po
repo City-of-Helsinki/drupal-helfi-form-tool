@@ -1,3 +1,6 @@
 # Finnish translations
-msgid ""
-msgstr ""
+msgid "Close and logout"
+msgstr "Sulje ja kirjaudu ulos"
+
+msgid "View your submission"
+msgstr "Katso lähettämäsi tiedot"

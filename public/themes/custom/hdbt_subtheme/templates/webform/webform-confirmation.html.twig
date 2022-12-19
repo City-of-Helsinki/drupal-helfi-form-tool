@@ -41,14 +41,14 @@
         </div>
         {% include '@hdbt/navigation/link-button.html.twig' with {
           type: 'primary',
-          label: 'Sulje ja kirjaudu ulos',
+          label: 'Close and logout'|t,
           url: 'https://hel-fi-form-tool.docker.so/',
           class: 'banner__button',
           icon: false,
         } %}
         {% include '@hdbt/navigation/link-button.html.twig' with {
           type: 'secondary',
-          label: 'Katso lähettämäsi tiedot',
+          label: 'View your submission'|t,
           url: 'https://hel-fi-form-tool.docker.so/',
           class: 'banner__button',
           icon: false,
