@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+
+msgctxt "Webform confirmation submission"
+msgid "Close and logout"
+msgstr "Sulje ja kirjaudu ulos"
+
+msgctxt "Webform confirmation submission"
+msgid "View your submission"
+msgstr "Katso lähettämäsi tiedot"
+
+msgid "Form submitted successfully"
+msgstr "Lomake lähetetty onnistuneesti"
+
+msgid "Thank you"
+msgstr "Kiitos"
+
+msgid "We will try to process your submission as quickly as possible."
+msgstr "Yritämme käsitellä lähettämäsi vastauksen mahdollisimman pian."

@@ -339,10 +339,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
           ])
           ->execute();
 
-        // $form_state->setRedirect(
-        // 'entity.form_tool_share.completion',
-        // ['submission_id' => $formToolSubmissionId]
-        // );
+        $form_state->setRedirect(
+          'entity.form_tool_share.completion',
+          ['submission_id' => $formToolSubmissionId]
+        );
         //
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
@@ -390,7 +390,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
       }
       catch (\Exception $e) {
         $this->log('error', $e->getMessage(), []);
-        // $form_state->setRedirect('entity.form_tool_share.error');
+        $form_state->setRedirect('entity.form_tool_share.error');
       }
     }
     else {
