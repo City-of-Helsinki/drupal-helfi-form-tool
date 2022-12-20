@@ -3,7 +3,6 @@
 namespace Drupal\form_tool_share\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Link;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
