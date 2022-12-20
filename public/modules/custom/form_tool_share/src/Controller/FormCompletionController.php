@@ -51,14 +51,18 @@ class FormCompletionController extends ControllerBase {
     $webformSettings = $entity->getWebform()->getSettings();
 
     $confirmationTitle = t('Thank you');
-    $confirmationMessage = '<p>' . t('We will try to process your submission as quickly as possible.') . '</p>';
+    $confirmationMessage = [
+      '#markup' => '<p>' . t('We will try to process your submission as quickly as possible.') . '</p>',
+    ];
 
     if (array_key_exists('confirmation_title', $webformSettings) && !empty($webformSettings['confirmation_title'])) {
       $confirmationTitle = $webformSettings['confirmation_title'];
     }
 
     if (array_key_exists('confirmation_message', $webformSettings) && !empty($webformSettings['confirmation_message'])) {
-      $confirmationMessage = $webformSettings['confirmation_message'];
+      $confirmationMessage = [
+        '#markup' => $webformSettings['confirmation_message'],
+      ];
     }
 
     $urlToSubmission = Url::fromRoute(
