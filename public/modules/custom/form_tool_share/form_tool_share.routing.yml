@@ -43,8 +43,7 @@ entity.form_tool_share.completion:
     _title: 'Form submitted successfully'
     _controller: '\Drupal\form_tool_share\Controller\FormCompletionController::build'
   requirements:
-    _permission: 'access content'
-    #_custom_access: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::accessByApplicationNumber'
+    _custom_access: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::accessByApplicationNumber'
 
 entity.form_tool_share.error:
   path: '/formtool/submit-error'
