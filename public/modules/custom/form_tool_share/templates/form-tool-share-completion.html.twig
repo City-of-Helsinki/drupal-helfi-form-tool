@@ -43,14 +43,14 @@
         </div>
         {% include '@hdbt/navigation/link-button.html.twig' with {
           type: 'primary',
-          label: 'Close and logout'|t({}, {'context': 'Webform confirmation submission'}),
+          label: 'Close and log out'|t({}, {'context': 'Webform confirmation submission'}),
           url: url_to_logout,
           class: 'banner__button',
           icon: false,
         } %}
         {% include '@hdbt/navigation/link-button.html.twig' with {
           type: 'secondary',
-          label: 'View your submission'|t({}, {'context': 'Webform confirmation submission'}),
+          label: 'View the data you submitted'|t({}, {'context': 'Webform confirmation submission'}),
           url: url_to_submission,
           class: 'banner__button',
           icon: false,
