@@ -343,7 +343,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
           'entity.form_tool_share.completion',
           ['submission_id' => $formToolSubmissionId]
         );
-
+        //
         // If (isset($thirdPartySettings["email_notify"]) &&
         // !empty($thirdPartySettings["email_notify"])) {
         // $mailManager = \Drupal::service('plugin.manager.mail');
