@@ -11,15 +11,18 @@ settings:
   client_id: lomaketyokalu-ui-dev
   client_secret: 0cf09212235cc0fa16f6b7c3194fc3bde81c7d920ff3b2773a047a7b
   iss_allowed_domains: ''
-  is_production: 0
-  auto_login: 1
+  auto_login: 0
   environment_url: 'https://tunnistamo.test.hel.ninja'
   client_scopes: 'openid,profile,email,https://api.hel.fi/auth/helsinkiprofile,https://api.hel.fi/avustusasiointi,https://api.hel.fi/auth/lomaketyokaluapidev,https://api.hel.fi/auth/atvapidev'
   client_roles:
     authenticated: '0'
-    admin: '0'
-    content_producer: '0'
     read_only: '0'
-    verkkolomake_hallinnoija: '0'
-    helsinkiprofiili_vahva: '0'
+    content_producer: '0'
+    editor: '0'
+    admin: '0'
     helsinkiprofiili_heikko: '0'
+    helsinkiprofiili_vahva: '0'
+    verkkolomake_kasittelija: '0'
+    verkkolomake_hallinnoija: '0'
+    verkkolomake_admin: '0'
+    verkkolomake_kasittelija_todistus: '0'
