@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 
 msgctxt "Webform confirmation submission"
-msgid "Close and logout"
+msgid "Close and log out"
 msgstr "Stäng och logga ut"
 
 msgctxt "Webform confirmation submission"
-msgid "View your submission"
-msgstr "Se ditt bidrag"
+msgid "View the data you submitted"
+msgstr "Se alla uppgifter du har skickat"

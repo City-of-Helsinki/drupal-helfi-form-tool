@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 
 msgctxt "Webform confirmation submission"
-msgid "Close and logout"
+msgid "Close and log out"
 msgstr "Sulje ja kirjaudu ulos"
 
 msgctxt "Webform confirmation submission"
-msgid "View your submission"
+msgid "View the data you submitted"
 msgstr "Katso lähettämäsi tiedot"
 
-msgid "Form submitted successfully"
-msgstr "Lomake lähetetty onnistuneesti"
+msgid "Your form has been submitted"
+msgstr "Lomakkeesi on lähetetty"
 
 msgid "Thank you"
 msgstr "Kiitos"
