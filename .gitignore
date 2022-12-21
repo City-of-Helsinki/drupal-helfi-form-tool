@@ -14,7 +14,6 @@ public/sites/simpletest/
 # Ignore the folder created by PhpStorm
 .idea/*
 public/sites/default/local.settings.php
-public/sites/default/local.services.yml
 
 *.sql
 *.env.local
@@ -26,6 +25,3 @@ public/sites/default/local.services.yml
 !*.gitkeep
 !*.keepme
 .phpunit.*
-
-# Ignore files in robot-tests folder
-robot-tests/logit
