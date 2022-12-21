@@ -138,6 +138,7 @@ drush-sync-db: ## Sync database
 ifeq ($(DUMP_SQL_EXISTS),yes)
 	$(call step,Import local SQL dump...)
 	$(call drush,sql-query --file=${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME) && echo 'SQL dump imported')
+
 else
 	$(call step,Sync database from @$(DRUPAL_SYNC_SOURCE)...)
 	$(call drush,sql-sync -y --structure-tables-key=common @$(DRUPAL_SYNC_SOURCE) @self)
@@ -158,6 +159,7 @@ drush-create-dump: ## Create database dump to dump.sql
 PHONY += drush-download-dump
 drush-download-dump: ## Download database dump to dump.sql
 	$(call drush,-Dssh.tty=0 @$(DRUPAL_SYNC_SOURCE) sql-dump --structure-tables-key=common > ${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME))
+	$(call sed, -i 's/utf8mb4_0900_ai_ci/utf8mb4_swedish_ci/g' ${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME) && echo 'SQL dump collation fixed')
 
 PHONY += open-db-gui
 open-db-gui: DB_CONTAINER := $(COMPOSE_PROJECT_NAME)-db
