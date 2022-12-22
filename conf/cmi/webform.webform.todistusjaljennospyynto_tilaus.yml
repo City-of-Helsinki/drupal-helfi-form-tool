@@ -45,7 +45,7 @@ elements: |-
         primaryAddress: primaryAddress
         primaryEmail: primaryEmail
         primaryPhone: primaryPhone
-      '#description': 'Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
       '#description_display': after
       '#strong':
         verifiedFirstName: verifiedFirstName
@@ -80,6 +80,12 @@ elements: |-
       '#Toimitustapa: Postiennakko__title': Postiennakko
       '#Toimitustapa: Nouto__title': Nouto
       '#Nouto -teksti__title': 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki'
+  lisatiedot:
+    '#type': webform_section
+    '#title': Lisätiedot
+    mahdolliset_lisatiedot:
+      '#type': textarea
+      '#title': 'Mahdolliset lisätiedot'
 css: ''
 javascript: ''
 settings:
@@ -184,8 +190,8 @@ settings:
   draft_pending_multiple_message: ''
   confirmation_type: page
   confirmation_url: ''
-  confirmation_title: ''
-  confirmation_message: ''
+  confirmation_title: 'Todistusjäljennöspyyntö lähetetty'
+  confirmation_message: "T&auml;h&auml;n voidaan kirjoittaa asiakkaalle relevanttia tietoa lomakkeen k&auml;sittelyst&auml;.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
