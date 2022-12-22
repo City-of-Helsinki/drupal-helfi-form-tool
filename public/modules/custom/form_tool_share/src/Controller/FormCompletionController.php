@@ -3,7 +3,6 @@
 namespace Drupal\form_tool_share\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Link;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
@@ -48,32 +47,43 @@ class FormCompletionController extends ControllerBase {
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
     $entity = FormToolWebformHandler::submissionObjectAndDataFromFormId($submission_id, 'view');
 
-    $url = Url::fromRoute(
+    $webformSettings = $entity->getWebform()->getSettings();
+
+    $confirmationTitle = t('Thank you');
+    $confirmationMessage = [
+      '#markup' => '<p>' . t('We will try to process your submission as quickly as possible.') . '</p>',
+    ];
+
+    if (array_key_exists('confirmation_title', $webformSettings) && !empty($webformSettings['confirmation_title'])) {
+      $confirmationTitle = $webformSettings['confirmation_title'];
+    }
+
+    if (array_key_exists('confirmation_message', $webformSettings) && !empty($webformSettings['confirmation_message'])) {
+      $confirmationMessage = [
+        '#markup' => $webformSettings['confirmation_message'],
+      ];
+    }
+
+    $urlToSubmission = Url::fromRoute(
       'form_tool_share.view_submission',
       ['submission_id' => $submission_id],
       [
         'attributes' => [
           'data-drupal-selector' => 'form-submitted-ok',
-          'target' => '_blank',
         ],
       ]
     );
 
-    $t_args = [
-      '@number' => $submission_id,
-      '@link' => Link::fromTextAndUrl('here', $url)->toString(),
-    ];
-
-    $msg = $this->t(
-      'Form submission (@number) saved, see submitted data from @link',
-      $t_args
-    );
+    $urlToLogout = Url::fromRoute('user.logout.http');
 
     return [
       '#theme' => 'form_tool_share_completion',
-      '#submissionId' => $submission_id,
-      '#submissionData' => $entity->getData(),
-      '#message' => $msg,
+      '#submission_id' => $submission_id,
+      '#submission_data' => $entity->getData(),
+      '#confirmation_title' => $confirmationTitle,
+      '#confirmation_message' => $confirmationMessage,
+      '#url_to_submission' => $urlToSubmission,
+      '#url_to_logout' => $urlToLogout,
     ];
   }
 

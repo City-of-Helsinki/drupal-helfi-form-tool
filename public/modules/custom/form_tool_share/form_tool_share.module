@@ -39,26 +39,15 @@ function form_tool_share_theme($existing, $type, $theme, $path) {
     ],
     'form_tool_share_completion' => [
       'variables' => [
-        'submissionData' => NULL,
-        'submissionId' => NULL,
-        'message' => NULL,
+        'submission_data' => NULL,
+        'submission_id' => NULL,
+        'confirmation_title' => NULL,
+        'confirmation_message' => NULL,
+        'url_to_submission' => NULL,
+        'url_to_logout' => NULL,
       ],
     ],
   ];
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK().
- */
-function form_tool_share_theme_suggestions_html(array $variables) {
-  return (FormToolShareHelper::isPage()) ? ['html__form_tool_share'] : [];
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK().
- */
-function form_tool_share_theme_suggestions_page(array $variables) {
-  return (FormToolShareHelper::isPage()) ? ['page__form_tool_share'] : [];
 }
 
 /**

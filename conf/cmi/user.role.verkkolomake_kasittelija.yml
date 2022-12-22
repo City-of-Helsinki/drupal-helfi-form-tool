@@ -6,7 +6,7 @@ dependencies:
     - form_tool_share
 id: verkkolomake_kasittelija
 label: Verkkolomake-käsittelijä
-weight: -4
+weight: -2
 is_admin: null
 permissions:
   - 'access form data page'

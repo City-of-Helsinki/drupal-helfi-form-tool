@@ -382,7 +382,10 @@ final class SelfUpdateCommands extends DrushCommands {
         'phpunit.platform.xml',
         'tools/make/project/install.mk',
         'tools/make/project/git.mk',
+        'tools/make/project/robo.mk',
         'tools/commit-msg',
+        '.sonarcloud.properties',
+        '.github/pull_request_template.md',
       ])
       ->removeFiles([
         'docker/local/Dockerfile',
@@ -396,12 +399,8 @@ final class SelfUpdateCommands extends DrushCommands {
         'drush/Commands/OpenShiftCommands.php',
       ])
       ->addFiles([
-        'docker/openshift/crons/base.sh' => [
-          'remote' => TRUE,
-        ],
-        'public/sites/default/all.settings.php' => [
-          'remote' => TRUE,
-        ],
+        'docker/openshift/crons/base.sh' => ['remote' => TRUE],
+        'public/sites/default/all.settings.php' => ['remote' => TRUE],
       ]);
 
     return DrushCommands::EXIT_SUCCESS;

@@ -4,6 +4,6 @@ status: true
 dependencies: {  }
 id: verkkolomake_admin
 label: Verkkolomake-admin
-weight: -2
+weight: 0
 is_admin: null
 permissions: {  }
