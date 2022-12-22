@@ -316,3 +316,44 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
     }
   }
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function form_tool_webform_parameters_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!in_array($form_id, ['node_webform_edit_form', 'node_webform_form'])) {
+    return;
+  }
+
+  // Hide form code field from form.
+  $form['field_form_code']['#access'] = FALSE;
+
+  // Add validation callback for the handling of form code field.
+  array_unshift(
+    $form['#validate'],
+    'form_tool_webform_parameters_field_form_code_validate'
+  );
+}
+
+/**
+ * Validation function for the field form code field.
+ *
+ * @param array $form
+ *   Form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state.
+ */
+function form_tool_webform_parameters_field_form_code_validate(array &$form, FormStateInterface $form_state) {
+  $webform_id = $form_state->getValue('webform')[0]['target_id'];
+  $form_code = $form_state->getValue('field_form_code')[0]['value'];
+
+  if (empty($webform_id)) {
+    $form_state->unsetValue('field_form_code');
+  }
+  elseif ($webform_id !== $form_code) {
+    $form_state->setValue(
+      'field_form_code',
+      [['value' => $form_state->getValue('webform')[0]['target_id']]]
+    );
+  }
+}
