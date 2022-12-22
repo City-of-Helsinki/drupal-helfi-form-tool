@@ -253,7 +253,6 @@ class HelfiGdprApiController extends ControllerBase {
     return AccessResult::forbidden('Authentication failed.');
   }
 
-
   /**
    * Builds the response.
    */
@@ -321,7 +320,6 @@ class HelfiGdprApiController extends ControllerBase {
     return new JsonResponse(NULL, 204);
 
   }
-
 
   /**
    * Parse jwt token data from token in request.
