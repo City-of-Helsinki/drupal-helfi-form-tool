@@ -27,3 +27,15 @@ $config['openid_connect.client.tunnistamoadmin']['settings']['client_id'] = gete
 $config['openid_connect.client.tunnistamoadmin']['settings']['client_secret'] = getenv('TUNNISTAMOADMIN_CLIENT_SECRET');
 $config['openid_connect.client.tunnistamoadmin']['settings']['client_scopes'] = getenv('TUNNISTAMOADMIN_CLIENT_SCOPES');
 
+//$config['helfi_proxy.settings']['default_proxy_domain'] = 'helfi-proxy.docker.so';
+$config['helfi_proxy.settings']['prefixes'] = [
+  'en' => 'forms',
+  'fi' => 'lomakkeet',
+  'sv' => 'blanketter'
+];
+$config['helfi_proxy.settings']['asset_path'] = 'lomake-assets';
+
+
+if ($robots_header_enabled = getenv('DRUPAL_X_ROBOTS_TAG_HEADER')) {
+  $config['helfi_proxy.settings']['robots_header_enabled'] = (bool) $robots_header_enabled;
+}
