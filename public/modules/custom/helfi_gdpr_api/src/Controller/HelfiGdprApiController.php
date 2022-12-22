@@ -163,74 +163,6 @@ class HelfiGdprApiController extends ControllerBase {
   }
 
   /**
-   * Builds the response.
-   */
-  public function get($userId) {
-
-    // Decode the json data.
-    try {
-      $data = $this->getData();
-    }
-    catch (AtvDocumentNotFoundException $e) {
-      return new JsonResponse(NULL, 404);
-    }
-    catch (AtvFailedToConnectException $e) {
-      return new JsonResponse(NULL, 500);
-    }
-    catch (TokenExpiredException $e) {
-      return new JsonResponse(NULL, 401);
-    }
-    catch (GuzzleException $e) {
-      return new JsonResponse(NULL, 500);
-    }
-
-    if (empty($data)) {
-      return new JsonResponse(NULL, 404);
-    }
-
-    return new JsonResponse($data);
-
-  }
-
-  /**
-   * Builds the response.
-   *
-   * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   JsonResponse.
-   */
-  public function delete($userId): JsonResponse {
-
-    try {
-      $user = $this->getUser();
-      $user->delete();
-
-      $this->atvService->deleteGdprData($this->jwtData['sub']);
-
-    }
-    catch (AtvDocumentNotFoundException $e) {
-      return new JsonResponse(NULL, 404);
-    }
-    catch (AtvFailedToConnectException $e) {
-      return new JsonResponse(NULL, 500);
-    }
-    catch (TokenExpiredException $e) {
-      return new JsonResponse(NULL, 401);
-    }
-    catch (GuzzleException $e) {
-      return new JsonResponse(NULL, 500);
-    }
-    catch (EntityStorageException $e) {
-      return new JsonResponse(NULL, 404);
-    }
-    catch (AtvAuthFailedException $e) {
-      return new JsonResponse(NULL, 403);
-    }
-
-    return new JsonResponse(NULL, 204);
-
-  }
-
-  /**
    * Checks access for this controller.
    */
   public function access($userId): AccessResultForbidden|AccessResultAllowed {
@@ -320,6 +252,76 @@ class HelfiGdprApiController extends ControllerBase {
       ]);
     return AccessResult::forbidden('Authentication failed.');
   }
+
+
+  /**
+   * Builds the response.
+   */
+  public function get($userId) {
+
+    // Decode the json data.
+    try {
+      $data = $this->getData();
+    }
+    catch (AtvDocumentNotFoundException $e) {
+      return new JsonResponse(NULL, 404);
+    }
+    catch (AtvFailedToConnectException $e) {
+      return new JsonResponse(NULL, 500);
+    }
+    catch (TokenExpiredException $e) {
+      return new JsonResponse(NULL, 401);
+    }
+    catch (GuzzleException $e) {
+      return new JsonResponse(NULL, 500);
+    }
+
+    if (empty($data)) {
+      return new JsonResponse(NULL, 404);
+    }
+
+    return new JsonResponse($data);
+
+  }
+
+  /**
+   * Builds the response.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JsonResponse.
+   */
+  public function delete($userId): JsonResponse {
+
+    try {
+      $user = $this->getUser();
+      $user->delete();
+
+      $this->atvService->deleteGdprData($this->jwtData['sub']);
+
+    }
+    catch (AtvDocumentNotFoundException $e) {
+      return new JsonResponse(NULL, 404);
+    }
+    catch (AtvFailedToConnectException $e) {
+      return new JsonResponse(NULL, 500);
+    }
+    catch (TokenExpiredException $e) {
+      return new JsonResponse(NULL, 401);
+    }
+    catch (GuzzleException $e) {
+      return new JsonResponse(NULL, 500);
+    }
+    catch (EntityStorageException $e) {
+      return new JsonResponse(NULL, 404);
+    }
+    catch (AtvAuthFailedException $e) {
+      return new JsonResponse(NULL, 403);
+    }
+
+    return new JsonResponse(NULL, 204);
+
+  }
+
 
   /**
    * Parse jwt token data from token in request.
