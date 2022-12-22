@@ -8,7 +8,7 @@ DRUPAL_DISABLE_MODULES ?= no
 DRUPAL_ENABLE_MODULES ?= no
 DRUPAL_PROFILE ?= minimal
 DRUPAL_SYNC_FILES ?= yes
-DRUPAL_SYNC_SOURCE ?= production
+DRUPAL_SYNC_SOURCE ?= main
 DRUSH_RSYNC_MODE ?= Pakzu
 DRUSH_RSYNC_OPTS ?=  -- --omit-dir-times --no-perms --no-group --no-owner --chmod=ugo=rwX
 DRUSH_RSYNC_EXCLUDE ?= css:ctools:js:php:tmp:tmp_php
@@ -38,6 +38,7 @@ endif
 
 PHONY += drupal-create-folders
 drupal-create-folders:
+	@mkdir -p $(WEBROOT)/sites/default/files/private
 	@mkdir -p $(WEBROOT)/sites/default/files/translations
 
 PHONY += drupal-update
@@ -138,7 +139,6 @@ drush-sync-db: ## Sync database
 ifeq ($(DUMP_SQL_EXISTS),yes)
 	$(call step,Import local SQL dump...)
 	$(call drush,sql-query --file=${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME) && echo 'SQL dump imported')
-
 else
 	$(call step,Sync database from @$(DRUPAL_SYNC_SOURCE)...)
 	$(call drush,sql-sync -y --structure-tables-key=common @$(DRUPAL_SYNC_SOURCE) @self)
@@ -158,8 +158,7 @@ drush-create-dump: ## Create database dump to dump.sql
 
 PHONY += drush-download-dump
 drush-download-dump: ## Download database dump to dump.sql
-	$(call drush,-Dssh.tty=0 @$(DRUPAL_SYNC_SOURCE) sql-dump --structure-tables-key=common > ${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME))
-	$(call sed, -i 's/utf8mb4_0900_ai_ci/utf8mb4_swedish_ci/g' ${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME) && echo 'SQL dump collation fixed')
+	$(call drush,@$(DRUPAL_SYNC_SOURCE) sql-dump --structure-tables-key=common > ${DOCKER_PROJECT_ROOT}/$(DUMP_SQL_FILENAME))
 
 PHONY += open-db-gui
 open-db-gui: DB_CONTAINER := $(COMPOSE_PROJECT_NAME)-db
@@ -173,6 +172,12 @@ fix-drupal: PATHS := $(subst $(space),,$(LINT_PATHS_PHP))
 fix-drupal: ## Fix Drupal code style
 	$(call step,Fix Drupal code style with phpcbf...\n)
 	$(call cs,phpcbf,$(PATHS))
+
+PHONY += fix-drupal-coder
+fix-drupal-coder: VERSION := 8.3.16
+fix-drupal-coder: ## Fix Drupal Coder loading
+	composer config repositories.drupal '{"type": "composer", "url": "https://packages.drupal.org/8"}'
+	composer config repositories.drupal/coder '{"type": "package", "package": {"name": "drupal/coder", "type": "phpcodesniffer-standard", "version": "$(VERSION)", "dist": {"type": "zip", "url": "https://ftp.drupal.org/files/projects/coder-$(VERSION).zip"}}}'
 
 PHONY += lint-drupal
 lint-drupal: PATHS := $(subst $(space),,$(LINT_PATHS_PHP))
