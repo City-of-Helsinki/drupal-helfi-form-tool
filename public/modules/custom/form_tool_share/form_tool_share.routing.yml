@@ -40,7 +40,7 @@ entity.form_tool_share.script:
 entity.form_tool_share.completion:
   path: '/formtool/completion/{submission_id}'
   defaults:
-    _title: 'Example'
+    _title: 'Form submitted successfully'
     _controller: '\Drupal\form_tool_share\Controller\FormCompletionController::build'
   requirements:
     _custom_access: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::accessByApplicationNumber'

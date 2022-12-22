@@ -25,3 +25,6 @@ public/sites/default/local.settings.php
 !*.gitkeep
 !*.keepme
 .phpunit.*
+
+# Ignore files in test folder
+test/logit
