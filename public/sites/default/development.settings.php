@@ -4,7 +4,7 @@
 
 $config['helfi_proxy.settings']['asset_path'] = 'dev-lomake-assets';
 $config['helfi_proxy.settings']['prefixes'] = [
-  'en' => 'dev-lomakkeet',
-  'fi' => 'dev-forms',
+  'en' => 'dev-forms',
+  'fi' => 'dev-lomakkeet',
   'sv' => 'dev-blanketter'
 ];
