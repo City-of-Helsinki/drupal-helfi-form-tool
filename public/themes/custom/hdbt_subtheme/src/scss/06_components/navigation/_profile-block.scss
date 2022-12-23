@@ -1,0 +1,56 @@
+.block--profile-block {
+  align-items: center;
+  background-color: $color-black;
+  color: $color-white;
+  display: flex;
+  grid-area: brand;
+  justify-content: center;
+  margin-left: $spacing;
+  max-width: 88px; // Spesification from layouts.
+  min-width: 72px; // Spesification from layouts.
+  position: relative;
+  z-index: 1;
+
+  @include breakpoint($breakpoint-l) {
+    margin-left: $spacing-and-half;
+  }
+}
+
+.profile {
+  @include font('special.navigation.icon_label');
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+
+  .hel-icon {
+    --icon-size: 24px;
+    margin-bottom: $spacing-half;
+
+    @include breakpoint($breakpoint-l) {
+      --icon-size: 28px;
+    }
+  }
+}
+
+.profile__display-name {
+  overflow: hidden;
+  padding-left: $spacing-half;
+  padding-right: $spacing-half;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.profile--full {
+  background-color: $color-white;
+  border: 1px solid $color-black-20;
+  bottom: -100%;
+  color: $color-black;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}

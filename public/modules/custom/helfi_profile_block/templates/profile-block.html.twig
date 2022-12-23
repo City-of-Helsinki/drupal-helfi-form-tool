@@ -1,0 +1,13 @@
+<div class="profile">
+  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'user'} %}
+  <span class="profile__display-name">{{ display_name }}</span>
+
+  <div class="profile--full">
+    <div class="profile_information">
+      {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'user'} %}
+      {{ full_name }}
+      {{ email }}
+    </div>
+    {{ link('Log out'|t, logout_url) }}
+  </div>
+</div>
