@@ -1,0 +1,5 @@
+msgid ""
+msgstr ""
+
+msgid "Back to service details"
+msgstr "Palaa palvelun tietoihin"

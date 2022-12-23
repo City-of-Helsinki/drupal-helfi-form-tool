@@ -1,0 +1,9 @@
+{% set link_attributes = {
+  'class': [
+    'breadcrumb__link',
+  ],
+} %}
+
+<nav class="breadcrumb" role="navigation">
+  {{ link(return_link_text, return_link_url, link_attributes) }}
+</nav>

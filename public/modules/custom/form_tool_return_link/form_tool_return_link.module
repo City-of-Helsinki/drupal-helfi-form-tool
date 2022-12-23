@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Form Tool Return link module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+
+/**
+ * Implements hook_theme().
+ */
+function form_tool_return_link_theme() {
+  return [
+    'return_link_block' => [
+      'variables' => [
+        'return_link_text' => NULL,
+        'return_link_url' => NULL,
+      ],
+    ],
+  ];
+}

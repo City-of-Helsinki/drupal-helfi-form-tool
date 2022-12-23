@@ -1,0 +1,5 @@
+msgid ""
+msgstr ""
+
+msgid "Back to service details"
+msgstr "Gå tillbaka till Om tjänsten"
