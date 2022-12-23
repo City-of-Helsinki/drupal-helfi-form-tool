@@ -1,7 +1,7 @@
 settings:
   allowed_values:
     -
-      label: Avisering
+      label: Notifikation
     -
       label: Obs
     -
