@@ -1,4 +1,5 @@
 label: 'Schemalagt innehåll'
+description: 'Etsi ja ylläpidä ajastettua sisältöä.'
 display:
   default:
     display_options:
@@ -63,6 +64,9 @@ display:
           expose:
             label: Språk
       title: 'Schemalagt innehåll'
+      empty:
+        area_text_custom:
+          content: 'Ei vielä ajastettua sisältöä.'
     display_title: Huvud
   overview:
     display_options:
@@ -70,6 +74,7 @@ display:
         title: Schemalagd
       tab_options:
         title: Innehåll
+      display_description: 'Yleiskatsaus koko ajoitetusta sisällöstä.'
     display_title: Innehållsöversikt
   user_page:
     display_options:
@@ -81,3 +86,7 @@ display:
         uid:
           exception:
             title: Alla
+      empty:
+        area_text_custom:
+          content: '{{ arguments.uid }} käyttäjä ei ole ajastanut sisältöä.'
+    display_title: Käyttäjäprofiili

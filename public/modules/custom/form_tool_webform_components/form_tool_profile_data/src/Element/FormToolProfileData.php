@@ -58,7 +58,9 @@ class FormToolProfileData extends WebformCompositeBase {
       }
     }
 
-    if (isset($element['#strong'])) {
+    $authLevel = $hpud->getAuthenticationLevel();
+
+    if ($authLevel == 'strong' && isset($element['#strong'])) {
 
       $selectedFields = $element['#strong'];
 
@@ -140,7 +142,7 @@ class FormToolProfileData extends WebformCompositeBase {
       }
     }
 
-    if (isset($element['#weak'])) {
+    if ($authLevel == 'weak' && isset($element['#weak'])) {
       $selectedFields = $element['#weak'];
 
       if (isset($selectedFields['primaryAddress']) && $selectedFields['primaryAddress'] !== 0) {

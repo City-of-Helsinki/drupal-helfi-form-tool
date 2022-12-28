@@ -54,6 +54,7 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
       return WebformAccessResult::allowed();
     }
 
+    /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $helProfiiliData */
     $helProfiiliData = \Drupal::service('helfi_helsinki_profiili.userdata');
     $userData = $helProfiiliData->getUserData();
 

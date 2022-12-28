@@ -26,7 +26,10 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Carbon\Carbon;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Firebase\JWT\SignatureInvalidException;
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
 
 /**
  * Returns responses for helfi_gdpr_api routes.
@@ -169,12 +172,58 @@ class HelfiGdprApiController extends ControllerBase {
 
     $this->debug('GDPR Api access called. JWT token: @token', ['@token' => $this->jwtToken]);
 
-    if (!$this->helsinkiProfiiliUserData->verifyJwtToken($this->jwtToken)) {
-      return AccessResult::forbidden('Token verfication failed.');
+    $deniedReason = NULL;
+    $decoded = NULL;
+
+    try {
+      $decoded = $this->helsinkiProfiiliUserData->verifyJwtToken($this->jwtToken);
+    }
+    catch (\InvalidArgumentException $e) {
+      $deniedReason = $e->getMessage();
+    }
+    catch (\DomainException $e) {
+      // Provided algorithm is unsupported OR
+      // provided key is invalid OR
+      // unknown error thrown in openSSL or libsodium OR
+      // libsodium is required but not available.
+      $deniedReason = $e->getMessage();
+    }
+    catch (SignatureInvalidException $e) {
+      // Provided JWT signature verification failed.
+      $deniedReason = $e->getMessage();
+    }
+    catch (BeforeValidException $e) {
+      // Provided JWT is trying to be used before "nbf" claim OR
+      // provided JWT is trying to be used before "iat" claim.
+      $deniedReason = $e->getMessage();
+    }
+    catch (ExpiredException $e) {
+      // Provided JWT is trying to be used after "exp" claim.
+      $deniedReason = $e->getMessage();
+    }
+    catch (\UnexpectedValueException $e) {
+      // Provided JWT is malformed OR
+      // provided JWT is missing an algorithm / using an unsupported algorithm
+      // provided JWT algorithm does not match provided key OR
+      // provided key ID in key/key-array is empty or invalid.
+      $deniedReason = $e->getMessage();
+    }
+    catch (GuzzleException $e) {
+      // Generic guzzle exception.
+      $deniedReason = $e->getMessage();
+    }
+
+    if ($decoded == NULL) {
+      if ($deniedReason == NULL) {
+        return AccessResult::forbidden('JWT verification failed.');
+      }
+      else {
+        return AccessResult::forbidden($deniedReason);
+      }
     }
 
     // If audience does not match, forbid access.
-    if ($this->jwtData['aud'] != $this->audienceConfig["audience_host"] . '/' . $this->audienceConfig["service_name"]) {
+    if ($decoded['aud'] != $this->audienceConfig["audience_host"] . '/' . $this->audienceConfig["service_name"]) {
       $this->debug(
         'Access DENIED. Reason: @reason. JWT token: @token',
         [
@@ -184,26 +233,11 @@ class HelfiGdprApiController extends ControllerBase {
       return AccessResult::forbidden('Audience mismatch');
     }
 
-    // Check the expiration time - note this will cause an error if there
-    // is no 'exp' claim in the token.
-    $expiration = Carbon::createFromTimestamp($this->jwtData['exp']);
-    $tokenExpired = (Carbon::now()->diffInSeconds($expiration, FALSE) < 0);
-
-    if ($tokenExpired) {
-      $this->debug(
-        'Local access DENIED. Reason: @reason. JWT token: @token',
-        [
-          '@token' => $this->jwtToken,
-          '@reason' => 'Token expired',
-        ]);
-      return AccessResult::forbidden('Token expired.');
-    }
-
     $hostkey = 'asdf';
     if ($this->request->getCurrentRequest()->getMethod() == 'GET') {
 
       // Set hostname for get requests.
-      if (isset($this->jwtData[$this->audienceConfig["audience_host"]])) {
+      if (isset($decoded[$this->audienceConfig["audience_host"]])) {
         $hostkey = $this->audienceConfig["service_name"] . '.gdprquery';
       }
       else {
@@ -220,7 +254,7 @@ class HelfiGdprApiController extends ControllerBase {
     }
     if ($this->request->getCurrentRequest()->getMethod() == 'DELETE') {
       // Same with delete requests, but key used is different.
-      if (isset($this->jwtData[$this->audienceConfig["audience_host"]])) {
+      if (isset($decoded[$this->audienceConfig["audience_host"]])) {
         $hostkey = $this->audienceConfig["service_name"] . '.gdprdelete';
       }
       else {
@@ -234,7 +268,7 @@ class HelfiGdprApiController extends ControllerBase {
       }
     }
 
-    if ($this->jwtData[$this->audienceConfig["audience_host"]][0] == $hostkey) {
+    if ($decoded[$this->audienceConfig["audience_host"]][0] == $hostkey) {
       $this->debug(
         'Local access GRANTED. Reason: @reason. JWT token: @token',
         [
@@ -243,14 +277,17 @@ class HelfiGdprApiController extends ControllerBase {
         ]);
       return AccessResult::allowed();
     }
+    else {
+      $deniedReason = 'Scope mismatch';
+    }
 
-    $this->debug(
-      'Local access DENIED. Reason: @reason. JWT token: @token',
-      [
-        '@token' => $this->jwtToken,
-        '@reason' => 'Last forbinned.',
-      ]);
-    return AccessResult::forbidden('Authentication failed.');
+    // We should never reach here, but just return forbidden access.
+    if ($deniedReason != NULL) {
+      return AccessResult::forbidden($deniedReason);
+    }
+    else {
+      return AccessResult::forbidden('Generic token parse error');
+    }
   }
 
   /**
@@ -327,7 +364,14 @@ class HelfiGdprApiController extends ControllerBase {
   public function parseJwt(): void {
 
     $currentRequest = $this->request->getCurrentRequest();
-    $jwtToken = str_replace('Bearer ', '', $currentRequest->headers->get('authorization'));
+
+    $authHeader = $currentRequest->headers->get('authorization');
+
+    if (!$authHeader) {
+      throw new AccessDeniedHttpException('No authorization header', NULL, 403);
+    }
+
+    $jwtToken = str_replace('Bearer ', '', $authHeader);
     $tokenData = $this->helsinkiProfiiliUserData->parseToken($jwtToken);
     $this->jwtData = $tokenData;
     $this->jwtToken = $jwtToken;

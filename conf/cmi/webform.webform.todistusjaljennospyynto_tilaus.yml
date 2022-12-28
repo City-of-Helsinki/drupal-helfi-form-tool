@@ -7,7 +7,7 @@ dependencies:
     - webform_formtool_handler
 third_party_settings:
   form_tool_webform_parameters:
-    owner: verkkolomakehallinnoija@hel.fi
+    owner: drupal@hel.fi
     sector: KYMP
     ad_group: ad_group_2
     postal_address: ''
@@ -89,12 +89,12 @@ elements: |-
 css: ''
 javascript: ''
 settings:
-  ajax: true
+  ajax: false
   ajax_scroll_top: form
-  ajax_progress_type: fullscreen
-  ajax_effect: none
-  ajax_speed: 1000
-  page: true
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: false
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
