@@ -16,15 +16,7 @@ Force Tags      smoke
 #########################################################################################
 # Mitä testataan?
 # 
-# 1. Kirjaudutaan suomi.fi kautta sisään
-# 2. Hyväksytään cookiet
-# 3. Tarkistetaan, että kaikki todistus valinnat ovat valittavissa
-# 4. Lisätään koulun nimi
-# 5. Valitse toimitustavaksi nouto ja tarkistetaan, että oikea teksi tulee näkyviin
-# 6. Valitaan toimitustavaksi postiennakko
-# 7. Täytetään postiennakko yhteystiedot
-# 8. Hyväksytään rekisteriseloste
-# 9. 
+# 1. Tarkistetaan, että kenttiin saa syöttää sitä mitä pitääkin
 #
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
@@ -44,31 +36,10 @@ Login to lomake page using suomi.fi auth
     [Teardown]    NONE
 
 Verify all buttons, selections and fields
-    # Tarkistetaan, että kaikki todistus valinnat ovat valittavissa
-    Valitse tilattavaksi todistukseksi                      Peruskoulun päättötodistus
-    Capture Page Screenshot
-    Valitse tilattavaksi todistukseksi                      Peruskoulun erotodistus
-    Capture Page Screenshot
-    Valitse tilattavaksi todistukseksi                      Lisäopetuksen 10.lk todistus
-    Capture Page Screenshot
-    Valitse tilattavaksi todistukseksi                      Lukion päättötodistus
-    Capture Page Screenshot
-    Valitse tilattavaksi todistukseksi                      Lukion erotodistus
-    Capture Page Screenshot
-    # Lisää koulun nimi
+    # Koulun nimi kenttä
     Input Text                                              ${lomake-koulun-nimi-input}                             Koulun nimi tähän
-    Capture Page Screenshot
-    # Valitse toimitustavaksi nouto
-    Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
-    Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta
     Capture Page Screenshot
     # Valitse toimitustavaksi postiennakko
     Click Element                                           ${lomake-tjpt-toimitustapa-postiennakko-radiobutton-FI}
-    Genarate test data for postiennakko toimitustapa
-    Fill postiennakko information
-    # Rekisteriseloste
-    Click Element                                           ${lomake-tjpt-rekisteriseloste-checkbox}
-    Capture Page Screenshot
-    Sleep       10
-    # Lisää tallennus napin painallus
+
     [Teardown]    NONE

@@ -40,12 +40,14 @@ class FormSubmitErrorController extends ControllerBase {
    */
   public function build(): array {
 
-    $msg = $this->t('Form submission failed, please contact support');
+    $msg = [
+      '#markup' => '<p>' . $this->t('Form submission failed, please contact support.') . '</p>',
+    ];
 
     return [
       '#theme' => 'form_tool_share_completion',
-      '#submissionId' => NULL,
-      '#submissionData' => NULL,
+      '#submission_id' => NULL,
+      '#submission_data' => NULL,
       '#message' => $msg,
     ];
   }
