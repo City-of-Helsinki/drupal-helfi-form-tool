@@ -5,10 +5,12 @@
  * Provides an formtool of a webform handler.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\user\Entity\Role;
 use Drupal\webform\Entity\Webform;
 
@@ -326,5 +328,18 @@ function webform_formtool_handler_form_alter(&$form, FormStateInterface $form_st
 
       break;
 
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function webform_formtool_handler_node_access(EntityInterface $entity, string $operation, AccountInterface $account) {
+
+  if (
+    $entity->getType() == 'webform' &&
+    $operation == 'view' &&
+    $account->isAnonymous()) {
+    return AccessResult::forbidden('Anonymous access denied to webform ');
   }
 }
