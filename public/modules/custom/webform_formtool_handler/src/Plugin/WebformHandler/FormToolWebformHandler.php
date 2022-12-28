@@ -276,6 +276,18 @@ class FormToolWebformHandler extends WebformHandlerBase {
   public function confirmForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     parent::confirmForm($form, $form_state, $webform_submission);
 
+    // If user is not helsinkiproifile user we don't have any user info.
+    $currentUserRoles = \Drupal::currentUser()->getRoles();
+    if (
+      !in_array('helsinkiprofiili_vahva', $currentUserRoles) &&
+      !in_array('helsinkiprofiili_heikko', $currentUserRoles)) {
+
+      $this->log('error', 'No helsinki profile', []);
+      $this->messenger()->addError('No helsinki profile data');
+      $form_state->setRedirect('entity.form_tool_share.error');
+      return;
+    }
+
     if ($this->isNewSubmission($webform_submission->uuid())) {
 
       /** @var \Drupal\webform\WebformSubmissionForm $webFormSubmissionForm */
