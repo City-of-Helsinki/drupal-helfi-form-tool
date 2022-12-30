@@ -5,7 +5,7 @@
 trigger:
   tags:
     include:
-      - deploy-to-test
+      - deploy-to-dev
   paths:
     exclude:
       - README.md

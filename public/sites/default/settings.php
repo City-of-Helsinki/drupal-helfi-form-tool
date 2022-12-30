@@ -239,3 +239,7 @@ if ($env = getenv('APP_ENV')) {
     include __DIR__ . '/azure.settings.php';
   }
 }
+
+if ($atvkey = getenv('ATV_API_KEY2')) {
+  putenv('ATV_API_KEY2=' . $atvkey);
+}
