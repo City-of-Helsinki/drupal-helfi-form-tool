@@ -37,7 +37,7 @@ jobs:
       - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager
         displayName: "Install dependencies"
 
-      - powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' '$(Build.SourcesDirectory)\tests\lomake-Check-tjpt-page-functionality.robot'
+      - powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' '$(Build.SourcesDirectory)\tests\lomake-Check-tjpt-page-functionality*.robot'
         failOnStderr: true
         displayName: "Run Robot Framework Tests"
         continueOnError: true

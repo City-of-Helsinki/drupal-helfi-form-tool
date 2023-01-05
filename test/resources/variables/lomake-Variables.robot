@@ -2,15 +2,19 @@
 
 ${environment}      null
 
-${testuser1-lomake-hetu}                                        210281-9988     #150552-9979     # Taavetti Järvites
+${testuser1-lomake-hetu}                                        150552-9979     # Taavetti Järvites
                                                                                 # Tarvitsee profiilin
 # Urlit
 # DEV
-${dev_lomake-login_url}                                         https://lomaketyokalu.dev.hel.ninja/fi
-${dev_lomake-direct-logout_url}                                 https://lomaketyokalu.dev.hel.ninja/user/logout
-${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}         https://lomaketyokalu.dev.hel.ninja/fi/form/todistusjaljennospyynto-tilaus
+${dev_lomake-login_url}                                         https://www.hel.fi/fi/dev-lomakkeet/   #https://lomaketyokalu.dev.hel.ninja/fi
+${dev_lomake-direct-logout_url}                                 https://www.hel.fi/fi/dev-lomakkeet/user/logout    #https://lomaketyokalu.dev.hel.ninja/user/logout
+${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}         https://www.hel.fi/fi/dev-lomakkeet/todistusjaljennospyynto-tilaus  #https://lomaketyokalu.dev.hel.ninja/fi/form/todistusjaljennospyynto-tilaus
 ${dev_example-app_url}                                          https://example-ui.dev.hel.ninja/
-                                      
+
+# Lomake
+${lomake-login-button-FI}                                       id=edit-openid-connect-client-tunnistamo-login
+${lomake-front-page-random-element}                             id=block-hdbt-subtheme-local-tasks
+
 # Valitse tilattava todistus
 ## tjpt = Todistusjäljennöspyyntö tilaus
 ## vtt = Valitse tilattava todistus
@@ -33,8 +37,19 @@ ${lomake-tjpt-toimitustapa-postinumero-field-FI}                id=edit-valitse-
 ${lomake-tjpt-toimitustapa-kaupunki-field-FI}                   id=edit-valitse-toimitustapa-cod-city
 ${lomake-tjpt-toimitustapa-puhelinnumero-field-FI}              id=edit-valitse-toimitustapa-cod-phone-number
 
+# Mahdolliset lisätiedot
+${lomake-tjpt-lisätiedot-field}                                 id=edit-mahdolliset-lisatiedot
+
 # Rekisteri seloste
 ${lomake-tjpt-rekisteriseloste-checkbox}                        //input[@data-drupal-selector='edit-privacy-policy-acceptance']
+
+# Lähetä lomake
+${lomake-tjpt-laheta-lomake-button}                             id=edit-submit
+
+#Todistusjäljennöspyyntö lähetetty sivu
+${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}                Todistusjäljennöspyyntö lähetetty
+${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}                    (//span[contains(@class,'hds-button__label')])[1]
+${lomake-tjpt-nayta-lomakkeen-tiedot}                           (//span[contains(@class,'hds-button__label')])[2]
 
 
 
