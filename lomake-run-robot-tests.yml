@@ -37,7 +37,7 @@ jobs:
       - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager
         displayName: "Install dependencies"
 
-      - powershell: Get-ChildItem -Filter *.json -Recurse
+      - powershell: Get-ChildItem -Filter *.robot -Recurse
         failOnStderr: true
         displayName: "saa naha mita loytyy"
         continueOnError: true
