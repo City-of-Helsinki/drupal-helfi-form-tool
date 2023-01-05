@@ -12,6 +12,12 @@ Test Timeout    900 seconds
 Test Teardown   Run keywords    Capture Page Screenshot     Delete All Cookies  Close All Browsers
 Force Tags      smoke
 
+*** Variables ***
+
+${lomake-testdata-koulunnimi}                               Mauri Makkaran ala-aste
+${lomake-testdata-lisatiedot}                               Ei mulla mitään lisätietoja ole
+
+
 *** Test Cases ***
 #########################################################################################
 # Mitä testataan?
@@ -37,8 +43,11 @@ Login to lomake page using suomi.fi auth
 # 
     [Tags]  critical
     Select test data and open browser
-    Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
+    Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
+    Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
+    Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
     Accept all cookies
     Capture Page Screenshot
     [Teardown]    NONE
@@ -56,19 +65,37 @@ Verify all buttons, selections and fields
     Valitse tilattavaksi todistukseksi                      Lukion erotodistus
     Capture Page Screenshot
     # Lisää koulun nimi
-    Input Text                                              ${lomake-koulun-nimi-input}                             Koulun nimi tähän
+    Input Text                                              ${lomake-koulun-nimi-input}                                 ${lomake-testdata-koulunnimi}
     Capture Page Screenshot
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
-    Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta
+    Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta   20
     Capture Page Screenshot
     # Valitse toimitustavaksi postiennakko
     Click Element                                           ${lomake-tjpt-toimitustapa-postiennakko-radiobutton-FI}
     Genarate test data for postiennakko toimitustapa
     Fill postiennakko information
+    # Lisätiedot
+    Input Text                                              ${lomake-tjpt-lisätiedot-field}                             ${lomake-testdata-lisatiedot}
     # Rekisteriseloste
     Click Element                                           ${lomake-tjpt-rekisteriseloste-checkbox}
     Capture Page Screenshot
-    Sleep       10
-    # Lisää tallennus napin painallus
+    Click Element                                           ${lomake-tjpt-laheta-lomake-button}
+    Wait Until Page Contains                                ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}            20
+    Click Element                                           ${lomake-tjpt-nayta-lomakkeen-tiedot}
+    # Tarkista, että sivu aukeaa ja se sisältää lomakkeelle täytettyä tietoa
+    Wait Until Page Contains                                Lomakkeen numero                                            20
+    Page Should Contain                                     ${etunimi}
+    Page Should Contain                                     ${sukunimi}
+    Page Should Contain                                     ${random-kotiosoite}
+    Page Should Contain                                     ${random-postinumero}
+    Page Should Contain                                     ${kaupunki}
+    Page Should Contain                                     ${random-puhnum}
+    Page Should Contain                                     ${lomake-testdata-koulunnimi}
+    Page Should Contain                                     ${lomake-testdata-lisatiedot}
+
+
+    # Lisää logout kun sellanen sivuille ilmestyy
+    #Click Element                                          logout
+    #Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
     [Teardown]    NONE
