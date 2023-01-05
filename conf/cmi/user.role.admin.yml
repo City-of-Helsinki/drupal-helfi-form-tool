@@ -51,7 +51,7 @@ dependencies:
 _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
-label: Administrator
+label: Pääkäyttäjä
 weight: -5
 is_admin: null
 permissions:
@@ -67,6 +67,7 @@ permissions:
   - 'access user profiles'
   - 'access webform help'
   - 'access webform overview'
+  - 'administer account settings'
   - 'administer blocks'
   - 'administer eu cookie compliance categories'
   - 'administer eu cookie compliance popup'
@@ -77,6 +78,7 @@ permissions:
   - 'administer nodes'
   - 'administer paragraphs library'
   - 'administer pathauto'
+  - 'administer permissions'
   - 'administer redirects'
   - 'administer sitemap settings'
   - 'administer url aliases'
