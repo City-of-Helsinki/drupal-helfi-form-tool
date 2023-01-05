@@ -1,0 +1,10 @@
+uuid: 3020fc35-22d0-4bc3-bc81-3add8a1da591
+langcode: en
+status: true
+dependencies: {  }
+id: phasing_item
+label: 'Phasing item'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

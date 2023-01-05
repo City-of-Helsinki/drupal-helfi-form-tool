@@ -22,9 +22,9 @@ final class SelfUpdateCommands extends DrushCommands {
   /**
    * The http client.
    *
-   * @var \GuzzleHttp\ClientInterface
+   * @var null|\GuzzleHttp\ClientInterface
    */
-  private $httpClient;
+  private ?ClientInterface $httpClient = NULL;
 
   /**
    * Gets the http client.
@@ -40,6 +40,29 @@ final class SelfUpdateCommands extends DrushCommands {
   }
 
   /**
+   * Make sure the destination folder exists.
+   *
+   * @param string $destination
+   *   The destination file.
+   */
+  private function ensureFolder(string $destination) : void {
+    $parts = explode('/', $destination);
+    array_pop($parts);
+
+    if (count($parts) === 0) {
+      return;
+    }
+
+    $folder = implode('/', $parts);
+
+    if (!is_dir($folder)) {
+      if (!mkdir($folder, 0755, TRUE)) {
+        throw new \InvalidArgumentException('Failed to create folder: ' . $folder);
+      }
+    }
+  }
+
+  /**
    * Copies source file to destination.
    *
    * @param string $source
@@ -52,10 +75,11 @@ final class SelfUpdateCommands extends DrushCommands {
    */
   private function copyFile(string $source, string $destination) : bool {
     try {
+      $this->ensureFolder($destination);
       $resource = Utils::tryFopen($destination, 'w');
       $this->httpClient()->request('GET', $source, ['sink' => $resource]);
     }
-    catch (GuzzleException $e) {
+    catch (GuzzleException | \InvalidArgumentException $e) {
       $this->io()->error($e->getMessage());
       return FALSE;
     }
@@ -82,6 +106,25 @@ final class SelfUpdateCommands extends DrushCommands {
   }
 
   /**
+   * Checks if file can be updated.
+   *
+   * @param string $file
+   *   The file.
+   *
+   * @return bool
+   *   TRUE if file can be updated automatically.
+   */
+  private function fileCanBeUpdated(string $file) : bool {
+    $isCI = getenv('CI');
+
+    if ($isCI) {
+      // Workflows cannot be updated in CI.
+      return !str_starts_with($file, '.github/workflows');
+    }
+    return TRUE;
+  }
+
+  /**
    * Updates files from platform.
    *
    * @param bool $updateDist
@@ -97,6 +140,12 @@ final class SelfUpdateCommands extends DrushCommands {
       // Fallback source to destination if source is not defined.
       if (is_numeric($source)) {
         $source = $destination;
+      }
+      // Check if we can update given file. For example, we can't
+      // update GitHub workflow files in CI with our current GITHUB_TOKEN.
+      // @todo Remove this once we use token with more permissions.
+      if (!$this->fileCanBeUpdated($source)) {
+        continue;
       }
       $isDist = $this->fileIsDist($source);
 
@@ -130,7 +179,7 @@ final class SelfUpdateCommands extends DrushCommands {
    *   Whether the given file is dist or not.
    */
   private function fileIsDist(string $file) : bool {
-    return str_starts_with($file, '.dist');
+    return str_ends_with($file, '.dist');
   }
 
   /**
@@ -269,6 +318,29 @@ final class SelfUpdateCommands extends DrushCommands {
   }
 
   /**
+   * Updates the dependencies.
+   *
+   * @param array $options
+   *   The options.
+   */
+  private function updateExternalPackages(array $options) : void {
+    if (empty($options['root'])) {
+      throw new \InvalidArgumentException('Missing drupal root.');
+    }
+    $gitRoot = sprintf('%s/..', rtrim($options['root'], '/'));
+
+    // Update druidfi/tools if the package exists.
+    if (is_dir($gitRoot . '/tools')) {
+      $this->processManager()->process([
+        'make',
+        'self-update',
+      ])->run(function (string $type, ?string $output) : void {
+        $this->io()->write($output);
+      });
+    }
+  }
+
+  /**
    * Updates files from platform.
    *
    * @param bool[] $options
@@ -284,6 +356,8 @@ final class SelfUpdateCommands extends DrushCommands {
       'update-dist' => $updateDist,
     ] = $this->parseOptions($options);
 
+    $this->updateExternalPackages($options);
+
     $this
       ->updateFiles($updateDist, [
         '.github/workflows/test.yml.dist' => '.github/workflows/test.yml',
@@ -292,11 +366,12 @@ final class SelfUpdateCommands extends DrushCommands {
         '.gitignore.dist' => '.gitignore',
       ])
       ->updateFiles($updateDist, [
+        'public/sites/default/azure.settings.php',
         'public/sites/default/settings.php',
         'docker/openshift/custom.locations',
         'docker/openshift/Dockerfile',
         'docker/openshift/entrypoints/20-deploy.sh',
-        'docker/openshift/crons/drupal.sh',
+        'docker/openshift/crons/content-scheduler.sh',
         'docker/openshift/crons/migrate-status.php',
         'docker/openshift/crons/migrate-tpr.sh',
         'docker/openshift/crons/prestop-hook.sh',
@@ -305,9 +380,16 @@ final class SelfUpdateCommands extends DrushCommands {
         'docker-compose.yml',
         'phpunit.xml.dist',
         'phpunit.platform.xml',
+        'tools/make/project/install.mk',
+        'tools/make/project/git.mk',
+        'tools/make/project/robo.mk',
+        'tools/commit-msg',
+        '.sonarcloud.properties',
+        '.github/pull_request_template.md',
       ])
       ->removeFiles([
         'docker/local/Dockerfile',
+        'docker/openshift/crons/drupal.sh',
         'docker/local/custom.locations',
         'docker/local/entrypoints/30-chromedriver.sh',
         'docker/local/entrypoints/30-drush-server.sh',
@@ -317,9 +399,8 @@ final class SelfUpdateCommands extends DrushCommands {
         'drush/Commands/OpenShiftCommands.php',
       ])
       ->addFiles([
-        'public/sites/default/all.settings.php' => [
-          'remote' => TRUE,
-        ],
+        'docker/openshift/crons/base.sh' => ['remote' => TRUE],
+        'public/sites/default/all.settings.php' => ['remote' => TRUE],
       ]);
 
     return DrushCommands::EXIT_SUCCESS;

@@ -5,7 +5,7 @@ display:
     display_options:
       exposed_form:
         options:
-          submit_button: Suodatin
+          submit_button: Suodata
           reset_button_label: Palauta
           exposed_sorts_label: Lajittele
           sort_asc_label: Nousevasti
@@ -36,10 +36,10 @@ display:
             format_custom_false: Julkaisematon
           separator: ', '
         publish_on:
-          label: Julkaisupäivämäärä
+          label: Julkaisuaika
           separator: ', '
         unpublish_on:
-          label: 'Julkaisun peruutuspäivämäärä'
+          label: 'Ajastettu piilottaminen'
           separator: ', '
         operations:
           label: Toimenpiteet

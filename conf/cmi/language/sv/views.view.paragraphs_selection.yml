@@ -1,6 +1,6 @@
 display:
   default:
-    display_title: Huvud
+    display_title: Förvald
     display_options:
       pager:
         options:
@@ -17,6 +17,6 @@ display:
       filters:
         label:
           expose:
-            label: Label
+            label: Etikett
   entity_reference:
     display_title: Objektsreferens

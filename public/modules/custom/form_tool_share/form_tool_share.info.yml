@@ -1,0 +1,8 @@
+name: Form Tool Share
+type: module
+description: Sharing components for form tool.
+package: Helfi
+core: 8.x
+core_version_requirement: ^8 || ^9
+'interface translation project': form_tool_share
+'interface translation server pattern': modules/custom/form_tool_share/translations/%language.po

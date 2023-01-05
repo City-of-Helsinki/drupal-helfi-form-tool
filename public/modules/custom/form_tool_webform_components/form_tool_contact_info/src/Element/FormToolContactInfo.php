@@ -40,6 +40,11 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function getCompositeElements(array $element) {
     $elements = [];
+    $elements['Info'] = [
+      '#type' => 'item',
+      '#theme' => 'notification_content',
+      '#notice_value' => t('Selecting a delivery method may prompt further questions'),
+    ];
     $elements['Toimitustapa: Email'] = [
       '#type' => 'checkbox',
       '#title' => t('Email'),
@@ -70,6 +75,7 @@ class FormToolContactInfo extends WebformCompositeBase {
         'cod' => t('Cash on Delivery'),
         'pickup' => t('Pick Up'),
       ],
+      '#required' => TRUE,
       '#after_build' => [[get_called_class(), 'deliveryOptions']],
     ];
     $elements['first_name'] = [
@@ -108,7 +114,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['cod'] = [
       '#type' => 'item',
-      '#markup' => 'Postiennakon hinta asiakirjan tilaajalle 9,20 €.',
+      '#markup' => t('Cash on delviery price is 9,20 €'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_first_name'] = [
@@ -157,11 +163,11 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['Postiennakko -teksti'] = [
       '#type' => 'item',
-      '#title' => t('Postiennakon hinta asiakirjan tilaajalle 9,20 €'),
+      '#title' => t('Cash on delviery price is 9,20 €'),
     ];
     $elements['Nouto -teksti'] = [
       '#type' => 'textfield',
-      '#title' => t('Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki.'),
+      '#title' => t('Pick-up from Töysänkatu 2 D, 00510 Helsinki.'),
     ];
 
     return $elements;
@@ -243,21 +249,35 @@ class FormToolContactInfo extends WebformCompositeBase {
    */
   public static function preRenderWebformCompositeFormElement($element) {
     $element = parent::preRenderWebformCompositeFormElement($element);
+
     if ($element['Toimitustapa: Email']['#access'] != 1) {
       unset($element['delivery_method']['email']);
+    }
+    else {
+      $element['delivery_method']['email']['#title'] = $element['Toimitustapa: Email']['#title'];
     }
     unset($element['Toimitustapa: Email']);
     if ($element['Toimitustapa: Postitoimitus']['#access'] != 1) {
       unset($element['delivery_method']['postal']);
     }
+    else {
+      $element['delivery_method']['postal']['#title'] = $element['Toimitustapa: Postitoimitus']['#title'];
+    }
     unset($element['Toimitustapa: Postitoimitus']);
     if ($element['Toimitustapa: Postiennakko']['#access'] != 1) {
       unset($element['delivery_method']['cod']);
+    }
+    else {
+      $element['delivery_method']['cod']['#title'] = $element['Toimitustapa: Postiennakko']['#title'];
     }
     unset($element['Toimitustapa: Postiennakko']);
     if ($element['Toimitustapa: Nouto']['#access'] != 1) {
       unset($element['delivery_method']['pickup']);
     }
+    else {
+      $element['delivery_method']['pickup']['#title'] = $element['Toimitustapa: Nouto']['#title'];
+    }
+    $element['delivery_method']['#title'] = $element['#title'];
     unset($element['Toimitustapa: Nouto']);
     if ($element['Nouto -teksti']['#title'] != '') {
       $element['pickup']['#markup'] = $element['Nouto -teksti']['#title'];
@@ -267,6 +287,60 @@ class FormToolContactInfo extends WebformCompositeBase {
       $element['cod']['#markup'] = $element['Postiennakko -teksti']['#title'];
     }
     unset($element['Postiennakko -teksti']);
+
+    $elements['Toimitustapa: Email'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Email'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Postitoimitus'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Postal Delivery'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Postiennakko'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Cash on Delivery'),
+      '#title_display' => 'before',
+    ];
+    $elements['Toimitustapa: Nouto'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Pickup'),
+      '#title_display' => 'before',
+    ];
+
+    return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function processWebformComposite(&$element, FormStateInterface $form_state, &$complete_form): array {
+    // Process element.
+    $element = parent::processWebformComposite($element, $form_state, $complete_form);
+
+    // Load submission & data.
+    $submission = $form_state->getFormObject()->getEntity();
+    $submissionData = $submission->getData();
+
+    // Loop data & make sure it's set properly with #default_values
+    // process only 2 levels,.
+    // @todo check if more dynamic parsing is necessary with address forms.
+    foreach ($submissionData as $key => $value) {
+      if (is_array($value)) {
+        foreach ($value as $key2 => $value2) {
+          if (!is_array($value2)) {
+            if (isset($element[$key2])) {
+              $element[$key2]['#default_value'] = $value2;
+            }
+          }
+        }
+      }
+      else {
+        $element[$key]['#default_value'] = $value;
+      }
+    }
+
     return $element;
   }
 

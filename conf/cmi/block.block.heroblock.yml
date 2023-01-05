@@ -3,16 +3,16 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - hdbt_content
+    - node
   theme:
     - hdbt
 _core:
-  default_config_hash: nH8M6u66xNnGzjplyiDZAKKeyzDR6NFyTMXNwDYzldk
+  default_config_hash: OLZ-FXRnOmtRhlwJuhSiSa_CMSDN1M_xcOla5FgxkxE
 id: heroblock
 theme: hdbt
 region: before_content
-weight: -5
+weight: -11
 provider: null
 plugin: hero_block
 settings:

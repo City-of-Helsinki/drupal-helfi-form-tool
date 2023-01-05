@@ -1,0 +1,9 @@
+uuid: 68b65b83-5bba-48e3-bb6d-f45d463e0504
+langcode: fi
+status: true
+dependencies: {  }
+id: verkkolomake_kasittelija_testi123
+label: Verkkolomake-käsittelijä-TESTI123
+weight: 2
+is_admin: null
+permissions: {  }

@@ -1,0 +1,33 @@
+.webform-element-help {
+  background: var(--color-white);
+  border: 2px solid transparent;
+  color: var(--hdbt-color-black);
+  height: var(--spacing-layout-xs);
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: var(--spacing-layout-xs);
+}
+
+.tippy-box {
+  background-color: var(--color-black-5);
+  border-left: var(--spacing-xs) var(--color-coat-of-arms) solid;
+  border-radius: 0;
+  color: var(--hdbt-color-black);
+  padding: var(--spacing-layout-2-xs);
+
+  .webform-element-help--content {
+    white-space: normal;
+
+    a:link,
+    a:visited,
+    a:active,
+    a:hover {
+      color: var(--hdbt-color-black);
+    }
+  }
+}
+
+.tippy-arrow {
+  color: var(--color-black-5);
+}

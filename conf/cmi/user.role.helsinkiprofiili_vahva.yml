@@ -1,0 +1,14 @@
+uuid: a247add5-9d5e-44df-8f92-1eb1a6a1cc86
+langcode: en
+status: true
+dependencies:
+  module:
+    - form_tool_share
+    - webform
+id: helsinkiprofiili_vahva
+label: 'HelsinkiProfiili Vahva'
+weight: -3
+is_admin: null
+permissions:
+  - 'access form data page'
+  - 'view own webform submission'

@@ -1,0 +1,344 @@
+.webform-submission--view-mode-html,
+.webform-submission-data-preview-page,
+.webform-print-page-html {
+  .hds-notification,
+  .webform-progress-tracker-mobile,
+  .webform-progress-tracker,
+  .messages__container,
+  header.header,
+  nav.breadcrumb,
+  .tools__container,
+  footer.footer,
+  button,
+  .form-actions {
+    display: none !important;
+  }
+
+  .webform-print-wrapper-table {
+    border: 0 transparent solid;
+    max-width: 100%;
+    overflow-x: initial;
+    width: 100%;
+
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    tbody tr:hover,
+    td,
+    td:first-child,
+    th {
+      background: transparent;
+      border: 0;
+      color: var(--color-black);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+        margin-top: 6mm;
+      }
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
+    tfoot {
+      display: table-footer-group;
+    }
+  }
+
+  .webform-submission-data > section {
+    border-top: 1px var(--color-black-20) solid;
+    padding-top: var(--spacing-layout-l);
+
+    > .webform-section-flex-wrapper {
+      display: block;
+
+      > h2 {
+        font-size: $base-font-size * 2.25 !important;
+        font-weight: 500;
+        margin: 0 0 2mm !important;
+        min-width: 100%;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+
+      > .webform-section-wrapper {
+        padding: 6mm 0;
+
+        label {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  @media print {
+    .webform-submission-data > section {
+      border-top: 0 var(--color-black-20) solid !important;
+      padding-top: 0 !important;
+    }
+
+    .hds-notification,
+    .webform-progress-tracker-mobile,
+    .webform-progress-tracker,
+    .messages__container,
+    header.header,
+    nav.breadcrumb,
+    .tools__container,
+    footer.footer,
+    button,
+    .form-actions {
+      display: none !important;
+    }
+
+    div.main-content {
+      margin: 0;
+    }
+
+    .gin--horizontal-toolbar .dialog-off-canvas-main-canvas {
+      padding: 0 !important;
+    }
+
+    .webform-print-page-body {
+      .webform-multiple-add {
+        display: none;
+      }
+
+      .hds-text-input .hds-text-input__input[readonly],
+      .hds-text-input .hds-text-input__input {
+        border: 2px var(--color-black) solid;
+      }
+
+      label {
+        font-size: 10pt;
+      }
+
+      .webform-element {
+        border: 1px var(--color-black) solid;
+        margin-bottom: 8mm;
+        padding: 2.5mm;
+        position: relative;
+      }
+
+      .webform-multiple-table--operations {
+        display: none;
+      }
+
+      .webform-print {
+        .webform-print-wrapper-table {
+          border: 0;
+          margin: 0;
+          overflow-x: initial;
+        }
+
+        .webform-print-header,
+        .webform-print-header-space {
+          background: var(--color-white);
+          font-size: 9pt;
+          height: 21mm;
+        }
+
+        .webform-print-footer,
+        .webform-print-footer-space {
+          background: var(--color-white);
+          font-size: 9pt;
+          height: 17mm;
+        }
+
+        .webform-print-header {
+          align-items: center;
+          background: var(--color-white);
+          border-bottom: 1px var(--color-black-40) solid;
+          display: flex;
+          flex-flow: row nowrap;
+          left: 0;
+          max-width: 100%;
+          min-width: 100%;
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+
+          svg {
+            color: var(--color-black);
+            display: block;
+            height: 25mm;
+            margin-right: 3mm;
+            width: 55mm;
+          }
+
+          .webform-print-header-left-text {
+            color: var(--color-black-40);
+            text-align: left;
+            width: 100%;
+          }
+
+          .webform-print-header-right-text {
+            color: var(--color-black-40);
+            text-align: right;
+            width: 100%;
+          }
+        }
+
+        .webform-print-footer {
+          align-items: center;
+          background: var(--color-white);
+          border-top: 1px var(--color-black-40) solid;
+          bottom: 0;
+          display: flex;
+          flex-flow: row nowrap;
+          left: 0;
+          max-width: 100%;
+          min-width: 100%;
+          position: fixed;
+          width: 100%;
+          z-index: 1000;
+
+          svg {
+            color: var(--color-black);
+            display: block;
+            height: 15mm;
+            margin-right: 3mm;
+            width: 33mm;
+          }
+
+          .webform-print-footer-left-text {
+            color: var(--color-black-40);
+            text-align: left;
+            width: 100%;
+          }
+
+          .webform-print-footer-right-text {
+            color: var(--color-black-40);
+            text-align: right;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .webform-preview {
+      label {
+        font-size: 10pt;
+        left: 0;
+        position: absolute;
+        top: -6mm;
+      }
+
+      .webform-element {
+        border: 1px var(--color-black) solid;
+        margin-bottom: 8mm;
+        padding: 2.5mm;
+        position: relative;
+        top: 5mm;
+      }
+
+      .webform-multiple-table--operations {
+        display: none;
+      }
+
+      .webform-print {
+        .webform-print-wrapper-table {
+          border: 0;
+          margin: 0;
+          overflow-x: initial;
+        }
+
+        .webform-print-header,
+        .webform-print-header-space {
+          background: var(--color-white);
+          font-size: 9pt;
+          height: 21mm;
+        }
+
+        .webform-print-footer,
+        .webform-print-footer-space {
+          background: var(--color-white);
+          font-size: 9pt;
+          height: 17mm;
+        }
+
+        .webform-print-header {
+          align-items: center;
+          background: var(--color-white);
+          border-bottom: 1px var(--color-black-40) solid;
+          display: flex;
+          flex-flow: row nowrap;
+          left: 0;
+          max-width: 100%;
+          min-width: 100%;
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+
+          svg {
+            color: var(--color-black);
+            display: block;
+            height: 25mm;
+            margin-right: 3mm;
+            width: 55mm;
+          }
+
+          .webform-print-header-left-text {
+            color: var(--color-black-40);
+            text-align: left;
+            width: 100%;
+          }
+
+          .webform-print-header-right-text {
+            color: var(--color-black-40);
+            text-align: right;
+            width: 100%;
+          }
+        }
+
+        .webform-print-footer {
+          align-items: center;
+          background: var(--color-white);
+          border-top: 1px var(--color-black-40) solid;
+          bottom: 0;
+          display: flex;
+          flex-flow: row nowrap;
+          left: 0;
+          max-width: 100%;
+          min-width: 100%;
+          position: fixed;
+          width: 100%;
+          z-index: 1000;
+
+          svg {
+            color: black;
+            display: block;
+            height: 15mm;
+            margin-right: 3mm;
+            width: 33mm;
+          }
+
+          .webform-print-footer-left-text {
+            color: var(--color-black-40);
+            text-align: left;
+            width: 100%;
+          }
+
+          .webform-print-footer-right-text {
+            color: var(--color-black-40);
+            text-align: right;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.webform-print-header,
+.webform-print-footer {
+  display: none;
+}

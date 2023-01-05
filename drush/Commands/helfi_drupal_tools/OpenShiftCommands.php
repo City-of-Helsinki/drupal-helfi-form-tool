@@ -121,7 +121,7 @@ final class OpenShiftCommands extends DrushCommands {
 
     $fullCommand = 'oc ' . implode(' ', $command);
     $this->io()->note('Running: ' . $fullCommand);
-    $process = new Process(['oc', ...$command]);
+    $process = new Process(['oc', ...$command], timeout: 3600);
     $process->start();
 
     if (!$callback && $showOutput) {
@@ -151,10 +151,15 @@ final class OpenShiftCommands extends DrushCommands {
    *   The pod name.
    */
   private function getDrupalPodName(array $items) : string {
+    $deploymentConfigName = getenv('OC_DEPLOYMENT_CONFIG_NAME') ?: 'drupal';
+
     foreach ($items as $item) {
       $labels = $item->metadata->labels ?? NULL;
 
-      if ((!isset($labels->deploymentconfig)) || $labels->deploymentconfig !== 'drupal') {
+      if (
+        (!isset($labels->deploymentconfig)) ||
+        $labels->deploymentconfig !== $deploymentConfigName
+      ) {
         continue;
       }
       if ((!isset($item->status->phase)) || $item->status->phase !== 'Running') {
@@ -183,6 +188,7 @@ final class OpenShiftCommands extends DrushCommands {
         $pod,
         'drush',
         'sql:dump',
+        '--structure-tables-key=common',
         '--result-file=/tmp/dump.sql',
       ]);
       $this->invokeOc([
@@ -190,6 +196,26 @@ final class OpenShiftCommands extends DrushCommands {
         sprintf('%s:/tmp/dump.sql', $pod),
         DRUPAL_ROOT . '/..',
       ]);
+    });
+    return self::EXIT_SUCCESS;
+  }
+
+  /**
+   * Sanitizes the current database.
+   *
+   * @command helfi:oc:sanitize-database
+   *
+   * @return int
+   *   The exit code.
+   */
+  public function sanitizeDatabase() : int {
+    $process = $this->processManager()->process([
+      'drush',
+      'sql-query',
+      "UPDATE file_managed SET uri = REPLACE(uri, 'azure://', 'public://')",
+    ]);
+    $process->run(function ($type, $output) {
+      $this->io()->write($output);
     });
     return self::EXIT_SUCCESS;
   }

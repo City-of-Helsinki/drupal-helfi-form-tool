@@ -1,0 +1,113 @@
+# Finnish translation of City of Helsinki
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2021-05-31 11:00+0300\n"
+"PO-Revision-Date: 2022-01-28 11:00+0300\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+
+msgid "Person responsible (Owner)"
+msgstr "Lomakkeen vastuuhenkilö (omistaja)"
+
+msgid "The sector that handles the form data"
+msgstr "Toimiala, joka käsittelee lomakkeen tiedot"
+
+msgid "Does the form contain sensitive information"
+msgstr "Käsitelläänkö lomakkeella arkaluonteista henkilötietoa"
+
+msgid "Form Pre-Information"
+msgstr "Lomakkeen esitiedot"
+
+msgid "AD Grouo of the handlers of form data"
+msgstr "Lomakkeen vastausten käsittelijöiden AD-ryhmä"
+
+msgid "Login requirements"
+msgstr "Tunnistautumisvaatimus lomakkeelle"
+
+msgid "No Authentication"
+msgstr "Ei tarvetta tunnistautumiselle"
+
+msgid "Weak Authentication"
+msgstr "Heikko tunnistautuminen"
+
+msgid "Strong Authentication"
+msgstr "Vahva tunnistautuminen"
+
+msgid "Postal address for paper form delivery"
+msgstr "Lomakkeen paperiversion toimitusosoite"
+
+msgid "I have read and approved <a href=\"@privacy-policy-link\">the privacy policy</a>"
+msgstr "Olen lukenut ja hyväksynyt <a href=\"@privacy-policy-link\">rekisteriselosteen</a>"
+
+msgid "Privacy Policy"
+msgstr "Rekisteriseloste"
+
+msgid "If left empty, will use the default privacy policy from sector"
+msgstr "Jos tämä jätetään tyhjäksi, käytetään toimialan oletusrekisteriselostetta"
+
+msgid "URL of Privacy Policy (Finnish)"
+msgstr "Rekisteriselosteen verkko-osoite (suomeksi)"
+
+msgid "URL of Privacy Policy (Swedish)"
+msgstr "Rekisteriselosteen verkko-osoite (ruotsiksi)"
+
+msgid "URL of Privacy Policy (English)"
+msgstr "Rekisteriselosteen verkko-osoite (englanniksi)"
+
+msgid "URL of Privacy Policy (Russian)"
+msgstr "Rekisteriselosteen verkko-osoite (venäjäksi)"
+
+msgid "https://asiakirjajulkisuus.hel.fi/"
+msgstr "https://asiakirjajulkisuus.hel.fi/"
+
+msgid "Is form published"
+msgstr "Onko lomake julkaistu"
+
+msgid "Work in progress"
+msgstr "Kesken"
+
+msgid "If form is published, then no editing is allowed and form results are submitted to ATV. Work in progress form opens up for testing & developing but not for general public."
+msgstr "Jos lomake on julkaistu, ei muokkausta sallita ja lomakkeen lähetys sallitaan. Suljettuun lomakkeeseen ei päästetä ja kesken oleva näkyy vain ylläpidolle."
+
+msgid "Roles that can access submission"
+msgstr "Käyttäjäroolit joilla on pääsy lähetettyyn lomakedataan"
+
+msgid "Email address where notification is sent."
+msgstr "Sähköpostiosoite johon ilmoitus uudesta hakemuksesta lähetetään"
+
+msgid "Add email where notification is sent after submission, leave empty for no notification."
+msgstr "Sähköpostiosoite johon ilmoitus uudesta lähetyksestä toimitetaan."
+
+msgid "Form short code used to identify submissions."
+msgstr "Lomakkeen tunnus."
+
+msgid "Short code must be unique between all forms."
+msgstr "Lomakkeen tunnuksen tulee olla yksilöivä."
+
+msgid "TOS function ID."
+msgstr "TOS funktio ID."
+
+msgid "Insert used TOS function id."
+msgstr "Syötä TOS funktion tunnus."
+
+msgid "TOS record ID."
+msgstr "TOS rivin ID."
+
+msgid "Insert used TOS record id."
+msgstr "Syötä TOS rivin tunnus."
+
+msgid "The sector that handles the form data."
+msgstr "Toimiala joka käsittelee lomakkeet."
+
+msgid "AD Group of the handlers of form data."
+msgstr "AD ryhmä lomakekäsittelijöille."
+
+msgid "Form is published so no further editing is possible. If you need to edit this, you need to create new form with the changes you want."
+msgstr "Lomake on julkaustu -tilassa joten muokkaus on estetty. Jos haluat muokata tätä lomaketta sinun pitää kopioida lomake uudelle pohjalle ja tehdä muokkaukset siihen."

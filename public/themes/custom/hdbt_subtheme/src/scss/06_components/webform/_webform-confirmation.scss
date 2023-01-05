@@ -1,0 +1,11 @@
+.webform-confirmation .component--banner {
+  margin-top: var(--spacing-layout-m);
+
+  .banner__button {
+    margin-right: $spacing;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.webform-submission-form {
+  .form-item {
+    // Switching margins other way around than in hdbt because of hidden form components that appear after selection.
+    margin-bottom: 0;
+    margin-top: $spacing-and-half;
+    position: relative;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .description {
+    margin-top: $spacing-quarter;
+    white-space: normal;
+  }
+
+  fieldset {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .fieldset-legend,
+  label:not(.hds-radio-button__label, .hds-checkbox__label) {
+    @include font('button');
+    display: block;
+    margin-bottom: $spacing-quarter;
+  }
+
+  .form-text {
+    max-width: fit-content;
+    width: 100%;
+  }
+
+  .hds-notification:first-of-type {
+    margin-top: 0;
+  }
+}

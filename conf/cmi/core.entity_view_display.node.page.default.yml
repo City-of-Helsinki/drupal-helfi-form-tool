@@ -32,7 +32,7 @@ content:
     weight: 3
     region: content
   field_lead_in:
-    type: basic_string
+    type: text_span
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -61,7 +61,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   links:
     settings: {  }

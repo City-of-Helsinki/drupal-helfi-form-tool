@@ -4,12 +4,12 @@
 # an update to the specified branches or you push specified tags.
 trigger:
   batch: true
-  branches:
+  tags:
     include:
-    - refs/tags/deploy-to-dev
+      - deploy-to-dev
   paths:
     exclude:
-    - README.md
+      - README.md
 
 # Pull request (PR) triggers cause a pipeline to run whenever a pull request is
 # opened with one of the specified target branches, or when updates are made to
