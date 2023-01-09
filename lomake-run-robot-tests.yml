@@ -2,7 +2,7 @@ parameters:
   - name: testEnv
     displayName: Environment
     type: string
-    default: test
+    default: dev
     values:
       - dev
       - test
@@ -37,12 +37,12 @@ jobs:
       - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager
         displayName: "Install dependencies"
 
-      - powershell: Get-ChildItem -Filter *.robot -Recurse
-        failOnStderr: true
-        displayName: "saa naha mita loytyy"
-        continueOnError: true
-        # powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' '$(Build.SourcesDirectory)\tests\lomake-Check-tjpt-page-functionality*.robot'
-      - powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' 'D:\a\1\s\test\tests\lomake-Check-tjpt-page-functionality*.robot'
+      #- powershell: Get-ChildItem -Filter *.robot -Recurse
+      #  failOnStderr: true
+      #  displayName: "saa naha mita loytyy"
+      #  continueOnError: true
+      - powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\lomake-Check-tjpt-page-functionality*.robot'
+      #powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' 'D:\a\1\s\test\tests\lomake-Check-tjpt-page-functionality*.robot'
         failOnStderr: true
         displayName: "Run Robot Framework Tests"
         continueOnError: true
