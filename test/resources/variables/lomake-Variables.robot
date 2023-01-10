@@ -2,8 +2,12 @@
 
 ${environment}      null
 
+${nordea-default-hetu}                                          210281-9988
 ${testuser1-lomake-hetu}                                        150552-9979     # Taavetti Järvites
                                                                                 # Tarvitsee profiilin
+${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}       https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV
+                                                                # https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV?check_logged_in=1
+
 # Urlit
 # DEV
 ${dev_lomake-login_url}                                         https://www.hel.fi/fi/dev-lomakkeet/   #https://lomaketyokalu.dev.hel.ninja/fi
@@ -50,6 +54,9 @@ ${lomake-tjpt-laheta-lomake-button}                             id=edit-submit
 ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}                Todistusjäljennöspyyntö lähetetty
 ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}                    (//span[contains(@class,'hds-button__label')])[1]
 ${lomake-tjpt-nayta-lomakkeen-tiedot}                           (//span[contains(@class,'hds-button__label')])[2]
+
+# Direct url
+${lomake-direct-url-error-text-FI}                              Pääsy Kielletty
 
 
 

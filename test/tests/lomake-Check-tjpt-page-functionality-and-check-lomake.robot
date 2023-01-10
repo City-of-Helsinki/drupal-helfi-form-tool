@@ -98,4 +98,4 @@ Verify all buttons, selections and fields
     # Lisää logout kun sellanen sivuille ilmestyy
     #Click Element                                          logout
     #Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
-    [Teardown]    NONE
+    #[Teardown]    NONE

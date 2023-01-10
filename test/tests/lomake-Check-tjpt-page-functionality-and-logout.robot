@@ -82,4 +82,4 @@ Verify all buttons, selections and fields
     Log                                                     ${urli}
     Click Element                                           ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
     Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
-    [Teardown]    NONE
+    #[Teardown]    NONE
