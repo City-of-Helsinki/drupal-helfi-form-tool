@@ -3,6 +3,7 @@
 Select test data and open browser
     Select test data depending on the selected env  ${environment}
     Select url depending on the selected env        ${environment}
+    Sleep                                           10
     Browser specific sleep                          ${environment}    
     Log                                             ${environment}
 
@@ -32,6 +33,7 @@ Select url depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Open Browser    ${lomake_url}   edge
     ...     ELSE                '${TYPE}' == '7'                        temp
     Maximize Browser Window
+    Set Window Size             1920    1024
 
 Select test data depending on the selected env
     [Arguments]                 ${selected-env}

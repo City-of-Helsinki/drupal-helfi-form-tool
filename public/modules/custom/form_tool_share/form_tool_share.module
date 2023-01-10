@@ -45,6 +45,7 @@ function form_tool_share_theme($existing, $type, $theme, $path) {
         'confirmation_message' => NULL,
         'url_to_submission' => NULL,
         'url_to_logout' => NULL,
+        'message' => NULL,
       ],
     ],
   ];
@@ -67,7 +68,7 @@ function template_preprocess_html__form_tool_share(&$variables) {
   $body_attributes = [];
 
   if ($webform === NULL) {
-    $submissionId = \Drupal::routeMatch()->getParameter('submissionId');
+    $submission_id = \Drupal::routeMatch()->getParameter('submission_id');
     $variables['html_attributes']->addClass('completion-page');
   }
   else {

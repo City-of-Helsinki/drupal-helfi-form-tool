@@ -23,6 +23,11 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
     $webformOwnerRoles = $webformOwner->getRoles();
     $thirdPartySettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
 
+    // No access to anonymous to any webform submissions.
+    if ($account->isAnonymous()) {
+      return WebformAccessResult::forbidden();
+    }
+
     // Admins have access always.
     if (in_array(['admin', 'verkkolomake_admin'], $webformOwnerRoles)) {
       return WebformAccessResult::allowed();

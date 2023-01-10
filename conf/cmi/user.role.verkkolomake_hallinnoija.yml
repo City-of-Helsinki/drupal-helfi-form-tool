@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.webform
   module:
+    - content_translation
     - form_tool_profile_data
     - node
     - path
@@ -19,6 +20,7 @@ weight: -1
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access any webform configuration'
   - 'access content overview'
   - 'access site in maintenance mode'
   - 'access toolbar'
@@ -38,6 +40,7 @@ permissions:
   - 'edit own webform content'
   - 'edit own webform submission'
   - 'schedule publishing of nodes'
+  - 'translate webform node'
   - 'view own unpublished content'
   - 'view own webform submission'
   - 'view scheduled content'

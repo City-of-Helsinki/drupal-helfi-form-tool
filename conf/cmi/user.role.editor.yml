@@ -34,7 +34,7 @@ dependencies:
     - toolbar
     - view_unpublished
 id: editor
-label: Editor
+label: 'Sisällöntuottaja laaja'
 weight: -6
 is_admin: null
 permissions:
