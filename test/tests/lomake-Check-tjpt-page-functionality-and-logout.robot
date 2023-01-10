@@ -9,7 +9,7 @@ Resource        ../resources/variables/common-Variables.robot
 Resource        ../resources/keywords/lomake-Keywords.robot
 Resource        ../resources/keywords/common-Keywords.robot
 Test Timeout    900 seconds
-Test Teardown   Run keywords    Capture Page Screenshot     Delete All Cookies  Close All Browsers
+Test Teardown   Run keywords  Get Location  Capture Page Screenshot     Delete All Cookies  Close All Browsers
 Force Tags      smoke
 
 *** Test Cases ***
@@ -77,6 +77,9 @@ Verify all buttons, selections and fields
     Click Element                                           ${lomake-tjpt-laheta-lomake-button}
     Wait Until Page Contains                                ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}            20
     #Kirjaudu ulos
+    Get Location
+    ${urli} =                                               Get Location
+    Log                                                     ${urli}
     Click Element                                           ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
     Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
     [Teardown]    NONE
