@@ -3,8 +3,7 @@
 namespace Drupal\form_tool_return_link\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Url;
-use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
+use Drupal\Core\Cache\Cache;
 
 /**
  * Provides a 'Return link' Block.
@@ -18,15 +17,50 @@ use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler
 class ReturnLinkBlock extends BlockBase {
 
   /**
+   * {@inheritDoc}
+   */
+  public function getCacheContexts() {
+    return Cache::mergeContexts(parent::getCacheContexts(), ['route']);
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function build() {
+    $params = \Drupal::routeMatch()->getParameters()->all();
+    $currentLanguage = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
-    $returnLinkUrl =  'https://hel.fi/fi';
+    // Text values for the link text.
+    $returnLinkText = $this->t('Back to Hel.fi front page');
+    $serviceDetailsLinkText = $this->t('Back to service details');
+
+    // Default value for returnLinkUrl to hel.fi front page.
+    $returnLinkUrl = 'https://www.hel.fi/' . $currentLanguage . '/';
+
+    // Submit error page.
+    if (empty($params) && !empty(\Drupal::request()->get('backlink_id'))) {
+      $returnLinkText = $serviceDetailsLinkText;
+      $returnLinkUrl = \Drupal::state()->get(\Drupal::request()->get('backlink_id'));
+    }
+
+    // Webform node page.
+    if (array_key_exists('node', $params)) {
+      $node = $params['node'];
+      $returnLinkText = $serviceDetailsLinkText;
+      $returnLinkUrl = $node->get('field_url_to_form_service')->first()->getUrl()->getUri();
+    }
+
+    // Thank you page, View submission page.
+    if (array_key_exists('submission_id', $params)) {
+      $parts = explode('-', $params['submission_id']);
+      $id = $parts['0'] . '-' . $parts['1'] . '-' . $currentLanguage;
+      $returnLinkText = $serviceDetailsLinkText;
+      $returnLinkUrl = \Drupal::state()->get($id);
+    }
 
     return [
       '#theme' => 'return_link_block',
-      '#return_link_text' => t('Back to service details'),
+      '#return_link_text' => $returnLinkText,
       '#return_link_url' => $returnLinkUrl,
     ];
   }
