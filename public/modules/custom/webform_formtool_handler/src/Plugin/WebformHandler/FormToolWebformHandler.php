@@ -378,7 +378,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
             $userProfileData["myProfile"]["primaryEmail"]["email"],
             $thirdPartySettings["email_notify"],
           ];
-          $to = implode(',',$toArray);
+          $to = implode(',', $toArray);
 
           $url = Url::fromRoute(
             'form_tool_share.view_submission',
@@ -413,9 +413,11 @@ class FormToolWebformHandler extends WebformHandlerBase {
             $this->messenger()->addStatus(t('Your message has been sent.'));
           }
         }
-      } catch (TokenExpiredException $e) {
+      }
+      catch (TokenExpiredException $e) {
         throw $e;
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         $this->log('error', $e->getMessage(), []);
         $form_state->setRedirect('entity.form_tool_share.error', ['backlink_id' => $stateId]);
       }
