@@ -5,6 +5,8 @@ namespace Drupal\webform_formtool_handler\Plugin\WebformHandler;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityRepository;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
@@ -24,9 +26,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *   label = @Translation("Formtool Webform handler"),
  *   category = @Translation("Helfi"),
  *   description = @Translation("Webform handler form formtool."),
- *   cardinality = \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
+ *   cardinality =
+ *   \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
  *   results = \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_IGNORED,
- *   submission = \Drupal\webform\Plugin\WebformHandlerInterface::SUBMISSION_REQUIRED,
+ *   submission =
+ *   \Drupal\webform\Plugin\WebformHandlerInterface::SUBMISSION_REQUIRED,
  * )
  */
 class FormToolWebformHandler extends WebformHandlerBase {
@@ -276,6 +280,18 @@ class FormToolWebformHandler extends WebformHandlerBase {
   public function confirmForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     parent::confirmForm($form, $form_state, $webform_submission);
 
+    // If user is not helsinkiproifile user we don't have any user info.
+    $currentUserRoles = \Drupal::currentUser()->getRoles();
+    if (
+      !in_array('helsinkiprofiili_vahva', $currentUserRoles) &&
+      !in_array('helsinkiprofiili_heikko', $currentUserRoles)) {
+
+      $this->log('error', 'No helsinki profile', []);
+      $this->messenger()->addError('No helsinki profile data');
+      $form_state->setRedirect('entity.form_tool_share.error');
+      return;
+    }
+
     if ($this->isNewSubmission($webform_submission->uuid())) {
 
       /** @var \Drupal\webform\WebformSubmissionForm $webFormSubmissionForm */
@@ -298,6 +314,9 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
       $thirdPartySettings = $webFormSubmissionForm->getWebform()
         ->getThirdPartySettings('form_tool_webform_parameters');
+
+      $userData = $this->helsinkiProfiiliUserData->getUserData();
+      $userProfileData = $this->helsinkiProfiiliUserData->getUserProfileData();
 
       $formToolSubmissionId = $this->createSubmissionId($webform_submission, $thirdPartySettings);
 
@@ -325,7 +344,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
         $atvDocument = $this->atvService->createDocument($documentValues);
 
         $atvDocument->setContent($this->submittedFormData);
-
         $newDocument = $this->atvService->postDocument($atvDocument);
 
         $this->connection->insert('form_tool_map')
@@ -343,47 +361,52 @@ class FormToolWebformHandler extends WebformHandlerBase {
           'entity.form_tool_share.completion',
           ['submission_id' => $formToolSubmissionId]
         );
-        //
-        // If (isset($thirdPartySettings["email_notify"]) &&
-        // !empty($thirdPartySettings["email_notify"])) {
-        // $mailManager = \Drupal::service('plugin.manager.mail');
-        // $module = 'webform_formtool_handler';
-        // $key = 'submission_email_notify';
-        // $to = $thirdPartySettings["email_notify"];
-        //
-        // $url = Url::fromRoute(
-        // 'webform_formtool_handler.view_submission',
-        // ['id' => $formToolSubmissionId],
-        // [
-        // 'attributes' => [
-        // 'data-drupal-selector' => 'form-submitted-ok',
-        // ],
-        // ]
-        // );
-        //
-        // $params['message'] = $this->t(
-        // 'Form submission (@number) saved,
-        // see application status from @link',
-        // [
-        // '@number' => $formToolSubmissionId,
-        // '@link' => Link::fromTextAndUrl('here', $url)->toString(),
-        // ]);
-        //
-        // $params['form_title'] = $webForm->get('title');
-        // $langcode = \Drupal::currentUser()->getPreferredLangcode();
-        // $send = TRUE;
-        //
-        // $result = $mailManager->mail($module, $key, $to, $langcode, $params,
-        // NULL, $send);
-        //
-        // if ($result['result'] !== TRUE) {
-        // $this->messenger()->addStatus(t('There was a problem sending your
-        // message and it was not sent.'), 'error');
-        // }
-        // else {
-        // $this->messenger()->addStatus(t('Your message has been sent.'));
-        // }
-        // }.
+
+        if (isset($thirdPartySettings["email_notify"]) &&
+          !empty($thirdPartySettings["email_notify"])) {
+          /** @var \Drupal\Core\Mail\MailManager $mailManager */
+          $mailManager = \Drupal::service('plugin.manager.mail');
+          $module = 'webform_formtool_handler';
+          $key = 'submission_email_notify';
+          $toArray = [
+            $userProfileData["myProfile"]["primaryEmail"]["email"],
+            $thirdPartySettings["email_notify"],
+          ];
+          $to = implode(',', $toArray);
+
+          $url = Url::fromRoute(
+            'form_tool_share.view_submission',
+            ['submission_id' => $formToolSubmissionId],
+            [
+              'attributes' => [
+                'data-drupal-selector' => 'form-submitted-ok',
+              ],
+            ]
+          );
+
+          $params['message'] = $this->t(
+            'Form submission (@number) saved,
+         see application status from @link',
+            [
+              '@number' => $formToolSubmissionId,
+              '@link' => Link::fromTextAndUrl('here', $url)->toString(),
+            ]);
+
+          $params['form_title'] = $webform->get('title');
+          $langcode = \Drupal::currentUser()->getPreferredLangcode();
+          $send = TRUE;
+
+          $result = $mailManager->mail($module, $key, $to, $langcode, $params,
+            NULL, $send);
+
+          if ($result['result'] !== TRUE) {
+            $this->messenger()->addError(t('There was a problem sending
+            confirmation message and it was not sent.'), 'error');
+          }
+          else {
+            $this->messenger()->addStatus(t('Your message has been sent.'));
+          }
+        }
       }
       catch (TokenExpiredException $e) {
         throw $e;
@@ -415,7 +438,8 @@ class FormToolWebformHandler extends WebformHandlerBase {
         '@method_name' => $method_name,
         '@context1' => $context1,
       ];
-      $this->messenger()->addWarning($this->t('Invoked @id: @class_name:@method_name @context1', $t_args), TRUE);
+      $this->messenger()
+        ->addWarning($this->t('Invoked @id: @class_name:@method_name @context1', $t_args), TRUE);
     }
   }
 
@@ -453,9 +477,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
     /** @var \Drupal\Core\Session\AccountInterface $account */
     $account = \Drupal::currentUser();
 
-    $result = \Drupal::service('database')->query("SELECT submission_uuid,document_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
-      ':form_tool_id' => $id,
-    ]);
+    $result = \Drupal::service('database')
+      ->query("SELECT submission_uuid,document_uuid FROM {form_tool_map} WHERE form_tool_id = :form_tool_id", [
+        ':form_tool_id' => $id,
+      ]);
     $data = $result->fetchObject();
 
     if ($data == FALSE) {

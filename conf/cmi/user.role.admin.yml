@@ -13,7 +13,6 @@ dependencies:
     - node.type.article
     - node.type.landing_page
     - node.type.page
-    - node.type.webform
     - taxonomy.vocabulary.keywords
   module:
     - block
@@ -45,9 +44,6 @@ dependencies:
     - toolbar
     - view_unpublished
     - views_bulk_edit
-    - webform
-    - webform_node
-    - webform_templates
 _core:
   default_config_hash: 7RTyCpgMKCMdwkxYrpzYOCq7DQDHO0SrTjB7xwFaIyI
 id: admin
@@ -65,8 +61,7 @@ permissions:
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access user profiles'
-  - 'access webform help'
-  - 'access webform overview'
+  - 'administer account settings'
   - 'administer blocks'
   - 'administer eu cookie compliance categories'
   - 'administer eu cookie compliance popup'
@@ -77,11 +72,11 @@ permissions:
   - 'administer nodes'
   - 'administer paragraphs library'
   - 'administer pathauto'
+  - 'administer permissions'
   - 'administer redirects'
   - 'administer sitemap settings'
   - 'administer url aliases'
   - 'administer users'
-  - 'administer webform templates'
   - 'assign admin role'
   - 'assign content_producer role'
   - 'assign editor role'
@@ -107,8 +102,6 @@ permissions:
   - 'create soundcloud media'
   - 'create terms in keywords'
   - 'create url aliases'
-  - 'create webform'
-  - 'create webform content'
   - 'delete all revisions'
   - 'delete announcement revisions'
   - 'delete any announcement content'
@@ -121,7 +114,6 @@ permissions:
   - 'delete any page content'
   - 'delete any remote_video media'
   - 'delete any soundcloud media'
-  - 'delete any webform content'
   - 'delete authmap'
   - 'delete content translations'
   - 'delete landing_page revisions'
@@ -134,13 +126,9 @@ permissions:
   - 'delete own page content'
   - 'delete own remote_video media'
   - 'delete own soundcloud media'
-  - 'delete own webform'
-  - 'delete own webform content'
-  - 'delete own webform submission'
   - 'delete page revisions'
   - 'delete remote entities'
   - 'delete terms in keywords'
-  - 'delete webform revisions'
   - 'edit any announcement content'
   - 'edit any file media'
   - 'edit any helfi_chart media'
@@ -149,7 +137,6 @@ permissions:
   - 'edit any page content'
   - 'edit any remote_video media'
   - 'edit any soundcloud media'
-  - 'edit any webform content'
   - 'edit own announcement content'
   - 'edit own file media'
   - 'edit own helfi_chart media'
@@ -158,9 +145,6 @@ permissions:
   - 'edit own page content'
   - 'edit own remote_video media'
   - 'edit own soundcloud media'
-  - 'edit own webform'
-  - 'edit own webform content'
-  - 'edit own webform submission'
   - 'edit paragraph library item'
   - 'edit remote entities'
   - 'edit terms in keywords'
@@ -168,7 +152,6 @@ permissions:
   - 'revert announcement revisions'
   - 'revert landing_page revisions'
   - 'revert page revisions'
-  - 'revert webform revisions'
   - 'schedule publishing of nodes'
   - 'set announcement published on date'
   - 'set landing_page published on date'
@@ -187,7 +170,6 @@ permissions:
   - 'translate page node'
   - 'translate remote_video media'
   - 'translate soundcloud media'
-  - 'translate webform node'
   - 'update any media'
   - 'update content translations'
   - 'update media'
@@ -199,17 +181,13 @@ permissions:
   - 'view all revisions'
   - 'view announcement revisions'
   - 'view any unpublished content'
-  - 'view any webform submission'
   - 'view authmap'
   - 'view landing_page revisions'
   - 'view media'
   - 'view own unpublished content'
   - 'view own unpublished media'
-  - 'view own webform submission'
   - 'view page revisions'
   - 'view remote entities'
   - 'view scheduled content'
   - 'view the administration theme'
   - 'view unpublished paragraphs'
-  - 'view webform revisions'
-  - 'view webform submissions own node'

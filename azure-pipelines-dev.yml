@@ -4,9 +4,9 @@
 # an update to the specified branches or you push specified tags.
 trigger:
   batch: true
-  branches:
+  tags:
     include:
-      - develop
+      - deploy-to-dev
   paths:
     exclude:
       - README.md
