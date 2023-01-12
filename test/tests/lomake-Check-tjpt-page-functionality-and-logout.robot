@@ -9,7 +9,7 @@ Resource        ../resources/variables/common-Variables.robot
 Resource        ../resources/keywords/lomake-Keywords.robot
 Resource        ../resources/keywords/common-Keywords.robot
 Test Timeout    900 seconds
-Test Teardown   Run keywords  Get Location  Capture Page Screenshot     Delete All Cookies  Close All Browsers
+Test Teardown   Run keywords   Capture Page Screenshot     Delete All Cookies  Close All Browsers
 Force Tags      smoke
 
 *** Test Cases ***

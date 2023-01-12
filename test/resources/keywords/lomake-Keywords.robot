@@ -116,3 +116,44 @@ Fill postiennakko information
     Input Text                          ${lomake-tjpt-toimitustapa-postinumero-field-FI}        ${random-postinumero}
     Input Text                          ${lomake-tjpt-toimitustapa-kaupunki-field-FI}           ${kaupunki}
     Input Text                          ${lomake-tjpt-toimitustapa-puhelinnumero-field-FI}      ${random-puhnum}
+
+#######################################################
+# Sähköposti
+Kirjaudu guerrillamail.com
+    [Arguments]                                         ${mail-user}     #Anna tähän pelkkä user eli gjroiejgre osoitteesta gjroiejgre@guerrillamail.com
+    Go To                                               ${guerrillamail-url}
+    Wait Until Page Contains Element                    ${guerrillamail-user-field-button}
+    Click Element                                       ${guerrillamail-user-field-button}
+    Input Text                                          ${guerrillamail-user-field}             ${mail-user}
+    Click Element                                       ${guerrillamail-domain-dropdown}
+    Click Element                                       ${guerrillamail-user-set-button}
+
+Poista kaikki viestit avoinna olevasta guerrillamail mailiboxista
+    ${message-count-temp} =      Get Element Count      //tbody[@id='email_list']/tr//input[@name='mid[]']
+    Set Suite Variable      ${message-count}            ${message-count-temp}
+    Run Keyword If          ${message-count} == 0       Set Suite Variable     ${empty-list}   true
+    ...     ELSE IF         ${message-count} != 0       Delete message loop
+    ...     ELSE            ${message-count} != 0       Delete message loop
+
+Delete message loop
+    FOR    ${thearvo}      IN RANGE                     ${message-count}
+        Click Element                                   //tbody[@id='email_list']/tr//input[@name='mid[]']
+        Click Element                                   //input[@id='del_button']
+        Sleep                                           3
+    END
+
+Odota emailin form submission viestiä
+# Kun luodaan profiilia
+    Wait Until Keyword Succeeds                         2 min   5 sec     Lataa sivu uudestaan ja tarkista onko vahvistus viesti tullut
+
+Lataa sivu uudestaan ja tarkista onko vahvistus viesti tullut
+    Reload Page
+    Wait Until Page Contains                            New submission    #Vahvista sähköposti
+
+Odota emailin päivitä tietosi viestiä
+# Kun sähköpostiosoite vaihdetaan profiilista
+    Wait Until Keyword Succeeds                         2 min   5 sec     Lataa sivu uudestaan ja tarkista onko päivitä tietosi viesti tullut
+
+Lataa sivu uudestaan ja tarkista onko päivitä tietosi viesti tullut
+    Reload Page
+    Wait Until Page Contains                            ${Profiili-UI-omat-tiedot-sahkoposti-paivita-tietosi-text1-FI}

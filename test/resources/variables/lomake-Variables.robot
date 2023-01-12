@@ -5,8 +5,13 @@ ${environment}      null
 ${nordea-default-hetu}                                          210281-9988
 ${testuser1-lomake-hetu}                                        150552-9979     # Taavetti Järvites
                                                                                 # Tarvitsee profiilin
+${testuser1-lomake-email-DEV}                                   452444354343545@guerrillamail.com    # Taavetti Järvites
+${testuser1-lomake-email-user-DEV}                              452444354343545
+${testuser1-lomake-email-domain-DEV}                            @guerrillamail.com
+
 ${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}       https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV
                                                                 # https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV?check_logged_in=1
+
 
 # Urlit
 # DEV
@@ -57,6 +62,17 @@ ${lomake-tjpt-nayta-lomakkeen-tiedot}                           (//span[contains
 
 # Direct url
 ${lomake-direct-url-error-text-FI}                              Pääsy Kielletty
+
+# Sähköposti
+${guerrillamail-url}                                            https://www.guerrillamail.com/inbox
+${guerrillamail-user-field-button}                              //span[@id='inbox-id']
+${guerrillamail-user-field}                                     //span[@id='inbox-id']//input
+${guerrillamail-domain-dropdown}                                //select[@id='gm-host-select']/option[@value='guerrillamail.com']
+${guerrillamail-user-set-button}                                //span[@id='inbox-id']/button[.='Set']
+${guerrillamail-ekan-viestin-otsikko}                           //tbody[@id='email_list']/tr/td[@class='td3']
+${guerrillamail-ekan-viestin-sisalto}                           //div[@class='email']
+
+${guerrillamail-lomake-link}                                    //a[contains(.,'HEL-TODISTUS')]
 
 
 
