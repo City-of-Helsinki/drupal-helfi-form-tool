@@ -1,0 +1,8 @@
+msgid ""
+msgstr ""
+
+msgid "Back to service details"
+msgstr "Palaa palvelun tietoihin"
+
+msgid "Back to Hel.fi front page"
+msgstr "Palaa takaisin Hel.fi etusivulle"
