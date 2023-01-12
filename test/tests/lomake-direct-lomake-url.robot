@@ -49,7 +49,7 @@ Incorrect user - Open direct lomake Url
     Go To                                                   ${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}
     Accept all cookies
     Capture Page Screenshot
-# Kirjaudutaan käyttäjällä joka on lomakkeen täyttänyt ja lähettänyt
+# Kirjaudutaan käyttäjällä joka on eri kuin lomakkeen täyttänyt ja lähettänyt henkilö
     Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${nordea-default-hetu}
