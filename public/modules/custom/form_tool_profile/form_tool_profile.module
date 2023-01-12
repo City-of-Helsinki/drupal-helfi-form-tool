@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Provides hooks and helpers for profile / user related things.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Hide fields from login forms without proper query strings.
+  // If we're at user login.
+  if ($form_id == 'user_login_form') {
+    $qParams = \Drupal::request()->query->all();
+    // We want to hide all normal login elements
+    // to only allow login via Tunnistamo.
+    if (!isset($qParams['login']) || $qParams['login'] != 'admin') {
+      unset($form['name']);
+      unset($form['pass']);
+      unset($form['actions']);
+    }
+  }
+  // And from Tunnistamo, we want to allow only user logins
+  // without loginparameter.
+  if ($form_id == 'openid_connect_login_form') {
+    $qParams = \Drupal::request()->query->all();
+
+    if (
+      !isset($qParams['login']) ||
+      !in_array($qParams['login'], ['admin', 'on-admin'])
+    ) {
+      unset($form["openid_connect_client_tunnistamoadmin_login"]);
+    }
+
+    // Show only TunnistamoAdmin login for this login parameter.
+    if (isset($qParams['login']) && $qParams['login'] === 'on-admin') {
+      unset($form["openid_connect_client_tunnistamo_login"]);
+    }
+  }
+
+}
