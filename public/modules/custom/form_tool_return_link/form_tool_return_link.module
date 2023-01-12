@@ -9,6 +9,8 @@
  * @see https://www.drupal.org/node/2217931
  */
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme().
@@ -22,4 +24,22 @@ function form_tool_return_link_theme() {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function form_tool_return_link_entity_presave(EntityInterface $entity) {
+  if (
+    $entity instanceof NodeInterface &&
+    $entity->getType() === 'webform' &&
+    $entity->hasField('field_url_to_form_service') &&
+    !$entity->get('field_url_to_form_service')->first()->isEmpty()
+  ) {
+    $url = $entity->get('field_url_to_form_service')->first()->getUrl()->getUri();
+    $thirdPartySettings = $entity->get('webform')->first()->entity->getThirdPartySettings('form_tool_webform_parameters');
+    $stateId = "HEL-{$thirdPartySettings['form_code']}-{$entity->language()->getId()}";
+
+    \Drupal::state()->set($stateId, $url);
+  }
 }
