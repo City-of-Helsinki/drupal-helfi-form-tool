@@ -6,10 +6,14 @@
   grid-area: brand;
   justify-content: center;
   margin-left: $spacing;
+  margin-right: calc(-1 * var(--header-branding-padding)); // Remove the spacing on right side.
   max-width: 88px; // Spesification from layouts.
   min-width: 72px; // Spesification from layouts.
-  position: relative;
   z-index: 1;
+
+  @include breakpoint($breakpoint-m) {
+    position: relative;
+  }
 
   @include breakpoint($breakpoint-l) {
     margin-left: $spacing-and-half;
@@ -47,10 +51,59 @@
 
 .profile--full {
   background-color: $color-white;
-  border: 1px solid $color-black-20;
-  bottom: -100%;
+  border-bottom: 1px solid $color-black-20;
   color: $color-black;
   position: absolute;
   right: 0;
+  top: var(--branding-height);
+  width: 100%;
   z-index: 2;
+
+  @include breakpoint($breakpoint-m) {
+    border-left: 1px solid $color-black-20;
+    border-right: 1px solid $color-black-20;
+    min-width: 300px; // As designed.
+    top: 100%;
+    width: auto;
+  }
+}
+
+.profile__information {
+  padding: $spacing;
+}
+
+.profile__full-name {
+  @include font('h4');
+  display: block;
+
+  @include breakpoint($breakpoint-m) {
+    @include font('h6');
+  }
+}
+
+.profile__email {
+  @include font('small');
+  display: block;
+}
+
+.profile__logout-link {
+  @include font('h4');
+  border-top: 1px solid $color-black-20;
+  display: block;
+  padding: $spacing;
+  text-decoration: none;
+  width: 100%;
+
+  @include breakpoint($breakpoint-m) {
+    @include font('small');
+  }
+
+  @include breakpoint($breakpoint-l) {
+    @include font('body');
+  }
+
+  &::after {
+    @include pseudo-icon('signout');
+    margin-left: $spacing-half;
+  }
 }
