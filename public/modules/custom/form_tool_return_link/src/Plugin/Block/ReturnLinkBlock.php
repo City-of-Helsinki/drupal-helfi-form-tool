@@ -58,7 +58,7 @@ class ReturnLinkBlock extends BlockBase {
       $returnLinkUrl = \Drupal::state()->get($id);
     }
 
-    // if for some reason we don't get url.
+    // If for some reason we don't get url.
     if ($returnLinkUrl == NULL) {
       // Default value for returnLinkUrl to hel.fi front page.
       $returnLinkUrl = 'https://www.hel.fi/' . $currentLanguage . '/';
