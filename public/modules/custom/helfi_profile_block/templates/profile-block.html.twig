@@ -1,18 +1,45 @@
-{% set link_attributes = {
-  'class': [
-    'profile__logout-link',
-  ],
-} %}
+{% if logged_in %}
+  {% set link_attributes = {
+    'class': [
+      'profile__logout-link',
+    ],
+  } %}
 
-<div class="profile">
-  {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'user'} %}
-  <span class="profile__display-name">{{ display_name }}</span>
+  {% set dropdown_id = 'profile-dropdown' %}
 
-  <div class="profile--full">
-    <div class="profile__information">
-      <span class="profile__full-name">{{ full_name }}</span>
-      <span class="profile__email">{{ email }}</span>
-    </div>
-    {{ link('Log out'|t, logout_url, link_attributes) }}
-  </div>
-</div>
+  {% embed "@hdbt/misc/nav-toggle-button.twig" with {
+    modifier_class: 'nav-toggle--profile',
+    controls: dropdown_id,
+    anchor_target: '#profile',
+    js_target: 'js-profile-button',
+
+    open_label: display_name,
+    open_screenreader: 'Open profile information menu'|t({}, {'context': 'Profile information-menu open button text for screen readers'}),
+
+    close_label: 'Close'|t(),
+    close_screenreader: 'Close profile information menu'|t({}, {'context': 'Profile information-menu close button text for screen readers'}),
+  } %}
+  {% endembed %}
+
+  {% embed "@hdbt/misc/nav-toggle-dropdown.twig" with {
+    id: dropdown_id,
+    modifier_class: 'nav-toggle-dropdown--profile',
+  } %}
+    {% block content%}
+      <div class="profile--full" id="hel-profile">
+        <div class="profile__information">
+          <span class="profile__full-name">{{ full_name }}</span>
+          <span class="profile__email">{{ email }}</span>
+        </div>
+        {{ link('Log out'|t, url, link_attributes) }}
+      </div>
+    {% endblock %}
+  {% endembed %}
+{% else %}
+  {% set link_attributes = {
+    'class': [
+      'profile__login-link',
+    ],
+  } %}
+  {{ link('Log in'|t, url, link_attributes) }}
+{% endif %}

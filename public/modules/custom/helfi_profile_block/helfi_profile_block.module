@@ -17,10 +17,11 @@ function helfi_profile_block_theme() {
   return [
     'profile_block' => [
       'variables' => [
+        'logged_in' => FALSE,
         'display_name' => NULL,
         'full_name' => NULL,
         'email' => NULL,
-        'logout_url' => NULL,
+        'url' => NULL,
       ],
     ],
   ];
