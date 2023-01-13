@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.webform.field_form_code
     - field.field.node.webform.field_lower_content
-    - field.field.node.webform.field_url_to_form_service
     - field.field.node.webform.webform
     - node.type.webform
   module:
@@ -26,7 +25,6 @@ content:
 hidden:
   field_form_code: true
   field_lower_content: true
-  field_url_to_form_service: true
   langcode: true
   toc_enabled: true
   webform: true
