@@ -1,25 +1,3 @@
-.block--profile-block {
-  align-items: center;
-  background-color: $color-black;
-  color: $color-white;
-  display: flex;
-  grid-area: brand;
-  justify-content: center;
-  margin-left: $spacing;
-  margin-right: calc(-1 * var(--header-branding-padding)); // Remove the spacing on right side.
-  max-width: 88px; // Spesification from layouts.
-  min-width: 72px; // Spesification from layouts.
-  z-index: 1;
-
-  @include breakpoint($breakpoint-m) {
-    position: relative;
-  }
-
-  @include breakpoint($breakpoint-l) {
-    margin-left: $spacing-and-half;
-  }
-}
-
 .profile {
   @include font('special.navigation.icon_label');
   align-items: center;
@@ -39,32 +17,16 @@
   }
 }
 
-.profile__display-name {
-  overflow: hidden;
-  padding-left: $spacing-half;
-  padding-right: $spacing-half;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-}
-
 .profile--full {
   background-color: $color-white;
   border-bottom: 1px solid $color-black-20;
   color: $color-black;
-  position: absolute;
-  right: 0;
-  top: var(--branding-height);
   width: 100%;
-  z-index: 2;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     border-left: 1px solid $color-black-20;
     border-right: 1px solid $color-black-20;
-    min-width: 300px; // As designed.
-    top: 100%;
-    width: auto;
+    max-width: 300px; // As designed.
   }
 }
 
@@ -73,12 +35,9 @@
 }
 
 .profile__full-name {
-  @include font('h4');
+  @include font('body');
   display: block;
-
-  @include breakpoint($breakpoint-m) {
-    @include font('h6');
-  }
+  font-weight: bold;
 }
 
 .profile__email {
@@ -87,23 +46,67 @@
 }
 
 .profile__logout-link {
-  @include font('h4');
+  @include font('body');
+  border-bottom: 1px solid $color-black-20;
   border-top: 1px solid $color-black-20;
   display: block;
+  font-weight: bold;
   padding: $spacing;
   text-decoration: none;
   width: 100%;
 
-  @include breakpoint($breakpoint-m) {
-    @include font('small');
-  }
-
   @include breakpoint($breakpoint-l) {
-    @include font('body');
+    border-bottom: none;
   }
 
   &::after {
     @include pseudo-icon('signout');
     margin-left: $spacing-half;
+  }
+}
+
+.nav-toggle--profile {
+  background-color: $color-black;
+  color: $color-white;
+  grid-area: profile;
+  grid-column-end: -1;
+  justify-content: center;
+  margin-left: $spacing;
+  max-width: 88px; // As designed.
+  min-width: 72px; // As designed.
+  z-index: 1;
+
+  .nav-toggle__label {
+    color: $color-white;
+    padding-left: $spacing-half;
+    padding-right: $spacing-half;
+
+    span {
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &::before {
+      @include pseudo-icon('user', 28px, currentColor, block);
+      margin-bottom: $spacing-quarter;
+    }
+  }
+
+  .nav-toggle__label--close {
+    &::before {
+      @include pseudo-icon-replace('cross');
+      margin-bottom: 0;
+    }
+  }
+}
+
+.nav-toggle-dropdown--profile {
+  grid-area: menu;
+
+  .nav-toggle-dropdown__content {
+    display: flex;
+    justify-content: flex-end;
   }
 }
