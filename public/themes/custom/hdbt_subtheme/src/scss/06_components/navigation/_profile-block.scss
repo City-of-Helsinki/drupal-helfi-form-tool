@@ -17,6 +17,66 @@
   }
 }
 
+.profile__login-link {
+  @include font('special.navigation.icon_label');
+  align-items: center;
+  border-left: 1px solid $color-black-20;
+  display: flex;
+  flex-direction: column;
+  grid-area: profile;
+  grid-column-end: -1;
+  justify-content: center;
+  margin-left: 16px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  width: 65px; // Same as the height of the branding header.
+  z-index: 1;
+
+  @include breakpoint($breakpoint-m) {
+    width: 86px; // Same as the height of the branding header.
+  }
+
+  &::before {
+    @include pseudo-icon('user', 22px, currentColor, block);
+    margin-bottom: $spacing-quarter;
+
+    @include breakpoint($breakpoint-m) {
+      @include pseudo-icon('user', 28px, currentColor, block);
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 4px solid $color-black;
+    outline-offset: -4px;
+  }
+}
+
+.profile__logout-link {
+  @include font('body');
+  border-bottom: 1px solid $color-black-20;
+  border-top: 1px solid $color-black-20;
+  display: block;
+  font-weight: bold;
+  padding: $spacing;
+  text-decoration: none;
+  width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    border-bottom: none;
+  }
+
+  &::after {
+    @include pseudo-icon('signout');
+    margin-left: $spacing-half;
+  }
+}
+
 .profile--full {
   background-color: $color-white;
   border-bottom: 1px solid $color-black-20;
@@ -45,26 +105,6 @@
   display: block;
 }
 
-.profile__logout-link {
-  @include font('body');
-  border-bottom: 1px solid $color-black-20;
-  border-top: 1px solid $color-black-20;
-  display: block;
-  font-weight: bold;
-  padding: $spacing;
-  text-decoration: none;
-  width: 100%;
-
-  @include breakpoint($breakpoint-l) {
-    border-bottom: none;
-  }
-
-  &::after {
-    @include pseudo-icon('signout');
-    margin-left: $spacing-half;
-  }
-}
-
 .nav-toggle--profile {
   background-color: $color-black;
   color: $color-white;
@@ -89,8 +129,12 @@
     }
 
     &::before {
-      @include pseudo-icon('user', 28px, currentColor, block);
+      @include pseudo-icon('user', 22px, currentColor, block);
       margin-bottom: $spacing-quarter;
+
+      @include breakpoint($breakpoint-m) {
+        @include pseudo-icon('user', 28px, currentColor, block);
+      }
     }
   }
 
