@@ -52,8 +52,8 @@
   }
 
   &:focus {
-    outline: 4px solid $color-black;
-    outline-offset: -4px;
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
   }
 }
 
@@ -69,6 +69,15 @@
 
   @include breakpoint($breakpoint-l) {
     border-bottom: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 3px solid $color-black;
+    outline-offset: -3px;
   }
 
   &::after {
@@ -116,10 +125,21 @@
   min-width: 72px; // As designed.
   z-index: 1;
 
+  .nav-toggle__anchor,
+  .nav-toggle__button {
+    height: 100%;
+  }
+
   .nav-toggle__label {
     color: $color-white;
+    height: 100%;
     padding-left: $spacing-half;
     padding-right: $spacing-half;
+
+    &:focus {
+      outline: 2px solid $color-white;
+      outline-offset: -5px;
+    }
 
     span {
       overflow: hidden;
@@ -127,15 +147,20 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+  }
 
-    &::before {
-      @include pseudo-icon('user', 22px, currentColor, block);
-      margin-bottom: $spacing-quarter;
+  .nav-toggle__label::before {
+    @include pseudo-icon('user', 22px, currentColor, block);
+    margin-bottom: $spacing-quarter;
 
-      @include breakpoint($breakpoint-m) {
-        @include pseudo-icon('user', 28px, currentColor, block);
-      }
+    @include breakpoint($breakpoint-m) {
+      @include pseudo-icon('user', 28px, currentColor, block);
     }
+  }
+
+  .nav-toggle__button:focus {
+    outline: 2px solid $color-white;
+    outline-offset: -5px;
   }
 
   .nav-toggle__label--close {
