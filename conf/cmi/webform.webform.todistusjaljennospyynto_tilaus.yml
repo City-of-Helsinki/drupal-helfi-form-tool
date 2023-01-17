@@ -11,7 +11,7 @@ third_party_settings:
     sector: KYMP
     ad_group: ad_group_2
     postal_address: ''
-    privacy_policy: ''
+    privacy_policy: 'https://google.fi'
     privacy_policy_sv: ''
     privacy_policy_en: ''
     privacy_policy_ru: ''

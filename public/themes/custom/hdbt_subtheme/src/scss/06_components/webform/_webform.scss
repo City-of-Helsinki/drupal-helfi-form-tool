@@ -8,3 +8,8 @@
     padding-right: $spacing-double;
   }
 }
+
+[data-drupal-selector=edit-privacy-policy-link] {
+  color: var(--label-color);
+  margin-top: var(--spacing-layout-xs);
+}
