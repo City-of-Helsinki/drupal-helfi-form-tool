@@ -66,7 +66,7 @@ class ConfigForm extends ConfigFormBase {
 
     $form['login_info']['login_info_no_auth'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Login info for login pagin'),
+      '#title' => $this->t('Login info for login page'),
       '#default_value' => $config->get('login_info_no_auth'),
     ];
 
