@@ -11,8 +11,8 @@ third_party_settings:
     sector: KYMP
     ad_group: ad_group_2
     postal_address: ''
-    privacy_policy: 'https://google.fi'
-    privacy_policy_sv: ''
+    privacy_policy: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Perusopetuksen%20opintohallinnon%20rekisteri.pdf'
+    privacy_policy_sv: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administration%20av%20grundl%C3%A4ggande%20utbildning.pdf'
     privacy_policy_en: ''
     privacy_policy_ru: ''
     login_type: '2'
