@@ -29,4 +29,4 @@ ${Olet-tunnistautumassa-palveluun-jatka-palveluun-button-SV}    id=continue-butt
 ${Olet-tunnistautumassa-palveluun-jatka-palveluun-button-EN}    id=continue-button
 
 # Cookie ilmoituksen hyväksyminen
-${lomake-accept-all-cookie-button}                              (//span[@class='hds-button__label'])[1]
+${lomake-accept-all-cookie-button}                              //span[contains(.,'Hyväksy kaikki evästeet')]

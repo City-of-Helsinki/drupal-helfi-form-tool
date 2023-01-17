@@ -1,0 +1,19 @@
+uuid: 941732b2-a842-4a73-b46d-3ef5d61c7129
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_url_to_form_service
+field_name: field_url_to_form_service
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
