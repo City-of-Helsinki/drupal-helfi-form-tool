@@ -1,16 +1,15 @@
-uuid: 34e241c5-8cdf-446a-8bf6-dd89bbd0024a
+uuid: cf647dd0-eb93-4903-b911-de8a6c41314b
 langcode: en
 status: true
 dependencies:
   module:
     - helfi_profile_block
-    - user
   theme:
     - hdbt_subtheme
 id: profileblock
 theme: hdbt_subtheme
 region: header_branding
-weight: -8
+weight: 0
 provider: null
 plugin: profile_block
 settings:
@@ -18,11 +17,4 @@ settings:
   label: 'Profile block'
   label_display: '0'
   provider: helfi_profile_block
-visibility:
-  user_role:
-    id: user_role
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'
-    roles:
-      authenticated: authenticated
+visibility: {  }
