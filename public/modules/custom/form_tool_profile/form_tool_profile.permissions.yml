@@ -1,0 +1,3 @@
+administer form_tool_profile configuration:
+  title: 'Administer form_tool_profile configuration'
+  restrict access: true
