@@ -78,7 +78,7 @@ class ConfigForm extends ConfigFormBase {
 
     $form['login_info']['login_info_strong_auth'] = [
       '#type' => 'text_format',
-      '#title' => $this->t('Login info when the form requires weak authentication'),
+      '#title' => $this->t('Login info when the form requires strong authentication'),
       '#default_value' => $config->get('login_info_strong_auth'),
     ];
 
