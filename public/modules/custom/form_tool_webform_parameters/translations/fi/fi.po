@@ -43,11 +43,14 @@ msgstr "Vahva tunnistautuminen"
 msgid "Postal address for paper form delivery"
 msgstr "Lomakkeen paperiversion toimitusosoite"
 
-msgid "I have read and approved <a href=\"@privacy-policy-link\">the privacy policy</a>"
-msgstr "Olen lukenut ja hyväksynyt <a href=\"@privacy-policy-link\">rekisteriselosteen</a>"
+msgid "Read more about <a href="@privacy-policy-link">the privacy policy</a> (the link will open in a new tab)."
+msgstr "Lue lisää <a href=\"@privacy-policy-link\">rekisteriselosteesta</a> (linkki avautuu uuteen välilehteen)."
 
 msgid "Privacy Policy"
 msgstr "Rekisteriseloste"
+
+msgid "I have read the privacy policy"
+msgstr "Olen tutustunut rekisteriselosteeseen"
 
 msgid "If left empty, will use the default privacy policy from sector"
 msgstr "Jos tämä jätetään tyhjäksi, käytetään toimialan oletusrekisteriselostetta"
