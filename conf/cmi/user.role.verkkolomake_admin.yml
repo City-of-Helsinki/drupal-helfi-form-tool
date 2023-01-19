@@ -7,6 +7,7 @@ dependencies:
   module:
     - content_translation
     - node
+    - role_delegation
     - scheduler
     - system
     - toolbar
@@ -14,6 +15,7 @@ dependencies:
     - webform
     - webform_node
     - webform_templates
+    - webform_translation_permissions
 id: verkkolomake_admin
 label: Verkkolomake-admin
 weight: 0
@@ -64,6 +66,8 @@ permissions:
   - 'edit webform variants'
   - 'revert webform revisions'
   - 'schedule publishing of nodes'
+  - 'translate any webform'
+  - 'translate own webform'
   - 'translate webform node'
   - 'view any unpublished webform content'
   - 'view any webform submission'

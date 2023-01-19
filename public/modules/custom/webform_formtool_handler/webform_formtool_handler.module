@@ -11,6 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\user\Entity\Role;
 use Drupal\webform\Entity\Webform;
 
@@ -341,5 +342,66 @@ function webform_formtool_handler_node_access(EntityInterface $entity, string $o
     $operation == 'view' &&
     $account->isAnonymous()) {
     return AccessResult::forbidden('Anonymous access denied to webform ');
+  }
+
+  // LomakeHallinoija checks for editing webform page. Short circuit missing
+  // verkkolomake_hallinnoija role - so we won't do unneccesary heavy lifting.
+  if (
+    in_array('verkkolomake_hallinnoija', $account->getRoles()) &&
+    $entity->getType() == 'webform' &&
+    in_array($operation, ['update', 'delete']) &&
+    !$account->isAnonymous()
+  ) {
+
+    $webform_relation = reset($entity->get('webform')->getValue());
+
+    if (empty($webform_relation)) {
+      return AccessResult::neutral();
+    }
+
+    $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']) ?? NULL;
+
+    if (!$webform) {
+      return AccessResult::neutral();
+    }
+
+    $owner_id = $webform->getOwner()->id();
+    $account_id = $account->id();
+    if ($owner_id !== $account_id) {
+      return AccessResult::forbidden();
+    }
+  }
+
+}
+
+/**
+ * Implements hook_options_list_alter().
+ */
+function webform_formtool_handler_options_list_alter(array &$options, array $context) {
+
+  // Add new webform node - Webform selection dropdown.
+  if (
+    isset($context['fieldDefinition']) &&
+    $context['fieldDefinition'] instanceof FieldConfig &&
+    $context['fieldDefinition']->id() === 'node.webform.webform'
+  ) {
+    $user = \Drupal::currentUser();
+    $roles = $user->getRoles();
+
+    // VerkkolomakeAdmin and uid 1 has always all options.
+    if (array_intersect($roles, ['admin', 'verkkolomake_admin']) || $user->id() == 1) {
+      return;
+    }
+
+    static $webform_ids;
+
+    if (!isset($webform_ids)) {
+      // Get webforms with same owner as current uid.
+      $webform_ids = \Drupal::entityQuery('webform')
+        ->condition('uid', $user->id())
+        ->execute();
+    }
+
+    $options = array_intersect_key($webform_ids, $options);
   }
 }
