@@ -90,6 +90,12 @@ function webform_formtool_handler_webform_presave(Webform $entity) {
     $config->set('roles', $allRoles);
     $config->save();
 
+    // Grant roleassign permission to admin role.
+    $roleString = "assign $roleMachineName role";
+    $verkkolomakeAdminRole = Role::load('verkkolomake_admin');
+    $verkkolomakeAdminRole->grantPermission($roleString);
+    $verkkolomakeAdminRole->save();
+
   }
   // If this role has not yet been added to 3rd party settings, do it now.
   if (!in_array($roleMachineName, $thirdPartySettings['roles'])) {
