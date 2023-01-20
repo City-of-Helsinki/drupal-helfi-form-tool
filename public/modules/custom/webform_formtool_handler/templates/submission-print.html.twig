@@ -1,5 +1,8 @@
 <div class="submission-print">
   <div class="page-type--form-page wrapper no-sidebar no-sidebar-first no-sidebar-second submission-print__top">
+    <div class="container">
+      <h1>{{ form }}</h1>
+    </div>
     <header role="banner" class=" submission-print__header">
       <div class="container">
         <div class="submission-print__header-branding"¨>
@@ -13,19 +16,20 @@
           </div>
           <div class="submission-print__header-branding-right">
             <div>
-              <h2 class="submission-print__label">Lomakkeen numero</h2>
+              <h2 class="submission-print__label">{{ "Form number"|t }}</h2>
               {{ id }}
             </div>
             <div>
-              <h2 class="submission-print__label">Lomake lähetetty</h2>
+              <h2 class="submission-print__label">{{ "Form submitted"|t }}</h2>
               {{ submissionDate|date('d.m.Y H:i:s') }}
             </div>
-            <a type="button" class="hds-button hds-button--primary" href="javascript:window.print();return void;">
+            <button type="button" class="hds-button hds-button--primary" onclick="window.print()">
 
-                <span aria-hidden="true" class="hel-icon hel-icon--printer"></span>
-              <span class="hds-button__label">{{ "Print form"|t }}</span>
+              <span aria-hidden="true" class="hel-icon hel-icon--printer"></span>
+              <span class="hds-button__label">{{ "Print the form"|t }}</span>
 
-            </a>          </div>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -38,24 +42,24 @@
       <a id="main-content" tabindex="-1"></a>
       <div class="container">
         <div>
-          <div>
-          <section class="js-form-item form-item js-form-wrapper form-wrapper webform-section">
-            <div class="webform-section-flex-wrapper">
-              <h2 class="webform-section-title">Tietoa tästä lomakkeesta</h2>
-              <div class="webform-section-wrapper">
-                Tietoa
-              </div>
-            </div>
-          </section>
-        </div>
           {{ submission }}
         </div>
-        <a type="button" class="hds-button hds-button--primary" href="javascript:window.print();return void;">
+        <div class="submission-print__footer">
+          <div>
+            {% if language == 'sv' %}
+              <span class="hel-icon hel-icon--helsinki-sv logo__icon logo__icon--sv" aria-hidden="true"></span>
+            {% else %}
+              <span class="hel-icon hel-icon--helsinki logo__icon logo__icon--fi" aria-hidden="true"></span>
+            {% endif %}
+            &copy; {{ "City of Helsinki"|t }} {{ 'now' | date('Y') }} |&nbsp;<a href="/">www.hel.fi</a>
+          </div>
+          <button type="button" class="hds-button hds-button--primary" onclick="window.print()">
 
-          <span aria-hidden="true" class="hel-icon hel-icon--printer"></span>
-          <span class="hds-button__label">{{ "Print form"|t }}</span>
+            <span aria-hidden="true" class="hel-icon hel-icon--printer"></span>
+            <span class="hds-button__label">{{ "Print the form"|t }}</span>
 
-        </a>
+          </button>
+        </div>
       </div>
 
     </main>
