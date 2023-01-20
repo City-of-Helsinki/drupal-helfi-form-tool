@@ -42,6 +42,9 @@ class ReturnLinkBlock extends BlockBase {
       $returnLinkText = $serviceDetailsLinkText;
       $returnLinkUrl = \Drupal::state()->get(\Drupal::request()->get('backlink_id'));
     }
+    else {
+      return [];
+    }
 
     // Webform node page.
     if (array_key_exists('node', $params)) {
