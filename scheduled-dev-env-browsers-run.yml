@@ -1,0 +1,31 @@
+schedules:
+- cron: "0 6 */3 * *"
+  displayName: At 06:00 on every 3rd day-of-month.
+  branches:
+    include:
+      - dev
+  always: false
+        
+trigger: none
+stages:
+  - stage:
+    displayName: Dev env chrome browser
+    jobs:
+      - template: lomake-run-robot-tests.yml
+        parameters:
+          testEnv: dev
+          testBrowser: chrome
+  - stage:
+    displayName: Dev env firefox browser
+    jobs:        
+      - template: lomake-run-robot-tests.yml
+        parameters:
+          testEnv: dev
+          testBrowser: firefox
+  - stage:
+    displayName: Dev env edge browser
+    jobs:        
+      - template: lomake-run-robot-tests.yml
+        parameters:
+          testEnv: dev
+          testBrowser: edge

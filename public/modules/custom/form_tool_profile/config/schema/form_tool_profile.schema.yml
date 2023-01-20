@@ -1,0 +1,13 @@
+form_tool_profile.settings:
+  type: config_object
+  label: 'Form tool profile settings'
+  mapping:
+    login_info_no_auth:
+      type: text
+      label: 'No authentication'
+    login_info_weak_auth:
+      type: text
+      label: 'Weak authentication'
+    login_info_strong_auth:
+      label: 'Strong authentication'
+      type: text

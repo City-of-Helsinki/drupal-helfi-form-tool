@@ -1,0 +1,23 @@
+uuid: f84ac16f-233b-4dcc-94ab-9ad3d5204f82
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_url_to_form_service
+    - node.type.webform
+  module:
+    - link
+id: node.webform.field_url_to_form_service
+field_name: field_url_to_form_service
+entity_type: node
+bundle: webform
+label: 'URL to form service'
+description: 'The URL of the service that links to this form.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

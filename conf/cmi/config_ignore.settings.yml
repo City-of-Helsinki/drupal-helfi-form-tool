@@ -2,3 +2,4 @@ _core:
   default_config_hash: QkouijUZWSmzRC1sUOJntoclIHqPYGTSt2534poifsQ
 ignored_config_entities:
   - 'hdbt_admin_tools.site_settings:site_settings'
+  - form_tool_profile.settings

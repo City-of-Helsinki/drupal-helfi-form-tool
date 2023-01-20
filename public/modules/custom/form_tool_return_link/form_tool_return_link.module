@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Form Tool Return link module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function form_tool_return_link_theme() {
+  return [
+    'return_link_block' => [
+      'variables' => [
+        'return_link_text' => NULL,
+        'return_link_url' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function form_tool_return_link_entity_presave(EntityInterface $entity) {
+  if (
+    $entity instanceof NodeInterface &&
+    $entity->getType() === 'webform' &&
+    $entity->hasField('field_url_to_form_service') &&
+    !$entity->get('field_url_to_form_service')->first()->isEmpty()
+  ) {
+    $url = $entity->get('field_url_to_form_service')->first()->getUrl()->getUri();
+    $thirdPartySettings = $entity->get('webform')->first()->entity->getThirdPartySettings('form_tool_webform_parameters');
+    $stateId = "HEL-{$thirdPartySettings['form_code']}-{$entity->language()->getId()}";
+
+    \Drupal::state()->set($stateId, $url);
+  }
+}

@@ -3,11 +3,12 @@
 # Continuous integration (CI) triggers cause a pipeline to run whenever you push
 # an update to the specified branches or you push specified tags.
 trigger:
+  batch: true
   branches:
     include:
-      - releases/*
+      - release/*
     exclude:
-      - releases/old*
+      - release/old*
   paths:
     exclude:
       - README.md

@@ -1,0 +1,5 @@
+form_tool_profile.settings:
+  title: 'Form tool profile configuration'
+  base_route_name: form_tool_profile.settings
+  names:
+    - 'form_tool_profile.settings'
