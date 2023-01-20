@@ -121,7 +121,8 @@ class ReturnLinkBlock extends BlockBase implements ContainerFactoryPluginInterfa
     // Webform node page.
     if (array_key_exists('node', $params)) {
       $node = $params['node'];
-      // Check that there is the field_url_to_form_service field and that it is not empty.
+      // Check that there is the field_url_to_form_service field
+      // and that it is not empty.
       if ($node->hasField('field_url_to_form_service') && !$node->get('field_url_to_form_service')->isEmpty()) {
         $returnLinkText = $serviceDetailsLinkText;
         $returnLinkUrl = $node->get('field_url_to_form_service')->first()->getUrl()->getUri();
