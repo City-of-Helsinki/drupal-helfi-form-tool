@@ -6,7 +6,7 @@
     <header role="banner" class=" submission-print__header">
       <div class="container">
         <div class="submission-print__header-branding"¨>
-          <div class="submission-print__branding-block">
+          <div class="submission-print__header-branding-block">
             <div class="submission-print__sector-name">
               {{ sector }}
             </div>
@@ -45,13 +45,15 @@
           {{ submission }}
         </div>
         <div class="submission-print__footer">
-          <div>
+          <div class="submission-print__footer-copyright">
             {% if language == 'sv' %}
               <span class="hel-icon hel-icon--helsinki-sv logo__icon logo__icon--sv" aria-hidden="true"></span>
             {% else %}
               <span class="hel-icon hel-icon--helsinki logo__icon logo__icon--fi" aria-hidden="true"></span>
             {% endif %}
-            &copy; {{ "City of Helsinki"|t }} {{ 'now' | date('Y') }} |&nbsp;<a href="/">www.hel.fi</a>
+            <span class="submission-print__footer-text">
+              &copy; {{ "City of Helsinki"|t }} {{ 'now' | date('Y') }} |&nbsp;<a href="/">www.hel.fi</a>
+            </span>
           </div>
           <button type="button" class="hds-button hds-button--primary" onclick="window.print()">
 
