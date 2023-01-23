@@ -20,3 +20,12 @@ msgstr "Tack"
 
 msgid "We will try to process your submission as quickly as possible."
 msgstr "Vi kommer att försöka behandla din inlämning så snabbt som möjligt."
+
+msgid "Form submitted successfully"
+msgstr "Formuläret har skickats"
+
+msgid "Submit error"
+msgstr "Skicka fel"
+
+msgid "Form information"
+msgstr "Forminformation"

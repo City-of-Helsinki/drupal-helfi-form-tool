@@ -20,3 +20,12 @@ msgstr "Kiitos"
 
 msgid "We will try to process your submission as quickly as possible."
 msgstr "Yritämme käsitellä lähettämäsi vastauksen mahdollisimman pian."
+
+msgid "Form submitted successfully"
+msgstr "Lomake lähetettiin onnistuneesti"
+
+msgid "Submit error"
+msgstr "Lähetysvirhe"
+
+msgid "Form information"
+msgstr "Lomakkeen tiedot"

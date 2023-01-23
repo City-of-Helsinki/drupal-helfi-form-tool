@@ -66,7 +66,7 @@ form_tool_share.meta:
 form_tool_share.view_submission:
   path: '/lomake/{submission_id}'
   defaults:
-    _title: 'Form submission'
+    _title: 'Form information'
     _controller: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::build'
   requirements:
     _custom_access: '\Drupal\form_tool_share\Controller\FormToolSubmissionController::accessByApplicationNumber'
