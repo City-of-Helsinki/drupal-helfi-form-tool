@@ -11,7 +11,6 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_alter().
  */
 function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-
   // Hide fields from login forms without proper query strings.
   // If we're at user login.
   if ($form_id == 'user_login_form') {
