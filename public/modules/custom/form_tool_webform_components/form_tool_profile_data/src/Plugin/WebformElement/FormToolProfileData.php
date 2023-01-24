@@ -131,6 +131,8 @@ class FormToolProfileData extends WebformCompositeBase {
         'verifiedGivenName' => t('Verified given name'),
         'verifiedSsn' => t('Verified SSN'),
         'verifiedPermanentAddress' => t('Verified permanent address'),
+        'primaryEmail' => t('Primary email'),
+        'primaryPhone' => t('Primary phone'),
       ],
     ];
   }
