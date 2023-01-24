@@ -14,3 +14,6 @@ dependencies:
 version: '6.1.3'
 project: 'webform'
 datestamp: 1644940731
+
+'interface translation project': webform_formtool_handler
+'interface translation server pattern': modules/custom/webform_formtool_handler/translations/%language/%language.po

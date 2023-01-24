@@ -24,6 +24,7 @@
  * @ingroup themeable
  */
 #}
+{% if children %}
 {%
   set classes = [
     'js-form-item',
@@ -64,3 +65,4 @@
     </div>
   </div>
 </section>
+{% endif %}

@@ -119,6 +119,7 @@ class FormToolSubmissionController extends ControllerBase {
     $sector = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['sector'];
     $address = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['postal_address'];
     $submission_date = $entity->getFields()['created']->getValue()[0]['value'];
+    $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
     return [
       '#theme' => 'submission_print',
@@ -128,6 +129,7 @@ class FormToolSubmissionController extends ControllerBase {
       '#sector' => $sector,
       '#address' => $address,
       '#form' => $formTitle,
+      '#language' => $language,
     ];
   }
 
