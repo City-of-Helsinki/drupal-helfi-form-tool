@@ -23,6 +23,15 @@ function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $f
       unset($form['pass']);
       unset($form['actions']);
     }
+
+    // Let's not cache this form at all, anywhere.
+    // Or cache it per url query args.
+    $form['#cache'] = [
+      'contexts' => [
+        'url.query_args',
+      ],
+    ];
+
   }
   // And from Tunnistamo, we want to allow only user logins
   // without loginparameter.
