@@ -68,7 +68,8 @@ class RefreshProfileDataController extends ControllerBase {
       $this->messenger()->addStatus('Profile data updated');
     }
     catch (TokenExpiredException $e) {
-      $this->messenger()->addError($e->getMessage());
+      $this->messenger()->addError('Profile data update failed. Error has been logged.');
+
     }
 
     $referer = $this->requestStack->getCurrentRequest()->server->get('HTTP_REFERER');

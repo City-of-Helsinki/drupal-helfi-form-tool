@@ -61,7 +61,8 @@ class FormToolProfileData extends WebformCompositeBase {
 
     $profileRefreshLink = Link::createFromRoute(
       t('Refresh data from Helsinki Profiili'),
-      'form_tool_profile_data.refresh_profile_data');
+      'form_tool_profile_data.refresh_profile_data'
+    );
 
     $elements['refreshLink'] = $profileRefreshLink->toRenderable();
 
@@ -147,28 +148,6 @@ class FormToolProfileData extends WebformCompositeBase {
         ];
         $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
-      if (isset($selectedFields['primaryEmail']) && $selectedFields['primaryEmail'] !== 0) {
-        $elements['primaryEmail'] = [
-          '#type' => 'textfield',
-          '#title' => $options['weak']['primaryEmail'],
-          '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?: '-'),
-          '#required' => TRUE,
-        ];
-        $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
-      }
-      if (isset($selectedFields['primaryPhone']) && $selectedFields['primaryPhone'] !== 0) {
-        $elements['primaryPhone'] = [
-          '#type' => 'textfield',
-          '#title' => $options['weak']['primaryPhone'],
-          '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-'),
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#required' => TRUE,
-        ];
-        $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
-      }
     }
 
     if ($authLevel == 'weak' && isset($element['#weak'])) {
@@ -195,28 +174,30 @@ class FormToolProfileData extends WebformCompositeBase {
         ];
         $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
-      if (isset($selectedFields['primaryEmail']) && $selectedFields['primaryEmail'] !== 0) {
-        $elements['primaryEmail'] = [
-          '#type' => 'textfield',
-          '#title' => $options['weak']['primaryEmail'],
-          '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?: '-'),
-          '#required' => TRUE,
-        ];
-        $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
-      }
-      if (isset($selectedFields['primaryPhone']) && $selectedFields['primaryPhone'] !== 0) {
-        $elements['primaryPhone'] = [
-          '#type' => 'textfield',
-          '#title' => $options['weak']['primaryPhone'],
-          '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-          '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-'),
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#required' => TRUE,
-        ];
-        $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
-      }
+    }
+
+    // Move this outside of those ifs so that snyk doesn't go crazy.
+    if (isset($selectedFields['primaryEmail']) && $selectedFields['primaryEmail'] !== 0) {
+      $elements['primaryEmail'] = [
+        '#type' => 'textfield',
+        '#title' => $options['weak']['primaryEmail'],
+        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
+        '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
+        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?: '-'),
+        '#required' => TRUE,
+      ];
+      $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
+    }
+    if (isset($selectedFields['primaryPhone']) && $selectedFields['primaryPhone'] !== 0) {
+      $elements['primaryPhone'] = [
+        '#type' => 'textfield',
+        '#title' => $options['weak']['primaryPhone'],
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
+        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-'),
+        '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
+        '#required' => TRUE,
+      ];
+      $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
     }
 
     return $elements;
