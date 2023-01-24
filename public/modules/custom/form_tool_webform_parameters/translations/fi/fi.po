@@ -43,7 +43,7 @@ msgstr "Vahva tunnistautuminen"
 msgid "Postal address for paper form delivery"
 msgstr "Lomakkeen paperiversion toimitusosoite"
 
-msgid "Read more about <a href="@privacy-policy-link">the privacy policy</a> (the link will open in a new tab)."
+msgid "Read more about <a href=\"@privacy-policy-link\">the privacy policy</a> (the link will open in a new tab)."
 msgstr "Lue lisää <a href=\"@privacy-policy-link\">rekisteriselosteesta</a> (linkki avautuu uuteen välilehteen)."
 
 msgid "Privacy Policy"
