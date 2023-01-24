@@ -54,6 +54,12 @@ function form_tool_profile_preprocess_page(&$vars) {
   $node = \Drupal::routeMatch()->getMasterRouteMatch()->getParameter('node');
 
   if ($node && $node->getType() === 'webform' && $route_name === 'system.403') {
+
+    if (\Drupal::request()->attributes->has('exception')) {
+      $vars['#cache']['max-age'] = 0;
+      \Drupal::service('page_cache_kill_switch')->trigger();
+    }
+
     $webform_relation = $node->get('webform')->getValue()[0];
     $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']);
 
