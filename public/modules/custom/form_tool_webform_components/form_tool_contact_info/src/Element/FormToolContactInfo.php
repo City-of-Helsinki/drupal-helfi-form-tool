@@ -81,34 +81,40 @@ class FormToolContactInfo extends WebformCompositeBase {
     $elements['first_name'] = [
       '#type' => 'textfield',
       '#title' => t('First name'),
+      '#autocomplete' => 'given-name',
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['last_name'] = [
       '#type' => 'textfield',
       '#title' => t('Last name'),
+      '#autocomplete' => 'family-name',
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
+      '#autocomplete' => 'address-level2',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
+      '#autocomplete' => 'postal-code',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
+      '#autocomplete' => 'address-level1 city',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
+      '#autocomplete' => 'tel',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
@@ -120,34 +126,40 @@ class FormToolContactInfo extends WebformCompositeBase {
     $elements['cod_first_name'] = [
       '#type' => 'textfield',
       '#title' => t('First name'),
+      '#autocomplete' => 'shipping given-name',
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
       '#title' => t('Last name'),
+      '#autocomplete' => 'shipping family-name',
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
+      '#autocomplete' => 'shipping address-level2',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
+      '#autocomplete' => 'shipping postal-code',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
+      '#autocomplete' => 'shipping address-level1 city',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
     $elements['cod_phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
+      '#autocomplete' => 'shipping tel',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
     ];
@@ -159,6 +171,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     $elements['email'] = [
       '#type' => 'textfield',
       '#title' => t('Email'),
+      '#autocomplete' => 'shipping email',
       '#after_build' => [[get_called_class(), 'email']],
     ];
     $elements['Postiennakko -teksti'] = [

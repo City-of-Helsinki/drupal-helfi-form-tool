@@ -10,6 +10,10 @@
     }
   }
 
+  label:first-child {
+    margin-top: 0;
+  }
+
   .description {
     margin-top: $spacing-quarter;
     white-space: normal;

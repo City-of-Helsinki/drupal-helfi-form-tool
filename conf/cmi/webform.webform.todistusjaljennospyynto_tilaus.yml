@@ -40,7 +40,7 @@ elements: |-
     '#title': Tilaaja
     profile_fields:
       '#type': form_tool_profile_data
-      '#title': 'Profile fields'
+      '#title': 'Seuraavat henkilötiedot on haettu Helsinki-profiilistasi.'
       '#strong':
         verifiedFirstName: verifiedFirstName
         verifiedLastName: verifiedLastName
@@ -49,8 +49,8 @@ elements: |-
         primaryEmail: primaryEmail
         primaryPhone: primaryPhone
         verifiedGivenName: 0
-      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
-      '#description_display': after
+      '#title_display': before
+      '#description_display': before
       '#weak':
         primaryAddress: primaryAddress
         primaryEmail: primaryEmail

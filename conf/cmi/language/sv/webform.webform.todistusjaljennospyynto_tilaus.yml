@@ -1,7 +1,7 @@
 title: 'SV Todistusjäljennöspyyntö, tilaus'
 elements: |
   profile_fields:
-    '#description': 'Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+    '#title': 'Följande personuppgifter har hämtats från din Helsingfors-profil.'
   valitse_toimitustapa:
     '#Info__title': ''
     '#delivery_method__title': ''

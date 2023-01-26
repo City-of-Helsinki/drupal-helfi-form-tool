@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+
+msgid "Primary address"
+msgstr "Primäradress"
+
+msgid "Primary email"
+msgstr "Primär E-postadress"
+
+msgid "Primary phone"
+msgstr "Primär Telefon"
+
+msgid "Verified first name"
+msgstr "Verifierat förnamn"
+
+msgid "Verified last name"
+msgstr " efternamn"
+
+msgid "Verified given name"
+msgstr "Verifierat kristet namn"
+
+msgid "Verified social security number"
+msgstr "Verifierat personnummer"
+
+msgid "Verified permanent address"
+msgstr "Verifierad permanent adress"
+
+msgid "Profile data updated"
+msgstr "Profildata uppdaterad"
+
+msgid "Profile data update failed. Error has been logged."
+msgstr "Uppdateringen av profildata misslyckades. Fel har loggats."
+
+msgid "Go to Helsinki-profile to edit your information."
+msgstr "Gå till Helsingfors-profilen för att redigera din information."
+
+msgctxt "Refresh data from Helsinki-profile link text"
+msgid "Refresh data"
+msgstr "Uppdatera data"
+
+msgid "If you want to change the information from Helsinki-profile you can do that by going to the Helsinki-profile from this link."
+msgstr "Om du vill ändra informationen från Helsingfors-profilen kan du göra det genom att gå till Helsingfors-profilen från denna länk."
+
+msgid "If the data from Helsinki-profile is old you can refresh the data by pressing this link."
+msgstr "Om uppgifterna från Helsingfors-profilen är gamla kan du uppdatera uppgifterna genom att klicka på denna länk."

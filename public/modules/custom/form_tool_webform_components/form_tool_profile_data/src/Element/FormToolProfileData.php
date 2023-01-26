@@ -4,6 +4,7 @@ namespace Drupal\form_tool_profile_data\Element;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\webform\Element\WebformCompositeBase;
 use Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData as ProfileDataElement;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -58,13 +59,6 @@ class FormToolProfileData extends WebformCompositeBase {
         throw new AccessDeniedHttpException('No profile data available');
       }
     }
-
-    $profileRefreshLink = Link::createFromRoute(
-      t('Refresh data from Helsinki Profiili'),
-      'form_tool_profile_data.refresh_profile_data'
-    );
-
-    $elements['refreshLink'] = $profileRefreshLink->toRenderable();
 
     $authLevel = $hpud->getAuthenticationLevel();
 
@@ -200,6 +194,34 @@ class FormToolProfileData extends WebformCompositeBase {
       $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
     }
 
+    $profileEditUrl = Url::fromUri('https://suomi.fi');
+    $profileEditUrl->mergeOptions(['attributes' => [
+      'title' => t('If you want to change the information from Helsinki-profile you can do that by going to the Helsinki-profile from this link.'),
+    ]]);
+
+    $profileRefreshUrl = Url::fromRoute('form_tool_profile_data.refresh_profile_data');
+    $profileRefreshUrl->mergeOptions(['attributes' => [
+      'title' => t('If the data from Helsinki-profile is old you can refresh the data by pressing this link.'),
+      'class' => 'profile-data__refresh-link'
+    ]]);
+
+    $elements['profile_data_links'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => 'profile-data__links-wrapper',
+      ],
+      'editLink' => [
+        '#type' => 'link',
+        '#url' => $profileEditUrl,
+        '#title' => t('Go to Helsinki-profile to edit your information.'),
+      ],
+      'refreshLink' => [
+        '#type' => 'link',
+        '#url' => $profileRefreshUrl,
+        '#title' => t('Refresh data', [], ['context' => 'Refresh data from Helsinki-profile link text']),
+      ]
+    ];
+
     return $elements;
   }
 
@@ -235,8 +257,7 @@ class FormToolProfileData extends WebformCompositeBase {
       : $textValue;
 
     return [
-      '#theme' => 'profile_data_icon',
-      '#text_value' => $description,
+      '#plain_text' => $description,
     ];
   }
 
