@@ -11,7 +11,6 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_alter().
  */
 function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-
   // Hide fields from login forms without proper query strings.
   // If we're at user login.
   if ($form_id == 'user_login_form') {
@@ -23,6 +22,15 @@ function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $f
       unset($form['pass']);
       unset($form['actions']);
     }
+
+    // Let's not cache this form at all, anywhere.
+    // Or cache it per url query args.
+    $form['#cache'] = [
+      'contexts' => [
+        'url.query_args',
+      ],
+    ];
+
   }
   // And from Tunnistamo, we want to allow only user logins
   // without loginparameter.
@@ -65,6 +73,12 @@ function form_tool_profile_preprocess_page(&$vars) {
   $node = \Drupal::routeMatch()->getMasterRouteMatch()->getParameter('node');
 
   if ($node && $node->getType() === 'webform' && $route_name === 'system.403') {
+
+    if (\Drupal::request()->attributes->has('exception')) {
+      $vars['#cache']['max-age'] = 0;
+      \Drupal::service('page_cache_kill_switch')->trigger();
+    }
+
     $webform_relation = $node->get('webform')->getValue()[0];
     $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']);
 
