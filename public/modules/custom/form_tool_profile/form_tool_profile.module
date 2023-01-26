@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_alter().
@@ -57,9 +58,10 @@ function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $f
  */
 function form_tool_profile_page_attachments(array &$attachments) {
   $admin_context = \Drupal::service('router.admin_context');
-  if (!$admin_context->isAdminRoute()) {
+  if (!$admin_context->isAdminRoute() && \Drupal::currentUser()->isAuthenticated()) {
     $attachments['#attached']['library'][] = 'form_tool_profile/form_tool_profile';
     $attachments['#attached']['drupalSettings']['form_tool_profile']['basePath'] = \Drupal::request()->getHost();
+    $attachments['#attached']['drupalSettings']['form_tool_profile']['logout'] = Url::fromRoute('user.logout.http')->toString();
   }
 }
 

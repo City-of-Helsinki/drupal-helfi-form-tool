@@ -7,7 +7,7 @@
           '<h2 tabindex="-1"><span aria-hidden="true" class="hel-icon hel-icon--info-circle hel-icon--size-l"></span> '+ options.headerText +'</h2></div>' +
         '<div class="dialog__body"><p>' + options.bodyText + '</p></div>' +
         '<div class="dialog__actions">' +
-          '<a href="'+options.iniatorElement.href+'" type="button" class="hds-button hds-button--primary">' +
+          '<a href="' + options.logoutLink + '" class="hds-button hds-button--primary">' +
             '<span class="hds-button__label">'+options.logoutBtnText+'</span>' +
           '</a>' +
           '<button type="button" class="hds-button hds-button--secondary dialog__close-button">' +
