@@ -121,35 +121,41 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#type' => 'textfield',
       '#title' => t('First name'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#maxlength' => 100
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
       '#title' => t('Last name'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#maxlength' => 100,
     ];
     $elements['cod_street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#maxlength' => 100,
     ];
     $elements['cod_zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#maxlength' => 5,
     ];
     $elements['cod_city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#maxlength' => 100,
     ];
     $elements['cod_phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#maxlength' => 20,
     ];
     $elements['pickup'] = [
       '#type' => 'item',
@@ -190,6 +196,9 @@ class FormToolContactInfo extends WebformCompositeBase {
     $element['#states']['visible'] = [
       [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'email']],
     ];
+    $element['#states']['required'] = [
+      [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'email']],
+    ];
     // Add .js-form-wrapper to wrapper (ie td) to prevent #states API from
     // disabling the entire table row when this element is disabled.
     $element['#wrapper_attributes']['class'][] = 'js-form-wrapper';
@@ -204,6 +213,9 @@ class FormToolContactInfo extends WebformCompositeBase {
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
     $element['#states']['visible'] = [
+      [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'postal']],
+    ];
+    $element['#states']['required'] = [
       [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'postal']],
     ];
     // Add .js-form-wrapper to wrapper (ie td) to prevent #states API from
@@ -222,6 +234,9 @@ class FormToolContactInfo extends WebformCompositeBase {
     $element['#states']['visible'] = [
       [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'cod']],
     ];
+    $element['#states']['required'] = [
+      [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'cod']],
+    ];
     // Add .js-form-wrapper to wrapper (ie td) to prevent #states API from
     // disabling the entire table row when this element is disabled.
     $element['#wrapper_attributes']['class'][] = 'js-form-wrapper';
@@ -236,6 +251,9 @@ class FormToolContactInfo extends WebformCompositeBase {
     preg_match('/^(.+)\[[^]]+]$/', $element['#name'], $match);
     $composite_name = $match[1];
     $element['#states']['visible'] = [
+      [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'pickup']],
+    ];
+    $element['#states']['required'] = [
       [':input[name="' . $composite_name . '[delivery_method]"]' => ['value' => 'pickup']],
     ];
     // Add .js-form-wrapper to wrapper (ie td) to prevent #states API from
