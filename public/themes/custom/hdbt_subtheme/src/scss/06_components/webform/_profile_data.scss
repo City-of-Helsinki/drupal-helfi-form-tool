@@ -1,3 +1,27 @@
+.profile-data {
+  margin-block: 0;
+
+  dt {
+    @include font(small);
+    font-weight: 500;
+    margin-top: $spacing-and-half;
+
+    &::after {
+      content: '*';
+      display: inline;
+      margin-left: $spacing-quarter;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  dd {
+    margin-left: 0;
+  }
+}
+
 .profile-data__links-wrapper {
   --line-height: 1.5;
   align-items: flex-start;
@@ -31,16 +55,5 @@
 
   &:hover::before {
     transform: rotate(360deg);
-  }
-}
-
-.form_tool__prefilled_field {
-  label.hds-text-input__label {
-    margin-bottom: 0;
-  }
-
-  // The prefilled text is actually inside a description element so it needs to be restyled.
-  .webform-element-description {
-    color: $color-black;
   }
 }
