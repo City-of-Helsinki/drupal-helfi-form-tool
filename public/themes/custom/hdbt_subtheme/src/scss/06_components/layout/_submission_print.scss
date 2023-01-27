@@ -1,4 +1,102 @@
+
 .submission-print {
+  &-wrapper {
+    display:block;
+    background-color: transparent;
+    border: 0px transparent solid;
+    border-spacing: 0;
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    table-layout: auto;
+    white-space: normal;
+    h1 {
+      margin-top: 0;
+    }
+    > thead, > tfoot {
+      display: none;
+    }
+    > tbody {
+      display: block;
+     tr, th, td {
+       display: block;
+       &:hover {
+         background: transparent;
+       }
+     }
+    }
+    @media print {
+      display: table;
+      > thead {
+        display: table-header-group;
+      }
+      > tfoot {
+        display: table-footer-group;
+      }
+      tr {
+        display: table-row;
+      }
+      th, td {
+        display: table-cell;
+      }
+      .header-space {
+        height: 2.5cm;
+      }
+      .footer-space {
+        height: 2.5cm;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+      }
+      .submission-print__footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 2cm;
+        font-size: 10pt;
+        .submission-print__footer-text {
+          display: block;
+          position: absolute;
+          left: 2.3cm;
+          bottom: 0.91cm
+        }
+        .hel-icon.logo__icon--sv + .submission-print__footer-text {
+          left: 2.9cm;
+          bottom: 0.85cm;
+        }
+        .hel-icon {
+          mask: unset;
+          -webkit-mask: unset;
+          background: transparent;
+          position: initial;
+          height: 40px;
+          &:before {
+            content: var(--url);
+            color: black;
+            background: transparent;
+            display: block;
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            left: 0.3cm;
+            transform: scale(0.21);
+            transform-origin: center left;
+            height: 40px;
+          }
+          &.logo__icon--sv:before {
+            transform: scale(0.25);
+            top: 0.2cm;
+          }
+        }
+      }
+    }
+  }
+  @page {
+    size: A4;
+    margin: 0;
+  }
   label {
     font-size: var(--fontsize-body-m);
     font-weight: bold;
@@ -61,6 +159,35 @@
   }
   &--page {
     @media print {
+      font-size: 10pt;
+      display: table;
+      table-layout: fixed;
+      height: auto;
+      h1 {
+        margin-top: 1cm;
+      }
+      section {
+        page-break-inside: avoid;
+      }
+      label {
+        font-size: 10pt;
+      }
+      .wrapper>.header {
+        padding-top: 0;
+      }
+      .main-content {
+        margin-top: 0;
+      }
+      .webform-section-flex-wrapper {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 3%;
+        font-size: 10pt;
+        h2 {
+          width: 27%;
+          font-size: 11pt;
+        }
+      }
       .container, .page-title {
         width: 100vw;
         max-width: 100vw;
@@ -69,7 +196,59 @@
         margin-left: 0;
         margin-right: 0;
       }
-      .header, .footer, button, .breadcrumb__container {
+      .header-branding {
+        display: block;
+        padding-bottom: 0.5cm;
+        height: 2cm;
+        border-bottom: 1pt var(--color-black-20) solid;
+      }
+      .submission-print__header-branding {
+        padding: 1cm 0 0.3cm;
+      }
+      .submission-print__header {
+        font-size: 10pt;
+        h2 {
+          font-size: 10pt;
+        }
+      }
+      .block--branding {
+        position: initial;
+        .city-name {
+          display: block;
+          position: absolute;
+          left: 2.7cm;
+        }
+        .hel-icon.logo__icon--sv + .city-name {
+          left: 3.2cm;
+          top: 0.85cm;
+        }
+        .hel-icon {
+          mask: unset;
+          -webkit-mask: unset;
+          background: transparent;
+          position: initial;
+          height: 40px;
+          &:before {
+            content: var(--url);
+            color: black;
+            background: transparent;
+            display: block;
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            left: 0.3cm;
+            transform: scale(0.28);
+            transform-origin: center left;
+            height: 40px;
+          }
+          &.logo__icon--sv:before {
+            transform: scale(0.33);
+            top: 0.2cm;
+          }
+        }
+      }
+      .main-content {margin-top: 0;}
+      .language-wrapper, .footer, button, .breadcrumb__container {
         display:none;
       }
     }
