@@ -54,7 +54,8 @@ class FormToolProfileData extends WebformCompositeBase {
 
     try {
       $userProfile = $hpud->getUserProfileData();
-    } catch (TokenExpiredException $e) {
+    }
+    catch (TokenExpiredException $e) {
       \Drupal::logger('form_tool_profile_data')->error('Error fetching user profile data: @error', ['@error' => $e->getMessage()]);
     }
 
