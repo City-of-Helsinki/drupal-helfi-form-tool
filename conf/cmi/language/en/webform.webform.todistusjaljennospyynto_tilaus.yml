@@ -1,9 +1,32 @@
-title: 'EN Todistusjäljennöspyyntö, tilaus'
+title: 'Requesting copies of certificates'
 elements: |
+  tilaaja:
+    '#title': 'The person requesting a copy'
   profile_fields:
     '#title': 'The following personal information has been fetched from your Helsinki-profile.'
+  tilattava_todistus:
+    '#title': 'Report copy requested'
+  valitse_tilattava_todistus:
+    '#title': 'Choose school report'
+    '#options':
+      'Peruskoulun päättötodistus': 'Comprehensive school certificate'
+      'Peruskoulun erotodistus': 'Comprehensive school report, studies not completed'
+      'Lisäopetuksen 10.lk todistus': 'Certificate of additional studies, 10th form'
+      'Lukion päättötodistus': 'Upper secondary school certificate'
+      'Lukion erotodistus': 'Upper secondary school report, studies not completed'
+  todistuksen_antanut_helsinkilainen_koulu:
+    '#title': 'School in Helsinki that issued the report'
+    '#description': 'Enter the name of the school, at the time when the school report was issued.&nbsp;'
+  toimitustapa:
+    '#title': 'Manner of delivery'
   valitse_toimitustapa:
+    '#title': 'Select delivery method'
+    '#Toimitustapa: Postiennakko__title': 'Cash on delivery'
+    '#Toimitustapa: Nouto__title': Collect
+    '#Nouto -teksti__title': 'Collect from Educational Division''s archive, Töysänkatu 2 D, 00510 Helsinki'
     '#Info__title': ''
+    '#Toimitustapa: Email__title': E-mail
+    '#Toimitustapa: Postitoimitus__title': 'Postal delivery'
     '#delivery_method__title': ''
     '#first_name__title': ''
     '#last_name__title': ''
@@ -20,3 +43,11 @@ elements: |
     '#cod_phone_number__title': ''
     '#pickup__title': ''
     '#email__title': ''
+    '#Postiennakko -teksti__title': 'Cost of the cash on delivery is 9,20 €'
+  lisatiedot:
+    '#title': 'Additional information'
+  mahdolliset_lisatiedot:
+    '#title': 'Possible additional information'
+description: 'Requesting copies of certificates MVP-version.'
+settings:
+  confirmation_title: 'Request has been sent'

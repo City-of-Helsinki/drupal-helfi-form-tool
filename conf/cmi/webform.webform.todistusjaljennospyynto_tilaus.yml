@@ -67,10 +67,12 @@ elements: |-
         'Lisäopetuksen 10.lk todistus': 'Lisäopetuksen 10.lk todistus'
         'Lukion päättötodistus': 'Lukion päättötodistus'
         'Lukion erotodistus': 'Lukion erotodistus'
+      '#required': true
     todistuksen_antanut_helsinkilainen_koulu:
       '#type': textfield
       '#title': 'Todistuksen antanut Helsinkiläinen koulu'
       '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
+      '#required': true
   toimitustapa:
     '#type': webform_section
     '#title': Toimitustapa
