@@ -10,7 +10,7 @@ third_party_settings:
     owner: drupal@hel.fi
     sector: KYMP
     ad_group: ad_group_2
-    postal_address: ''
+    postal_address: "Töysänkatu 2 D\r\nVallila, 00510 Helsinki"
     privacy_policy: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Perusopetuksen%20opintohallinnon%20rekisteri.pdf'
     privacy_policy_sv: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administration%20av%20grundl%C3%A4ggande%20utbildning.pdf'
     privacy_policy_en: ''
@@ -31,10 +31,17 @@ uid: 1
 template: false
 archive: false
 id: todistusjaljennospyynto_tilaus
-title: 'Todistusjäljennöspyyntö, tilaus'
+title: 'Peruskoulun ja lukion todistusjäljennöksen tilaus'
 description: 'Todistusj&auml;ljenn&ouml;slomakkeen MVP-versio'
 category: ''
 elements: |-
+  tietoja_tasta_lomakkeesta:
+    '#type': webform_section
+    '#title': 'Tietoja tästä lomakkeesta'
+    tietoja_todistusjaljennoksesta_markup:
+      '#type': webform_markup
+      '#display_on': view
+      '#markup': 'T&auml;ll&auml; lomakkeella voit tilata vuoden 1995 j&auml;lkeen saadut peruskoulun p&auml;&auml;tt&ouml;- ja erotodistukset ja vuoden 2005 j&auml;lkeen saadut lukion p&auml;&auml;tt&ouml;- ja erotodistukset.'
   tilaaja:
     '#type': webform_section
     '#title': Tilaaja
