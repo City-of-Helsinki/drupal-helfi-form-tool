@@ -1,0 +1,14 @@
+msgid ""
+msgstr ""
+
+msgid "You are about to exit the form and log out of the service."
+msgstr "Olet poistumassa lomakkeelta ja kirjautumassa ulos palvelusta."
+
+msgid "You are about to exit the form."
+msgstr "Olet poistumassa lomakkeelta"
+
+msgid "Continue on the form"
+msgstr "Jatka lomakkeella"
+
+msgid "Log out and exit"
+msgstr "Kirjaudu ulos ja poistu"

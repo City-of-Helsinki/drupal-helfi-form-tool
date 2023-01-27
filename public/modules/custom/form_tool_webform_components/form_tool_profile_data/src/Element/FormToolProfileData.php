@@ -4,6 +4,7 @@ namespace Drupal\form_tool_profile_data\Element;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\helfi_helsinki_profiili\TokenExpiredException;
 use Drupal\webform\Element\WebformCompositeBase;
 use Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData as ProfileDataElement;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -51,7 +52,12 @@ class FormToolProfileData extends WebformCompositeBase {
 
     $options = ProfileDataElement::getFieldSelections();
 
-    $userProfile = $hpud->getUserProfileData();
+    try {
+      $userProfile = $hpud->getUserProfileData();
+    }
+    catch (TokenExpiredException $e) {
+      \Drupal::logger('form_tool_profile_data')->error('Error fetching user profile data: @error', ['@error' => $e->getMessage()]);
+    }
 
     if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
       if (empty($userProfile) || empty($userProfile['myProfile'])) {
@@ -177,23 +183,27 @@ class FormToolProfileData extends WebformCompositeBase {
     }
 
     // Move this outside of those ifs so that snyk doesn't go crazy.
-    if (isset($selectedFields['primaryEmail']) && $selectedFields['primaryEmail'] !== 0) {
+    if (isset($selectedFields['primaryEmail']) &&
+      $selectedFields['primaryEmail'] !== 0
+    ) {
       $elements['primaryEmail'] = [
         '#type' => 'textfield',
         '#title' => $options['weak']['primaryEmail'],
-        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
+        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"] ?? '-',
         '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?: '-'),
+        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?? '-'),
         '#required' => TRUE,
       ];
       $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
     }
-    if (isset($selectedFields['primaryPhone']) && $selectedFields['primaryPhone'] !== 0) {
+    if (isset($selectedFields['primaryPhone']) &&
+      $selectedFields['primaryPhone'] !== 0
+    ) {
       $elements['primaryPhone'] = [
         '#type' => 'textfield',
         '#title' => $options['weak']['primaryPhone'],
-        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
-        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-'),
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-',
+        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-'),
         '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
         '#required' => TRUE,
       ];
