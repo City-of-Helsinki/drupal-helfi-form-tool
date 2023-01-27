@@ -5,3 +5,11 @@ form_tool_profile_data.settings_form:
     _form: 'Drupal\form_tool_profile_data\Form\SettingsForm'
   requirements:
     _permission: 'administer form_tool_profile_data configuration'
+
+form_tool_profile_data.refresh_profile_data:
+  path: '/form-tool-profile-data/refresh-profile-data'
+  defaults:
+    _title: 'Refresh profile data'
+    _controller: '\Drupal\form_tool_profile_data\Controller\RefreshProfileDataController::build'
+  requirements:
+    _permission: 'access content'

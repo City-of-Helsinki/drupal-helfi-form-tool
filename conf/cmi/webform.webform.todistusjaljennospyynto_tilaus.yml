@@ -40,19 +40,21 @@ elements: |-
     '#title': Tilaaja
     profile_fields:
       '#type': form_tool_profile_data
-      '#title': 'Profiilista ladatut tiedot'
-      '#weak':
-        primaryAddress: primaryAddress
-        primaryEmail: primaryEmail
-        primaryPhone: primaryPhone
-      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
-      '#description_display': after
+      '#title': 'Profile fields'
       '#strong':
         verifiedFirstName: verifiedFirstName
         verifiedLastName: verifiedLastName
         verifiedSsn: verifiedSsn
         verifiedPermanentAddress: verifiedPermanentAddress
+        primaryEmail: primaryEmail
+        primaryPhone: primaryPhone
         verifiedGivenName: 0
+      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+      '#description_display': after
+      '#weak':
+        primaryAddress: primaryAddress
+        primaryEmail: primaryEmail
+        primaryPhone: primaryPhone
   tilattava_todistus:
     '#type': webform_section
     '#title': 'Tilattava todistus'
