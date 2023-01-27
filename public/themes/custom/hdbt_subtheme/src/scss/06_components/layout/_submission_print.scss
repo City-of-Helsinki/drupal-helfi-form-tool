@@ -180,9 +180,6 @@
       .wrapper>.header {
         padding-top: 0;
       }
-      .main-content {
-        margin-top: 0;
-      }
       .webform-section-flex-wrapper {
         display: flex;
         flex-flow: row nowrap;
@@ -252,7 +249,9 @@
           }
         }
       }
-      .main-content {margin-top: 0;}
+      .main-content {
+        margin-top: 0;
+      }
       .language-wrapper, .footer, button, .breadcrumb__container {
         display:none;
       }
