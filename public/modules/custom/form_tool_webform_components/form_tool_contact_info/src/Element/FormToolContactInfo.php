@@ -39,6 +39,9 @@ class FormToolContactInfo extends WebformCompositeBase {
    * {@inheritdoc}
    */
   public static function getCompositeElements(array $element) {
+
+    $maxlenghtLongField = 100;
+
     $elements = [];
     $elements['Info'] = [
       '#type' => 'item',
@@ -121,20 +124,20 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#type' => 'textfield',
       '#title' => t('First name'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => 100
+      '#maxlength' => $maxlenghtLongField
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
       '#title' => t('Last name'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => 100,
+      '#maxlength' => $maxlenghtLongField,
     ];
     $elements['cod_street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => 100,
+      '#maxlength' => $maxlenghtLongField,
     ];
     $elements['cod_zip_code'] = [
       '#type' => 'textfield',
@@ -148,7 +151,7 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#title' => t('City'),
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => 100,
+      '#maxlength' => $maxlenghtLongField,
     ];
     $elements['cod_phone_number'] = [
       '#type' => 'textfield',
