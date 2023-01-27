@@ -74,10 +74,16 @@ elements: |-
         'Lisäopetuksen 10.lk todistus': 'Lisäopetuksen 10.lk todistus'
         'Lukion päättötodistus': 'Lukion päättötodistus'
         'Lukion erotodistus': 'Lukion erotodistus'
+      '#required': true
     todistuksen_antanut_helsinkilainen_koulu:
       '#type': textfield
       '#title': 'Todistuksen antanut Helsinkiläinen koulu'
       '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
+      '#counter_type': character
+      '#counter_minimum': 1
+      '#counter_maximum': 100
+      '#counter_maximum_message': ' '
+      '#required': true
   toimitustapa:
     '#type': webform_section
     '#title': Toimitustapa
@@ -95,6 +101,10 @@ elements: |-
     mahdolliset_lisatiedot:
       '#type': textarea
       '#title': 'Mahdolliset lisätiedot'
+      '#counter_type': character
+      '#counter_minimum': 1
+      '#counter_maximum': 750
+      '#counter_maximum_message': ' '
 css: ''
 javascript: ''
 settings:

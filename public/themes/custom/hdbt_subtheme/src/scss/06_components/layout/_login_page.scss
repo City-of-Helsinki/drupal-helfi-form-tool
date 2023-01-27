@@ -1,0 +1,43 @@
+.user-login-page__body {
+  margin-bottom: var(--spacing-m);
+}
+
+.error-page__login-title {
+  margin-top: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
+  font-size: 2.5rem;
+
+  @include breakpoint($breakpoint-m) {
+    font-size: 4rem;
+    margin-top: 0;
+    margin-bottom: 64px;
+  }
+
+}
+
+.user-login-block__container, .user-login__text-container {
+  background: white;
+  padding: var(--spacing-m);
+  max-width: 500px;
+
+  .openid-connect-login-form {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.error-page__text-container, .user-login__form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.user-login-page-content__container {
+  margin-top: var(--spacing-l);
+}
+
+.error-page__illustration {
+  width: 100%;
+}
