@@ -8,3 +8,6 @@ msgstr "Stäng och logga ut"
 msgctxt "Webform confirmation submission"
 msgid "View the data you submitted"
 msgstr "Se alla uppgifter du har skickat"
+
+msgid "Below is the data of a submitted form."
+msgstr "Nedan finns uppgifterna för ett inlämnat formulär."

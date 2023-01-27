@@ -5,12 +5,17 @@
     background-color: transparent;
     border: 0px transparent solid;
     border-spacing: 0;
-    display: block;
     margin: 0;
     max-width: 100%;
     overflow-x: auto;
     table-layout: auto;
     white-space: normal;
+    caption {
+      background: transparent;
+      color: var(--color-black);
+      width: 100%;
+      display:block;
+    }
     h1 {
       margin-top: 0;
     }
@@ -82,7 +87,7 @@
             top: 0;
             left: 0.3cm;
             transform: scale(0.21);
-            transform-origin: center left;
+            transform-origin: 0% 50%;
             height: 40px;
           }
           &.logo__icon--sv:before {
@@ -238,7 +243,7 @@
             top: 0;
             left: 0.3cm;
             transform: scale(0.28);
-            transform-origin: center left;
+            transform-origin: 0% 50%;
             height: 40px;
           }
           &.logo__icon--sv:before {
