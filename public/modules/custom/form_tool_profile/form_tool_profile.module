@@ -85,7 +85,11 @@ function form_tool_profile_page_attachments(array &$attachments) {
   $admin_context = \Drupal::service('router.admin_context');
   if (!$admin_context->isAdminRoute() && \Drupal::currentUser()->isAuthenticated()) {
     $attachments['#attached']['library'][] = 'form_tool_profile/form_tool_profile';
-    $attachments['#attached']['drupalSettings']['form_tool_profile']['basePath'] = \Drupal::request()->getHost();
+    $url_options = [
+      'absolute' => TRUE,
+      'language' => \Drupal::languageManager()->getCurrentLanguage(),
+    ];
+    $attachments['#attached']['drupalSettings']['form_tool_profile']['basePath'] = Url::fromRoute('<front>', [], $url_options)->toString();
     $attachments['#attached']['drupalSettings']['form_tool_profile']['logout'] = Url::fromRoute('user.logout.http')->toString();
   }
 }
