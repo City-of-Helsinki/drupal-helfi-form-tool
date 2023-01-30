@@ -36,3 +36,12 @@ function template_preprocess_form_tool_contact_info(array &$variables) {
   // Here you can get the composite element and alter it.
   _template_preprocess_webform_composite($variables);
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function form_tool_contact_info_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+  if (array_key_exists('#webform_parent_key', $variables['element'])) {
+    $suggestions[] = 'fieldset__' . $variables['element']['#webform_parent_key'];
+  }
+}
