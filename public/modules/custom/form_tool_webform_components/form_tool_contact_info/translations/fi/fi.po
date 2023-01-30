@@ -7,6 +7,9 @@ msgstr "Toimitustavan valinta voi vaatia lisäkenttien täyttämistä"
 msgid "Email"
 msgstr "Sähköpostiosoite"
 
+msgid "Email Address"
+msgstr "Sähköpostiosoite"
+
 msgid "Postal Delivery"
 msgstr "Postitoimitus"
 

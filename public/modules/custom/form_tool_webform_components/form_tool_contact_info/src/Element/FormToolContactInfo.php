@@ -70,7 +70,7 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#title' => t('Delivery'),
       '#title_display' => 'before',
       '#options' => [
-        'email' => t('Email'),
+        'email' => t('Email Address'),
         'postal' => t('Postal Delivery'),
         'cod' => t('Cash on Delivery'),
         'pickup' => t('Pick Up'),
@@ -80,13 +80,13 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['first_name'] = [
       '#type' => 'textfield',
-      '#title' => t('First name'),
+      '#title' => t('First Name'),
       '#autocomplete' => 'given-name',
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['last_name'] = [
       '#type' => 'textfield',
-      '#title' => t('Last name'),
+      '#title' => t('Last Name'),
       '#autocomplete' => 'family-name',
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
@@ -125,7 +125,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['cod_first_name'] = [
       '#type' => 'textfield',
-      '#title' => t('First name'),
+      '#title' => t('First Name'),
       '#autocomplete' => 'shipping given-name',
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
       '#states' => [
@@ -136,7 +136,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
-      '#title' => t('Last name'),
+      '#title' => t('Last Name'),
       '#autocomplete' => 'shipping family-name',
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
       '#states' => [
@@ -200,7 +200,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['email'] = [
       '#type' => 'textfield',
-      '#title' => t('Email'),
+      '#title' => t('Email Address'),
       '#autocomplete' => 'shipping email',
       '#after_build' => [[get_called_class(), 'email']],
     ];
