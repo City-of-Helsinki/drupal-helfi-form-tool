@@ -4,7 +4,6 @@ namespace Drupal\form_tool_profile_data\Element;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Link;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
 use Drupal\webform\Element\WebformCompositeBase;
 use Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData as ProfileDataElement;
