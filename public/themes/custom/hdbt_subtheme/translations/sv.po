@@ -8,3 +8,7 @@ msgstr "Stäng och logga ut"
 msgctxt "Webform confirmation submission"
 msgid "View the data you submitted"
 msgstr "Se alla uppgifter du har skickat"
+
+msgctxt "Log in block title on error pages"
+msgid "Login to the form"
+msgstr "Logga in i formuläret"
