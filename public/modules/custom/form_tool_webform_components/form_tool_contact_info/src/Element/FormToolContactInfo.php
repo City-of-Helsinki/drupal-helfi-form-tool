@@ -124,7 +124,7 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#type' => 'textfield',
       '#title' => t('First name'),
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => $maxlenghtLongField
+      '#maxlength' => $maxlenghtLongField,
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
