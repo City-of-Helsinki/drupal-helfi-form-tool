@@ -15,6 +15,8 @@ Force Tags      smoke
 *** Variables ***
 ${koulun-nimi}                                              Mauri Makkaran ala-aste
 ${lisätiedot}                                               Ei mulla mitään lisätietoja ole
+${nouto-viesti}                                             Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta
+${random-text-lomakkeen-tiedot-sivulla}                     HEL-TODISTUS-0000
 
 *** Test Cases ***
 #########################################################################################
@@ -29,13 +31,13 @@ ${lisätiedot}                                               Ei mulla mitään l
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
 #########################################################################################
-# robot -d logit --variable environment:dev-chrome --exitonfailure tests/lomake-direct-url-and-content-in-mail.robot
+# robot -d logit --variable environment:test-chrome --variable azure-browser-sleep:1 --exitonfailure tests/lomake-direct-url-and-content-in-mail.robot
 
 #tjpt = Todistusjäljennöspyyntö tilaus
 
 Open mailbox and delete old messages
     Select test data and open browser       # Browser 1
-    Kirjaudu guerrillamail.com                              ${testuser1-lomake-email-user-DEV}
+    Kirjaudu guerrillamail.com                              ${testuser1-lomake-email-user}
     Sleep                                                   3
     Poista kaikki viestit avoinna olevasta guerrillamail mailiboxista
     [Teardown]    NONE
@@ -44,12 +46,12 @@ Login to lomake page using suomi.fi auth
 # 
     [Tags]  critical
     Select test data and open browser       # Browser 2
+    Accept all cookies
     Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
     Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
-    Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
-    Accept all cookies
+    Go To                                                   ${tjpt-direct_url}
     Capture Page Screenshot
     [Teardown]    NONE
 
@@ -62,7 +64,7 @@ Fill form and send
     Capture Page Screenshot
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
-    Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta   20
+    Wait Until Page Contains                                ${nouto-viesti}                                             20
     Capture Page Screenshot
     # Lisätiedot
     Input Text                                              ${lomake-tjpt-lisätiedot-field}                             ${lisätiedot}
@@ -82,7 +84,7 @@ Fill form and send
 
 Open mailbox, check content and get direct lomake url
     Switch Browser                                          1   #Browser 1
-    Kirjaudu guerrillamail.com                              ${testuser1-lomake-email-user-DEV}
+    Kirjaudu guerrillamail.com                              ${testuser1-lomake-email-user}
     #Sleep                                                   3
     #Poista kaikki viestit avoinna olevasta guerrillamail mailiboxista
     Odota emailin form submission viestiä
@@ -94,6 +96,6 @@ Open mailbox, check content and get direct lomake url
     Switch Browser                                          2   #Browser 2
     Go To                                                   ${url}
     ## Tarkista, että lomake sivu aukeaa ja se sisältää lomakkeelle täytettyä tietoa
-    Wait Until Page Contains                                Lomakkeen numero                                            20
+    Wait Until Page Contains                                ${random-text-lomakkeen-tiedot-sivulla}                     20
     Page Should Contain                                     ${koulun-nimi}
     Page Should Contain                                     ${lisätiedot}

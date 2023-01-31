@@ -31,7 +31,7 @@ Force Tags      smoke
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
 #########################################################################################
-# robot -d logit --variable environment:dev-chrome --exitonfailure tests/SMOKE-lomake-test-set.robot
+# robot -d logit --variable environment:stage-chrome --exitonfailure tests/SMOKE-lomake-test-set.robot
 
 Login to lomake page using suomi.fi auth
 # 

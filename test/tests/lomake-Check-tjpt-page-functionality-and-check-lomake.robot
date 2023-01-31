@@ -35,19 +35,18 @@ ${lomake-testdata-lisatiedot}                               Ei mulla mitään li
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
 #########################################################################################
-# robot -d logit --variable environment:dev-chrome --exitonfailure tests/lomake-Check-tjpt-page-functionality.robot
+# robot -d logit --variable environment:test-chrome --variable azure-browser-sleep:1 --exitonfailure tests/lomake-Check-tjpt-page-functionality-and-check-lomake.robot
 
 #stjpt = Todistusjäljennöspyyntö tilaus
 
 Login to lomake page using suomi.fi auth
-# 
     [Tags]  critical
     Select test data and open browser
     Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
     Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
-    Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    #Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
     Accept all cookies
     Capture Page Screenshot
     [Teardown]    NONE
@@ -82,6 +81,9 @@ Verify all buttons, selections and fields
     Capture Page Screenshot
     Click Element                                           ${lomake-tjpt-laheta-lomake-button}
     Wait Until Page Contains                                ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}            20
+    [Teardown]    NONE
+
+Open and check lomakkeen tiedot page content 
     Click Element                                           ${lomake-tjpt-nayta-lomakkeen-tiedot}
     # Tarkista, että sivu aukeaa ja se sisältää lomakkeelle täytettyä tietoa
     Wait Until Page Contains                                Lomakkeen numero                                            20
