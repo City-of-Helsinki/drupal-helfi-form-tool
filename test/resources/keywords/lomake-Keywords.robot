@@ -6,6 +6,12 @@ Select test data and open browser
     Sleep                                           ${azure-browser-sleep}
     Browser specific sleep                          ${environment}    
     Log                                             ${environment}
+    Capture Page Screenshot
+    set window size    1920  1024
+    ${width}     ${height}=     get window size
+    log     ${width}
+    log    ${height}
+    Capture Page Screenshot
 
 Browser specific sleep
     [Arguments]    ${selected-env}
@@ -32,8 +38,8 @@ Select url depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-chrome'             Open Browser    ${lomake_url}   gc
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Open Browser    ${lomake_url}   edge
     ...     ELSE                '${TYPE}' == '7'                        temp
-    Maximize Browser Window
-    Set Window Size             1920    1024
+    #Maximize Browser Window
+    #Set Window Size             1920    1024
 
 Select test data depending on the selected env
     [Arguments]                 ${selected-env}
