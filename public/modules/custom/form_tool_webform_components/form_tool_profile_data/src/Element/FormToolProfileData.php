@@ -206,6 +206,9 @@ class FormToolProfileData extends WebformCompositeBase {
         '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-'),
         '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
         '#required' => TRUE,
+        '#element_validate' => [
+          [static::class, 'validatePhoneNumber'],
+        ],
       ];
       $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
     }
@@ -248,6 +251,27 @@ class FormToolProfileData extends WebformCompositeBase {
       '#theme' => 'profile_data_icon',
       '#text_value' => $description,
     ];
+  }
+
+  /**
+   * Custom validator to validate primary phone number.
+   *
+   * @param array $element
+   *   Form element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   */
+  public static function validatePhoneNumber(array $element, FormStateInterface $form_state) {
+    $value = $element['#value'] ?? NULL;
+
+    if (!empty($value)) {
+      $valid = preg_match("/^\+[\d]+\b/", $value);
+      if (!$valid) {
+        $form_state->setError($element, t('%name is not a valid number.', [
+          '%name' => t('Primary phone'),
+        ]));
+      }
+    }
   }
 
 }
