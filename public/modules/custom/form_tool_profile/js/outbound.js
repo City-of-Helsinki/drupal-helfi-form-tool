@@ -13,6 +13,11 @@
           element = event.target;
         }
 
+        // Skip anchor and relative links.
+        if (/^(#|\/)/.test(element.href)) {
+          return;
+        }
+
         var confirmClassList = ['confirm-dialog'];
         var skipClassList = ['skip-confirm-logout'];
         var elementClassList = [].slice.call(element.classList, 0);
@@ -30,9 +35,11 @@
           return;
         }
 
-        var external = !element.href.includes(drupalSettings.form_tool_profile.basePath);
+        var internal = drupalSettings.form_tool_profile.basePaths.some(function (url) {
+          return element.href.includes(url);
+        });
 
-        if (external || intersectedConfirmClasses.length) {
+        if (!internal || intersectedConfirmClasses.length) {
           event.preventDefault();
           Drupal.theme.formTooldialog({
             iniatorElement: element,
