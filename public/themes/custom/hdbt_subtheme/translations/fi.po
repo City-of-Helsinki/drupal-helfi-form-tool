@@ -12,3 +12,6 @@ msgstr "Katso lähettämäsi tiedot"
 msgctxt "Log in block title on error pages"
 msgid "Login to the form"
 msgstr "Kirjaudu lomakkeelle"
+
+msgid "Below is the data of a submitted form."
+msgstr "Alla on lähetetyn lomakkeen tiedot."
