@@ -54,9 +54,6 @@ class FormToolProfileData extends WebformCompositeBase {
 
     $webFormSettings = $this->getWebform()->getThirdPartySettings('form_tool_webform_parameters');
 
-    // $form['element']['title']['#default_value'] = 'Profile fields';
-    $form['element']['title']['#value'] = 'Profile fields';
-
     if (isset($webFormSettings['login_type']) && $webFormSettings['login_type'] === '0') {
       $form['element']['noauth'] = [
         '#type' => 'checkboxes',

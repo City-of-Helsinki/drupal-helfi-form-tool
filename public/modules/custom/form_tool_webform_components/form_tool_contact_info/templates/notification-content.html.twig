@@ -1,4 +1,7 @@
-<section aria-label="Notification" class="hds-notification hds-notification--small">
+{% set notification_labelled_by = "form-tool-notification--" ~ random() %}
+
+<section aria-labelledby="{{ notification_labelled_by }}" class="hds-notification hds-notification--small">
+  <span class="visually-hidden" id="{{ notification_labelled_by }}">{{ 'Notification'|t({}, {'context': 'Notification inside a webform'}) }}</span>
   <div class="hds-notification__content">
     <div class="hds-notification__label" role="heading" aria-level="2">
       {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'info-circle-fill'} %}

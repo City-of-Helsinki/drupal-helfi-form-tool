@@ -3,7 +3,7 @@
 namespace Drupal\form_tool_profile_data\Element;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
 use Drupal\webform\Element\WebformCompositeBase;
 use Drupal\form_tool_profile_data\Plugin\WebformElement\FormToolProfileData as ProfileDataElement;
@@ -65,13 +65,6 @@ class FormToolProfileData extends WebformCompositeBase {
       }
     }
 
-    $profileRefreshLink = Link::createFromRoute(
-      t('Refresh data from Helsinki Profiili'),
-      'form_tool_profile_data.refresh_profile_data'
-    );
-
-    $elements['refreshLink'] = $profileRefreshLink->toRenderable();
-
     $authLevel = $hpud->getAuthenticationLevel();
 
     if ($authLevel == 'strong' && isset($element['#strong'])) {
@@ -82,58 +75,80 @@ class FormToolProfileData extends WebformCompositeBase {
         return $elements;
       }
 
+      $elements['visibleList'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'dl',
+        '#attributes' => [
+          'class' => ['profile-data'],
+        ],
+      ];
       if (isset($selectedFields['verifiedFirstName']) && $selectedFields['verifiedFirstName'] !== 0) {
+        $elements['visibleList']['verifiedFirstNameTitle'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dt',
+          '#value' => $options['strong']['verifiedFirstName'],
+        ];
+        $elements['visibleList']['verifiedFirstNameDesc'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dd',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] ?: '-',
+        ];
         $elements['verifiedFirstName'] = [
-          '#type' => 'textfield',
-          '#title' => $options['strong']['verifiedFirstName'],
+          '#type' => 'hidden',
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] ?: '-'
-          ),
           '#required' => TRUE,
         ];
-        $elements['verifiedFirstName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedLastName']) && $selectedFields['verifiedLastName'] !== 0) {
+        $elements['visibleList']['verifiedLastNameTitle'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dt',
+          '#value' => $options['strong']['verifiedLastName'],
+        ];
+        $elements['visibleList']['verifiedLastNameDesc'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dd',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] ?: '-',
+        ];
         $elements['verifiedLastName'] = [
-          '#type' => 'textfield',
-          '#title' => $options['strong']['verifiedLastName'],
+          '#type' => 'hidden',
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] ?: '-'
-          ),
           '#required' => TRUE,
         ];
-        $elements['verifiedLastName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedSsn']) && $selectedFields['verifiedSsn'] !== 0) {
+        $elements['visibleList']['verifiedSsnTitle'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dt',
+          '#value' => $options['strong']['verifiedSsn'],
+        ];
+        $elements['visibleList']['verifiedSsnDesc'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dd',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] ?: '-',
+        ];
         $elements['verifiedSsn'] = [
-          '#type' => 'textfield',
-          '#title' => $options['strong']['verifiedSsn'],
+          '#type' => 'hidden',
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] ?: '-'
-          ),
           '#required' => TRUE,
         ];
-        $elements['verifiedSsn']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
-
       }
       if (isset($selectedFields['verifiedGivenName']) && $selectedFields['verifiedGivenName'] !== 0) {
+        $elements['visibleList']['verifiedGivenNameTitle'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dt',
+          '#value' => $options['strong']['verifiedGivenName'],
+        ];
+        $elements['visibleList']['verifiedGivenNameDesc'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dd',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] ?: '-',
+        ];
         $elements['verifiedGivenName'] = [
-          '#type' => 'textfield',
-          '#title' => $options['strong']['verifiedGivenName'],
+          '#type' => 'hidden',
           '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue(
-            $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] ?: '-'
-          ),
           '#required' => TRUE,
         ];
-        $elements['verifiedGivenName']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
       if (isset($selectedFields['verifiedPermanentAddress']) && $selectedFields['verifiedPermanentAddress'] !== 0) {
         $permanentAddress = [
@@ -141,18 +156,24 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"],
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
         ];
+        $elements['visibleList']['verifiedPermanentAddressTitle'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dt',
+          '#value' => $options['strong']['verifiedPermanentAddress'],
+        ];
+        $elements['visibleList']['verifiedPermanentAddressDesc'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dd',
+          '#value' => implode(', ', $permanentAddress) ?: '-',
+        ];
         $elements['verifiedPermanentAddress'] = [
-          '#type' => 'textfield',
-          '#title' => $options['strong']['verifiedPermanentAddress'],
+          '#type' => 'hidden',
           '#value' =>
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["streetAddress"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["verifiedPersonalInformation"]["permanentAddress"]["postOffice"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($permanentAddress ?: '-'),
           '#required' => TRUE,
         ];
-        $elements['verifiedPermanentAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
     }
 
@@ -166,19 +187,25 @@ class FormToolProfileData extends WebformCompositeBase {
           $userProfile["myProfile"]["primaryAddress"]["city"],
           $userProfile["myProfile"]["primaryAddress"]["countryCode"],
         ];
+        $elements['visibleList']['primaryAddressTitle'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dt',
+          '#value' => $options['weak']['primaryAddress'],
+        ];
+        $elements['visibleList']['primaryAddressDesc'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'dd',
+          '#value' => implode(', ', $primaryAddress) ?: '-',
+        ];
         $elements['primaryAddress'] = [
-          '#type' => 'textfield',
-          '#title' => $options['weak']['primaryAddress'],
+          '#type' => 'hidden',
           '#value' =>
           $userProfile["myProfile"]["primaryAddress"]["address"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["postalCode"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["city"] . ', ' .
           $userProfile["myProfile"]["primaryAddress"]["countryCode"],
-          '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-          '#description' => self::handleTextValue($primaryAddress ?: '-'),
           '#required' => TRUE,
         ];
-        $elements['primaryAddress']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
       }
     }
 
@@ -186,32 +213,76 @@ class FormToolProfileData extends WebformCompositeBase {
     if (isset($selectedFields['primaryEmail']) &&
       $selectedFields['primaryEmail'] !== 0
     ) {
+      $elements['visibleList']['primaryEmailTitle'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'dt',
+        '#value' => $options['weak']['primaryEmail'],
+      ];
+      $elements['visibleList']['primaryEmailDesc'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'dd',
+        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"] ?: '-',
+      ];
       $elements['primaryEmail'] = [
-        '#type' => 'textfield',
-        '#title' => $options['weak']['primaryEmail'],
-        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"] ?? '-',
-        '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
-        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryEmail"]["email"] ?? '-'),
+        '#type' => 'hidden',
+        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
         '#required' => TRUE,
       ];
-      $elements['primaryEmail']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
     }
     if (isset($selectedFields['primaryPhone']) &&
       $selectedFields['primaryPhone'] !== 0
     ) {
+      $elements['visibleList']['primaryPhoneTitle'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'dt',
+        '#value' => $options['weak']['primaryPhone'],
+      ];
+      $elements['visibleList']['primaryPhonelDesc'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'dd',
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-',
+      ];
       $elements['primaryPhone'] = [
-        '#type' => 'textfield',
-        '#title' => $options['weak']['primaryPhone'],
-        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-',
-        '#description' => self::handleTextValue($userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-'),
-        '#attributes' => ['readonly' => 'readonly', 'style' => 'display:none'],
+        '#type' => 'hidden',
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
         '#required' => TRUE,
         '#element_validate' => [
           [static::class, 'validatePhoneNumber'],
         ],
       ];
-      $elements['primaryPhone']['#wrapper_attributes']['class'][] = 'form_tool__prefilled_field';
     }
+
+    $profileEditUrl = Url::fromUri('https://suomi.fi');
+    $profileEditUrl->mergeOptions([
+      'attributes' => [
+        'title' => t('If you want to change the information from Helsinki-profile you can do that by going to the Helsinki-profile from this link.'),
+      ],
+    ]);
+
+    $profileRefreshUrl = Url::fromRoute('form_tool_profile_data.refresh_profile_data');
+    $profileRefreshUrl->mergeOptions([
+      'attributes' => [
+        'title' => t('If the data from Helsinki-profile is old you can refresh the data by pressing this link.'),
+        'class' => 'profile-data__refresh-link',
+      ],
+    ]);
+
+    $elements['profile_data_links'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => 'profile-data__links-wrapper',
+      ],
+      'editLink' => [
+        '#type' => 'link',
+        '#url' => $profileEditUrl,
+        '#title' => t('Go to Helsinki-profile to edit your information.'),
+      ],
+      'refreshLink' => [
+        '#type' => 'link',
+        '#url' => $profileRefreshUrl,
+        '#title' => t('Refresh data', [], ['context' => 'Refresh data from Helsinki-profile link text']),
+      ],
+    ];
 
     return $elements;
   }
@@ -248,8 +319,7 @@ class FormToolProfileData extends WebformCompositeBase {
       : $textValue;
 
     return [
-      '#theme' => 'profile_data_icon',
-      '#text_value' => $description,
+      '#plain_text' => $description,
     ];
   }
 

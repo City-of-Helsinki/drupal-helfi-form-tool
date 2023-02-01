@@ -1,22 +1,53 @@
-title: 'EN Todistusjäljennöspyyntö, tilaus'
+title: 'Requesting copies of certificates'
 elements: |
+  tilaaja:
+    '#title': 'The person requesting a copy'
   profile_fields:
-    '#description': 'Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
+    '#title': 'The following personal information has been fetched from your Helsinki-profile.'
+  tilattava_todistus:
+    '#title': 'Report copy requested'
+  valitse_tilattava_todistus:
+    '#title': 'Choose school report'
+    '#options':
+      'Peruskoulun päättötodistus': 'Comprehensive school certificate'
+      'Peruskoulun erotodistus': 'Comprehensive school report, studies not completed'
+      'Lisäopetuksen 10.lk todistus': 'Certificate of additional studies, 10th form'
+      'Lukion päättötodistus': 'Upper secondary school certificate'
+      'Lukion erotodistus': 'Upper secondary school report, studies not completed'
+  todistuksen_antanut_helsinkilainen_koulu:
+    '#title': 'School in Helsinki that issued the report'
+    '#description': 'Enter the name of the school, at the time when the school report was issued.&nbsp;'
+  toimitustapa:
+    '#title': 'Manner of delivery'
   valitse_toimitustapa:
+    '#title': 'Select delivery method'
+    '#Toimitustapa: Postiennakko__title': 'Cash on delivery'
+    '#Toimitustapa: Nouto__title': Collect
+    '#Nouto -teksti__title': 'Collect from Educational Division''s archive, Töysänkatu 2 D, 00510 Helsinki'
     '#Info__title': ''
+    '#Toimitustapa: Email__title': E-mail
+    '#Toimitustapa: Postitoimitus__title': 'Postal delivery'
     '#delivery_method__title': ''
-    '#first_name__title': ''
-    '#last_name__title': ''
-    '#street_address__title': ''
-    '#zip_code__title': ''
-    '#city__title': ''
-    '#phone_number__title': ''
+    '#first_name__title': 'First Name'
+    '#last_name__title': 'Last Name'
+    '#street_address__title': 'Street Address'
+    '#zip_code__title': 'Zip Code'
+    '#city__title': City
+    '#phone_number__title': 'Phone Number'
     '#cod__title': ''
-    '#cod_first_name__title': ''
-    '#cod_last_name__title': ''
-    '#cod_street_address__title': ''
-    '#cod_zip_code__title': ''
-    '#cod_city__title': ''
-    '#cod_phone_number__title': ''
+    '#cod_first_name__title': 'First Name'
+    '#cod_last_name__title': 'Last Name'
+    '#cod_street_address__title': 'Street Address'
+    '#cod_zip_code__title': 'Zip Code'
+    '#cod_city__title': City
+    '#cod_phone_number__title': 'Phone Number'
     '#pickup__title': ''
-    '#email__title': ''
+    '#email__title': 'Email Address'
+    '#Postiennakko -teksti__title': 'Cost of the cash on delivery is 9,20 €'
+  lisatiedot:
+    '#title': 'Additional information'
+  mahdolliset_lisatiedot:
+    '#title': 'Possible additional information'
+description: 'Requesting copies of certificates MVP-version.'
+settings:
+  confirmation_title: 'Request has been sent'

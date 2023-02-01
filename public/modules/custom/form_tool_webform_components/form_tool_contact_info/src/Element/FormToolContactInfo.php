@@ -73,7 +73,7 @@ class FormToolContactInfo extends WebformCompositeBase {
       '#title' => t('Delivery'),
       '#title_display' => 'before',
       '#options' => [
-        'email' => t('Email'),
+        'email' => t('Email Address'),
         'postal' => t('Postal Delivery'),
         'cod' => t('Cash on Delivery'),
         'pickup' => t('Pick Up'),
@@ -83,35 +83,41 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['first_name'] = [
       '#type' => 'textfield',
-      '#title' => t('First name'),
+      '#title' => t('First Name'),
+      '#autocomplete' => 'given-name',
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['last_name'] = [
       '#type' => 'textfield',
-      '#title' => t('Last name'),
+      '#title' => t('Last Name'),
+      '#autocomplete' => 'family-name',
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
+      '#autocomplete' => 'address-level2',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
+      '#autocomplete' => 'postal-code',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
+      '#autocomplete' => 'address-level1 city',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
     $elements['phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
+      '#autocomplete' => 'tel',
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'postalAddress']],
     ];
@@ -122,43 +128,79 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['cod_first_name'] = [
       '#type' => 'textfield',
-      '#title' => t('First name'),
-      '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#title' => t('First Name'),
+      '#autocomplete' => 'shipping given-name',
       '#maxlength' => $maxlenghtLongField,
+      '#after_build' => [[get_called_class(), 'codPostalAddress']],
+      '#states' => [
+        'required' => [
+          ':input[data-drupal-selector="edit-valitse-toimitustapa-delivery-method-cod"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $elements['cod_last_name'] = [
       '#type' => 'textfield',
-      '#title' => t('Last name'),
+      '#title' => t('Last Name'),
+      '#autocomplete' => 'shipping family-name',
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
       '#maxlength' => $maxlenghtLongField,
+      '#states' => [
+        'required' => [
+          ':input[data-drupal-selector="edit-valitse-toimitustapa-delivery-method-cod"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $elements['cod_street_address'] = [
       '#type' => 'textfield',
       '#title' => t('Street Address'),
+      '#autocomplete' => 'shipping address-level2',
+      '#maxlength' => $maxlenghtLongField,
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => $maxlenghtLongField,
+      '#states' => [
+        'required' => [
+          ':input[data-drupal-selector="edit-valitse-toimitustapa-delivery-method-cod"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $elements['cod_zip_code'] = [
       '#type' => 'textfield',
       '#title' => t('Zip Code'),
+      '#autocomplete' => 'shipping postal-code',
+      '#maxlength' => 5,
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => 5,
+      '#states' => [
+        'required' => [
+          ':input[data-drupal-selector="edit-valitse-toimitustapa-delivery-method-cod"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $elements['cod_city'] = [
       '#type' => 'textfield',
       '#title' => t('City'),
+      '#autocomplete' => 'shipping address-level1 city',
+      '#maxlength' => $maxlenghtLongField,
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => $maxlenghtLongField,
+      '#states' => [
+        'required' => [
+          ':input[data-drupal-selector="edit-valitse-toimitustapa-delivery-method-cod"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $elements['cod_phone_number'] = [
       '#type' => 'textfield',
       '#title' => t('Phone Number'),
+      '#autocomplete' => 'shipping tel',
+      '#maxlength' => 20,
       // Use #after_build to add #states.
       '#after_build' => [[get_called_class(), 'codPostalAddress']],
-      '#maxlength' => 20,
+      '#states' => [
+        'required' => [
+          ':input[data-drupal-selector="edit-valitse-toimitustapa-delivery-method-cod"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $elements['pickup'] = [
       '#type' => 'item',
@@ -167,7 +209,8 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['email'] = [
       '#type' => 'textfield',
-      '#title' => t('Email'),
+      '#title' => t('Email Address'),
+      '#autocomplete' => 'shipping email',
       '#after_build' => [[get_called_class(), 'email']],
     ];
     $elements['Postiennakko -teksti'] = [
