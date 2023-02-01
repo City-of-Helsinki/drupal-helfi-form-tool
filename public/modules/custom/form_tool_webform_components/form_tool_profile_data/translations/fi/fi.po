@@ -37,3 +37,12 @@ msgstr "Varmistettu henkilötunnus"
 msgid "Verified permanent address"
 msgstr "Varmistettu pysyvä asuinpaikka"
 
+msgid "Profile data updated"
+msgstr "Profiilitiedot päivitetty"
+
+msgid "Profile data update failed. Error has been logged."
+msgstr "Profiilitietojen päivitys epäonnistui"
+
+msgid "Refresh data from Helsinki Profiili"
+msgstr "Päivitä tiedot Helsinki Profiilista."
+

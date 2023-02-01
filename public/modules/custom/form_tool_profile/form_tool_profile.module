@@ -6,42 +6,88 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function form_tool_profile_menu_local_tasks_alter(&$data, $route_name) {
+  if ($route_name == 'user.login'  && isset($data['tabs'][0])) {
+    // Remove all tabs from user login form.
+    foreach ($data['tabs'][0] as $key => $tab) {
+      $data['tabs'][0][$key]['#access'] = FALSE;
+    }
+  }
+}
 
 /**
  * Implements hook_form_alter().
  */
 function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
+  $route_name = \Drupal::routeMatch()->getRouteName();
   // Hide fields from login forms without proper query strings.
   // If we're at user login.
   if ($form_id == 'user_login_form') {
     $qParams = \Drupal::request()->query->all();
     // We want to hide all normal login elements
     // to only allow login via Tunnistamo.
-    if (!isset($qParams['login']) || $qParams['login'] != 'admin') {
+    if (!isset($qParams['login']) || $qParams['login'] != 'form') {
       unset($form['name']);
       unset($form['pass']);
       unset($form['actions']);
     }
+
+    // Let's not cache this form at all, anywhere.
+    // Or cache it per url query args.
+    $form['#cache'] = [
+      'contexts' => [
+        'url.query_args',
+      ],
+    ];
+
   }
   // And from Tunnistamo, we want to allow only user logins
   // without loginparameter.
   if ($form_id == 'openid_connect_login_form') {
     $qParams = \Drupal::request()->query->all();
 
-    if (
-      !isset($qParams['login']) ||
-      !in_array($qParams['login'], ['admin', 'on-admin'])
-    ) {
+    $qParam = $qParams['login'] ?? NULL;
+    $isLoginRoute = $route_name === 'user.login';
+
+    if (!in_array($qParam, ['admin']) && !$isLoginRoute) {
       unset($form["openid_connect_client_tunnistamoadmin_login"]);
     }
 
     // Show only TunnistamoAdmin login for this login parameter.
-    if (isset($qParams['login']) && $qParams['login'] === 'on-admin') {
+    if ($qParam === 'admin') {
       unset($form["openid_connect_client_tunnistamo_login"]);
     }
+
+    if ($qParam === 'form') {
+      unset($form["openid_connect_client_tunnistamoadmin_login"]);
+      unset($form["openid_connect_client_tunnistamo_login"]);
+    }
+
+    // Regular user auth is always removed on user.page routes.
+    if ($isLoginRoute) {
+      unset($form["openid_connect_client_tunnistamo_login"]);
+    }
+
   }
 
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function form_tool_profile_page_attachments(array &$attachments) {
+  $admin_context = \Drupal::service('router.admin_context');
+  if (!$admin_context->isAdminRoute() && \Drupal::currentUser()->isAuthenticated()) {
+    $attachments['#attached']['library'][] = 'form_tool_profile/form_tool_profile';
+    $attachments['#attached']['drupalSettings']['form_tool_profile']['basePath'] = \Drupal::request()->getHost();
+    $attachments['#attached']['drupalSettings']['form_tool_profile']['logout'] = Url::fromRoute('user.logout.http')->toString();
+  }
 }
 
 /**
@@ -54,6 +100,12 @@ function form_tool_profile_preprocess_page(&$vars) {
   $node = \Drupal::routeMatch()->getMasterRouteMatch()->getParameter('node');
 
   if ($node && $node->getType() === 'webform' && $route_name === 'system.403') {
+
+    if (\Drupal::request()->attributes->has('exception')) {
+      $vars['#cache']['max-age'] = 0;
+      \Drupal::service('page_cache_kill_switch')->trigger();
+    }
+
     $webform_relation = $node->get('webform')->getValue()[0];
     $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']);
 

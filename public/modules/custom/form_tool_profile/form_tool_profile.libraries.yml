@@ -1,0 +1,8 @@
+form_tool_profile:
+  version: 1.x
+  js:
+    js/outbound.js: {}
+    js/dialog.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

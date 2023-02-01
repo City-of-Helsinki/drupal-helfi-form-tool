@@ -1,31 +1,41 @@
+<table class="submission-print-wrapper">
+  <caption><div class="container">{{ "Below is the data of a submitted form."|t }}</div></caption>
+  <thead><tr><th>
+      <div class="header-space">&nbsp;</div>
+    </th></tr></thead>
+  <tbody><tr><td>
+      <div class="content">
 <div class="submission-print">
   <div class="page-type--form-page wrapper no-sidebar no-sidebar-first no-sidebar-second submission-print__top">
-    <header role="banner" class="header submission-print__header">
+    <div class="container">
+      <h1>{{ form }}</h1>
+    </div>
+    <header role="banner" class=" submission-print__header">
       <div class="container">
-        <div class="header-branding submission-print__header-branding" id="header-branding">
-          <div class="submission-print__branding-block">
-            {{ drupal_block('system_branding_block', {use_site_name: 0}) }}
-            <h1 class="site_name">{{ form }}</h1>
+        <div class="submission-print__header-branding"¨>
+          <div class="submission-print__header-branding-block">
+            <div class="submission-print__sector-name">
+              {{ sector }}
+            </div>
+            <div class="submission-print__sector-address">
+              {{ address|replace({"\n":'<br/>', "\r":''})|raw }}
+            </div>
           </div>
           <div class="submission-print__header-branding-right">
-              <div>
-                <h2 class="submission-print__label">Lomakkeen numero</h2>
-                {{ id }}
-              </div>
-              <div>
-                <h2 class="submission-print__label">Lomake lähetetty</h2>
-                {{ submissionDate|date('d.m.Y H:i:s') }}
-              </div>
-          </div>
-        </div>
-        <div class="submission-print__sector">
-          <h2>{{ form }}</h2>
+            <div>
+              <h2 class="submission-print__label">{{ "Form number"|t }}</h2>
+              {{ id }}
+            </div>
+            <div>
+              <h2 class="submission-print__label">{{ "Form submitted"|t }}</h2>
+              {{ submissionDate|date('d.m.Y H:i:s') }}
+            </div>
+            <button type="button" class="hds-button hds-button--primary" onclick="window.print()">
 
-          <div class="submission-print__sector-name">
-            {{ sector }}
-          </div>
-          <div class="submission-print__sector-address">
-            {{ address|replace({"\n":'<br/>', "\r":''})|raw }}
+              <span aria-hidden="true" class="hel-icon hel-icon--printer"></span>
+              <span class="hds-button__label">{{ "Print the form"|t }}</span>
+
+            </button>
           </div>
         </div>
       </div>
@@ -41,13 +51,38 @@
         <div>
           {{ submission }}
         </div>
+        <div class="submission-print__footer">
+          <div class="submission-print__footer-copyright">
+            {% if language == 'sv' %}
+              <span class="hel-icon hel-icon--helsinki-sv logo__icon logo__icon--sv" aria-hidden="true"></span>
+            {% else %}
+              <span class="hel-icon hel-icon--helsinki logo__icon logo__icon--fi" aria-hidden="true"></span>
+            {% endif %}
+            <span class="submission-print__footer-text">
+              &nbsp;&copy;&nbsp;{{ "City of Helsinki"|t }} {{ 'now' | date('Y') }} |&nbsp;<a href="/">www.hel.fi</a>
+            </span>
+          </div>
+          <button type="button" class="hds-button hds-button--primary" onclick="window.print()">
+
+            <span aria-hidden="true" class="hel-icon hel-icon--printer"></span>
+            <span class="hds-button__label">{{ "Print the form"|t }}</span>
+
+          </button>
+        </div>
       </div>
+
     </main>
 
   </div>
   <footer role="contentinfo" class="footer">
     <div class="container">
-      sxxx
+
     </div>
   </footer>
 </div>
+      </div>
+    </td></tr></tbody>
+  <tfoot><tr><td>
+      <div class="footer-space">&nbsp;</div>
+    </td></tr></tfoot>
+</table>

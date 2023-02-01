@@ -102,8 +102,10 @@ class FormToolProfileData extends WebformCompositeBase {
     $lines = [];
     foreach ($value as $fieldName => $fieldValue) {
       foreach ($titles as $auth => $fields) {
-        if (isset($fields[$fieldName])) {
-          $lines[] = $fields[$fieldName]->render() . ': ' . $fieldValue;
+        if (
+          isset($fields[$fieldName]) &&
+          !array_key_exists($fieldName, $lines)) {
+          $lines[$fieldName] = $fields[$fieldName]->render() . ': ' . $fieldValue;
         }
       }
 
@@ -131,6 +133,8 @@ class FormToolProfileData extends WebformCompositeBase {
         'verifiedGivenName' => t('Verified given name'),
         'verifiedSsn' => t('Verified SSN'),
         'verifiedPermanentAddress' => t('Verified permanent address'),
+        'primaryEmail' => t('Primary email'),
+        'primaryPhone' => t('Primary phone'),
       ],
     ];
   }
