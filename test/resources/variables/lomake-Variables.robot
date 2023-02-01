@@ -1,7 +1,7 @@
 *** Variables ***
 
 ${environment}      null
-${azure-browser-sleep}                                          10
+${azure-browser-sleep}                                          20
 
 ${nordea-default-hetu}                                          210281-9988
 ${testuser1-lomake-hetu}                                        150552-9979     # Taavetti Järvites
