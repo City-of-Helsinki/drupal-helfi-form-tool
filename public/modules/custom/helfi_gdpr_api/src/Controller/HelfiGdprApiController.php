@@ -147,6 +147,8 @@ class HelfiGdprApiController extends ControllerBase {
     $this->audienceConfig = $this->config('helfi_gdpr_api.settings')
       ->get('audience_config');
 
+    $this->audienceConfig['service_name'] = $this->audienceConfig['service_name'] . strtolower(getenv('APP_ENV'));
+
     $this->setDebug(getenv('DEBUG') == 'true' || getenv('DEBUG') == TRUE);
     $this->parseJwt();
   }
