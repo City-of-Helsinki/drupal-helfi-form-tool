@@ -11,7 +11,7 @@ index 3f724e4..d2dc8cf 100644
 +    try {
 +      $redirect_service = \Drupal::service('openid_logout_redirect.redirect');
 +      if ($redirect_service) {
-+        $redirect_service->setLogoutRedirectUrl('https://hel.fi/fi', $response);
++        $redirect_service->setLogoutRedirectUrl($response);
 +      }
 +    } catch (\Exception $e) {}
 +
