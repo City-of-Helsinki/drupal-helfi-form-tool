@@ -2,6 +2,7 @@
 
 namespace Drupal\form_tool_profile_data\Element;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
@@ -37,6 +38,7 @@ class FormToolProfileData extends WebformCompositeBase {
    * {@inheritdoc}
    */
   public static function getCompositeElements(array $element) {
+
     $elements = [];
 
     /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
@@ -64,6 +66,9 @@ class FormToolProfileData extends WebformCompositeBase {
         throw new AccessDeniedHttpException('No profile data available');
       }
     }
+
+    // debug user data
+    self::debug('User data from HP: @userdata', ['@userdata' => Json::encode($userProfile)]);
 
     $authLevel = $hpud->getAuthenticationLevel();
 
@@ -244,7 +249,7 @@ class FormToolProfileData extends WebformCompositeBase {
       ];
       $elements['primaryPhone'] = [
         '#type' => 'hidden',
-        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-',
         '#required' => TRUE,
         '#element_validate' => [
           [static::class, 'validatePhoneNumber'],
@@ -343,5 +348,15 @@ class FormToolProfileData extends WebformCompositeBase {
       }
     }
   }
+
+  public static function debug($message, $replacements){
+    $debug = getenv('DEBUG');
+
+    if ($debug == 'true' || $debug === TRUE) {
+      \Drupal::logger('form_tool_profile_data')->debug($message, $replacements);
+    }
+
+  }
+
 
 }
