@@ -67,7 +67,7 @@ class FormToolProfileData extends WebformCompositeBase {
       }
     }
 
-    // debug user data
+    // Debug user data.
     self::debug('User data from HP: @userdata', ['@userdata' => Json::encode($userProfile)]);
 
     $authLevel = $hpud->getAuthenticationLevel();
@@ -349,7 +349,15 @@ class FormToolProfileData extends WebformCompositeBase {
     }
   }
 
-  public static function debug($message, $replacements){
+  /**
+   * If environment is set to debug mode, print messages.
+   *
+   * @param string $message
+   *   Message string.
+   * @param array $replacements
+   *   Replacements array.
+   */
+  public static function debug(string $message, array $replacements) {
     $debug = getenv('DEBUG');
 
     if ($debug == 'true' || $debug === TRUE) {
@@ -357,6 +365,5 @@ class FormToolProfileData extends WebformCompositeBase {
     }
 
   }
-
 
 }
