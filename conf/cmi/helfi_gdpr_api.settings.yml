@@ -2,4 +2,4 @@ _core:
   default_config_hash: vCi04oAYNP4YyVD-Jnm9wTkfeGZpr3DTJF3RX2rAwVc
 audience_config:
   audience_host: 'https://api.hel.fi/auth'
-  service_name: lomaketyokalugdprapidev
+  service_name: lomaketyokalugdprapi
