@@ -78,7 +78,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       $webform = Webform::load($form['#webform_id']);
       $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
 
-      $privacy_policy_string = t('<a href="@privacy-policy-link" target="_blank">Read the privacy policy here</a> (the link will open in a new tab).', [
+      $privacy_policy_string = t('Read more about <a href="@privacy-policy-link" class="privacy-policy-link" target="_blank">the privacy policy</a> (the link will open in a new tab).', [
         '@privacy-policy-link' => _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings),
       ]);
       $form['privacy_policy_wrapper'] = [
