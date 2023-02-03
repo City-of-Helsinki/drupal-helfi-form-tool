@@ -262,6 +262,10 @@
     display: none;
   }
 }
+.submission-print .form-item-profile-fields ul {
+  list-style: none;
+  padding-left: 0;
+}
 
 .webform-submission--view-mode-html .hds-notification,
 .webform-submission--view-mode-html .webform-progress-tracker-mobile,
@@ -838,10 +842,6 @@
 [data-drupal-selector=edit-privacy-policy-link] {
   color: var(--label-color);
   margin-top: var(--spacing-layout-xs);
-}
-
-.privacy-policy-link {
-  font-weight: 900;
 }
 
 .hds-checkbox {
