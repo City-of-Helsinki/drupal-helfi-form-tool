@@ -67,6 +67,7 @@ permissions:
   - 'revert webform revisions'
   - 'schedule publishing of nodes'
   - 'translate any webform'
+  - 'translate editable entities'
   - 'translate own webform'
   - 'translate webform node'
   - 'view any unpublished webform content'

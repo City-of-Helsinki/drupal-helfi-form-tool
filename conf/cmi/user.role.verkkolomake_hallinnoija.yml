@@ -44,6 +44,7 @@ permissions:
   - 'edit own webform submission'
   - 'revert webform revisions'
   - 'schedule publishing of nodes'
+  - 'translate editable entities'
   - 'translate own webform'
   - 'translate webform node'
   - 'view own unpublished content'
