@@ -58,6 +58,7 @@ elements: |-
         verifiedGivenName: 0
       '#title_display': before
       '#description_display': before
+      '#format': list
       '#weak':
         primaryAddress: primaryAddress
         primaryEmail: primaryEmail
