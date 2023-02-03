@@ -68,3 +68,7 @@ function hdbt_subtheme_theme_suggestions_menu_alter(&$suggestions, $variables) {
     }
   }
 }
+
+function hdbt_subtheme_preprocess_block__user_login_block(&$variables, $hook) {
+   $variables['content']['user_links'] = null;
+}
