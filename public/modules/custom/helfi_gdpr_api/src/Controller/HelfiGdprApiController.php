@@ -144,10 +144,10 @@ class HelfiGdprApiController extends ControllerBase {
     $this->currentLanguageContext = $currentLanguageContext;
     $this->connection = $connection;
 
-    $this->audienceConfig = $this->config('helfi_gdpr_api.settings')
-      ->get('audience_config');
-
-    $this->audienceConfig['service_name'] = $this->audienceConfig['service_name'] . strtolower(getenv('APP_ENV'));
+    $this->audienceConfig = [
+      'service_name' => getenv('GDPR_API_AUD_SERVICE'),
+      'audience_host' => getenv('GDPR_API_AUD_HOST'),
+    ];
 
     $this->setDebug(getenv('DEBUG') == 'true' || getenv('DEBUG') == TRUE);
     $this->parseJwt();
