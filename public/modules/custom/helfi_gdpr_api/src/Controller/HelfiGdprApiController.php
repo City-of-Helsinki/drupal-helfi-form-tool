@@ -144,11 +144,15 @@ class HelfiGdprApiController extends ControllerBase {
     $this->currentLanguageContext = $currentLanguageContext;
     $this->connection = $connection;
 
-    $this->audienceConfig = $this->config('helfi_gdpr_api.settings')
-      ->get('audience_config');
+    $this->audienceConfig = [
+      'service_name' => getenv('GDPR_API_AUD_SERVICE'),
+      'audience_host' => getenv('GDPR_API_AUD_HOST'),
+    ];
 
     $this->setDebug(getenv('DEBUG') == 'true' || getenv('DEBUG') == TRUE);
     $this->parseJwt();
+
+    $this->debug('Audience config: @config', ['@config' => Json::encode($this->audienceConfig)]);
   }
 
   /**
@@ -170,13 +174,13 @@ class HelfiGdprApiController extends ControllerBase {
    */
   public function access($userId): AccessResultForbidden|AccessResultAllowed {
 
-    $this->debug('GDPR Api access called. JWT token: @token', ['@token' => $this->jwtToken]);
-
     $deniedReason = NULL;
     $decoded = NULL;
 
     try {
+      $this->debug('GDPR Api access called. JWT token: @token', ['@token' => $this->jwtToken]);
       $decoded = $this->helsinkiProfiiliUserData->verifyJwtToken($this->jwtToken);
+      $this->debug('GDPR Api access called. JWT token contents: @token', ['@token' => Json::encode($decoded)]);
     }
     catch (\InvalidArgumentException $e) {
       $deniedReason = $e->getMessage();
