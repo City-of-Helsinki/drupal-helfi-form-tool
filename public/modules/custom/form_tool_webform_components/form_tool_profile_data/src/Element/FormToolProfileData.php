@@ -252,7 +252,7 @@ class FormToolProfileData extends WebformCompositeBase {
       ];
     }
 
-    $profileEditUrl = Url::fromUri('https://suomi.fi');
+    $profileEditUrl = Url::fromUri(getenv('HELSINKI_PROFIILI_URI'));
     $profileEditUrl->mergeOptions([
       'attributes' => [
         'title' => t('If you want to change the information from Helsinki-profile you can do that by going to the Helsinki-profile from this link.'),
@@ -276,6 +276,7 @@ class FormToolProfileData extends WebformCompositeBase {
         '#type' => 'link',
         '#url' => $profileEditUrl,
         '#title' => t('Go to Helsinki-profile to edit your information.'),
+        '#suffix' => '('.t('the link opens in a new tab').')',
       ],
       'refreshLink' => [
         '#type' => 'link',
