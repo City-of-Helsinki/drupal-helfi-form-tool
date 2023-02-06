@@ -6,7 +6,7 @@ override_registration_settings: true
 end_session_enabled: true
 user_login_display: above
 redirect_login: user
-redirect_logout: ''
+redirect_logout: /fi/lomakkeet/logout/redirect
 userinfo_mappings:
   timezone: zoneinfo
 role_mappings:

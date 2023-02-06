@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for openid_logout_redirect link module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_openid_connect_redirect_logout_alter().
+ */
+function openid_logout_redirect_openid_connect_redirect_logout_alter($response, $context) {
+  try {
+    $redirect_service = \Drupal::service('openid_logout_redirect.redirect');
+    if ($redirect_service) {
+      $redirect_service->setLogoutRedirectUrl(reset($response));
+    }
+  }
+  catch (\Exception $e) {
+  }
+
+}
