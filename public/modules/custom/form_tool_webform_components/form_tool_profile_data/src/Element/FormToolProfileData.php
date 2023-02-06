@@ -275,6 +275,7 @@ class FormToolProfileData extends WebformCompositeBase {
       'editLink' => [
         '#type' => 'link',
         '#url' => $profileEditUrl,
+        '#attributes' => ['target' => '_blank'],
         '#title' => t('Go to Helsinki-profile to edit your information.'),
         '#suffix' => '('.t('the link opens in a new tab').')',
       ],
