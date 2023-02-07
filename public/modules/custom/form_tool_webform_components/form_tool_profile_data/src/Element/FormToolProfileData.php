@@ -3,6 +3,8 @@
 namespace Drupal\form_tool_profile_data\Element;
 
 use Drupal\Component\Serialization\Json;
+use Drupal\Component\Utility\EmailValidator;
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
@@ -96,7 +98,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['visibleList']['verifiedFirstNameDesc'] = [
           '#type' => 'html_tag',
           '#tag' => 'dd',
-          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] ?: '-',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["firstName"] ?? '-',
         ];
         $elements['verifiedFirstName'] = [
           '#type' => 'hidden',
@@ -113,7 +115,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['visibleList']['verifiedLastNameDesc'] = [
           '#type' => 'html_tag',
           '#tag' => 'dd',
-          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] ?: '-',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["lastName"] ?? '-',
         ];
         $elements['verifiedLastName'] = [
           '#type' => 'hidden',
@@ -130,7 +132,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['visibleList']['verifiedSsnDesc'] = [
           '#type' => 'html_tag',
           '#tag' => 'dd',
-          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] ?: '-',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["nationalIdentificationNumber"] ?? '-',
         ];
         $elements['verifiedSsn'] = [
           '#type' => 'hidden',
@@ -147,7 +149,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['visibleList']['verifiedGivenNameDesc'] = [
           '#type' => 'html_tag',
           '#tag' => 'dd',
-          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] ?: '-',
+          '#value' => $userProfile["myProfile"]["verifiedPersonalInformation"]["givenName"] ?? '-',
         ];
         $elements['verifiedGivenName'] = [
           '#type' => 'hidden',
@@ -169,7 +171,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['visibleList']['verifiedPermanentAddressDesc'] = [
           '#type' => 'html_tag',
           '#tag' => 'dd',
-          '#value' => implode(', ', $permanentAddress) ?: '-',
+          '#value' => implode(', ', $permanentAddress) ?? '-',
         ];
         $elements['verifiedPermanentAddress'] = [
           '#type' => 'hidden',
@@ -200,7 +202,7 @@ class FormToolProfileData extends WebformCompositeBase {
         $elements['visibleList']['primaryAddressDesc'] = [
           '#type' => 'html_tag',
           '#tag' => 'dd',
-          '#value' => implode(', ', $primaryAddress) ?: '-',
+          '#value' => implode(', ', $primaryAddress) ?? '-',
         ];
         $elements['primaryAddress'] = [
           '#type' => 'hidden',
@@ -226,12 +228,15 @@ class FormToolProfileData extends WebformCompositeBase {
       $elements['visibleList']['primaryEmailDesc'] = [
         '#type' => 'html_tag',
         '#tag' => 'dd',
-        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"] ?: '-',
+        '#value' => $userProfile["myProfile"]["primaryEmail"]["email"] ?? '-',
       ];
       $elements['primaryEmail'] = [
         '#type' => 'hidden',
         '#value' => $userProfile["myProfile"]["primaryEmail"]["email"],
         '#required' => TRUE,
+        '#element_validate' => [
+          [static::class, 'validateEmail'],
+        ],
       ];
     }
     if (isset($selectedFields['primaryPhone']) &&
@@ -245,11 +250,11 @@ class FormToolProfileData extends WebformCompositeBase {
       $elements['visibleList']['primaryPhonelDesc'] = [
         '#type' => 'html_tag',
         '#tag' => 'dd',
-        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-',
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-',
       ];
       $elements['primaryPhone'] = [
         '#type' => 'hidden',
-        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-',
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?? '-',
         '#required' => TRUE,
         '#element_validate' => [
           [static::class, 'validatePhoneNumber'],
@@ -348,6 +353,25 @@ class FormToolProfileData extends WebformCompositeBase {
           '%name' => t('Primary phone'),
         ]));
       }
+    }
+  }
+
+  /**
+   * Custom validator to validate primary email.
+   *
+   * @param array $element
+   *   Form element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   Form state.
+   */
+  public static function validateEmail(array $element, FormStateInterface $form_state) {
+    $value = $element['#value'] ?? NULL;
+    $validator = new EmailValidator();
+    $isValid = $validator->isValid($value);
+    if (!$isValid) {
+      $form_state->setError($element, t('%email is not a valid email address.', [
+        '%email' => Xss::filter($value),
+      ]));
     }
   }
 
