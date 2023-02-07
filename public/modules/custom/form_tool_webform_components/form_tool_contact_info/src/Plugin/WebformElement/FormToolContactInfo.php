@@ -313,34 +313,33 @@ class FormToolContactInfo extends WebformCompositeBase {
 
     switch ($value["delivery_method"]) {
       case 'email':
-        $ttd = $this->t('Delivery');
         $ttemail = $this->t('Email');
-        $lines[] = $ttd->render() . ': ' . $ttemail->render();
+        $lines[] = $ttemail->render();
         $lines[] = $value['email'];
         break;
 
       case 'pickup':
-        $ttd = $this->t('Delivery');
         $ttp = $this->t('Pickup');
         $tt = $this->t('Pick-up from Töysänkatu 2 D, 00510 Helsinki.');
-        $lines[] = $ttd->render() . ': ' . $ttp->render();
-        $lines[] = $tt->render();
+        $lines[] = $ttp->render() . '. ' . $tt->render();
         break;
 
       case 'postal':
-        $ttd = $this->t('Delivery');
         $ttpostal = $this->t('Postal Delivery');
         $lines[] = $ttd->render() . ': ' . $ttpostal->render();
         $lines[] = $value['first_name'] . ' ' . $value['last_name'];
         break;
 
       case 'cod':
-        $ttd = $this->t('Delivery');
         $ttcod = $this->t('Cash on Delivery');
-        $lines[] = $ttd->render() . ': ' . $ttcod->render();
-        $lines[] = $value['cod_first_name'] . ' ' . $value['cod_last_name'];
-        $lines[] = $value['cod_street_address'] . ' ' . $value['cod_zip_code'] . ' ' . $value['cod_city'];
-        $lines[] = $value['cod_phone_number'];
+        $codtext = $this->t('Cash on delivery price is 9,20 €');
+        $deliveryaddress = $this->t('Delivery Address');
+        $zip = $this->t('Zip Code');
+        $city = $this->t('City');
+        $lines[] = '<p>' . $ttcod->render() . '. ' . $codtext->render() . '</p>';
+        $lines[] = '<p class="label">' . $deliveryaddress->render() . '</p>';
+        $lines[] = $value['cod_street_address'];
+        $lines[] = $value['cod_zip_code'] . ' ' . $value['cod_city'];
         break;
 
       default:
