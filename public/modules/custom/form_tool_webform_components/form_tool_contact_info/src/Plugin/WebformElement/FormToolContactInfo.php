@@ -326,7 +326,7 @@ class FormToolContactInfo extends WebformCompositeBase {
 
       case 'postal':
         $ttpostal = $this->t('Postal Delivery');
-        $lines[] = $ttd->render() . ': ' . $ttpostal->render();
+        $lines[] = $ttpostal->render();
         $lines[] = $value['first_name'] . ' ' . $value['last_name'];
         break;
 
@@ -334,8 +334,6 @@ class FormToolContactInfo extends WebformCompositeBase {
         $ttcod = $this->t('Cash on Delivery');
         $codtext = $this->t('Cash on delivery price is 9,20 €');
         $deliveryaddress = $this->t('Delivery Address');
-        $zip = $this->t('Zip Code');
-        $city = $this->t('City');
         $lines[] = '<p>' . $ttcod->render() . '. ' . $codtext->render() . '</p>';
         $lines[] = '<p class="label">' . $deliveryaddress->render() . '</p>';
         $lines[] = $value['cod_street_address'];
