@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17afd549b38c849792f9c339a5afbdf8",
+    "content-hash": "179899f6bf364342e367c56ae21e17c7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4959,12 +4959,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "d78507750a7d6fa4303990580965755790e8fa85"
+                "reference": "f1b3a720fe992fcd7ef53b74715d1b9b51a1a10a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/d78507750a7d6fa4303990580965755790e8fa85",
-                "reference": "d78507750a7d6fa4303990580965755790e8fa85",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/f1b3a720fe992fcd7ef53b74715d1b9b51a1a10a",
+                "reference": "f1b3a720fe992fcd7ef53b74715d1b9b51a1a10a",
                 "shasum": ""
             },
             "require": {
@@ -4992,7 +4992,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/develop",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2023-02-01T13:58:10+00:00"
+            "time": "2023-02-07T12:25:04+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
