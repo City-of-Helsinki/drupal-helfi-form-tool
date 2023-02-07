@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 
 
-msgid "<a href=\"@privacy-policy-link\" target=\"_blank\">Read the privacy policy here</a> (the link will open in a new tab)."
-msgstr "<a href=\"@privacy-policy-link\" target=\"_blank\">Läs registerbeskrivningen här</a> (länken öppnas i en ny flik)."
+msgid "Read more about <a href=\"@privacy-policy-link\" class=\"privacy-policy-link\" target=\"_blank\">the privacy policy</a> (the link will open in a new tab)."
+msgstr "Läs mer om <a href=\"@privacy-policy-link\" class=\"privacy-policy-link\" target=\"_blank\">registerbeskrivningen</a> (länken öppnas i en ny flik)."
 
 msgid "Privacy Policy"
 msgstr "Registerbeskrivning"

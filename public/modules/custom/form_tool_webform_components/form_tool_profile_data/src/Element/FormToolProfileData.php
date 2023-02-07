@@ -2,6 +2,7 @@
 
 namespace Drupal\form_tool_profile_data\Element;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
@@ -37,6 +38,7 @@ class FormToolProfileData extends WebformCompositeBase {
    * {@inheritdoc}
    */
   public static function getCompositeElements(array $element) {
+
     $elements = [];
 
     /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $hpud */
@@ -64,6 +66,9 @@ class FormToolProfileData extends WebformCompositeBase {
         throw new AccessDeniedHttpException('No profile data available');
       }
     }
+
+    // Debug user data.
+    self::debug('User data from HP: @userdata', ['@userdata' => Json::encode($userProfile)]);
 
     $authLevel = $hpud->getAuthenticationLevel();
 
@@ -244,7 +249,7 @@ class FormToolProfileData extends WebformCompositeBase {
       ];
       $elements['primaryPhone'] = [
         '#type' => 'hidden',
-        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"],
+        '#value' => $userProfile["myProfile"]["primaryPhone"]["phone"] ?: '-',
         '#required' => TRUE,
         '#element_validate' => [
           [static::class, 'validatePhoneNumber'],
@@ -252,7 +257,7 @@ class FormToolProfileData extends WebformCompositeBase {
       ];
     }
 
-    $profileEditUrl = Url::fromUri('https://suomi.fi');
+    $profileEditUrl = Url::fromUri(getenv('HELSINKI_PROFIILI_URI'));
     $profileEditUrl->mergeOptions([
       'attributes' => [
         'title' => t('If you want to change the information from Helsinki-profile you can do that by going to the Helsinki-profile from this link.'),
@@ -275,7 +280,9 @@ class FormToolProfileData extends WebformCompositeBase {
       'editLink' => [
         '#type' => 'link',
         '#url' => $profileEditUrl,
+        '#attributes' => ['target' => '_blank'],
         '#title' => t('Go to Helsinki-profile to edit your information.'),
+        '#suffix' => '('.t('the link opens in a new tab').')',
       ],
       'refreshLink' => [
         '#type' => 'link',
@@ -342,6 +349,23 @@ class FormToolProfileData extends WebformCompositeBase {
         ]));
       }
     }
+  }
+
+  /**
+   * If environment is set to debug mode, print messages.
+   *
+   * @param string $message
+   *   Message string.
+   * @param array $replacements
+   *   Replacements array.
+   */
+  public static function debug(string $message, array $replacements) {
+    $debug = getenv('DEBUG');
+
+    if ($debug == 'true' || $debug === TRUE) {
+      \Drupal::logger('form_tool_profile_data')->debug($message, $replacements);
+    }
+
   }
 
 }

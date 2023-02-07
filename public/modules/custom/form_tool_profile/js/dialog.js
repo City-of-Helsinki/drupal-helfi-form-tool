@@ -1,5 +1,20 @@
 (function ($, Drupal, drupalSettings) {
+
   Drupal.theme.formTooldialog = function (options) {
+
+    function getTargetLink() {
+
+      var internal = drupalSettings.form_tool_profile.basePaths.some(function (url) {
+        return options.iniatorElement.href.includes(url);
+      });
+
+      if (internal) {
+        return options.iniatorElement.href;
+      }
+
+      return options.logoutLink + '&dest=' + options.iniatorElement.href;
+    }
+
     var element = $('<div class="dialog__container">' +
       '<div class="dialog__content">' +
         '<div class="dialog__header">' +
@@ -7,7 +22,7 @@
           '<h2 tabindex="-1"><span aria-hidden="true" class="hel-icon hel-icon--info-circle hel-icon--size-l"></span> '+ options.headerText +'</h2></div>' +
         '<div class="dialog__body"><p>' + options.bodyText + '</p></div>' +
         '<div class="dialog__actions">' +
-          '<a href="' + options.logoutLink + '" class="hds-button hds-button--primary">' +
+          '<a href="' + getTargetLink() + '" class="hds-button hds-button--primary">' +
             '<span class="hds-button__label">'+options.logoutBtnText+'</span>' +
           '</a>' +
           '<button type="button" class="hds-button hds-button--secondary dialog__close-button">' +

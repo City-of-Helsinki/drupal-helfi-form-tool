@@ -43,3 +43,7 @@ msgstr "Om du vill ändra informationen från Helsingfors-profilen kan du göra 
 
 msgid "If the data from Helsinki-profile is old you can refresh the data by pressing this link."
 msgstr "Om uppgifterna från Helsingfors-profilen är gamla kan du uppdatera uppgifterna genom att klicka på denna länk."
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Länken öppnas i en ny flik"
