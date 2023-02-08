@@ -149,7 +149,6 @@ class HelfiGdprApiController extends ControllerBase {
       'audience_host' => getenv('GDPR_API_AUD_HOST'),
     ];
 
-
     $this->setDebug(getenv('DEBUG') == 'true' || getenv('DEBUG') == TRUE);
     $this->parseJwt();
 
