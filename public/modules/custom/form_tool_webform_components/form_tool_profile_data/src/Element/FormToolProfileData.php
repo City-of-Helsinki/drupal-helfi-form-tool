@@ -282,7 +282,7 @@ class FormToolProfileData extends WebformCompositeBase {
         '#url' => $profileEditUrl,
         '#attributes' => ['target' => '_blank'],
         '#title' => t('Go to Helsinki-profile to edit your information.'),
-        '#suffix' => '('.t('the link opens in a new tab').')',
+        '#suffix' => '(' . t('The link opens in a new tab', [], ['context' => 'Explanation for users that the link opens in a new tab instead of the expected current tab']) . ')',
       ],
       'refreshLink' => [
         '#type' => 'link',
