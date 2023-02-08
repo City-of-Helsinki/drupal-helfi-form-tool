@@ -61,7 +61,7 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
       return WebformAccessResult::allowed();
     }
 
-    // if user does not have either helsinki profile role, they do not have access
+    // If user does not have either helsinki profile role, they do not have access
     // and if they do, they must be the submitter below.
     if (!self::inArrayWildcard($userRoles, 'helsinkiprofiili')) {
       return WebformAccessResult::forbidden();
