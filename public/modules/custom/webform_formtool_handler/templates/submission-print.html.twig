@@ -15,10 +15,12 @@
         <div class="submission-print__header-branding"¨>
           <div class="submission-print__header-branding-block">
             <div class="submission-print__sector-name">
-              {{ sector }}
+              {{ "City of Helsinki, Educatioivision / Archives"|t }}
             </div>
             <div class="submission-print__sector-address">
-              {{ address|replace({"\n":'<br/>', "\r":''})|raw }}
+              {{ "Töysänkatu 2 D"|t }}
+              <br/>
+              {{ "00510 Helsinki"|t }}
             </div>
           </div>
           <div class="submission-print__header-branding-right">
@@ -46,7 +48,6 @@
 
 
     <main role="main" class="layout-main-wrapper">
-      <a id="main-content" tabindex="-1"></a>
       <div class="container">
         <div>
           {{ submission }}

@@ -82,6 +82,44 @@ class FormToolProfileData extends WebformCompositeBase {
   }
 
   /**
+   * Format a composite as a list of HTML items.
+   *
+   * @param array $element
+   *   An element.
+   * @param \Drupal\webform\WebformSubmissionInterface $webform_submission
+   *   A webform submission.
+   * @param array $options
+   *   An array of options.
+   *
+   * @return array|string
+   *   A composite as a list of HTML items.
+   */
+  protected function formatCompositeHtmlItems(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {
+    $value = $this->getValue($element, $webform_submission, $options);
+    $titles = FormToolProfileData::getFieldSelections();
+    $lines = [];
+
+    foreach ($value as $fieldName => $fieldValue) {
+      foreach ($titles as $auth => $fields) {
+        if (
+          isset($fields[$fieldName]) &&
+          !array_key_exists($fieldName, $lines)
+        ) {
+          $items[$fieldName] = [
+            '#type' => 'inline_template',
+            '#template' => '<label>{{ title }}:</label> {{ value }}',
+            '#context' => [
+              'title' => $fields[$fieldName]->render(),
+              'value' => $fieldValue,
+            ],
+          ];
+        }
+      }
+    }
+    return $items;
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function formatHtmlItemValue(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {

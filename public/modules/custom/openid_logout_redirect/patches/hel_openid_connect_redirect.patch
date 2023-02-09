@@ -1,0 +1,20 @@
+diff --git a/src/Controller/OpenIDConnectRedirectController.php b/src/Controller/OpenIDConnectRedirectController.php
+index 3f724e4..d2dc8cf 100644
+--- a/src/Controller/OpenIDConnectRedirectController.php
++++ b/src/Controller/OpenIDConnectRedirectController.php
+@@ -468,6 +468,15 @@ class OpenIDConnectRedirectController implements ContainerInjectionInterface, Ac
+     }
+     // Logout from Drupal.
+     user_logout();
++
++    // Patched for logout redirection.
++    try {
++      $redirect_service = \Drupal::service('openid_logout_redirect.redirect');
++      if ($redirect_service) {
++        $redirect_service->setLogoutRedirectUrl($response);
++      }
++    } catch (\Exception $e) {}
++
+     return $response;
+   }
+
