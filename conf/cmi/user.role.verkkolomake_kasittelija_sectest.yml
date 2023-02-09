@@ -1,0 +1,9 @@
+uuid: 06104d46-ea41-4b04-9112-72583c9900c6
+langcode: fi
+status: true
+dependencies: {  }
+id: verkkolomake_kasittelija_sectest
+label: Verkkolomake-käsittelijä-SECTEST
+weight: 3
+is_admin: null
+permissions: {  }

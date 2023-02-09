@@ -1,0 +1,14 @@
+uuid: 99840e85-6dbe-490b-ae2f-b1f064569553
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_kasittelija_sectest
+  module:
+    - user
+id: user_remove_role_action.verkkolomake_kasittelija_sectest
+label: 'Poista rooli Verkkolomake-käsittelijä-SECTEST valituilta käyttäjiltä'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: verkkolomake_kasittelija_sectest

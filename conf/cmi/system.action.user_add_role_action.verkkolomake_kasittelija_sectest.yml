@@ -1,0 +1,14 @@
+uuid: 9915c238-90ce-445b-90d9-ec4e123c4573
+langcode: fi
+status: true
+dependencies:
+  config:
+    - user.role.verkkolomake_kasittelija_sectest
+  module:
+    - user
+id: user_add_role_action.verkkolomake_kasittelija_sectest
+label: 'Add the Verkkolomake-käsittelijä-SECTEST role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: verkkolomake_kasittelija_sectest

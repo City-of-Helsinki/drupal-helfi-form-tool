@@ -40,6 +40,7 @@ permissions:
   - 'assign verkkolomake_admin role'
   - 'assign verkkolomake_hallinnoija role'
   - 'assign verkkolomake_kasittelija role'
+  - 'assign verkkolomake_kasittelija_sectest role'
   - 'assign verkkolomake_kasittelija_todistus role'
   - 'bypass node access'
   - 'create webform'
