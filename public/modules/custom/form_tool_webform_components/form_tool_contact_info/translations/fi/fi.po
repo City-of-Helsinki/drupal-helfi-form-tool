@@ -5,7 +5,7 @@ msgid "Selecting a delivery method may prompt further questions"
 msgstr "Toimitustavan valinta voi vaatia lisäkenttien täyttämistä"
 
 msgid "Email"
-msgstr "Sähköpostiosoite"
+msgstr "Sähköposti"
 
 msgid "Email Address"
 msgstr "Sähköpostiosoite"
@@ -21,6 +21,9 @@ msgstr "Nouto"
 
 msgid "Delivery"
 msgstr "Toimitustapa"
+
+msgid "Delivery Address"
+msgstr "Toimitusosoite"
 
 msgid "First Name"
 msgstr "Etunimi"
@@ -40,7 +43,7 @@ msgstr "Kaupunki"
 msgid "Phone Number"
 msgstr "Puhelinnumero"
 
-msgid "Cash on delviery price is 9,20 €"
+msgid "Cash on delivery price is 9,20 €"
 msgstr "Postiennakon hinta asiakirjan tilaajalle 9,20 €"
 
 msgid "Pick-up from Töysänkatu 2 D, 00510 Helsinki."
