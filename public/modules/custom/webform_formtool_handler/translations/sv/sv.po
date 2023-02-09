@@ -21,3 +21,15 @@ msgstr "Blanketten har skickats"
 
 msgid "Print the form"
 msgstr "Skriv ut blanketten"
+
+msgctxt "Submission Print page for the MVP form"
+msgid "City of Helsinki, Educatioivision / Archives"
+msgstr "Fostrans och utbildningssektorn / Arkivet"
+
+msgctxt "Submission Print page for the MVP form"
+msgid "Töysänkatu 2 D"
+msgstr "Töysägatan 2 D"
+
+msgctxt "Submission Print page for the MVP form"
+msgid "00510 Helsinki"
+msgstr "00510 Helsingfors"

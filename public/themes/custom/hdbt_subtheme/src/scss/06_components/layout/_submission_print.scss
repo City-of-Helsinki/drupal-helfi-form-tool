@@ -102,11 +102,15 @@
     size: auto;
     margin: 0mm;
   }
-  label {
+  label,
+  p.label {
     font-size: var(--fontsize-body-m);
     font-weight: bold;
     display: block;
     margin-bottom: var(--spacing-s);
+  }
+  p.label {
+    margin-bottom: 0;
   }
   &__sector-name {
     margin-bottom: var(--spacing-l);
