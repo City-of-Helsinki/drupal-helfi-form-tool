@@ -74,6 +74,8 @@ function form_tool_profile_form_alter(&$form, FormStateInterface $form_state, $f
       unset($form["openid_connect_client_tunnistamo_login"]);
     }
 
+    $form['openid_connect_client_tunnistamo_login']['#value'] = t('Log in');
+
   }
 
 }
