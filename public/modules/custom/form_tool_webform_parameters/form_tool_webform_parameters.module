@@ -95,6 +95,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
         '#required' => TRUE,
       ];
     }
+    
     $temp = $form['elements']['actions'];
     unset($form['elements']['actions']);
     $form['elements']['actions'] = $temp;
