@@ -1,7 +1,13 @@
 <?php
+
 /**
-* Implements hook_theme().
-*/
+ * @file
+ * Provides a noscripttag block.
+ */
+
+/**
+ * Implements hook_theme().
+ */
 function form_tool_noscript_theme($existing, $type, $theme, $path) {
   return [
     'block__form_tool_noscript' => [
