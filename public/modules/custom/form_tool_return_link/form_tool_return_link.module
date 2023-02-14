@@ -37,6 +37,7 @@ function form_tool_return_link_entity_presave(EntityInterface $entity) {
     !$entity->get('field_url_to_form_service')->first()->isEmpty()
   ) {
     $url = $entity->get('field_url_to_form_service')->first()->getUrl()->getUri();
+    // @todo Debug undefined entity error while translating webforms (?).
     $thirdPartySettings = $entity->get('webform')->first()->entity->getThirdPartySettings('form_tool_webform_parameters');
     $stateId = "HEL-{$thirdPartySettings['form_code']}-{$entity->language()->getId()}";
 
