@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\grant_applications_noscript\Plugin\Block;
+namespace Drupal\form_tool_noscript\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 
