@@ -26,8 +26,10 @@ class FormToolNoScriptTagBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $build['content'] = [];
-    return $build;
+    $renderable = [
+      '#theme' => 'block__form_tool_noscript',
+    ];
+    return $renderable;
   }
 
 }
