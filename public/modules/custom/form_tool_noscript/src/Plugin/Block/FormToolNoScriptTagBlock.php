@@ -19,7 +19,7 @@ class FormToolNoScriptTagBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return ['label_display' => false];
+    return ['label_display' => FALSE];
   }
 
   /**
