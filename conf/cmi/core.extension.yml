@@ -40,7 +40,6 @@ module:
   form_tool_contact_info: 0
   form_tool_profile: 0
   form_tool_profile_data: 0
-  form_tool_return_link: 0
   form_tool_share: 0
   form_tool_webform_parameters: 0
   form_tool_webform_print: 0
