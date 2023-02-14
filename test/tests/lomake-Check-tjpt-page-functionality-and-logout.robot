@@ -29,7 +29,7 @@ Force Tags      smoke
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
 #########################################################################################
-# robot -d logit --variable environment:dev-chrome --exitonfailure tests/lomake-Check-tjpt-page-functionality.robot
+# robot -d logit --variable environment:test-chrome --variable azure-browser-sleep:1 --exitonfailure tests/lomake-Check-tjpt-page-functionality-and-logout.robot
 
 #stjpt = Todistusjäljennöspyyntö tilaus
 
@@ -41,7 +41,7 @@ Login to lomake page using suomi.fi auth
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
     Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
-    Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    #Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
     Accept all cookies
     Capture Page Screenshot
     [Teardown]    NONE
@@ -76,10 +76,25 @@ Verify all buttons, selections and fields
     Capture Page Screenshot
     Click Element                                           ${lomake-tjpt-laheta-lomake-button}
     Wait Until Page Contains                                ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}            20
-    #Kirjaudu ulos
+    [Teardown]    NONE
+
+Logout and select continue 
+    # Kirjaudu ulos -> jatka lomakkeella
     Get Location
     ${urli} =                                               Get Location
     Log                                                     ${urli}
     Click Element                                           ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
+    Wait Until Page Contains Element                        ${lomake-tjpt-jatka-button}
+    Capture Page Screenshot
+    Click Element                                           ${lomake-tjpt-jatka-button}
+    [Teardown]
+
+Logout
+    Wait Until Page Contains Element                        ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
+    Capture Page Screenshot
+    Click Element                                           ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
+    Wait Until Page Contains Element                        ${lomake-tjpt-kirjaudu-ulos-button}
+    Capture Page Screenshot
+    Click Element                                           ${lomake-tjpt-kirjaudu-ulos-button}
     Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
     #[Teardown]    NONE

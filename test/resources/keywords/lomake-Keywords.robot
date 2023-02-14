@@ -3,7 +3,7 @@
 Select test data and open browser
     Select test data depending on the selected env  ${environment}
     Select url depending on the selected env        ${environment}
-    Sleep                                           10
+    Sleep                                           ${azure-browser-sleep}
     Browser specific sleep                          ${environment}    
     Log                                             ${environment}
 
@@ -55,12 +55,37 @@ Select dev test data and urls
     Set Suite Variable          ${lomake-selected-env}                  dev-
     
     # Url
-    Set Suite Variable          ${lomake_url}                           ${dev_lomake-login_url}
+    Set Suite Variable          ${lomake_url}                           ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
     Set Suite Variable          ${example-app_url}                      ${dev_example-app_url}
- 
+    Set Suite Variable          ${tjpt-direct_url}                      ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
+
+    # Testdata
+    Set Suite Variable          ${lomake-direct-url}                    ${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}
+
+    # Users
+    Set Suite Variable          ${testuser1-lomake-email}               ${testuser1-lomake-email-DEV}        
+    Set Suite Variable          ${testuser1-lomake-email-user}          ${testuser1-lomake-email-user-DEV}   
+    Set Suite Variable          ${testuser1-lomake-email-domain}        ${testuser1-lomake-email-domain-DEV} 
+
+
 Select test env test data and urls
     # Env
-    Set Suite Variable          ${lomake-selected-env}                            test-
+    Set Suite Variable          ${lomake-selected-env}                  test-
+
+    # Url
+    Set Suite Variable          ${lomake_url}                           ${test_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    Set Suite Variable          ${example-app_url}                      ${test_example-app_url}
+    Set Suite Variable          ${tjpt-direct_url}                      ${test_lomake-todistusjaljennospyynto-tilaus-direct_url}
+
+    # Testdata
+    Set Suite Variable          ${lomake-direct-url}                    ${testdata-test-lomake-tehty-hetulla-testuser1-direct-url}
+
+    # Users
+    Set Suite Variable          ${testuser1-lomake-email}               ${testuser1-lomake-email-TEST}        
+    Set Suite Variable          ${testuser1-lomake-email-user}          ${testuser1-lomake-email-user-TEST}   
+    Set Suite Variable          ${testuser1-lomake-email-domain}        ${testuser1-lomake-email-domain-TEST} 
+
+
 
 Select stage env test data and urls
     # Env

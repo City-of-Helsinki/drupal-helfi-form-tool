@@ -22,7 +22,7 @@ Force Tags      smoke
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
 #########################################################################################
-# robot -d logit --variable environment:dev-chrome --exitonfailure tests/PROD-lomake-test-set.robot
+# robot -d logit --variable environment:prod-chrome --exitonfailure tests/PROD-lomake-test-set.robot
 
 In hel.fi page open lomake page
     [Tags]  critical
