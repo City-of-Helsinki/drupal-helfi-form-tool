@@ -40,7 +40,6 @@ elements: |-
     '#title': 'Tietoja tästä lomakkeesta'
     tietoja_todistusjaljennoksesta_markup:
       '#type': webform_markup
-      '#display_on': view
       '#markup': 'T&auml;ll&auml; lomakkeella voit tilata vuoden 1995 j&auml;lkeen saadut peruskoulun p&auml;&auml;tt&ouml;- ja erotodistukset ja vuoden 2005 j&auml;lkeen saadut lukion p&auml;&auml;tt&ouml;- ja erotodistukset.'
   tilaaja:
     '#type': webform_section
