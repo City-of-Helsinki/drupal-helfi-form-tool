@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Provides a noscripttag block.
  * @file
  */
 
