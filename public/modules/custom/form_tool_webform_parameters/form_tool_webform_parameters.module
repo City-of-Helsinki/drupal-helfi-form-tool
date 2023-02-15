@@ -81,20 +81,24 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       $privacy_policy_string = t('Read more about <a href="@privacy-policy-link" class="privacy-policy-link" target="_blank">the privacy policy</a> (the link will open in a new tab).', [
         '@privacy-policy-link' => _form_tool_webform_parameters_get_default_privacy_policy_link($formsettings),
       ]);
-      $form['privacy_policy_wrapper'] = [
+      $form['elements']['privacy_policy_wrapper'] = [
         '#type' => 'webform_section',
         '#title' => t('Privacy Policy'),
       ];
-      $form['privacy_policy_wrapper']['privacy_policy_link'] = [
+      $form['elements']['privacy_policy_wrapper']['privacy_policy_link'] = [
         '#type' => 'label',
         '#title' => $privacy_policy_string,
       ];
-      $form['privacy_policy_wrapper']['privacy_policy_acceptance'] = [
+      $form['elements']['privacy_policy_wrapper']['privacy_policy_acceptance'] = [
         '#type' => 'checkbox',
         '#title' => t('I have read the privacy policy'),
         '#required' => TRUE,
       ];
     }
+
+    $temp = $form['elements']['actions'];
+    unset($form['elements']['actions']);
+    $form['elements']['actions'] = $temp;
   }
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
 
