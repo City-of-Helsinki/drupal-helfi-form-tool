@@ -1,17 +1,5 @@
-# Finnish translation of City of Helsinki
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2021-05-31 11:00+0300\n"
-"PO-Revision-Date: 2022-01-28 11:00+0300\n"
-"Last-Translator: NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
 
 msgid "Primary address"
 msgstr "Ensisijainen osoite"
@@ -37,3 +25,25 @@ msgstr "Varmistettu henkilötunnus"
 msgid "Verified permanent address"
 msgstr "Varmistettu pysyvä asuinpaikka"
 
+msgid "Profile data updated"
+msgstr "Profiilitiedot päivitetty"
+
+msgid "Profile data update failed. Error has been logged."
+msgstr "Profiilitietojen päivitys epäonnistui"
+
+msgid "Go to Helsinki-profile to edit your information."
+msgstr "Siirry Helsinki-profiiliin päivittääksesi tietoja."
+
+msgctxt "Refresh data from Helsinki-profile link text"
+msgid "Refresh data"
+msgstr "Päivitä tiedot"
+
+msgid "If you want to change the information from Helsinki-profile you can do that by going to the Helsinki-profile from this link."
+msgstr "Jos haluat muuttaa tietoja, jotka on haettu Helsinki-profiilista voit tehdä sen menemällä Helsinki-profiiliin."
+
+msgid "If the data from Helsinki-profile is old you can refresh the data by pressing this link."
+msgstr "Jos Helsinki-profiilista haetut tiedot ovat vanhentuneet voit päivittää ne painamalla tätä linkkiä."
+
+msgctxt "Explanation for users that the link opens in a new tab instead of the expected current tab"
+msgid "The link opens in a new tab"
+msgstr "Linkki avautuu uuteen välilehteen"

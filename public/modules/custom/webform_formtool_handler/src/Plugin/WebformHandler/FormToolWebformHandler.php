@@ -280,15 +280,22 @@ class FormToolWebformHandler extends WebformHandlerBase {
   public function confirmForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
     parent::confirmForm($form, $form_state, $webform_submission);
 
-    // If user is not helsinkiproifile user we don't have any user info.
+    // Get possible backlink id.
+    $thirdPartySettings = $form_state->getFormObject()->getWebform()->getThirdPartySettings('form_tool_webform_parameters');
+    $currentLanguage = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $stateId = "HEL-{$thirdPartySettings['form_code']}-{$currentLanguage}";
+
+    // If user is not helsinkiprofile user we don't have any user info.
     $currentUserRoles = \Drupal::currentUser()->getRoles();
+
     if (
       !in_array('helsinkiprofiili_vahva', $currentUserRoles) &&
-      !in_array('helsinkiprofiili_heikko', $currentUserRoles)) {
+      !in_array('helsinkiprofiili_heikko', $currentUserRoles)
+    ) {
 
       $this->log('error', 'No helsinki profile', []);
       $this->messenger()->addError('No helsinki profile data');
-      $form_state->setRedirect('entity.form_tool_share.error');
+      $form_state->setRedirect('entity.form_tool_share.error', ['backlink_id' => $stateId]);
       return;
     }
 
@@ -306,7 +313,6 @@ class FormToolWebformHandler extends WebformHandlerBase {
       $translatedHumanReadableTypes = [];
 
       foreach ($langcodesList as $langcode) {
-
         $translation = $this->entityRepository->getTranslationFromContext($webform, $langcode);
         $label = $translation->label();
         $translatedHumanReadableTypes[$langcode] = $label;
@@ -372,7 +378,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
             $userProfileData["myProfile"]["primaryEmail"]["email"],
             $thirdPartySettings["email_notify"],
           ];
-          $to = implode(',',$toArray);
+          $to = implode(',', $toArray);
 
           $url = Url::fromRoute(
             'form_tool_share.view_submission',
@@ -407,11 +413,13 @@ class FormToolWebformHandler extends WebformHandlerBase {
             $this->messenger()->addStatus(t('Your message has been sent.'));
           }
         }
-      } catch (TokenExpiredException $e) {
+      }
+      catch (TokenExpiredException $e) {
         throw $e;
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         $this->log('error', $e->getMessage(), []);
-        $form_state->setRedirect('entity.form_tool_share.error');
+        $form_state->setRedirect('entity.form_tool_share.error', ['backlink_id' => $stateId]);
       }
     }
     else {

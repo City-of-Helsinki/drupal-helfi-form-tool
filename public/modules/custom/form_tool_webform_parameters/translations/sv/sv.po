@@ -1,0 +1,14 @@
+# Swedish translation of City of Helsinki
+#
+msgid ""
+msgstr ""
+
+
+msgid "Read more about <a href=\"@privacy-policy-link\" class=\"privacy-policy-link\" target=\"_blank\">the privacy policy</a> (the link will open in a new tab)."
+msgstr "Läs mer om <a href=\"@privacy-policy-link\" class=\"privacy-policy-link\" target=\"_blank\">registerbeskrivningen</a> (länken öppnas i en ny flik)."
+
+msgid "Privacy Policy"
+msgstr "Registerbeskrivning"
+
+msgid "I have read the privacy policy"
+msgstr "Jag har läst registerbeskrivningen"

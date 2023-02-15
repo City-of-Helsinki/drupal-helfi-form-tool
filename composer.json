@@ -19,10 +19,10 @@
         "drupal/error_page": "^2.0",
         "drupal/hdbt": "^4.0",
         "drupal/hdbt_admin": "^1.0",
-        "drupal/helfi_atv": "dev-develop",
+        "drupal/helfi_atv": "^0.9.0",
         "drupal/helfi_azure_fs": "^1.0",
         "drupal/helfi_drupal_tools": "dev-main",
-        "drupal/helfi_helsinki_profiili": "dev-develop",
+        "drupal/helfi_helsinki_profiili": "^0.9",
         "drupal/helfi_platform_config": "^2.0",
         "drupal/helfi_proxy": "^3.0",
         "drupal/helfi_tunnistamo": "^2.0",
@@ -32,6 +32,7 @@
         "drupal/twig_debugger": "^1.1",
         "drupal/webform": "^6.0",
         "drupal/webform_rest": "^4.0",
+        "drupal/webform_translation_permissions": "^1.1",
         "drupal/x_frame_options_configuration": "^1.2",
         "drush/drush": "^10.4",
         "firebase/php-jwt": "^6.3"
@@ -101,8 +102,8 @@
                 "Add ability to delete all from tempstore": "https://www.drupal.org/files/issues/2020-10-23/get_delete_all_temp-2475719-31.patch",
                 "Fix session cookie error": "https://www.drupal.org/files/issues/2021-12-22/3255711-invalidate_session_on_destroy_session_manager-4.patch"
             },
-            "drupal/webform": {
-                "Support PHP 8.1 (https://www.drupal.org/node/3283614)": "https://git.drupalcode.org/project/webform/-/commit/9cd201a.patch"
+            "drupal/openid_connect": {
+                "Open Id connect patch": "public/modules/custom/openid_logout_redirect/patches/hel_openid_connect_redirect.patch"
             }
         }
     },

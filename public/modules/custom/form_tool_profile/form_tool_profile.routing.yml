@@ -1,0 +1,23 @@
+form_tool_profile.settings:
+  path: '/admin/config/form_tool_profile/settings'
+  defaults:
+    _form: '\Drupal\form_tool_profile\Form\ConfigForm'
+    _title: 'Form tool profile settings'
+  requirements:
+    _permission: 'administer form_tool_profile configuration'
+
+form_tool_profile.readiness:
+  path: '/readiness'
+  defaults:
+    _title: 'Readiness'
+    _controller: '\Drupal\form_tool_profile\Controller\FormToolProbeController::readiness'
+  requirements:
+    _access: 'TRUE'
+
+form_tool_profile.healthz:
+  path: '/healthz'
+  defaults:
+    _title: 'Healthz'
+    _controller: '\Drupal\form_tool_profile\Controller\FormToolProbeController::healthz'
+  requirements:
+    _access: 'TRUE'

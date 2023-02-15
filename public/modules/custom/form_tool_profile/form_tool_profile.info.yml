@@ -1,0 +1,9 @@
+name: 'Form tool profile'
+type: module
+description: 'Provide profile / user functionallity and helpers.'
+package: 'Helfi'
+version: 0.1
+core_version_requirement: ^8.8 || ^9
+'interface translation project': form_tool_profile
+'interface translation server pattern': modules/custom/form_tool_profile/translations/%language.po
+

@@ -22,15 +22,17 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
     $webformOwner = $webform->getOwner();
     $webformOwnerRoles = $webformOwner->getRoles();
     $thirdPartySettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
+    $userRoles = $account->getRoles();
 
     // No access to anonymous to any webform submissions.
     if ($account->isAnonymous()) {
       return WebformAccessResult::forbidden();
     }
 
-    // Admins have access always.
-    if (in_array(['admin', 'verkkolomake_admin'], $webformOwnerRoles)) {
-      return WebformAccessResult::allowed();
+    // Admins DO NOT have access to any submissions.
+    // To allow user access they MUST NOT have these roles.
+    if (in_array(['admin', 'verkkolomake_admin'], $userRoles)) {
+      return WebformAccessResult::forbidden();
     }
 
     // Webform owner has access to submission when in WIP state.
@@ -46,7 +48,7 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
     $data = $result->fetchObject();
 
     $adminRoles = explode(',', $data->admin_roles);
-    $userRoles = $account->getRoles();
+
     foreach ($adminRoles as $rid) {
       // If user has a role to access this webform submission.
       if (in_array($rid, $userRoles)) {
@@ -57,6 +59,12 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
     // Admin owner has access if state is WIP.
     if (($thirdPartySettings["status"] == 'wip') && $data->admin_owner == $account->getEmail()) {
       return WebformAccessResult::allowed();
+    }
+
+    // If user does not have either helsinki profile role, they do not have
+    // access and if they do, they must be the submitter below.
+    if (!self::inArrayWildcard($userRoles, 'helsinkiprofiili')) {
+      return WebformAccessResult::forbidden();
     }
 
     /** @var \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $helProfiiliData */
@@ -72,9 +80,27 @@ class FormToolWsAccessHandler extends WebformSubmissionAccessControlHandler {
       return WebformAccessResult::allowed();
     }
 
-    // $access = parent::checkAccess($entity, $operation, $account);
-    // return $access;
     return WebformAccessResult::forbidden();
+  }
+
+  /**
+   * Check if wildcard value is in array.
+   *
+   * @param array $haystack
+   *   Array we're looking for values.
+   * @param string $needle
+   *   Value we want to see if it's in above array.
+   *
+   * @return bool
+   *   True if array is found and false if not.
+   */
+  public static function inArrayWildcard(array $haystack, string $needle): bool {
+    $matches = array_filter($haystack, function ($var) use ($needle) {
+      return (bool) preg_match("/$needle/i", $var);
+    });
+
+    return !empty($matches);
+
   }
 
 }

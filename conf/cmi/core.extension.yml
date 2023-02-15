@@ -34,9 +34,11 @@ module:
   field_group: 0
   field_ui: 0
   file: 0
+  file_mdm: 0
   filter: 0
   focal_point: 0
   form_tool_contact_info: 0
+  form_tool_profile: 0
   form_tool_profile_data: 0
   form_tool_share: 0
   form_tool_webform_parameters: 0
@@ -47,6 +49,7 @@ module:
   hdbt_admin_tools: 0
   hdbt_component_library: 0
   hdbt_content: 0
+  health_check: 0
   helfi_announcements: 0
   helfi_api_base: 0
   helfi_atv: 0
@@ -61,11 +64,13 @@ module:
   helfi_languages: 0
   helfi_media: 0
   helfi_platform_config: 0
+  helfi_profile_block: 0
   helfi_proxy: 0
   helfi_toc: 0
   helfi_tunnistamo: 0
   image: 0
   image_style_quality: 0
+  imagemagick: 0
   language: 0
   link: 0
   linkit: 0
@@ -86,6 +91,7 @@ module:
   node: 0
   oembed_providers: 0
   openid_connect: 0
+  openid_logout_redirect: 0
   options: 0
   page_cache: 0
   paragraphs_asymmetric_translation_widgets: 0
@@ -106,6 +112,7 @@ module:
   simple_sitemap: 0
   smtp: 0
   social_media: 0
+  sophron: 0
   system: 0
   taxonomy: 0
   telephone: 0
@@ -132,6 +139,7 @@ module:
   webform_rest: 0
   webform_share: 0
   webform_templates: 0
+  webform_translation_permissions: 0
   webform_ui: 0
   pathauto: 1
   content_translation: 10

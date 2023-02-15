@@ -54,9 +54,6 @@ class FormToolProfileData extends WebformCompositeBase {
 
     $webFormSettings = $this->getWebform()->getThirdPartySettings('form_tool_webform_parameters');
 
-    // $form['element']['title']['#default_value'] = 'Profile fields';
-    $form['element']['title']['#value'] = 'Profile fields';
-
     if (isset($webFormSettings['login_type']) && $webFormSettings['login_type'] === '0') {
       $form['element']['noauth'] = [
         '#type' => 'checkboxes',
@@ -85,6 +82,44 @@ class FormToolProfileData extends WebformCompositeBase {
   }
 
   /**
+   * Format a composite as a list of HTML items.
+   *
+   * @param array $element
+   *   An element.
+   * @param \Drupal\webform\WebformSubmissionInterface $webform_submission
+   *   A webform submission.
+   * @param array $options
+   *   An array of options.
+   *
+   * @return array|string
+   *   A composite as a list of HTML items.
+   */
+  protected function formatCompositeHtmlItems(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {
+    $value = $this->getValue($element, $webform_submission, $options);
+    $titles = FormToolProfileData::getFieldSelections();
+    $lines = [];
+
+    foreach ($value as $fieldName => $fieldValue) {
+      foreach ($titles as $auth => $fields) {
+        if (
+          isset($fields[$fieldName]) &&
+          !array_key_exists($fieldName, $lines)
+        ) {
+          $items[$fieldName] = [
+            '#type' => 'inline_template',
+            '#template' => '<label>{{ title }}:</label> {{ value }}',
+            '#context' => [
+              'title' => $fields[$fieldName]->render(),
+              'value' => $fieldValue,
+            ],
+          ];
+        }
+      }
+    }
+    return $items;
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function formatHtmlItemValue(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {
@@ -102,8 +137,10 @@ class FormToolProfileData extends WebformCompositeBase {
     $lines = [];
     foreach ($value as $fieldName => $fieldValue) {
       foreach ($titles as $auth => $fields) {
-        if (isset($fields[$fieldName])) {
-          $lines[] = $fields[$fieldName]->render() . ': ' . $fieldValue;
+        if (
+          isset($fields[$fieldName]) &&
+          !array_key_exists($fieldName, $lines)) {
+          $lines[$fieldName] = $fields[$fieldName]->render() . ': ' . $fieldValue;
         }
       }
 
@@ -131,6 +168,8 @@ class FormToolProfileData extends WebformCompositeBase {
         'verifiedGivenName' => t('Verified given name'),
         'verifiedSsn' => t('Verified SSN'),
         'verifiedPermanentAddress' => t('Verified permanent address'),
+        'primaryEmail' => t('Primary email'),
+        'primaryPhone' => t('Primary phone'),
       ],
     ];
   }
