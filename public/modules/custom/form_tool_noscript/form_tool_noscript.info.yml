@@ -1,0 +1,6 @@
+name: Form Tool NOSCRIPT block
+description: 'Hel.fi Form Tool NOSCRIPT tag block'
+type: module
+core_version_requirement: '^8.9 || ^9'
+version: '1.0.0'
+package: HELfi
