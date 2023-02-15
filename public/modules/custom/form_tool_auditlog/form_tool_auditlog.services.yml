@@ -1,0 +1,20 @@
+services:
+  form_tool_auditlog.user_presave_subscriber:
+    class: 'Drupal\form_tool_auditlog\EventSubscriber\UserPresaveSubscriber'
+    arguments: ['@helfi_audit_log.audit_log']
+    tags:
+      - { name: event_subscriber }
+  form_tool_auditlog.submission_view_subscriber:
+    class: 'Drupal\form_tool_auditlog\EventSubscriber\SubmissionViewSubscriber'
+    arguments: ['@helfi_audit_log.audit_log']
+    tags:
+      - { name: event_subscriber }
+  form_tool_auditlog.webform_submission_subscriber:
+    class: 'Drupal\form_tool_auditlog\EventSubscriber\WebformSubmissionSubscriber'
+    arguments: ['@helfi_audit_log.audit_log']
+    tags:
+      - { name: event_subscriber }
+  form_tool_auditlog.audit_log_event_suscriber:
+    class: 'Drupal\form_tool_auditlog\EventSubscriber\AuditLogEventSubscriber'
+    tags:
+      - { name: event_subscriber }

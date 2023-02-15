@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ef84c5e9aafa6007a7246af1fc049c3",
+    "content-hash": "e8d67fa1cfeae472d9215d75dd6907a3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4894,6 +4894,35 @@
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
             "time": "2023-02-07T08:41:36+00:00"
+        },
+        {
+            "name": "drupal/helfi_audit_log",
+            "version": "0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log.git",
+                "reference": "f76d8cad31b59254cbcff890699ba98aca425996"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-audit-log/zipball/f76d8cad31b59254cbcff890699ba98aca425996",
+                "reference": "f76d8cad31b59254cbcff890699ba98aca425996",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "drupal/coder": "^8.3"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helfi - Audit log",
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/tree/0.9",
+                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/issues"
+            },
+            "time": "2023-02-09T08:48:43+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
