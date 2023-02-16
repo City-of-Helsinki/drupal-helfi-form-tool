@@ -61,7 +61,7 @@ jobs:
       - task: CopyFiles@2
         inputs:
           #SourceFolder: 'D:\a\1\s\'
-          SourceFolder: $(System.DefaultWorkingDirectory)logit\
+          SourceFolder: $(System.DefaultWorkingDirectory)\logit\
           targetFolder: $(Build.ArtifactStagingDirectory)
         condition: succeededOrFailed()
         displayName: Copy test result files to artifact staging directory
