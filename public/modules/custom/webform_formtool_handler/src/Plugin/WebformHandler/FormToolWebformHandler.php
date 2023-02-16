@@ -14,7 +14,9 @@ use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
+use Drupal\webform_formtool_handler\Event\WebformSubmissionEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -104,6 +106,13 @@ class FormToolWebformHandler extends WebformHandlerBase {
   protected EntityRepository $entityRepository;
 
   /**
+   * Event dispatcher.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected EventDispatcherInterface $eventDispatcher;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -124,6 +133,8 @@ class FormToolWebformHandler extends WebformHandlerBase {
     $instance->helsinkiProfiiliUserData = $container->get('helfi_helsinki_profiili.userdata');
 
     $instance->entityRepository = $container->get('entity.repository');
+
+    $instance->eventDispatcher = $container->get('event_dispatcher');
 
     return $instance;
   }
@@ -367,6 +378,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
           'entity.form_tool_share.completion',
           ['submission_id' => $formToolSubmissionId]
         );
+
+        // Fire up submission event.
+        $event = new WebformSubmissionEvent($webform_submission, $newDocument, $formToolSubmissionId);
+        $this->eventDispatcher->dispatch(WebformSubmissionEvent::SUBMISSION_EVENT, $event);
 
         if (isset($thirdPartySettings["email_notify"]) &&
           !empty($thirdPartySettings["email_notify"])) {
