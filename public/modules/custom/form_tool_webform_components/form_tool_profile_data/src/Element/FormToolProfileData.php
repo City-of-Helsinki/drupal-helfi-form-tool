@@ -5,6 +5,8 @@ namespace Drupal\form_tool_profile_data\Element;
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\EmailValidator;
 use Drupal\Component\Utility\Xss;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
@@ -294,9 +296,87 @@ class FormToolProfileData extends WebformCompositeBase {
         '#url' => $profileRefreshUrl,
         '#title' => t('Refresh data', [], ['context' => 'Refresh data from Helsinki-profile link text']),
       ],
+      'refreshSubmit' => [
+        '#type' => 'submit',
+        '#name' => 'refresh_profile',
+        '#submit' => [[static::class, 'profileDataRefreshSubmitHandler']],
+        '#attributes' => [
+          'class' => ['is-hidden', 'profile-refresh-data-button'],
+        ],
+        '#title' => 'Test ajax',
+        '#ajax' => [
+          'callback' => [static::class, 'profileDataRefreshAjaxCallback'],
+        ],
+        '#limit_validation_errors' => [],
+      ],
+      'messageContainer' => [
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['profile-data-message-container'],
+        ],
+      ],
     ];
 
+    $elements['#attached']['library'][] = 'form_tool_profile_data/form_tool_profile_data_refresh';
+
     return $elements;
+  }
+
+  /**
+   * Submit handler for profile data refresh functionallity.
+   */
+  public static function profileDataRefreshSubmitHandler(array $form, FormStateInterface $form_state) {
+
+    try {
+      \Drupal::service('helfi_helsinki_profiili.userdata')->getUserProfileData(TRUE);
+      $form_state->setStorage([
+        'profile_update_text' => [
+          'status' => [t('Profile data updated')],
+        ],
+      ]);
+    }
+    catch (TokenExpiredException $e) {
+      $form_state->setStorage([
+        'profile_update_text' => [
+          'warning' => [t('Profile data update failed. Error has been logged.')],
+        ],
+      ]);
+    }
+
+    $form_state->setRebuild(TRUE);
+
+    return $form;
+  }
+
+  /**
+   * Ajax callback for the profile data refresh.
+   */
+  public static function profileDataRefreshAjaxCallback(array $form, FormStateInterface $form_state) {
+
+    $response = new AjaxResponse();
+    $message = $form_state->getStorage();
+
+    $render = [
+      '#theme' => 'status_messages',
+      '#message_list' => $message['profile_update_text'],
+      '#status_headings' => [
+        'status' => t('Status message'),
+        'error' => t('Error message'),
+        'warning' => t('Warning message'),
+      ],
+    ];
+
+    $renderedHtml = \Drupal::service('renderer')->render($render);
+
+    $response->addCommand(new ReplaceCommand('form', $form));
+    $response->addCommand(
+      new ReplaceCommand(
+        '.profile-data-message-container',
+        $renderedHtml
+      )
+    );
+
+    return $response;
   }
 
   /**
