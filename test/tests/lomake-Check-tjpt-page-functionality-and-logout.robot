@@ -10,7 +10,7 @@ Resource        ../resources/keywords/lomake-Keywords.robot
 Resource        ../resources/keywords/common-Keywords.robot
 Test Timeout    900 seconds
 Test Teardown   Run keywords   Capture Page Screenshot     Delete All Cookies  Close All Browsers
-Force Tags      smoke
+Force Tags      regression
 
 *** Test Cases ***
 #########################################################################################
@@ -24,7 +24,9 @@ Force Tags      smoke
 # 6. Valitaan toimitustavaksi postiennakko
 # 7. Täytetään postiennakko yhteystiedot
 # 8. Hyväksytään rekisteriseloste
-# 9. 
+# 9. Lähetetään lomake
+# 10. Lähdetään kirjautumaan ulos mutta päätetäänkin jatkaa
+# 11. Kirjaudutaan ulos
 #
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
