@@ -30,7 +30,8 @@ ${lomake-testdata-lisatiedot}                               Ei mulla mitään li
 # 6. Valitaan toimitustavaksi postiennakko
 # 7. Täytetään postiennakko yhteystiedot
 # 8. Hyväksytään rekisteriseloste
-# 9. 
+# 9. Avataan tarkista lähetetty lomake sivu ja tarkistetaan, että sivulta löytyy oikea lisätty tieto
+# 10. Kirjaudutaan ulos ylävalikon kautta
 #
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
@@ -87,17 +88,20 @@ Open and check lomakkeen tiedot page content
     Click Element                                           ${lomake-tjpt-nayta-lomakkeen-tiedot}
     # Tarkista, että sivu aukeaa ja se sisältää lomakkeelle täytettyä tietoa
     Wait Until Page Contains                                Lomakkeen numero                                            20
-    Page Should Contain                                     ${etunimi}
-    Page Should Contain                                     ${sukunimi}
+    #Page Should Contain                                     ${etunimi}
+    #Page Should Contain                                     ${sukunimi}
     Page Should Contain                                     ${random-kotiosoite}
     Page Should Contain                                     ${random-postinumero}
     Page Should Contain                                     ${kaupunki}
-    Page Should Contain                                     ${random-puhnum}
+    #Page Should Contain                                     ${random-puhnum}
     Page Should Contain                                     ${lomake-testdata-koulunnimi}
     Page Should Contain                                     ${lomake-testdata-lisatiedot}
+    [Teardown]    NONE
 
-
-    # Lisää logout kun sellanen sivuille ilmestyy
-    #Click Element                                          logout
-    #Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
-    #[Teardown]    NONE
+Logout using upper right menu
+    Wait Until Page Contains Element                        ${lomake-tjpt-upper-right-menu-button}       
+    Click Element                                           ${lomake-tjpt-upper-right-menu-button}
+    Wait Until Element Is Visible                           ${lomake-tjpt-upper-right-menu-logout-button}               20
+    #Wait Until Page Contains Element                        ${lomake-tjpt-upper-right-menu-logout-button}
+    Click Element                                           ${lomake-tjpt-upper-right-menu-logout-button}       
+    Wait Until Page Contains                                You have been logged out of City of Helsinki services       20

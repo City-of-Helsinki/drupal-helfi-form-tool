@@ -31,12 +31,13 @@ Force Tags      smoke
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
 #########################################################################################
-# robot -d logit --variable environment:stage-chrome --exitonfailure tests/SMOKE-lomake-test-set.robot
+# robot -d logit --variable environment:stage-chrome --variable azure-browser-sleep:1 --exitonfailure tests/SMOKE-lomake-test-set.robot
 
 Login to lomake page using suomi.fi auth
 # 
     [Tags]  critical
     Select test data and open browser
+    Accept all cookies
     Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
