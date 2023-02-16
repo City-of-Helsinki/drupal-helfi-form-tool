@@ -10,7 +10,7 @@ third_party_settings:
     owner: drupal@hel.fi
     sector: KYMP
     ad_group: ad_group_2
-    postal_address: osote
+    postal_address: "Töysänkatu 2 D -MUOKATTU- Jouni\r\nVallila, 00510 Helsinki"
     privacy_policy: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Perusopetuksen%20opintohallinnon%20rekisteri.pdf'
     privacy_policy_sv: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administration%20av%20grundl%C3%A4ggande%20utbildning.pdf'
     privacy_policy_en: ''
@@ -40,7 +40,6 @@ elements: |-
     '#title': 'Tietoja tästä lomakkeesta'
     tietoja_todistusjaljennoksesta_markup:
       '#type': webform_markup
-      '#display_on': view
       '#markup': 'T&auml;ll&auml; lomakkeella voit tilata vuoden 1995 j&auml;lkeen saadut peruskoulun p&auml;&auml;tt&ouml;- ja erotodistukset ja vuoden 2005 j&auml;lkeen saadut lukion p&auml;&auml;tt&ouml;- ja erotodistukset.'
   tilaaja:
     '#type': webform_section
@@ -58,6 +57,7 @@ elements: |-
         verifiedGivenName: 0
       '#title_display': before
       '#description_display': before
+      '#format': list
       '#weak':
         primaryAddress: primaryAddress
         primaryEmail: primaryEmail
@@ -79,11 +79,11 @@ elements: |-
       '#type': textfield
       '#title': 'Todistuksen antanut Helsinkiläinen koulu'
       '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
+      '#required': true
       '#counter_type': character
       '#counter_minimum': 1
       '#counter_maximum': 100
       '#counter_maximum_message': ' '
-      '#required': true
   toimitustapa:
     '#type': webform_section
     '#title': Toimitustapa
@@ -92,6 +92,8 @@ elements: |-
       '#title': 'Valitse toimitustapa'
       '#Toimitustapa: Email__access': false
       '#Toimitustapa: Postitoimitus__access': false
+      '#Toimitustapa: Postiennakko__title': Postiennakko
+      '#Toimitustapa: Nouto__title': Nouto
       '#Nouto -teksti__title': 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki'
   lisatiedot:
     '#type': webform_section
@@ -104,6 +106,9 @@ elements: |-
       '#counter_minimum': 1
       '#counter_maximum': 750
       '#counter_maximum_message': ' '
+  actions:
+    '#type': webform_actions
+    '#title': 'Paina nappia'
 css: ''
 javascript: ''
 settings:
@@ -116,7 +121,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
