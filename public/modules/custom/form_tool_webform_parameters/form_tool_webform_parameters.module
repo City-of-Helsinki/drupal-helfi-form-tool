@@ -94,11 +94,13 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
         '#title' => t('I have read the privacy policy'),
         '#required' => TRUE,
       ];
+      if (array_key_exists('elements', $form)) {
+        $temp = $form['elements']['actions'];
+        unset($form['elements']['actions']);
+        $form['elements']['actions'] = $temp;
+      }
     }
 
-    $temp = $form['elements']['actions'];
-    unset($form['elements']['actions']);
-    $form['elements']['actions'] = $temp;
   }
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
 
