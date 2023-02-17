@@ -37,6 +37,7 @@ module:
   file_mdm: 0
   filter: 0
   focal_point: 0
+  form_tool_auditlog: 0
   form_tool_contact_info: 0
   form_tool_noscript: 0
   form_tool_profile: 0
@@ -54,6 +55,7 @@ module:
   helfi_announcements: 0
   helfi_api_base: 0
   helfi_atv: 0
+  helfi_audit_log: 0
   helfi_base_config: 0
   helfi_charts: 0
   helfi_contact_cards: 0

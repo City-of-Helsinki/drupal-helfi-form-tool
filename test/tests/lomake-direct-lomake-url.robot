@@ -10,7 +10,7 @@ Resource        ../resources/keywords/lomake-Keywords.robot
 Resource        ../resources/keywords/common-Keywords.robot
 Test Timeout    900 seconds
 Test Teardown   Run keywords   Capture Page Screenshot     Delete All Cookies    Close All Browsers
-Force Tags      smoke
+Force Tags      regression
 
 *** Test Cases ***
 #########################################################################################
