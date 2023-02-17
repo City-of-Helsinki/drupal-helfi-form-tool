@@ -100,8 +100,7 @@ elements: |-
     '#title': Lisätiedot
     mahdolliset_lisatiedot:
       '#type': textarea
-      '#title': 'Mahdolliset lisätiedot'
-      '#description': 'Jos nimesi tai henkil&ouml;tunnuksesi on muuttunut, niin ilmoita t&auml;ss&auml; todistuksenantohetken mukainen nimesi ja henkil&ouml;tunnuksesi.'
+      '#title': 'Jos nimesi tai henkilötunnuksesi on muuttunut, niin ilmoita tässä todistuksenantohetken mukainen nimesi ja henkilötunnuksesi.'
       '#counter_type': character
       '#counter_minimum': 1
       '#counter_maximum': 750
