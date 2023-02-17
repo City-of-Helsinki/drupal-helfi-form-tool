@@ -29,7 +29,7 @@
           {% if user_not_logged_in %}
             <h2 class="error-page__login-title">{{ 'Log in'|t({}, {'context': 'Log in block title on error pages'}) }}</h2>
           {% endif %}
-          {{ page.login_info }}
+          {{ page.login_block }}
           <div class="error-page__login-form">
             {{ drupal_block('user_login_block') }}
           </div>
