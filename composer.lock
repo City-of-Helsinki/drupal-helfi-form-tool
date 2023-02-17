@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c94017e67b4b50a8a550bdfede251a1",
+    "content-hash": "f0b04fa349d103050aacdd7a77697002",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4864,16 +4864,16 @@
         },
         {
             "name": "drupal/helfi_atv",
-            "version": "dev-feature/LOM-359-gdpr-atv-auth",
+            "version": "0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "4a90b1e80871edaa304f0042aa1bd877de18509a"
+                "reference": "aa3411d47254f952b32c8a11eb840dc2a1048672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/4a90b1e80871edaa304f0042aa1bd877de18509a",
-                "reference": "4a90b1e80871edaa304f0042aa1bd877de18509a",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/aa3411d47254f952b32c8a11eb840dc2a1048672",
+                "reference": "aa3411d47254f952b32c8a11eb840dc2a1048672",
                 "shasum": ""
             },
             "require": {
@@ -4890,10 +4890,10 @@
             ],
             "description": "ATV integration module",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/feature/LOM-359-gdpr-atv-auth",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/0.9.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2023-02-17T06:44:10+00:00"
+            "time": "2023-02-17T08:47:39+00:00"
         },
         {
             "name": "drupal/helfi_audit_log",
@@ -18336,7 +18336,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/cache_control_override": 15,
-        "drupal/helfi_atv": 20,
         "drupal/helfi_drupal_tools": 20
     },
     "prefer-stable": true,
