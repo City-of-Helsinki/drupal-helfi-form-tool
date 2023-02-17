@@ -181,7 +181,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
         'closed' => t('Closed'),
       ],
       '#required' => TRUE,
-      '#default_value' => $formStatus ?? 'closed',
+      '#default_value' => $formStatus ?? 'wip',
       '#description' => t('If form is published, then no editing is allowed and form results are submitted to ATV. Work in progress form opens up for testing & developing but not for general public.'),
       '#disabled' => ($currentId == '1' || in_array('admin', $currentRoles)) ? FALSE : $disabled,
     ];
