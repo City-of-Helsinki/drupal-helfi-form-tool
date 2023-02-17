@@ -309,8 +309,16 @@ class HelfiGdprApiController extends ControllerBase {
 
   /**
    * Builds the response.
+   *
+   * @param string $userId
+   *   User id.
+   *
+   * @return \Drupal\Component\Serialization\JsonResponse
+   *   JSONresponse.
+   *
+   * @throws \Drupal\helfi_atv\AtvAuthFailedException
    */
-  public function get($userId) {
+  public function get(string $userId) {
 
     // Decode the json data.
     try {
@@ -349,7 +357,7 @@ class HelfiGdprApiController extends ControllerBase {
       $user = $this->getUser();
       $user->delete();
 
-      $this->atvService->deleteGdprData($this->jwtData['sub']);
+      $this->atvService->deleteGdprData($this->jwtData['sub'], $this->jwtToken);
 
     }
     catch (AtvDocumentNotFoundException $e) {
