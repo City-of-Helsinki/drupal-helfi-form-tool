@@ -8,8 +8,8 @@ dependencies:
     - hdbt_subtheme
 id: hdbt_subtheme_announcements
 theme: hdbt_subtheme
-region: before_content
-weight: -11
+region: breadcrumb
+weight: -10
 provider: null
 plugin: announcements
 settings:
