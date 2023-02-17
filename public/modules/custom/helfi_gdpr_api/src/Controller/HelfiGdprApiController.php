@@ -34,8 +34,7 @@ use Firebase\JWT\ExpiredException;
 /**
  * Returns responses for helfi_gdpr_api routes.
  */
-class HelfiGdprApiController extends ControllerBase
-{
+class HelfiGdprApiController extends ControllerBase {
 
   /**
    * Profiili data access.
@@ -113,8 +112,7 @@ class HelfiGdprApiController extends ControllerBase
    * @return bool
    *   Debug on / off?
    */
-  public function isDebug(): bool
-  {
+  public function isDebug(): bool {
     return $this->debug;
   }
 
@@ -124,29 +122,34 @@ class HelfiGdprApiController extends ControllerBase
    * @param bool $debug
    *   True / False?
    */
-  public function setDebug(bool $debug): void
-  {
+  public function setDebug(bool $debug): void {
     $this->debug = $debug;
   }
 
   /**
    * CompanyController constructor.
-   * @param RequestStack $request
-   * @param HelsinkiProfiiliUserData $helsinkiProfiiliUserData
-   * @param AtvService $atvService
-   * @param ClientInterface $http_client
-   * @param CurrentLanguageContext $currentLanguageContext
-   * @param Connection $connection
+   *
+   * @param \Drupal\Core\Http\RequestStack $request
+   *   Request.
+   * @param \Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData $helsinkiProfiiliUserData
+   *   Helsinki profile data access.
+   * @param \Drupal\helfi_atv\AtvService $atvService
+   *   Atv access.
+   * @param \GuzzleHttp\ClientInterface $http_client
+   *   HTTP client.
+   * @param \Drupal\Core\Language\ContextProvider\CurrentLanguageContext $currentLanguageContext
+   *   Language.
+   * @param \Drupal\Core\Database\Connection $connection
+   *   Database.
    */
   public function __construct(
-    RequestStack             $request,
+    RequestStack $request,
     HelsinkiProfiiliUserData $helsinkiProfiiliUserData,
-    AtvService               $atvService,
-    ClientInterface          $http_client,
-    CurrentLanguageContext   $currentLanguageContext,
-    Connection               $connection
-  )
-  {
+    AtvService $atvService,
+    ClientInterface $http_client,
+    CurrentLanguageContext $currentLanguageContext,
+    Connection $connection
+  ) {
     $this->request = $request;
     $this->helsinkiProfiiliUserData = $helsinkiProfiiliUserData;
     $this->atvService = $atvService;
@@ -168,8 +171,7 @@ class HelfiGdprApiController extends ControllerBase
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container)
-  {
+  public static function create(ContainerInterface $container) {
     return new static(
       $container->get('request_stack'),
       $container->get('helfi_helsinki_profiili.userdata'),
@@ -183,8 +185,7 @@ class HelfiGdprApiController extends ControllerBase
   /**
    * Checks access for this controller.
    */
-  public function access($userId): AccessResultForbidden|AccessResultAllowed
-  {
+  public function access($userId): AccessResultForbidden|AccessResultAllowed {
 
     $deniedReason = NULL;
     $decoded = NULL;
@@ -193,31 +194,38 @@ class HelfiGdprApiController extends ControllerBase
       $this->debug('GDPR Api access called. JWT token: @token', ['@token' => $this->jwtToken]);
       $decoded = $this->helsinkiProfiiliUserData->verifyJwtToken($this->jwtToken);
       $this->debug('GDPR Api access called. JWT token contents: @token', ['@token' => Json::encode($decoded)]);
-    } catch (\InvalidArgumentException $e) {
+    }
+    catch (\InvalidArgumentException $e) {
       $deniedReason = $e->getMessage();
-    } catch (\DomainException $e) {
+    }
+    catch (\DomainException $e) {
       // Provided algorithm is unsupported OR
       // provided key is invalid OR
       // unknown error thrown in openSSL or libsodium OR
       // libsodium is required but not available.
       $deniedReason = $e->getMessage();
-    } catch (SignatureInvalidException $e) {
+    }
+    catch (SignatureInvalidException $e) {
       // Provided JWT signature verification failed.
       $deniedReason = $e->getMessage();
-    } catch (BeforeValidException $e) {
+    }
+    catch (BeforeValidException $e) {
       // Provided JWT is trying to be used before "nbf" claim OR
       // provided JWT is trying to be used before "iat" claim.
       $deniedReason = $e->getMessage();
-    } catch (ExpiredException $e) {
+    }
+    catch (ExpiredException $e) {
       // Provided JWT is trying to be used after "exp" claim.
       $deniedReason = $e->getMessage();
-    } catch (\UnexpectedValueException $e) {
+    }
+    catch (\UnexpectedValueException $e) {
       // Provided JWT is malformed OR
       // provided JWT is missing an algorithm / using an unsupported algorithm
       // provided JWT algorithm does not match provided key OR
       // provided key ID in key/key-array is empty or invalid.
       $deniedReason = $e->getMessage();
-    } catch (GuzzleException $e) {
+    }
+    catch (GuzzleException $e) {
       // Generic guzzle exception.
       $deniedReason = $e->getMessage();
     }
@@ -225,7 +233,8 @@ class HelfiGdprApiController extends ControllerBase
     if ($decoded == NULL) {
       if ($deniedReason == NULL) {
         return AccessResult::forbidden('JWT verification failed.');
-      } else {
+      }
+      else {
         return AccessResult::forbidden($deniedReason);
       }
     }
@@ -247,7 +256,8 @@ class HelfiGdprApiController extends ControllerBase
       // Set hostname for get requests.
       if (isset($decoded[$this->audienceConfig["audience_host"]])) {
         $hostkey = $this->audienceConfig["service_name"] . '.gdprquery';
-      } else {
+      }
+      else {
         $this->debug(
           'Local access DENIED. Reason: @reason. JWT token: @token',
           [
@@ -263,7 +273,8 @@ class HelfiGdprApiController extends ControllerBase
       // Same with delete requests, but key used is different.
       if (isset($decoded[$this->audienceConfig["audience_host"]])) {
         $hostkey = $this->audienceConfig["service_name"] . '.gdprdelete';
-      } else {
+      }
+      else {
         $this->debug(
           'Local access DENIED. Reason: @reason. JWT token: @token',
           [
@@ -282,14 +293,16 @@ class HelfiGdprApiController extends ControllerBase
           '@reason' => 'All match..',
         ]);
       return AccessResult::allowed();
-    } else {
+    }
+    else {
       $deniedReason = 'Scope mismatch';
     }
 
     // We should never reach here, but just return forbidden access.
     if ($deniedReason != NULL) {
       return AccessResult::forbidden($deniedReason);
-    } else {
+    }
+    else {
       return AccessResult::forbidden('Generic token parse error');
     }
   }
@@ -297,19 +310,22 @@ class HelfiGdprApiController extends ControllerBase
   /**
    * Builds the response.
    */
-  public function get($userId)
-  {
+  public function get($userId) {
 
     // Decode the json data.
     try {
       $data = $this->getData();
-    } catch (AtvDocumentNotFoundException $e) {
+    }
+    catch (AtvDocumentNotFoundException $e) {
       return new JsonResponse(NULL, 404);
-    } catch (AtvFailedToConnectException $e) {
+    }
+    catch (AtvFailedToConnectException $e) {
       return new JsonResponse(NULL, 500);
-    } catch (TokenExpiredException $e) {
+    }
+    catch (TokenExpiredException $e) {
       return new JsonResponse(NULL, 401);
-    } catch (GuzzleException $e) {
+    }
+    catch (GuzzleException $e) {
       return new JsonResponse(NULL, 500);
     }
 
@@ -327,8 +343,7 @@ class HelfiGdprApiController extends ControllerBase
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   JsonResponse.
    */
-  public function delete($userId): JsonResponse
-  {
+  public function delete($userId): JsonResponse {
 
     try {
       $user = $this->getUser();
@@ -336,17 +351,23 @@ class HelfiGdprApiController extends ControllerBase
 
       $this->atvService->deleteGdprData($this->jwtData['sub']);
 
-    } catch (AtvDocumentNotFoundException $e) {
+    }
+    catch (AtvDocumentNotFoundException $e) {
       return new JsonResponse(NULL, 404);
-    } catch (AtvFailedToConnectException $e) {
+    }
+    catch (AtvFailedToConnectException $e) {
       return new JsonResponse(NULL, 500);
-    } catch (TokenExpiredException $e) {
+    }
+    catch (TokenExpiredException $e) {
       return new JsonResponse(NULL, 401);
-    } catch (GuzzleException $e) {
+    }
+    catch (GuzzleException $e) {
       return new JsonResponse(NULL, 500);
-    } catch (EntityStorageException $e) {
+    }
+    catch (EntityStorageException $e) {
       return new JsonResponse(NULL, 404);
-    } catch (AtvAuthFailedException $e) {
+    }
+    catch (AtvAuthFailedException $e) {
       return new JsonResponse(NULL, 403);
     }
 
@@ -357,8 +378,7 @@ class HelfiGdprApiController extends ControllerBase
   /**
    * Parse jwt token data from token in request.
    */
-  public function parseJwt(): void
-  {
+  public function parseJwt(): void {
 
     $currentRequest = $this->request->getCurrentRequest();
 
@@ -384,9 +404,9 @@ class HelfiGdprApiController extends ControllerBase
    * @throws \Drupal\helfi_atv\AtvFailedToConnectException
    * @throws \Drupal\helfi_helsinki_profiili\TokenExpiredException
    * @throws \GuzzleHttp\Exception\GuzzleException
+   * @throws \Drupal\helfi_atv\AtvAuthFailedException
    */
-  public function getData(): array
-  {
+  public function getData(): array {
 
     $data = [];
 
@@ -578,8 +598,7 @@ class HelfiGdprApiController extends ControllerBase
    * @return \Drupal\Core\Entity\EntityBase|\Drupal\Core\Entity\EntityInterface|\Drupal\user\Entity\User|null
    *   User or some other types.
    */
-  public function getUser(): User|EntityBase|EntityInterface|null
-  {
+  public function getUser(): User|EntityBase|EntityInterface|null {
     $query = $this->connection->select('users', 'u',);
     $query->join('authmap', 'am', 'am.uid = u.uid');
     $query
@@ -599,8 +618,7 @@ class HelfiGdprApiController extends ControllerBase
    * @param array $options
    *   Options.
    */
-  private function debug(string $msg, array $options = [])
-  {
+  private function debug(string $msg, array $options = []) {
     if ($this->isDebug()) {
       $this->getLogger('helf_gdpr_api')->debug($msg, $options);
     }
