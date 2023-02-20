@@ -16,7 +16,7 @@ Force Tags      regression
 #########################################################################################
 # Mitä testataan?
 # 
-# 1. Koitetaan avata urlin kautta jonkun toisen käytäjän tekemää lomaketta ((uli))
+# 1. Koitetaan avata urlin kautta jonkun toisen käytäjän tekemää lomaketta
 #
 # Alkuvaatimukset
 # - Lomake joka tehty testikäyttäjällä 1
