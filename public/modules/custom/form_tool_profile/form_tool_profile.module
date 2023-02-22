@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_menu_local_tasks_alter().
@@ -143,4 +144,21 @@ function form_tool_profile_preprocess_page(&$vars) {
     ];
   }
 
+}
+
+/**
+ * Implements hook_user_predelete().
+ */
+function form_tool_profile_user_predelete(UserInterface $account) {
+  try {
+    $authdata = \Drupal::service('externalauth.authmap')->getAuthData($account->id(), 'openid_connect.tunnistamo');
+    if (isset($authdata['authname'])) {
+      $account->setUsername($authdata['authname']);
+      $account->setEmail(NULL);
+      $account->save();
+    }
+  }
+  catch (\Exception $e) {
+
+  }
 }
