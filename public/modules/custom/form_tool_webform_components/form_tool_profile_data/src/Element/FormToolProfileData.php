@@ -6,6 +6,7 @@ use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\EmailValidator;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -303,7 +304,7 @@ class FormToolProfileData extends WebformCompositeBase {
         '#attributes' => [
           'class' => ['is-hidden', 'profile-refresh-data-button'],
         ],
-        '#title' => 'Test ajax',
+        '#title' => 'Refresh profile data',
         '#ajax' => [
           'callback' => [static::class, 'profileDataRefreshAjaxCallback'],
         ],
@@ -364,6 +365,7 @@ class FormToolProfileData extends WebformCompositeBase {
         'error' => t('Error message'),
         'warning' => t('Warning message'),
       ],
+      '#attributes' => ['toast' => 'top-right'],
     ];
 
     $renderedHtml = \Drupal::service('renderer')->render($render);
@@ -375,6 +377,10 @@ class FormToolProfileData extends WebformCompositeBase {
         $renderedHtml
       )
     );
+    $response->addCommand(new InvokeCommand(
+      '.profile-data__refresh-link',
+      'focus'
+    ));
 
     return $response;
   }

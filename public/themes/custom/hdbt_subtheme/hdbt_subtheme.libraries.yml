@@ -12,3 +12,8 @@ global-styling:
 #     dist/js/bundle.min.js: {}
 #   dependencies:
 #     - core/drupal
+toast:
+  js:
+    js/toast.js: {}
+  dependencies:
+  - core/jquery
