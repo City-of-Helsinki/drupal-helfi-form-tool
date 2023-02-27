@@ -1,7 +1,4 @@
 services:
-  form_tool_profile.login_info:
-    class: Drupal\form_tool_profile\LoginInfoService
-    arguments: ['@language_manager', ]
   form_tool_profile.request_event_subscriber:
     class: '\Drupal\form_tool_profile\EventSubscriber\RequestEventSubscriber'
     arguments: [ '@current_user', '@current_route_match', '@request_stack' ]

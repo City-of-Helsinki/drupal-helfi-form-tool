@@ -2,7 +2,7 @@ parameters:
   - name: testEnv
     displayName: Environment
     type: string
-    default: dev
+    default: test
     values:
       - dev
       - test
@@ -41,7 +41,7 @@ jobs:
       #  failOnStderr: true
       #  displayName: "saa naha mita loytyy"
       #  continueOnError: true
-      - powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\lomake*.robot'
+      - powershell: robot -d logit --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' --exitonfailure '$(Build.SourcesDirectory)\test\tests\lomake*.robot'
       #powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' 'D:\a\1\s\test\tests\lomake-Check-tjpt-page-functionality*.robot'
         failOnStderr: true
         displayName: "Run Robot Framework Tests - All tests"
@@ -52,7 +52,7 @@ jobs:
         inputs:
           testResultsFormat: 'JUnit'
           testResultsFiles: 'outputjunit.xml'
-          searchFolder: 'D:\a\1\s\'
+          searchFolder: 'D:\a\1\s\logit\'
           publishRunAttachments: true
         condition: succeededOrFailed()
         displayName: 'Publish Test Results'
@@ -61,7 +61,7 @@ jobs:
       - task: CopyFiles@2
         inputs:
           #SourceFolder: 'D:\a\1\s\'
-          SourceFolder: $(System.DefaultWorkingDirectory)
+          SourceFolder: $(System.DefaultWorkingDirectory)\logit\
           targetFolder: $(Build.ArtifactStagingDirectory)
         condition: succeededOrFailed()
         displayName: Copy test result files to artifact staging directory

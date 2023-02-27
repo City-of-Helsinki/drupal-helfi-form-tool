@@ -10,7 +10,7 @@ Resource        ../resources/keywords/lomake-Keywords.robot
 Resource        ../resources/keywords/common-Keywords.robot
 Test Timeout    900 seconds
 Test Teardown   Run keywords   Capture Page Screenshot     Delete All Cookies  Close All Browsers
-Force Tags      smoke
+Force Tags      regression
 
 *** Test Cases ***
 #########################################################################################
@@ -24,7 +24,9 @@ Force Tags      smoke
 # 6. Valitaan toimitustavaksi postiennakko
 # 7. Täytetään postiennakko yhteystiedot
 # 8. Hyväksytään rekisteriseloste
-# 9. 
+# 9. Lähetetään lomake
+# 10. Lähdetään kirjautumaan ulos mutta päätetäänkin jatkaa
+# 11. Kirjaudutaan ulos
 #
 # Alkuvaatimukset
 # - Testikäyttäjä jolla on profiili
@@ -38,11 +40,11 @@ Login to lomake page using suomi.fi auth
     [Tags]  critical
     Select test data and open browser
     Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
+    Accept all cookies
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
     Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
     #Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
-    Accept all cookies
     Capture Page Screenshot
     [Teardown]    NONE
 

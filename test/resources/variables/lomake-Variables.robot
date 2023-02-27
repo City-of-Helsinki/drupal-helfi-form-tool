@@ -1,7 +1,7 @@
 *** Variables ***
 
 ${environment}      null
-${azure-browser-sleep}                                          10
+${azure-browser-sleep}                                          20
 
 ${nordea-default-hetu}                                          210281-9988
 ${testuser1-lomake-hetu}                                        150552-9979     # Taavetti Järvites
@@ -16,6 +16,12 @@ ${testuser1-lomake-email-user-TEST}                             taavettijarvites
 ${testuser1-lomake-email-domain-TEST}                           @guerrillamail.com
 
 ${testuser2-lomake-hetu}                                        230253-998A     # Pirkkomaija Linderstes
+
+${lomake-admin-VerkkolomakeAdmin-username}                      VerkkolomakeAdmin
+${lomake-admin-VerkkolomakeAdmin-password}                      w$g2+zU&KIJwScJU
+
+${lomake-admin-VerkkolomakeHallinnoija-username}                VerkkolomakeHallinnoija
+${lomake-admin-VerkkolomakeHallinnoija-password}                w0giZIQ3jujBeIrZ
 
 # Testdata
 # DEV
@@ -37,7 +43,8 @@ ${test_lomake-login_url}                                        https://www.hel.
 ${test_lomake-direct-logout_url}                                https://www.hel.fi/fi/test-lomakkeet/user/logout
 ${test_lomake-todistusjaljennospyynto-tilaus-direct_url}        https://www.hel.fi/fi/test-lomakkeet/todistusjaljennospyynto-tilaus
 ${test_example-app_url}                                         https://example-ui.test.hel.ninja/
-
+${test_lomake-admin-login_url}                                  https://www.hel.fi/fi/test-lomakkeet?login=form
+${test_lomake-lista-lahetetyista-lomakkeista_url}               https://www.hel.fi/fi/test-lomakkeet/node/1/webform/submissions  # Tämän ei pitäisi näkyä käyttäjälle
 # STAGE
 
 
@@ -78,7 +85,7 @@ ${lomake-tjpt-lisätiedot-field}                                 id=edit-mahdoll
 ${lomake-tjpt-rekisteriseloste-checkbox}                        //input[@data-drupal-selector='edit-privacy-policy-acceptance']
 
 # Lähetä lomake
-${lomake-tjpt-laheta-lomake-button}                             id=edit-submit
+${lomake-tjpt-laheta-lomake-button}                             id=edit-actions-submit      # Oli edit-submit
 
 #Todistusjäljennöspyyntö lähetetty sivu
 ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}                Todistusjäljennöspyyntö lähetetty
@@ -88,6 +95,10 @@ ${lomake-tjpt-nayta-lomakkeen-tiedot}                           (//span[contains
 # Olet poistumassa lomakkeelta
 ${lomake-tjpt-kirjaudu-ulos-button}                             //a[@class='hds-button hds-button--primary']
 ${lomake-tjpt-jatka-button}                                     //button[@class='hds-button hds-button--secondary dialog__close-button']
+
+# Yläoikean valikko
+${lomake-tjpt-upper-right-menu-button}                          //button[@class='nav-toggle__button nav-toggle__button--profile js-profile-button']
+${lomake-tjpt-upper-right-menu-logout-button}                   //a[@class='profile__logout-link']
 
 # Direct url
 ${lomake-direct-url-error-text-FI}                              Sivu näkyy vain kirjautuneille käyttäjille
@@ -103,7 +114,12 @@ ${guerrillamail-ekan-viestin-sisalto}                           //div[@class='em
 
 ${guerrillamail-lomake-link}                                    //a[contains(.,'HEL-TODISTUS')]
 
-
+# Lomake admin
+${lomake-admin-login-page-username-field}                       id=edit-name
+${lomake-admin-login-page-password-field}                       id=edit-pass
+${lomake-admin-login-page-kirjaudu-button}                      id=edit-submit
+${lomake-admin-front-page-asetukset-menu}                       //a[@data-drupal-link-system-path='admin/config']   # Näkyy vain VerkkolomakeAdminille
+${lomake-admin-front-page-rakenne-menu}                         //a[@data-drupal-link-system-path='admin/structure'] 
 
 
 

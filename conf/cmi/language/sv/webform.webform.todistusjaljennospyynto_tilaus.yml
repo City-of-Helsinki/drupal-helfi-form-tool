@@ -20,3 +20,5 @@ elements: |
     '#cod_phone_number__title': ''
     '#pickup__title': ''
     '#email__title': ''
+  mahdolliset_lisatiedot:
+    '#title': 'Om ditt namn eller din personbeteckning har ändrats, ange här namn och personbeteckning för tidpunkten då betyget utfärdades.'

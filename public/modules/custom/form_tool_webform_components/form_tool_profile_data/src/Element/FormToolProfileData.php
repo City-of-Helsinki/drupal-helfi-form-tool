@@ -347,7 +347,7 @@ class FormToolProfileData extends WebformCompositeBase {
     $value = $element['#value'] ?? NULL;
 
     if (!empty($value)) {
-      $valid = preg_match("/^\+[\d]+\b/", $value);
+      $valid = preg_match("/^\+?[\d]+\b/", $value);
       if (!$valid) {
         $form_state->setError($element, t('%name is not a valid number.', [
           '%name' => t('Primary phone'),

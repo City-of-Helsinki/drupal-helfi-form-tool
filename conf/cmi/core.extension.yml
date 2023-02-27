@@ -5,6 +5,7 @@ module:
   admin_toolbar_tools: 0
   allowed_formats: 0
   block: 0
+  block_content: 0
   breakpoint: 0
   cache_control_override: 0
   ckeditor: 0
@@ -37,7 +38,9 @@ module:
   file_mdm: 0
   filter: 0
   focal_point: 0
+  form_tool_auditlog: 0
   form_tool_contact_info: 0
+  form_tool_noscript: 0
   form_tool_profile: 0
   form_tool_profile_data: 0
   form_tool_share: 0
@@ -53,6 +56,7 @@ module:
   helfi_announcements: 0
   helfi_api_base: 0
   helfi_atv: 0
+  helfi_audit_log: 0
   helfi_base_config: 0
   helfi_charts: 0
   helfi_contact_cards: 0
@@ -99,6 +103,7 @@ module:
   path: 0
   path_alias: 0
   permissions_filter: 0
+  purge_users: 0
   redirect: 0
   responsive_image: 0
   rest: 0

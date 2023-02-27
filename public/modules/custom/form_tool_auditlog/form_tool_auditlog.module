@@ -1,0 +1,201 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Form Tool auditlog module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+use Drupal\Component\Utility\DiffArray;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\form_tool_auditlog\Event\UserPresaveEvent;
+use Drupal\node\Entity\Node;
+use Drupal\user\UserInterface;
+use Drupal\webform\Entity\Webform;
+
+/**
+ * Implements hook_webform_delete().
+ */
+function form_tool_auditlog_webform_delete(Webform $entity) {
+  $message = [
+    'operation' => 'DELETE',
+    'status'    => 'SUCCESS',
+    'target'    => [
+      'id' => $entity->id(),
+      'type' => 'WEBFORM',
+    ],
+    'actor' => [
+      'id' => \Drupal::currentUser()->id(),
+    ],
+  ];
+
+  \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+}
+
+/**
+ * Implements hook_webform_delete().
+ */
+function form_tool_auditlog_webform_insert(Webform $entity) {
+  $message = [
+    'operation' => 'CREATE',
+    'status'    => 'SUCCESS',
+    'target'    => [
+      'id' => $entity->id(),
+      'type' => 'WEBFORM',
+    ],
+    'actor' => [
+      'id' => \Drupal::currentUser()->id(),
+    ],
+  ];
+
+  \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+}
+
+/**
+ * Implements hook_webform_delete().
+ */
+function form_tool_auditlog_webform_update(Webform $entity) {
+
+  if ($entity->isNew()) {
+    return;
+  }
+
+  $diff = array_keys(DiffArray::diffAssocRecursive($entity->toArray(), $entity->original->toArray()));
+
+  $message = [
+    'operation' => 'UPDATE',
+    'status'    => 'SUCCESS',
+    'target'    => [
+      'id' => $entity->id(),
+      'type' => 'WEBFORM',
+      'changes' => $diff,
+    ],
+    'actor' => [
+      'id' => \Drupal::currentUser()->id(),
+    ],
+  ];
+
+  \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function form_tool_auditlog_node_view(array &$build, Node $node, $display, $view_mode) {
+  if ($node->getType() === 'webform') {
+
+    $webform_relation = $node->get('webform')->getValue()[0] ?? NULL;
+
+    if (!$webform_relation) {
+      return;
+    }
+
+    $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']);
+
+    $thirdPartySettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
+
+    $requestUserData = \Drupal::request()->getSession()->get('userData');
+    $subId = $requestUserData['sub'] ?? NULL;
+
+    $message = [
+      'operation' => 'READ',
+      'target'    => [
+        'id' => $webform_relation['target_id'],
+        'form_code' => $thirdPartySettings['form_code'] ?? NULL,
+        'type' => 'WEBFORM',
+      ],
+      'actor' => [
+        'user_id' => $subId,
+        'id' => Drupal::currentUser()->id(),
+      ],
+    ];
+
+    \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+  }
+}
+
+/**
+ * Implements hook_openid_connect_post_authorize().
+ */
+function form_tool_auditlog_openid_connect_post_authorize(UserInterface $account, array $context) {
+
+  $message = [
+    'operation' => 'OPENID_LOGIN',
+    'status'    => 'SUCCESS',
+    'target' => [
+      'id' => $context['sub'],
+      'type' => 'USER',
+      'name' => 'User Open ID login',
+    ],
+  ];
+
+  \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function form_tool_auditlog_user_login(AccountInterface $account) {
+  // Regular Drupal login event.
+  $message = [
+    'operation' => 'DRUPAL_LOGIN',
+    'status'    => 'SUCCESS',
+    'target' => [
+      'id' => $account->id(),
+      'type' => 'USER',
+      'name' => 'User Login',
+    ],
+  ];
+
+  \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function form_tool_auditlog_user_logout(AccountInterface $account) {
+  $userData = \Drupal::request()->getSession()->get('userData');
+  $has_openid = \Drupal::request()->getSession()->get('openid_connect_access') ?? NULL;
+
+  // Open ID logout event.
+  if ($has_openid) {
+    $message = [
+      'operation' => 'OPENID_LOGOUT',
+      'status'    => 'SUCCESS',
+      'target' => [
+        'id' => $userData['sub'],
+        'type' => 'USER',
+        'name' => 'User Open ID logout',
+      ],
+    ];
+
+    \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+  }
+
+  // Regular Drupal logout event.
+  $message = [
+    'operation' => 'DRUPAL_LOGOUT',
+    'status'    => 'SUCCESS',
+    'target' => [
+      'id' => $account->id(),
+      'type' => 'USER',
+      'name' => 'User logout',
+    ],
+  ];
+
+  \Drupal::service('helfi_audit_log.audit_log')->dispatchEvent($message);
+
+}
+
+/**
+ * Implements hook_user_presave().
+ */
+function form_tool_auditlog_user_presave(EntityInterface $entity) {
+  $event = new UserPresaveEvent($entity);
+  $dispatcher = \Drupal::service('event_dispatcher');
+  $dispatcher->dispatch('form_tool_auditlog.user.presave', $event);
+}

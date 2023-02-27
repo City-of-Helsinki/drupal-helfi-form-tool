@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ef84c5e9aafa6007a7246af1fc049c3",
+    "content-hash": "0c8551b6d183ec139f179fc3271b5797",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4864,16 +4864,16 @@
         },
         {
             "name": "drupal/helfi_atv",
-            "version": "0.9.0",
+            "version": "0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "e27719098b42975b9de135ee855bc5b1033186f2"
+                "reference": "aa3411d47254f952b32c8a11eb840dc2a1048672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/e27719098b42975b9de135ee855bc5b1033186f2",
-                "reference": "e27719098b42975b9de135ee855bc5b1033186f2",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/aa3411d47254f952b32c8a11eb840dc2a1048672",
+                "reference": "aa3411d47254f952b32c8a11eb840dc2a1048672",
                 "shasum": ""
             },
             "require": {
@@ -4890,10 +4890,39 @@
             ],
             "description": "ATV integration module",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/0.9.0",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/0.9.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2023-02-07T08:41:36+00:00"
+            "time": "2023-02-17T08:47:39+00:00"
+        },
+        {
+            "name": "drupal/helfi_audit_log",
+            "version": "0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log.git",
+                "reference": "f76d8cad31b59254cbcff890699ba98aca425996"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-audit-log/zipball/f76d8cad31b59254cbcff890699ba98aca425996",
+                "reference": "f76d8cad31b59254cbcff890699ba98aca425996",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "drupal/coder": "^8.3"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helfi - Audit log",
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/tree/0.9",
+                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/issues"
+            },
+            "time": "2023-02-09T08:48:43+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
@@ -4955,16 +4984,16 @@
         },
         {
             "name": "drupal/helfi_helsinki_profiili",
-            "version": "0.9.2",
+            "version": "0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "0a288e94e53a4c13546458cffb8c85488c4a197e"
+                "reference": "650ebff8e6bd633a1e63cac1fc3e939f6258bd6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/0a288e94e53a4c13546458cffb8c85488c4a197e",
-                "reference": "0a288e94e53a4c13546458cffb8c85488c4a197e",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/650ebff8e6bd633a1e63cac1fc3e939f6258bd6b",
+                "reference": "650ebff8e6bd633a1e63cac1fc3e939f6258bd6b",
                 "shasum": ""
             },
             "require": {
@@ -4989,10 +5018,10 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/0.9.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/0.9.5",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2023-02-09T06:23:37+00:00"
+            "time": "2023-02-16T06:06:58+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
@@ -6442,6 +6471,54 @@
             "homepage": "https://www.drupal.org/project/purge",
             "support": {
                 "source": "https://git.drupalcode.org/project/purge"
+            }
+        },
+        {
+            "name": "drupal/purge_users",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/purge_users.git",
+                "reference": "8.x-3.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/purge_users-8.x-3.1.zip",
+                "reference": "8.x-3.1",
+                "shasum": "afde7eab938770336375f29c3f0615e587829c9d"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.1",
+                    "datestamp": "1655735072",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Andras_Szilagyi",
+                    "homepage": "https://www.drupal.org/user/1217938"
+                },
+                {
+                    "name": "jim.applebee",
+                    "homepage": "https://www.drupal.org/user/2498674"
+                }
+            ],
+            "description": "Purge inactive users after a set interval.",
+            "homepage": "https://www.drupal.org/project/purge_users",
+            "support": {
+                "source": "https://git.drupalcode.org/project/purge_users"
             }
         },
         {

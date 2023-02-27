@@ -6,6 +6,12 @@ Select test data and open browser
     Sleep                                           ${azure-browser-sleep}
     Browser specific sleep                          ${environment}    
     Log                                             ${environment}
+    Capture Page Screenshot
+    set window size    1920  1024
+    ${width}     ${height}=     get window size
+    log     ${width}
+    log    ${height}
+    Capture Page Screenshot
 
 Browser specific sleep
     [Arguments]    ${selected-env}
@@ -32,8 +38,8 @@ Select url depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-chrome'             Open Browser    ${lomake_url}   gc
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Open Browser    ${lomake_url}   edge
     ...     ELSE                '${TYPE}' == '7'                        temp
-    Maximize Browser Window
-    Set Window Size             1920    1024
+    #Maximize Browser Window
+    #Set Window Size             1920    1024
 
 Select test data depending on the selected env
     [Arguments]                 ${selected-env}
@@ -76,6 +82,7 @@ Select test env test data and urls
     Set Suite Variable          ${lomake_url}                           ${test_lomake-todistusjaljennospyynto-tilaus-direct_url}
     Set Suite Variable          ${example-app_url}                      ${test_example-app_url}
     Set Suite Variable          ${tjpt-direct_url}                      ${test_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    Set Suite Variable          ${lomake-admin-login_url}               ${test_lomake-admin-login_url}
 
     # Testdata
     Set Suite Variable          ${lomake-direct-url}                    ${testdata-test-lomake-tehty-hetulla-testuser1-direct-url}
@@ -182,3 +189,20 @@ Odota emailin päivitä tietosi viestiä
 Lataa sivu uudestaan ja tarkista onko päivitä tietosi viesti tullut
     Reload Page
     Wait Until Page Contains                            ${Profiili-UI-omat-tiedot-sahkoposti-paivita-tietosi-text1-FI}
+
+#######################################################
+# Admin
+
+Login as VerkkolomakeAdmin
+    Wait Until Page Contains Element                    ${lomake-admin-login-page-username-field}       20
+    Input Text                                          ${lomake-admin-login-page-username-field}       ${lomake-admin-VerkkolomakeAdmin-username}
+    Input Text                                          ${lomake-admin-login-page-password-field}       ${lomake-admin-VerkkolomakeAdmin-password}
+    Click Element                                       ${lomake-admin-login-page-kirjaudu-button}
+    Wait Until Page Contains Element                    ${lomake-admin-front-page-asetukset-menu}
+
+Login as VerkkolomakeHallinnoija
+    Wait Until Page Contains Element                    ${lomake-admin-login-page-username-field}       20
+    Input Text                                          ${lomake-admin-login-page-username-field}       ${lomake-admin-VerkkolomakeHallinnoija-username}
+    Input Text                                          ${lomake-admin-login-page-password-field}       ${lomake-admin-VerkkolomakeHallinnoija-password}
+    Click Element                                       ${lomake-admin-login-page-kirjaudu-button}
+    Wait Until Page Contains Element                    ${lomake-admin-front-page-rakenne-menu}

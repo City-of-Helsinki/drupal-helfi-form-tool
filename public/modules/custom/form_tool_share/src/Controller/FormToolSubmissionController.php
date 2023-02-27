@@ -7,11 +7,13 @@ use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\form_tool_share\Event\SubmissionViewEvent;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\webform_formtool_handler\Plugin\WebformHandler\FormToolWebformHandler;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -50,6 +52,13 @@ class FormToolSubmissionController extends ControllerBase {
   protected RequestStack $request;
 
   /**
+   * The event dispatcher service.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected EventDispatcherInterface $eventDispatcher;
+
+  /**
    * The controller constructor.
    *
    * @param \Drupal\helfi_atv\AtvService $helfi_atv
@@ -58,16 +67,20 @@ class FormToolSubmissionController extends ControllerBase {
    *   The helfi_helsinki_profiili service.
    * @param \Drupal\Core\Http\RequestStack $request
    *   Request stack.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   Event dispatcher.
    */
   public function __construct(
     AtvService $helfi_atv,
     HelsinkiProfiiliUserData $helfi_helsinki_profiili,
-    RequestStack $request
+    RequestStack $request,
+    EventDispatcherInterface $event_dispatcher,
   ) {
     $this->helfiAtv = $helfi_atv;
     $this->helfiHelsinkiProfiili = $helfi_helsinki_profiili;
     $this->account = \Drupal::currentUser();
     $this->request = $request;
+    $this->eventDispatcher = $event_dispatcher;
   }
 
   /**
@@ -78,6 +91,7 @@ class FormToolSubmissionController extends ControllerBase {
       $container->get('helfi_atv.atv_service'),
       $container->get('helfi_helsinki_profiili.userdata'),
       $container->get('request_stack'),
+      $container->get('event_dispatcher')
     );
   }
 
@@ -120,6 +134,16 @@ class FormToolSubmissionController extends ControllerBase {
     $address = $entity->getWebform()->getThirdPartySettings('form_tool_webform_parameters')['postal_address'];
     $submission_date = $entity->getFields()['created']->getValue()[0]['value'];
     $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+    // Fire up an event on submission view.
+    $result = \Drupal::service('database')
+      ->query("SELECT submission_uuid,document_uuid,admin_owner,admin_roles,user_uuid FROM {form_tool_map} WHERE submission_uuid = :submission_uuid", [
+        ':submission_uuid' => $entity->get('uuid')->value,
+      ]);
+    $submissionData = $result->fetchObject();
+
+    $event = new SubmissionViewEvent($submissionData, $this->request->getCurrentRequest());
+    $this->eventDispatcher->dispatch(SubmissionViewEvent::SUBMISSION_VIEW, $event);
 
     return [
       '#theme' => 'submission_print',

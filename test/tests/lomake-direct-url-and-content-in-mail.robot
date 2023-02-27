@@ -10,7 +10,7 @@ Resource        ../resources/keywords/lomake-Keywords.robot
 Resource        ../resources/keywords/common-Keywords.robot
 Test Timeout    900 seconds
 Test Teardown   Run keywords  Capture Page Screenshot     Delete All Cookies    Close All Browsers
-Force Tags      smoke
+Force Tags      regression
 
 *** Variables ***
 ${koulun-nimi}                                              Mauri Makkaran ala-aste
@@ -93,8 +93,19 @@ Open mailbox, check content and get direct lomake url
     Wait Until Page Contains Element                        ${guerrillamail-lomake-link}                                20
     ${url}=  Get Element Attribute                          ${guerrillamail-lomake-link}                                href
     Log                                                     ${url}
-    Switch Browser                                          2   #Browser 2
-    Go To                                                   ${url}
+    Set Suite Variable                                      ${url-from-mail}                                            ${url}
+
+Open browser and open direct url
+    # Aiemmin tässä kohdassa vaihdettiin vain jo avoinna olevaan selaimeen 2 mutta azure nyt tekee jotain minkä
+    # takia tämä steppi ei nyt toimi (pyytää kirjautumaan uudestaan).
+    # Joten avataan uusi selain ja lomake siihen suoralla urlilla
+    Select test data and open browser
+    Accept all cookies
+    Wait Until Page Contains Element                        ${lomake-login-button-FI}                                   20
+    Click Element                                           ${lomake-login-button-FI}
+    Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
+    Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
+    Go To                                                   ${url-from-mail}    #${url}
     ## Tarkista, että lomake sivu aukeaa ja se sisältää lomakkeelle täytettyä tietoa
     Wait Until Page Contains                                ${random-text-lomakkeen-tiedot-sivulla}                     20
     Page Should Contain                                     ${koulun-nimi}
