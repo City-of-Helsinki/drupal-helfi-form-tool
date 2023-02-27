@@ -5,6 +5,7 @@ module:
   admin_toolbar_tools: 0
   allowed_formats: 0
   block: 0
+  block_content: 0
   breakpoint: 0
   cache_control_override: 0
   ckeditor: 0
@@ -102,6 +103,7 @@ module:
   path: 0
   path_alias: 0
   permissions_filter: 0
+  purge_users: 0
   redirect: 0
   responsive_image: 0
   rest: 0
