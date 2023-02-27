@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install file.
+ */
+
+/**
+ * Reinstall default settings.
+ */
+function form_tool_profile_update_9001() {
+  \Drupal::service('config.installer')->installDefaultConfig('module', 'form_tool_profile');
+}
