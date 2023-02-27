@@ -51,6 +51,15 @@ This will log you inside the app container:
 $ make shell
 ```
 
+## Local mailhog configurations for email testing.
+Add following configurations to your local.settings.php file
+```
+$config['smtp.settings']['smtp_host'] = "stonehenge";
+$config['smtp.settings']['smtp_port'] = 1025;
+```
+
+[Mailhog dashboard to check the mails](https://mailhog.docker.so/)
+
 ## Documentation
 
 See [documentatation](https://github.com/City-of-Helsinki/drupal-helfi-platform/tree/main/documentation).
