@@ -1,5 +1,0 @@
-form_tool_profile.login_info:
-  title: 'Helfi: Login info configuration'
-  route_name: form_tool_profile.settings
-  menu_name: Hel.fi
-  parent: 'system.admin_config'
