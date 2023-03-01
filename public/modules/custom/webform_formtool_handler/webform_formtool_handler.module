@@ -34,6 +34,12 @@ function webform_formtool_handler_theme(): array {
         'language' => NULL,
       ],
     ],
+    'submission_email_notify' => [
+      'variables' => ['url' => NULL, 'title' => NULL, 'language' => NULL],
+    ],
+    'submission_email_notify_submitter' => [
+      'variables' => ['url' => NULL, 'title' => NULL, 'language' => NULL],
+    ],
   ];
 }
 
@@ -46,6 +52,12 @@ function webform_formtool_handler_mail($key, &$message, $params) {
   ];
 
   switch ($key) {
+    case 'submission_email_notify_submitter':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Your form submission is viewable');
+      $message['body'][] = $params['message'];
+      break;
+
     case 'submission_email_notify':
       $message['from'] = \Drupal::config('system.site')->get('mail');
       $message['subject'] = t('New submission for @title', ['@title' => $params['form_title']], $options);

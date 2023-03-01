@@ -1,0 +1,31 @@
+{% if language == 'fi' %}
+Hei!
+
+Lomakkeesi on katseltavissa
+Pääset katselemaan lähettämääsi lomaketta tunnistautumalla.
+
+Siirry lomakkeelle: {{url}}
+
+
+Ystävällisin terveisin,
+
+Helsingin Kaupunki
+Lomakepalvelu
+
+Tämä on automaattinen heräteviesti. Ethän vastaa tähän viestiin, sillä vastauksia ei käsitellä.
+{% elseif language == 'sv' %}
+Hej!
+
+Din blankett finns till påseende.
+Du kan titta på blanketten du skickade genom att identifiera dig.
+
+Gå till blanketten: {{ url }}
+
+
+Med vänlig hälsning,
+
+Helsingfors stad
+Blankettjänst
+
+Det här är ett automatiskt meddelande. Svara inte på det här meddelandet, för ditt svarsmeddelande kommer inte att behandlas.
+{% endif %}

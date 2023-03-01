@@ -5,8 +5,6 @@ namespace Drupal\webform_formtool_handler\Plugin\WebformHandler;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityRepository;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
 use Drupal\helfi_atv\AtvService;
 use Drupal\helfi_helsinki_profiili\HelsinkiProfiiliUserData;
 use Drupal\helfi_helsinki_profiili\TokenExpiredException;
@@ -385,48 +383,15 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
         if (isset($thirdPartySettings["email_notify"]) &&
           !empty($thirdPartySettings["email_notify"])) {
-          /** @var \Drupal\Core\Mail\MailManager $mailManager */
-          $mailManager = \Drupal::service('plugin.manager.mail');
-          $module = 'webform_formtool_handler';
-          $key = 'submission_email_notify';
-          $toArray = [
-            $userProfileData["myProfile"]["primaryEmail"]["email"],
-            $thirdPartySettings["email_notify"],
-          ];
-          $to = implode(',', $toArray);
 
-          $url = Url::fromRoute(
-            'form_tool_share.view_submission',
-            ['submission_id' => $formToolSubmissionId],
-            [
-              'attributes' => [
-                'data-drupal-selector' => 'form-submitted-ok',
-              ],
-            ]
-          );
+          $submissionEmailService = \Drupal::service('webform_formtool_handler.submission_email_service');
 
-          $params['message'] = $this->t(
-            'Form submission (@number) saved,
-         see application status from @link',
-            [
-              '@number' => $formToolSubmissionId,
-              '@link' => Link::fromTextAndUrl('here', $url)->toString(),
-            ]);
+          // Mail to submitter.
+          $submissionEmailService->sendSubmitterEmail($userProfileData["myProfile"]["primaryEmail"]["email"], $formToolSubmissionId);
 
-          $params['form_title'] = $webform->get('title');
-          $langcode = \Drupal::currentUser()->getPreferredLangcode();
-          $send = TRUE;
-
-          $result = $mailManager->mail($module, $key, $to, $langcode, $params,
-            NULL, $send);
-
-          if ($result['result'] !== TRUE) {
-            $this->messenger()->addError(t('There was a problem sending
-            confirmation message and it was not sent.'), 'error');
-          }
-          else {
-            $this->messenger()->addStatus(t('Your message has been sent.'));
-          }
+          // Mail to controller.
+          $to = $thirdPartySettings["email_notify"];
+          $submissionEmailService->sendControllerEmail($to, $formToolSubmissionId, $webform->get('title'));
         }
       }
       catch (TokenExpiredException $e) {
