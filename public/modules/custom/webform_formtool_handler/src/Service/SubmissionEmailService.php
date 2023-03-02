@@ -105,6 +105,15 @@ class SubmissionEmailService {
 
   /**
    * Renders the email body.
+   *
+   * @param string $themeKey
+   *   Theme key to render email.
+   * @param string $url
+   *   Submission url.
+   * @param string $langCode
+   *   Language of the email.
+   * @param string $formTitle
+   *   Title of the form. Used in controller subject and body.
    */
   private function renderEmailBody(string $themeKey, string $url, string $langCode, $formTitle = NULL) {
     $render = [
@@ -126,6 +135,9 @@ class SubmissionEmailService {
 
   /**
    * Generates an url for a submission id.
+   *
+   * @param string $submission_id
+   *   Submission id.
    */
   private function generateSubmissionLink(string $submission_id) {
     return Url::fromRoute(
