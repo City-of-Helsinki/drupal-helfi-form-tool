@@ -10,3 +10,11 @@ services:
     arguments: [
         '@http_client'
     ]
+  webform_formtool_handler.submission_email_service:
+    class: Drupal\webform_formtool_handler\Service\SubmissionEmailService
+    arguments: [
+      '@language_manager',
+      '@plugin.manager.mail',
+      '@renderer',
+      '@messenger',
+    ]

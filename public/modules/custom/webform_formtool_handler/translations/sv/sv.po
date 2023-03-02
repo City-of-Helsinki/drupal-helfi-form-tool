@@ -33,3 +33,6 @@ msgstr "Töysägatan 2 D"
 msgctxt "Submission Print page for the MVP form"
 msgid "00510 Helsinki"
 msgstr "00510 Helsingfors"
+
+msgid "Your form submission is viewable"
+msgstr "Din blankett finns till påseende"
