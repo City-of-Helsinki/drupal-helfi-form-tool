@@ -16,6 +16,7 @@
         "drupal/core-recommended": "^9.0",
         "drupal/devel": "^4.1",
         "drupal/devel_kint_extras": "^1.0",
+        "drupal/disable_messages": "^2.1",
         "drupal/error_page": "^2.0",
         "drupal/hdbt": "^4.0",
         "drupal/hdbt_admin": "^1.0",
