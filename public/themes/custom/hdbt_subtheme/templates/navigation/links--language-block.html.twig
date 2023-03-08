@@ -43,6 +43,7 @@
         {% set classes = ['language-link'] %}
         {% set ariaCurrent = null %}
         {% set title = null %}
+        {% set set_no_translation = false %}
 
         {# Check if link is part of alternative menu and set class accordingly. #}
         {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
@@ -54,23 +55,17 @@
             {% set language_link = item["link"]["#url"]|render %}
           {% endif %}
           {% if item["link"]["#options"]["no_translation"] is defined %}
-            {% set element = 'span' %}
-            {% set language_link = '' %}
-            {% if lang == 'en' %}
-              {% set title = create_attribute({'title': 'There is no English translation for this page'}) %}
-            {% elseif lang == 'fi' %}
-              {% set title = create_attribute({'title': 'Tästä sivusta ei ole suomenkielistä käännöstä'}) %}
-            {% elseif lang == 'sv' %}
-              {% set title = create_attribute({'title': 'Det finns ingen svensk översättning för denna sida'}) %}
-            {% elseif lang == 'ru' %}
-              {% set title = create_attribute({'title': 'Для этой страницы нет русского перевода'}) %}
-            {% endif %}
+            {% set set_no_translation = true %}
           {% endif %}
         {% elseif lang == current_langcode %}
           {% set language_link = path('<current>', {}, {'language': item.link['#options']['language']}) %}
           {% set element = 'a' %}
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
         {% else %}
+          {% set set_no_translation = true %}
+        {% endif %}
+
+        {% if set_no_translation == true %}
           {% set element = 'span' %}
           {% set classes = classes|merge(['is-disabled']) %}
           {% if lang == 'en' %}
