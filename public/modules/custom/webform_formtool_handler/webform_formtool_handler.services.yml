@@ -18,3 +18,11 @@ services:
       '@renderer',
       '@messenger',
     ]
+  webform_formtool_handler.form_submission_listtner:
+    class: Drupal\webform_formtool_handler\EventSubscriber\WebformSubmissionSubscriber
+    arguments: [
+        '@http_client',
+        '@logger.factory',
+    ]
+    tags:
+      - { name: event_subscriber }
