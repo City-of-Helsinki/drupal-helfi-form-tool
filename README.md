@@ -1,6 +1,6 @@
 # Hel.fi Form tool
 
-Description of your project.
+Description of your project...
 
 ## Environments
 
