@@ -15,6 +15,7 @@
         "drupal/cache_control_override": "^1.0@alpha",
         "drupal/core-composer-scaffold": "^9.0",
         "drupal/core-recommended": "^9.0",
+        "drupal/csp": "^1.17",
         "drupal/devel": "^4.1",
         "drupal/devel_kint_extras": "^1.0",
         "drupal/disable_messages": "^2.1",
