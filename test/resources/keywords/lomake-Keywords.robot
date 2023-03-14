@@ -37,7 +37,8 @@ Select url depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-firefox'            Open Browser    ${lomake_url}   firefox
     ...     ELSE IF             '${TYPE}' == 'stage-chrome'             Open Browser    ${lomake_url}   gc
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Open Browser    ${lomake_url}   edge
-    ...     ELSE                '${TYPE}' == '7'                        temp
+    ...     ELSE IF             '${TYPE}' == 'local'                    Open Browser    ${lomake_url}   edge
+    ...     ELSE                '${TYPE}' == 'null'                        Open Browser    ${lomake_url}   gc      #temp
     #Maximize Browser Window
     #Set Window Size             1920    1024
 
@@ -54,7 +55,15 @@ Select test data depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-firefox'            Select stage env test data and urls
     ...     ELSE IF             '${TYPE}' == 'stage-chrome'             Select stage env test data and urls
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Select stage env test data and urls
+    ...     ELSE IF             '${TYPE}' == 'local'                  Select local env test data and urls
     ...     ELSE                '${TYPE}' == '7'                        temp
+
+Select local test data and urls
+    # Env
+    Set Suite Variable          ${lomake-selected-env}                  local-
+    
+    # Url
+    Set Suite Variable          ${lomake_url}                           ${local_lomake_url}
 
 Select dev test data and urls
     # Env
@@ -66,7 +75,7 @@ Select dev test data and urls
     Set Suite Variable          ${tjpt-direct_url}                      ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
 
     # Testdata
-    Set Suite Variable          ${lomake-direct-url}                    ${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}
+    #Set Suite Variable          ${lomake-direct-url}                    ${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}
 
     # Users
     Set Suite Variable          ${testuser1-lomake-email}               ${testuser1-lomake-email-DEV}        
@@ -85,19 +94,27 @@ Select test env test data and urls
     Set Suite Variable          ${lomake-admin-login_url}               ${test_lomake-admin-login_url}
 
     # Testdata
-    Set Suite Variable          ${lomake-direct-url}                    ${testdata-test-lomake-tehty-hetulla-testuser1-direct-url}
+    #Set Suite Variable          ${lomake-direct-url}                    ${testdata-test-lomake-tehty-hetulla-testuser1-direct-url}
 
     # Users
     Set Suite Variable          ${testuser1-lomake-email}               ${testuser1-lomake-email-TEST}        
     Set Suite Variable          ${testuser1-lomake-email-user}          ${testuser1-lomake-email-user-TEST}   
     Set Suite Variable          ${testuser1-lomake-email-domain}        ${testuser1-lomake-email-domain-TEST} 
 
-
-
 Select stage env test data and urls
     # Env
     Set Suite Variable          ${lomake-selected-env}                            stage-
     
+    # Url
+    Set Suite Variable          ${lomake_url}                           ${stage_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    Set Suite Variable          ${example-app_url}                      ${stage_example-app_url}
+    Set Suite Variable          ${tjpt-direct_url}                      ${stage_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    Set Suite Variable          ${lomake-admin-login_url}               ${stage_lomake-admin-login_url}
+
+    # Testdata
+
+    # Users
+
 Select prod test data and urls
     # Env
     Set Suite Variable          ${lomake-selected-env}                            prod-
@@ -154,11 +171,23 @@ Fill postiennakko information
 Kirjaudu guerrillamail.com
     [Arguments]                                         ${mail-user}     #Anna tähän pelkkä user eli gjroiejgre osoitteesta gjroiejgre@guerrillamail.com
     Go To                                               ${guerrillamail-url}
+    Tarkista onko sertti taas kerran vanhentunut
     Wait Until Page Contains Element                    ${guerrillamail-user-field-button}
     Click Element                                       ${guerrillamail-user-field-button}
     Input Text                                          ${guerrillamail-user-field}             ${mail-user}
     Click Element                                       ${guerrillamail-domain-dropdown}
     Click Element                                       ${guerrillamail-user-set-button}
+
+Tarkista onko sertti taas kerran vanhentunut
+    Sleep                                               5
+    ${passed} =                         Run Keyword And Return Status           Page Should Contain Element            ${guerrillamail-sert-fail-advanced-button}
+    Run Keyword If                      ${passed}                               Tarkista onko sertti taas kerran vanhentunut - proceed
+
+Tarkista onko sertti taas kerran vanhentunut - proceed
+    Wait Until Page Contains Element                    ${guerrillamail-sert-fail-advanced-button}      20
+    Click Element                                       ${guerrillamail-sert-fail-advanced-button}
+    Wait Until Page Contains Element                    ${guerrillamail-sert-fail-proceed-link}         20
+    Click Element                                       ${guerrillamail-sert-fail-proceed-link}
 
 Poista kaikki viestit avoinna olevasta guerrillamail mailiboxista
     ${message-count-temp} =      Get Element Count      //tbody[@id='email_list']/tr//input[@name='mid[]']
@@ -180,7 +209,7 @@ Odota emailin form submission viestiä
 
 Lataa sivu uudestaan ja tarkista onko vahvistus viesti tullut
     Reload Page
-    Wait Until Page Contains                            New submission    #Vahvista sähköposti
+    Wait Until Page Contains                            Lomakkeesi on katseltavissa    #New submission    #Vahvista sähköposti
 
 Odota emailin päivitä tietosi viestiä
 # Kun sähköpostiosoite vaihdetaan profiilista

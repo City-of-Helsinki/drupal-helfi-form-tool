@@ -42,7 +42,7 @@ Login to lomake page using suomi.fi auth
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
     Wait Until Page Contains Element                        ${lomake-front-page-random-element}                         20
-    Go To                                                   ${dev_lomake-todistusjaljennospyynto-tilaus-direct_url}
+    Go To                                                   ${stage_lomake-todistusjaljennospyynto-tilaus-direct_url}
     Accept all cookies
     Capture Page Screenshot
     [Teardown]    NONE
