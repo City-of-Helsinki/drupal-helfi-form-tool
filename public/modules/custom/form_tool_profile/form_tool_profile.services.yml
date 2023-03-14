@@ -1,6 +1,6 @@
 services:
   form_tool_profile.request_event_subscriber:
     class: '\Drupal\form_tool_profile\EventSubscriber\RequestEventSubscriber'
-    arguments: [ '@current_user', '@current_route_match', '@request_stack' ]
+    arguments: [ '@current_user', '@current_route_match', '@request_stack', '@page_cache_kill_switch' ]
     tags:
       - { name: 'event_subscriber'}
