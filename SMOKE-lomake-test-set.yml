@@ -1,6 +1,6 @@
 jobs:
   - job: InstallAndRun
-    displayName: Run robot framework regression tests - ${{ parameters.testEnv }}
+    displayName: Run robot framework smoke tests - STAGE
     continueOnError: true
     pool:
       vmImage: 'windows-2019'
@@ -29,7 +29,7 @@ jobs:
         inputs:
           testResultsFormat: 'JUnit'
           testResultsFiles: 'outputjunit.xml'
-          searchFolder: 'D:\a\1\s\'
+          searchFolder: 'D:\a\1\s\logit\'
           publishRunAttachments: true
         condition: succeededOrFailed()
         displayName: 'Publish Test Results'
@@ -38,7 +38,7 @@ jobs:
       - task: CopyFiles@2
         inputs:
           #SourceFolder: 'D:\a\1\s\'
-          SourceFolder: $(System.DefaultWorkingDirectory)
+          SourceFolder: $(System.DefaultWorkingDirectory)\logit\
           targetFolder: $(Build.ArtifactStagingDirectory)
         condition: succeededOrFailed()
         displayName: Copy test result files to artifact staging directory
@@ -47,6 +47,6 @@ jobs:
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: $(Build.ArtifactStagingDirectory)
-          artifactName: BuildOutputs-${{ parameters.testEnv }}-${{ parameters.testBrowser }}
+          artifactName: STAGE - Chrome
         condition: succeededOrFailed()
         displayName: Publish build artifacts
