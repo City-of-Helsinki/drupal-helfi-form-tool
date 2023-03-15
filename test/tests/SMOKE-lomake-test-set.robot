@@ -69,10 +69,18 @@ Fill and send form
     Capture Page Screenshot
     Click Element                                           ${lomake-tjpt-laheta-lomake-button}
     Wait Until Page Contains                                ${lomake-tjpt-todistus-pyynto-lahetetty-text-FI}            20
-    #Kirjaudu ulos
     Get Location
     ${urli} =                                               Get Location
     Log                                                     ${urli}
+    [Teardown]    NONE
+
+Logout
+    # Kirjaudu ulos
+    Wait Until Page Contains Element                        ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
+    Capture Page Screenshot
     Click Element                                           ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
+    Wait Until Page Contains Element                        ${lomake-tjpt-kirjaudu-ulos-button}
+    Capture Page Screenshot
+    Click Element                                           ${lomake-tjpt-kirjaudu-ulos-button}
     Wait Until Page Contains                                You have been logged out of City of Helsinki services       20
     #[Teardown]    NONE
