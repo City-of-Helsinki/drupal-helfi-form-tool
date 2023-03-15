@@ -1,0 +1,6 @@
+msgid ""
+msgstr ""
+
+msgctxt "Notification inside a webform"
+msgid "Notification"
+msgstr "Meddelande"

@@ -1,0 +1,8 @@
+name: Form Tool Return Link
+type: module
+description: Provides return link block to forms.
+package: Helfi
+core: 8.x
+core_version_requirement: ^8 || ^9
+'interface translation project': form_tool_return_link
+'interface translation server pattern': modules/custom/form_tool_return_link/translations/%language.po

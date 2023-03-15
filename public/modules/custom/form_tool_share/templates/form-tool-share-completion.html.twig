@@ -31,30 +31,43 @@
     }
   %}
     {% block component_content %}
-      <div class="banner__icon">{% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', class: 'hds-icon--size-l'} %}</div>
+      <div class="banner__icon">
+        {% if submission_id %}
+          {% include '@hdbt/misc/icon.twig' with {icon: 'check-circle', class: 'hds-icon--size-l'} %}
+        {% else %}
+          {% include '@hdbt/misc/icon.twig' with {icon: 'error', class: 'hds-icon--size-l'} %}
+        {% endif %}
+      </div>
       <div class="banner__content-wrapper">
-        <div class="banner__content">
-          {% if confirmation_title %}
-            <h2 class="banner__title">{{ confirmation_title }}</h2>
-          {% endif %}
-          {% if confirmation_message %}
-            <div class="banner__desc">{{ confirmation_message }}</div>
-          {% endif %}
-        </div>
-        {% include '@hdbt/navigation/link-button.html.twig' with {
-          type: 'primary',
-          label: 'Close and log out'|t({}, {'context': 'Webform confirmation submission'}),
-          url: url_to_logout,
-          class: 'banner__button',
-          icon: false,
-        } %}
-        {% include '@hdbt/navigation/link-button.html.twig' with {
-          type: 'secondary',
-          label: 'View the data you submitted'|t({}, {'context': 'Webform confirmation submission'}),
-          url: url_to_submission,
-          class: 'banner__button',
-          icon: false,
-        } %}
+        {% if submission_id %}
+          <div class="banner__content">
+            {% if confirmation_title %}
+              <h2 class="banner__title">{{ confirmation_title }}</h2>
+            {% endif %}
+            {% if confirmation_message %}
+              <div class="banner__desc">{{ confirmation_message }}</div>
+            {% endif %}
+          </div>
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            type: 'primary',
+            label: 'Close and log out'|t({}, {'context': 'Webform confirmation submission'}),
+            url: url_to_logout,
+            class: 'banner__button confirm-dialog',
+            icon: false,
+          } %}
+          {% include '@hdbt/navigation/link-button.html.twig' with {
+            type: 'secondary',
+            label: 'View the data you submitted'|t({}, {'context': 'Webform confirmation submission'}),
+            url: url_to_submission,
+            class: 'banner__button',
+            icon: false,
+          } %}
+        {% else %}
+          <div class="banner__content">
+            <h2 class="banner__title">{{ 'Something went wrong'|t }}</h2>
+            <div class="banner__desc">{{ message }}</div>
+          </div>
+        {% endif %}
       </div>
     {% endblock component_content %}
   {% endembed %}

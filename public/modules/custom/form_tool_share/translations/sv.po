@@ -9,6 +9,9 @@ msgctxt "Webform confirmation submission"
 msgid "View the data you submitted"
 msgstr "Se alla uppgifter du har skickat"
 
+msgid "Form information"
+msgstr "Inlamning av blanketten"
+
 msgid "Your form has been submitted"
 msgstr "Blanketten har skickats"
 
@@ -17,3 +20,12 @@ msgstr "Tack"
 
 msgid "We will try to process your submission as quickly as possible."
 msgstr "Vi kommer att försöka behandla din inlämning så snabbt som möjligt."
+
+msgid "Form submitted successfully"
+msgstr "Formuläret har skickats"
+
+msgid "Submit error"
+msgstr "Skicka fel"
+
+msgid "Form information"
+msgstr "Forminformation"

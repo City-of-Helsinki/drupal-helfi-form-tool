@@ -10,15 +10,15 @@ third_party_settings:
     owner: drupal@hel.fi
     sector: KYMP
     ad_group: ad_group_2
-    postal_address: ''
-    privacy_policy: ''
-    privacy_policy_sv: ''
+    postal_address: "Töysänkatu 2 D -MUOKATTU- Jouni\r\nVallila, 00510 Helsinki"
+    privacy_policy: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Perusopetuksen%20opintohallinnon%20rekisteri.pdf'
+    privacy_policy_sv: 'https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administration%20av%20grundl%C3%A4ggande%20utbildning.pdf'
     privacy_policy_en: ''
     privacy_policy_ru: ''
     login_type: '2'
     sensitive: '1'
     form_code: TODISTUS
-    email_notify: ''
+    email_notify: janne.suominen@siili.com
     status: wip
     tos_function_id: f917d43aab76420bb2ec53f6684da7f7
     tos_record_id: 89837a682b5d410e861f8f3688154163
@@ -31,28 +31,37 @@ uid: 1
 template: false
 archive: false
 id: todistusjaljennospyynto_tilaus
-title: 'Todistusjäljennöspyyntö, tilaus'
+title: 'Peruskoulun ja lukion todistusjäljennöksen tilaus'
 description: 'Todistusj&auml;ljenn&ouml;slomakkeen MVP-versio'
 category: ''
 elements: |-
+  tietoja_tasta_lomakkeesta:
+    '#type': webform_section
+    '#title': 'Tietoja tästä lomakkeesta'
+    tietoja_todistusjaljennoksesta_markup:
+      '#type': webform_markup
+      '#markup': 'T&auml;ll&auml; lomakkeella voit tilata vuoden 1995 j&auml;lkeen saadut peruskoulun p&auml;&auml;tt&ouml;- ja erotodistukset ja vuoden 2005 j&auml;lkeen saadut lukion p&auml;&auml;tt&ouml;- ja erotodistukset.'
   tilaaja:
     '#type': webform_section
     '#title': Tilaaja
     profile_fields:
       '#type': form_tool_profile_data
-      '#title': 'Profiilista ladatut tiedot'
-      '#weak':
-        primaryAddress: primaryAddress
-        primaryEmail: primaryEmail
-        primaryPhone: primaryPhone
-      '#description': '<span aria-hidden="true" class="hds-icon hds-icon--check-circle-fill hds-icon--size-xs"></span> Merkityt tiedot on haettu Helsinki-profiilistasi. Siirry Helsinki-profiiliin muokataksesi tietoja.'
-      '#description_display': after
+      '#title': 'Seuraavat henkilötiedot on haettu Helsinki-profiilistasi.'
       '#strong':
         verifiedFirstName: verifiedFirstName
         verifiedLastName: verifiedLastName
         verifiedSsn: verifiedSsn
         verifiedPermanentAddress: verifiedPermanentAddress
+        primaryEmail: primaryEmail
+        primaryPhone: primaryPhone
         verifiedGivenName: 0
+      '#title_display': before
+      '#description_display': before
+      '#format': list
+      '#weak':
+        primaryAddress: primaryAddress
+        primaryEmail: primaryEmail
+        primaryPhone: primaryPhone
   tilattava_todistus:
     '#type': webform_section
     '#title': 'Tilattava todistus'
@@ -65,10 +74,16 @@ elements: |-
         'Lisäopetuksen 10.lk todistus': 'Lisäopetuksen 10.lk todistus'
         'Lukion päättötodistus': 'Lukion päättötodistus'
         'Lukion erotodistus': 'Lukion erotodistus'
+      '#required': true
     todistuksen_antanut_helsinkilainen_koulu:
       '#type': textfield
       '#title': 'Todistuksen antanut Helsinkiläinen koulu'
       '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
+      '#required': true
+      '#counter_type': character
+      '#counter_minimum': 1
+      '#counter_maximum': 100
+      '#counter_maximum_message': ' '
   toimitustapa:
     '#type': webform_section
     '#title': Toimitustapa
@@ -85,7 +100,14 @@ elements: |-
     '#title': Lisätiedot
     mahdolliset_lisatiedot:
       '#type': textarea
-      '#title': 'Mahdolliset lisätiedot'
+      '#title': 'Jos nimesi tai henkilötunnuksesi on muuttunut, niin ilmoita tässä todistuksenantohetken mukainen nimesi ja henkilötunnuksesi.'
+      '#counter_type': character
+      '#counter_minimum': 1
+      '#counter_maximum': 750
+      '#counter_maximum_message': ' '
+  actions:
+    '#type': webform_actions
+    '#title': 'Paina nappia'
 css: ''
 javascript: ''
 settings:
@@ -98,7 +120,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
@@ -173,6 +195,8 @@ settings:
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''
@@ -191,7 +215,7 @@ settings:
   confirmation_type: page
   confirmation_url: ''
   confirmation_title: 'Todistusjäljennöspyyntö lähetetty'
-  confirmation_message: "T&auml;h&auml;n voidaan kirjoittaa asiakkaalle relevanttia tietoa lomakkeen k&auml;sittelyst&auml;.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+  confirmation_message: ''
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''

@@ -5,10 +5,13 @@
  * Provides an formtool of a webform handler.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\user\Entity\Role;
 use Drupal\webform\Entity\Webform;
 
@@ -28,7 +31,14 @@ function webform_formtool_handler_theme(): array {
         'submission' => NULL,
         'form' => NULL,
         'id' => NULL,
+        'language' => NULL,
       ],
+    ],
+    'submission_email_notify' => [
+      'variables' => ['url' => NULL, 'title' => NULL, 'language' => NULL],
+    ],
+    'submission_email_notify_submitter' => [
+      'variables' => ['url' => NULL, 'title' => NULL, 'language' => NULL],
     ],
   ];
 }
@@ -42,6 +52,12 @@ function webform_formtool_handler_mail($key, &$message, $params) {
   ];
 
   switch ($key) {
+    case 'submission_email_notify_submitter':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Your form submission is viewable');
+      $message['body'][] = $params['message'];
+      break;
+
     case 'submission_email_notify':
       $message['from'] = \Drupal::config('system.site')->get('mail');
       $message['subject'] = t('New submission for @title', ['@title' => $params['form_title']], $options);
@@ -86,6 +102,12 @@ function webform_formtool_handler_webform_presave(Webform $entity) {
 
     $config->set('roles', $allRoles);
     $config->save();
+
+    // Grant roleassign permission to admin role.
+    $roleString = "assign $roleMachineName role";
+    $verkkolomakeAdminRole = Role::load('verkkolomake_admin');
+    $verkkolomakeAdminRole->grantPermission($roleString);
+    $verkkolomakeAdminRole->save();
 
   }
   // If this role has not yet been added to 3rd party settings, do it now.
@@ -305,7 +327,7 @@ function webform_formtool_handler_form_alter(&$form, FormStateInterface $form_st
 
       if (
       ($formStatus == 'public' || $formStatus == 'closed') &&
-      ($currentId != '1' && !in_array('admin', $currentRoles))
+      ($currentId != '1' && !in_array('verkkolomake_admin', $currentRoles))
       ) {
         $form['#disabled'] = TRUE;
 
@@ -326,5 +348,79 @@ function webform_formtool_handler_form_alter(&$form, FormStateInterface $form_st
 
       break;
 
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function webform_formtool_handler_node_access(EntityInterface $entity, string $operation, AccountInterface $account) {
+
+  if (
+    $entity->getType() == 'webform' &&
+    $operation == 'view' &&
+    $account->isAnonymous()) {
+    return AccessResult::forbidden('Anonymous access denied to webform ');
+  }
+
+  // LomakeHallinoija checks for editing webform page. Short circuit missing
+  // verkkolomake_hallinnoija role - so we won't do unneccesary heavy lifting.
+  if (
+    in_array('verkkolomake_hallinnoija', $account->getRoles()) &&
+    $entity->getType() == 'webform' &&
+    in_array($operation, ['update', 'delete']) &&
+    !$account->isAnonymous()
+  ) {
+
+    $webform_relation = reset($entity->get('webform')->getValue());
+
+    if (empty($webform_relation)) {
+      return AccessResult::neutral();
+    }
+
+    $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']) ?? NULL;
+
+    if (!$webform) {
+      return AccessResult::neutral();
+    }
+
+    $owner_id = $webform->getOwner()->id();
+    $account_id = $account->id();
+    if ($owner_id !== $account_id) {
+      return AccessResult::forbidden();
+    }
+  }
+
+}
+
+/**
+ * Implements hook_options_list_alter().
+ */
+function webform_formtool_handler_options_list_alter(array &$options, array $context) {
+
+  // Add new webform node - Webform selection dropdown.
+  if (
+    isset($context['fieldDefinition']) &&
+    $context['fieldDefinition'] instanceof FieldConfig &&
+    $context['fieldDefinition']->id() === 'node.webform.webform'
+  ) {
+    $user = \Drupal::currentUser();
+    $roles = $user->getRoles();
+
+    // VerkkolomakeAdmin and uid 1 has always all options.
+    if (array_intersect($roles, ['admin', 'verkkolomake_admin']) || $user->id() == 1) {
+      return;
+    }
+
+    static $webform_ids;
+
+    if (!isset($webform_ids)) {
+      // Get webforms with same owner as current uid.
+      $webform_ids = \Drupal::entityQuery('webform')
+        ->condition('uid', $user->id())
+        ->execute();
+    }
+
+    $options = array_intersect_key($webform_ids, $options);
   }
 }

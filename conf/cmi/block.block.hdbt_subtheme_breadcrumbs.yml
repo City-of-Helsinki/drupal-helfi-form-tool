@@ -1,6 +1,6 @@
 uuid: 87173946-5888-43e8-8443-10f7741e700b
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -11,7 +11,7 @@ _core:
 id: hdbt_subtheme_breadcrumbs
 theme: hdbt_subtheme
 region: breadcrumb
-weight: 0
+weight: -11
 provider: null
 plugin: system_breadcrumb_block
 settings:
@@ -19,4 +19,8 @@ settings:
   label: Breadcrumbs
   label_display: '0'
   provider: system
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/lomake/*'

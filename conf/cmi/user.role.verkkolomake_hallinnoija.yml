@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.webform
   module:
+    - content_translation
     - form_tool_profile_data
     - node
     - path
@@ -13,12 +14,14 @@ dependencies:
     - toolbar
     - webform
     - webform_node
+    - webform_translation_permissions
 id: verkkolomake_hallinnoija
 label: Verkkolomake-hallinnoija
 weight: -1
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access any webform configuration'
   - 'access content overview'
   - 'access site in maintenance mode'
   - 'access toolbar'
@@ -30,16 +33,23 @@ permissions:
   - 'create url aliases'
   - 'create webform'
   - 'create webform content'
+  - 'delete any webform content'
   - 'delete own webform'
   - 'delete own webform content'
   - 'delete own webform submission'
   - 'delete webform revisions'
+  - 'edit any webform content'
   - 'edit own webform'
   - 'edit own webform content'
   - 'edit own webform submission'
+  - 'revert webform revisions'
   - 'schedule publishing of nodes'
+  - 'translate editable entities'
+  - 'translate own webform'
+  - 'translate webform node'
   - 'view own unpublished content'
   - 'view own webform submission'
   - 'view scheduled content'
   - 'view the administration theme'
+  - 'view webform revisions'
   - 'view webform submissions own node'

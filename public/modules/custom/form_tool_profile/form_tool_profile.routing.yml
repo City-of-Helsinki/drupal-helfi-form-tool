@@ -1,0 +1,15 @@
+form_tool_profile.readiness:
+  path: '/readiness'
+  defaults:
+    _title: 'Readiness'
+    _controller: '\Drupal\form_tool_profile\Controller\FormToolProbeController::readiness'
+  requirements:
+    _access: 'TRUE'
+
+form_tool_profile.healthz:
+  path: '/healthz'
+  defaults:
+    _title: 'Healthz'
+    _controller: '\Drupal\form_tool_profile\Controller\FormToolProbeController::healthz'
+  requirements:
+    _access: 'TRUE'

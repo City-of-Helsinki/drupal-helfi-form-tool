@@ -10,3 +10,19 @@ services:
     arguments: [
         '@http_client'
     ]
+  webform_formtool_handler.submission_email_service:
+    class: Drupal\webform_formtool_handler\Service\SubmissionEmailService
+    arguments: [
+      '@language_manager',
+      '@plugin.manager.mail',
+      '@renderer',
+      '@messenger',
+    ]
+  webform_formtool_handler.form_submission_listtner:
+    class: Drupal\webform_formtool_handler\EventSubscriber\WebformSubmissionSubscriber
+    arguments: [
+        '@http_client',
+        '@logger.factory',
+    ]
+    tags:
+      - { name: event_subscriber }

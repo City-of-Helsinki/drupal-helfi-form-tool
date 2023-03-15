@@ -7,3 +7,4 @@ roles:
     - verkkolomake_kasittelija_todistus
     - verkkolomake_hallinnoija
     - verkkolomake_admin
+    - verkkolomake_kasittelija_sectest

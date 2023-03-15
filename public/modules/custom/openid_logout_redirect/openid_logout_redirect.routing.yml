@@ -1,0 +1,9 @@
+openid_logout_redirect:
+  path: '/logout/redirect'
+  defaults:
+    _title: Redirection page
+    _controller: '\Drupal\openid_logout_redirect\Controller\OpenIDConnectLogoutRedirectController::logoutRedirect'
+  requirements:
+    _access: 'TRUE'
+  arguments:
+   - '@session'

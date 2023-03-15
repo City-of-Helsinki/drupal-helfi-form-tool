@@ -1,9 +1,83 @@
 uuid: b2928156-83ff-4bcc-8c7e-dbb40acc77f6
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.webform
+  module:
+    - content_translation
+    - node
+    - role_delegation
+    - scheduler
+    - system
+    - toolbar
+    - view_unpublished
+    - webform
+    - webform_node
+    - webform_templates
+    - webform_translation_permissions
 id: verkkolomake_admin
 label: Verkkolomake-admin
 weight: 0
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access administration pages'
+  - 'access any webform configuration'
+  - 'access content overview'
+  - 'access own webform configuration'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'access webform help'
+  - 'access webform overview'
+  - 'access webform submission user'
+  - 'administer users'
+  - 'administer webform'
+  - 'administer webform element access'
+  - 'administer webform submission'
+  - 'administer webform templates'
+  - 'assign verkkolomake_admin role'
+  - 'assign verkkolomake_hallinnoija role'
+  - 'assign verkkolomake_kasittelija role'
+  - 'assign verkkolomake_kasittelija_sectest role'
+  - 'assign verkkolomake_kasittelija_todistus role'
+  - 'bypass node access'
+  - 'create webform'
+  - 'create webform content'
+  - 'delete any webform'
+  - 'delete any webform submission'
+  - 'delete own webform'
+  - 'delete own webform content'
+  - 'delete own webform submission'
+  - 'delete webform revisions'
+  - 'delete webform submissions any node'
+  - 'delete webform submissions own node'
+  - 'edit any webform'
+  - 'edit any webform content'
+  - 'edit any webform submission'
+  - 'edit own webform'
+  - 'edit own webform content'
+  - 'edit own webform submission'
+  - 'edit webform assets'
+  - 'edit webform source'
+  - 'edit webform submissions any node'
+  - 'edit webform submissions own node'
+  - 'edit webform twig'
+  - 'edit webform variants'
+  - 'revert webform revisions'
+  - 'schedule publishing of nodes'
+  - 'translate any webform'
+  - 'translate editable entities'
+  - 'translate own webform'
+  - 'translate webform node'
+  - 'view any unpublished webform content'
+  - 'view any webform submission'
+  - 'view own unpublished content'
+  - 'view own webform submission'
+  - 'view scheduled content'
+  - 'view the administration theme'
+  - 'view user email addresses'
+  - 'view webform revisions'
+  - 'view webform submissions any node'
+  - 'view webform submissions own node'
