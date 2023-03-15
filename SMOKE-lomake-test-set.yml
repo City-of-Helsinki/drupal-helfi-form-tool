@@ -34,7 +34,7 @@ jobs:
         condition: succeededOrFailed()
         displayName: 'Publish Test Results'
 
-      #Copy test result files from agent machine to artifact staging directory
+      #Copy test result files from agent machine to artifact staging directory.
       - task: CopyFiles@2
         inputs:
           #SourceFolder: 'D:\a\1\s\'
