@@ -37,6 +37,8 @@ ${random-text-lomakkeen-tiedot-sivulla}                     HEL-TODISTUS-0000
 
 Open mailbox and delete old messages
     Select test data and open browser       # Browser 1
+    Log    ${environment}
+    Log    ${azure-browser-sleep}
     Kirjaudu guerrillamail.com                              ${testuser1-lomake-email-user}
     Sleep                                                   3
     Poista kaikki viestit avoinna olevasta guerrillamail mailiboxista
