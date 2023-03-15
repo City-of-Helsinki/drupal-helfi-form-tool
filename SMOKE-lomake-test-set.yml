@@ -19,7 +19,7 @@ jobs:
       - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager
         displayName: "Install dependencies"
 
-      - powershell: robot --pythonpath . --variable environment:stage-chrome -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\SMOKE-lomake-test-set.robot'
+      - powershell: robot -d logit --pythonpath . --variable environment:stage-chrome -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\SMOKE-lomake-test-set.robot'
         failOnStderr: true
         displayName: "Run Robot Framework Tests"
         continueOnError: true
