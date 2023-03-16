@@ -41,8 +41,8 @@ jobs:
       #  failOnStderr: true
       #  displayName: "saa naha mita loytyy"
       #  continueOnError: true
-      - powershell: robot -d logit --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' --exitonfailure '$(Build.SourcesDirectory)\test\tests\lomake*.robot'
-      #powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' 'D:\a\1\s\test\tests\lomake-Check-tjpt-page-functionality*.robot'
+      - powershell: robot -d logit --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\lomake*.robot'
+      #powershell: robot --pythonpath . --variable environment:${{ parameters.testEnv }}-${{ parameters.testBrowser }} -x 'outputjunit.xml' --exitonfailure 'D:\a\1\s\test\tests\lomake-Check-tjpt-page-functionality*.robot'
         failOnStderr: true
         displayName: "Run Robot Framework Tests - All tests"
         continueOnError: true
