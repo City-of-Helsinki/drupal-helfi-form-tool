@@ -1,6 +1,6 @@
 jobs:
   - job: InstallAndRun
-    displayName: Run robot framework regression tests - ${{ parameters.testEnv }}
+    displayName: Run robot framework smoke tests - STAGE
     continueOnError: true
     pool:
       vmImage: 'windows-2019'
@@ -19,7 +19,7 @@ jobs:
       - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager
         displayName: "Install dependencies"
 
-      - powershell: robot --pythonpath . --variable environment:stage-chrome -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\SMOKE-lomake-test-set.robot'
+      - powershell: robot -d logit --pythonpath . --variable environment:stage-chrome -x 'outputjunit.xml' '$(Build.SourcesDirectory)\test\tests\SMOKE-lomake-test-set.robot'
         failOnStderr: true
         displayName: "Run Robot Framework Tests"
         continueOnError: true
@@ -29,16 +29,16 @@ jobs:
         inputs:
           testResultsFormat: 'JUnit'
           testResultsFiles: 'outputjunit.xml'
-          searchFolder: 'D:\a\1\s\'
+          searchFolder: 'D:\a\1\s\logit\'
           publishRunAttachments: true
         condition: succeededOrFailed()
         displayName: 'Publish Test Results'
 
-      #Copy test result files from agent machine to artifact staging directory
+      #Copy test result files from agent machine to artifact staging directory.
       - task: CopyFiles@2
         inputs:
           #SourceFolder: 'D:\a\1\s\'
-          SourceFolder: $(System.DefaultWorkingDirectory)
+          SourceFolder: $(System.DefaultWorkingDirectory)\logit\
           targetFolder: $(Build.ArtifactStagingDirectory)
         condition: succeededOrFailed()
         displayName: Copy test result files to artifact staging directory
@@ -47,6 +47,6 @@ jobs:
       - task: PublishBuildArtifacts@1
         inputs:
           pathToPublish: $(Build.ArtifactStagingDirectory)
-          artifactName: BuildOutputs-${{ parameters.testEnv }}-${{ parameters.testBrowser }}
+          artifactName: STAGE - Chrome
         condition: succeededOrFailed()
         displayName: Publish build artifacts
