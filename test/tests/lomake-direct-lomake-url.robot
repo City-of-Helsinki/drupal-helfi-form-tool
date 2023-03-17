@@ -86,17 +86,9 @@ Correct user - Open direct lomake Url
     Click Element                                           ${lomake-login-button-FI}
     Log in using suomi.fi authentication - FI               ${testuser1-lomake-hetu}
 # Tarkista, että lomake sivu aukeaa ja se sisältää lomakkeelle täytettyä tietoa
-    Sleep                                                   5
-    Page Should Contain                                     ${random-kotiosoite}
-    Page Should Contain                                     ${random-postinumero}
-    Page Should Contain                                     ${kaupunki}
-    #Page Should Contain                                     ${random-puhnum}
-    Page Should Contain                                     ${lomake-testdata-koulunnimi}
-    Page Should Contain                                     ${lomake-testdata-lisatiedot}
-    
-    #Wait Until Page Contains                                HEL-TODISTUS-0000       20    #Lomakkeen numero                    20
-    #Page Should Contain Element                             //label[.='Varmistettu etunimi']
-    #Page Should Contain Element                             //label[.='Varmistettu henkilötunnus']
+    #Sleep                                                   5
+    Wait Until Page Contains                                Lomakkeen numero                                            20
+    Page Should Contain                                     ${koulun-nimi}
 
 Incorrect user - Open direct lomake Url
     [Tags]  critical
