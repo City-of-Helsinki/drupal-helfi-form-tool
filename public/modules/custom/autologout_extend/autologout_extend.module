@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Automated Logout extend - Module.
+ */
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function autologout_extend_page_attachments_alter(array &$attachments) {
+
+  $session = \Drupal::request()->getSession();
+  $openid_expire = $session->get('openid_connect_expire');
+
+  $autolog_settings = \Drupal::config('autologout.settings');
+
+  $use_path_prefix = \Drupal::config('autologout_extend.settings')->get('ajax_use_path_prefix');
+  $attachments['#attached']['drupalSettings']['autologout']['usePathPrefix'] = $use_path_prefix;
+
+  if (!$openid_expire) {
+    return;
+  }
+
+  $session_time_left = $openid_expire - REQUEST_TIME;
+  $time_remaining_threshold = \Drupal::config('autologout_extend.settings')
+    ->get('forced_dialog_trigger_threshold');
+
+  $timeout = $autolog_settings->get('timeout');
+  $timeout_padding = $autolog_settings->get('padding');
+
+  // Force show dialog, if helsinki profiili session time is low.
+  if ($session_time_left < $time_remaining_threshold) {
+    $attachments['#attached']['drupalSettings']['autologout']['forceDialog'] = TRUE;
+    return;
+  }
+
+  // Modify dialog timeout, if we are about to go low with autolog settings.
+  $total_timeout = $timeout + $timeout_padding;
+  if (($session_time_left - $total_timeout) <= $time_remaining_threshold) {
+    $overriden_timeout = $session_time_left - $total_timeout;
+    if ($overriden_timeout <= 0) {
+      $overriden_timeout = 1;
+    }
+    $attachments['#attached']['drupalSettings']['autologout']['overridenTimeout'] = $overriden_timeout * 1000;
+  }
+
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function autologout_extend_library_info_alter(&$libraries, $extension) {
+  if (isset($libraries['drupal.autologout'])) {
+    $path = '/' . \Drupal::service('extension.list.module')->getPath('autologout_extend') . '/js/autologout.js';
+    $libraries['drupal.autologout']['js'] = [
+      $path => [],
+    ];
+  }
+}
