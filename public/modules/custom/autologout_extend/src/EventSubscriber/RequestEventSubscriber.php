@@ -44,7 +44,22 @@ class RequestEventSubscriber implements EventSubscriberInterface {
       $refresh = $this->requestStack->getCurrentRequest()->get('refresh');
       if ($refresh == 'true') {
         try {
-          $this->userData->refreshTokens();
+          $refreshed = $this->userData->refreshTokens();
+          $currentRequest = $this->requestStack->getCurrentRequest();
+          $userData = $currentRequest->getSession()->get('userData');
+          if ($refreshed) {
+            $message = [
+              'operation' => 'OPENID_REFRESH',
+              'status'    => 'SUCCESS',
+              'target' => [
+                'id' => $userData['sub'],
+              ],
+            ];
+            $auditLog = \Drupal::service('helfi_audit_log.audit_log');
+            if ($auditLog) {
+              $auditLog->dispatchEvent($message);
+            }
+          }
         }
         catch (\Exception $e) {
 

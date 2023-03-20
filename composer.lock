@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eaacc9526bf4cbf77e00ce8f86850f6e",
+    "content-hash": "00f48b2b8c4f6129846badde616b36d3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5023,20 +5023,20 @@
         },
         {
             "name": "drupal/helfi_atv",
-            "version": "dev-LOM-249",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "0c4b7c773c66567a2547db6df7f2427a0f0837b1"
+                "reference": "fa5d919c3ecf7aaf2a880184411005fb1cd0e50b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/0c4b7c773c66567a2547db6df7f2427a0f0837b1",
-                "reference": "0c4b7c773c66567a2547db6df7f2427a0f0837b1",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/fa5d919c3ecf7aaf2a880184411005fb1cd0e50b",
+                "reference": "fa5d919c3ecf7aaf2a880184411005fb1cd0e50b",
                 "shasum": ""
             },
             "require": {
-                "drupal/helfi_helsinki_profiili": "dev-feature/LOM-249-token-refresh"
+                "drupal/helfi_helsinki_profiili": "^0.9"
             },
             "type": "drupal-module",
             "autoload": {
@@ -5049,10 +5049,10 @@
             ],
             "description": "ATV integration module",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/LOM-249",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/0.9.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2023-03-15T09:41:37+00:00"
+            "time": "2023-03-01T05:55:31+00:00"
         },
         {
             "name": "drupal/helfi_audit_log",
@@ -5172,16 +5172,16 @@
         },
         {
             "name": "drupal/helfi_helsinki_profiili",
-            "version": "dev-feature/LOM-249-token-refresh",
+            "version": "0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "ba2b66cdd6c6783d2949fa5162f2de318a70fc17"
+                "reference": "b951dff410c4f227719b40a8aaa35188a93348e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/ba2b66cdd6c6783d2949fa5162f2de318a70fc17",
-                "reference": "ba2b66cdd6c6783d2949fa5162f2de318a70fc17",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/b951dff410c4f227719b40a8aaa35188a93348e9",
+                "reference": "b951dff410c4f227719b40a8aaa35188a93348e9",
                 "shasum": ""
             },
             "require": {
@@ -5206,10 +5206,10 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/feature/LOM-249-token-refresh",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/0.9.6",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2023-03-13T09:54:12+00:00"
+            "time": "2023-03-20T12:41:40+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",
@@ -18572,9 +18572,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/cache_control_override": 15,
-        "drupal/helfi_atv": 20,
-        "drupal/helfi_drupal_tools": 20,
-        "drupal/helfi_helsinki_profiili": 20
+        "drupal/helfi_drupal_tools": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
