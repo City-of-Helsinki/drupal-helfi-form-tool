@@ -338,6 +338,7 @@ class FormToolContactInfo extends WebformCompositeBase {
         $lines[] = '<p class="label">' . $deliveryaddress->render() . '</p>';
         $lines[] = $value['cod_street_address'];
         $lines[] = $value['cod_zip_code'] . ' ' . $value['cod_city'];
+        $lines[] = $value['cod_phone_number'];
         break;
 
       default:
