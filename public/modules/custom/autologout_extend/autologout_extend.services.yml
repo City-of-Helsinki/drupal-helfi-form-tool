@@ -1,0 +1,10 @@
+services:
+  autologout_extend.request_event_subscriber:
+    class: 'Drupal\autologout_extend\EventSubscriber\RequestEventSubscriber'
+    arguments: [
+      '@current_route_match',
+      '@request_stack',
+      '@helfi_helsinki_profiili.userdata'
+    ]
+    tags:
+      - { name: event_subscriber }

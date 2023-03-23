@@ -9,6 +9,13 @@ form_tool_profile_data:
     - core/drupalSettings
     - form_tool_profile_data/jquery-labelauty
 
+# Profile data refresh.
+form_tool_profile_data_refresh:
+  js:
+    js/form-tool-profile-data-refresh.js: {}
+  dependencies:
+    - core/jquery
+
 # Third-party library (self hosted).
 jquery-labelauty:
   remote: https://github.com/fntneves/jquery-labelauty

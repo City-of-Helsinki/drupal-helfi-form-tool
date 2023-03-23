@@ -66,9 +66,11 @@ Verify all buttons, selections and fields
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
     Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta   20
+    Element Should Not Be Visible                           ${lomake-tjpt-toimitustapa-osoite-field-FI}        # LOM-436 ei saa näkyä toimitusosoite kenttää
     Capture Page Screenshot
     # Valitse toimitustavaksi postiennakko
     Click Element                                           ${lomake-tjpt-toimitustapa-postiennakko-radiobutton-FI}
+    Element Should Be Visible	                            ${lomake-tjpt-toimitustapa-osoite-field-FI}   limit=1   # LOM-436 toimitus osoite kenttä näkyy vain vain yhden kerran
     Genarate test data for postiennakko toimitustapa
     Fill postiennakko information
     # Lisätiedot
@@ -85,6 +87,7 @@ Logout and select continue
     Get Location
     ${urli} =                                               Get Location
     Log                                                     ${urli}
+    Capture Page Screenshot
     Click Element                                           ${lomake-tjpt-sulje-ja-kirjaudu-ulos-button}
     Wait Until Page Contains Element                        ${lomake-tjpt-jatka-button}
     Capture Page Screenshot

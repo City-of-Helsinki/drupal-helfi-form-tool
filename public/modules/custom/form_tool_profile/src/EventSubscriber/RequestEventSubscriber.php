@@ -2,6 +2,7 @@
 
 namespace Drupal\form_tool_profile\EventSubscriber;
 
+use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Session\AccountProxyInterface;
@@ -47,6 +48,13 @@ class RequestEventSubscriber implements EventSubscriberInterface {
   protected $requestStack;
 
   /**
+   * Kill switch.
+   *
+   * @var \Drupal\Core\PageCache\ResponsePolicy\KillSwitch
+   */
+  protected $killSwitch;
+
+  /**
    * Constructs the event subscriber.
    *
    * @param \Drupal\Core\Session\AccountProxy $account
@@ -55,15 +63,21 @@ class RequestEventSubscriber implements EventSubscriberInterface {
    *   Current route match.
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   Request stack.
+   * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $killSwitch
+   *   Cache kill switch.
    */
-  public function __construct(AccountProxy $account, CurrentRouteMatch $route, RequestStack $request_stack) {
+  public function __construct(AccountProxy $account, CurrentRouteMatch $route, RequestStack $request_stack, KillSwitch $killSwitch) {
     $this->account = $account;
     $this->route = $route;
     $this->requestStack = $request_stack;
+    $this->killSwitch = $killSwitch;
   }
 
   /**
    * KernelEvent::Request callback.
+   *
+   * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
+   *   Request event.
    */
   public function checkAccess(RequestEvent $event) {
 
@@ -90,6 +104,69 @@ class RequestEventSubscriber implements EventSubscriberInterface {
 
     if ($node && $node->getType() !== 'webform') {
       throw new AccessDeniedHttpException();
+    }
+
+  }
+
+  /**
+   * KernelEvent::Request callback.
+   *
+   * Checks if user needs to be redirect to the form.
+   *
+   * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
+   *   Request event.
+   */
+  public function checkRedirect(RequestEvent $event) {
+
+    $subRequest = NULL;
+    $subPath = NULL;
+
+    static $routes_to_redirect = [
+      'user.login',
+      'entity.user.canonical',
+      'system.403',
+    ];
+
+    if ($event->getRequestType() !== HttpKernelInterface::MASTER_REQUEST) {
+      return;
+    }
+
+    if ($event->getRequestType() === HttpKernelInterface::SUB_REQUEST) {
+      $subRequest = $this->requestStack->getMasterRequest();
+      $subPath = $subRequest->get('_route');
+    }
+
+    // Anon user. Redirect to the webform unless login parameter is defined.
+    if ($this->account->isAnonymous()) {
+      $loginParam = $this->requestStack->getCurrentRequest()->query->get('login');
+      if ($loginParam) {
+        return;
+      }
+
+      $route_name = $this->route->getRouteName();
+      if (in_array($route_name, $routes_to_redirect) || in_array($subPath, $routes_to_redirect)) {
+        $alias = Url::fromRoute('entity.node.canonical', ['node' => 1])->toString();
+        $this->killSwitch->trigger();
+        $response = new RedirectResponse($alias);
+        return $response->send();
+      }
+
+    }
+
+    // Logged in user. Redirect user back to webform,
+    // if they are out of webform / submission pages.
+    $roles = $this->account->getRoles();
+    $roles_to_check = ['helsinkiprofiili_vahva', 'helsinkiprofiili_heikko'];
+    $check_redirect_need = count(array_intersect($roles, $roles_to_check)) > 0;
+    if ($this->account->isAuthenticated() && $check_redirect_need) {
+      $redirect_id = \Drupal::config('form_tool_profile.settings')->get('default_redirect_node_id');
+      $route_name = $this->route->getRouteName();
+      if (in_array($route_name, $routes_to_redirect) || in_array($subPath, $routes_to_redirect)) {
+        $alias = Url::fromRoute('entity.node.canonical', ['node' => $redirect_id])->toString();
+        $this->killSwitch->trigger();
+        $response = new RedirectResponse($alias);
+        return $response->send();
+      }
     }
 
   }
@@ -129,6 +206,7 @@ class RequestEventSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events[KernelEvents::REQUEST][] = ['checkRedirect'];
     $events[KernelEvents::REQUEST][] = ['checkAccess'];
     return $events;
   }

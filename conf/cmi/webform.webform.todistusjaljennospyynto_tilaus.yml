@@ -77,8 +77,8 @@ elements: |-
       '#required': true
     todistuksen_antanut_helsinkilainen_koulu:
       '#type': textfield
-      '#title': 'Todistuksen antanut Helsinkiläinen koulu'
-      '#description': 'Anna koulun nimi siin&auml; muodossa, mik&auml; se on ollut opiskellessasi.'
+      '#title': 'Todistuksen antanut helsinkiläinen koulu'
+      '#description': 'Anna koulun nimi siin&auml; muodossa, joka se on ollut opiskellessasi.'
       '#required': true
       '#counter_type': character
       '#counter_minimum': 1

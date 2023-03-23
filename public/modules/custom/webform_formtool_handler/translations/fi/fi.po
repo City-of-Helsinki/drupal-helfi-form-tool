@@ -33,3 +33,9 @@ msgstr "Töysänkatu 2 D"
 msgctxt "Submission Print page for the MVP form"
 msgid "00510 Helsinki"
 msgstr "00510 Helsinki"
+
+msgid "Your form submission is viewable"
+msgstr "Lomakkeesi on katseltavissa"
+
+msgid "New submission for @title"
+msgstr "@title on saapunut käsiteltäväksi"

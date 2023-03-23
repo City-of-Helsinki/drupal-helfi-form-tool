@@ -1,6 +1,11 @@
 *** Variables ***
 
-${environment}      null
+${environment}                                                  test-firefox    # Tähän tieto missä testit halutaan ajaa 
+                                                                                # (esim. local tai test-firefox) jostain syytä
+                                                                                # chrome ei toimi kontissa.
+                                                                                # Tämän muuttaminen ei vaikuta azuressa ajettaviin
+                                                                                # testeihin
+
 ${azure-browser-sleep}                                          20
 
 ${nordea-default-hetu}                                          210281-9988
@@ -15,6 +20,10 @@ ${testuser1-lomake-email-TEST}                                  taavettijarvites
 ${testuser1-lomake-email-user-TEST}                             taavettijarvitesTEST
 ${testuser1-lomake-email-domain-TEST}                           @guerrillamail.com
 
+${testuser1-lomake-email-STAGE}                                  taavettijarvitesSTAGE@guerrillamail.com    # Taavetti Järvites
+${testuser1-lomake-email-user-STAGE}                             taavettijarvitesSTAGE
+${testuser1-lomake-email-domain-STAGE}                           @guerrillamail.com
+
 ${testuser2-lomake-hetu}                                        230253-998A     # Pirkkomaija Linderstes
 
 ${lomake-admin-VerkkolomakeAdmin-username}                      VerkkolomakeAdmin
@@ -24,15 +33,21 @@ ${lomake-admin-VerkkolomakeHallinnoija-username}                VerkkolomakeHall
 ${lomake-admin-VerkkolomakeHallinnoija-password}                w0giZIQ3jujBeIrZ
 
 # Testdata
+# Local
+#${testdata-local-lomake-tehty-hetulla-testuser1-direct-url}     ?????????????/lomake/HEL-TODISTUS-0000??????
+
 # DEV
-${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}       https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV
+#${testdata-dev-lomake-tehty-hetulla-testuser1-direct-url}       https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV
                                                                 # https://www.hel.fi/fi/dev-lomakkeet/lomake/HEL-TODISTUS-00000085-DEV?check_logged_in=1
 # TEST
-${testdata-test-lomake-tehty-hetulla-testuser1-direct-url}      https://www.hel.fi/fi/test-lomakkeet/lomake/HEL-TODISTUS-00000198-TEST
+#${testdata-test-lomake-tehty-hetulla-testuser1-direct-url}      https://www.hel.fi/fi/test-lomakkeet/lomake/HEL-TODISTUS-00000198-TEST
 # STAGE
 
 
 # Urlit
+# Local - Omalla koneella jos haluaa testailla
+${local_lomake-todistusjaljennospyynto-tilaus-direct_url}       hel-fi-form-tool.docker.so  # ????
+
 # DEV
 ${dev_lomake-login_url}                                         https://www.hel.fi/fi/dev-lomakkeet/   #https://lomaketyokalu.dev.hel.ninja/fi
 ${dev_lomake-direct-logout_url}                                 https://www.hel.fi/fi/dev-lomakkeet/user/logout    #https://lomaketyokalu.dev.hel.ninja/user/logout
@@ -45,10 +60,17 @@ ${test_lomake-todistusjaljennospyynto-tilaus-direct_url}        https://www.hel.
 ${test_example-app_url}                                         https://example-ui.test.hel.ninja/
 ${test_lomake-admin-login_url}                                  https://www.hel.fi/fi/test-lomakkeet?login=form
 ${test_lomake-lista-lahetetyista-lomakkeista_url}               https://www.hel.fi/fi/test-lomakkeet/node/1/webform/submissions  # Tämän ei pitäisi näkyä käyttäjälle
+${test_lomake-assets_url}                                       https://www.hel.fi/test-lomake-assets   # Ei tietoa mikä tämä on
 # STAGE
-
-
-
+${stage_lomake-login_url}                                       https://www.hel.fi/fi/staging-lomakkeet
+${stage_lomake-direct-logout_url}                               https://www.hel.fi/fi/staging-lomakkeet/user/logout
+${stage_lomake-todistusjaljennospyynto-tilaus-direct_url}       https://www.hel.fi/fi/staging-lomakkeet/todistusjaljennospyynto-tilaus
+${stage_example-app_url}                                        https://example-ui.stage.hel.ninja/
+${stage_lomake-admin-login_url}                                 https://www.hel.fi/fi/stage-lomakkeet?login=form
+# PROD
+${prod_lomake-login_url}                                        https://www.hel.fi/fi/lomakkeet
+${prod_lomake-direct-logout_url}                                https://www.hel.fi/fi/lomakkeet/user/logout
+${prod_lomake-todistusjaljennospyynto-tilaus-direct_url}        https://www.hel.fi/fi/lomakkeet/todistusjaljennospyynto-tilaus
 
 
 
@@ -113,6 +135,9 @@ ${guerrillamail-ekan-viestin-otsikko}                           //tbody[@id='ema
 ${guerrillamail-ekan-viestin-sisalto}                           //div[@class='email']
 
 ${guerrillamail-lomake-link}                                    //a[contains(.,'HEL-TODISTUS')]
+
+${guerrillamail-sert-fail-advanced-button}                      id=details-button
+${guerrillamail-sert-fail-proceed-link}                         id=proceed-link
 
 # Lomake admin
 ${lomake-admin-login-page-username-field}                       id=edit-name

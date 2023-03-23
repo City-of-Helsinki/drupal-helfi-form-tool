@@ -1,0 +1,22 @@
+diff --git a/js/autologout.js b/js/autologout.js
+index 04b2d49..acec210 100644
+--- a/js/autologout.js
++++ b/js/autologout.js
+@@ -286,7 +286,7 @@
+       Drupal.Ajax['autologout.getTimeLeft'] = Drupal.ajax({
+         base: null,
+         element: document.body,
+-        url: drupalSettings.path.baseUrl + 'autologout_ajax_get_time_left',
++        url: drupalSettings.path.baseUrl + drupalSettings.path.pathPrefix + 'autologout_ajax_get_time_left',
+         submit: {
+           uactive : activity
+         },
+@@ -342,7 +342,7 @@
+       Drupal.Ajax['autologout.refresh'] = Drupal.ajax({
+         base: null,
+         element: document.body,
+-        url: drupalSettings.path.baseUrl + 'autologout_ajax_set_last',
++        url: drupalSettings.path.baseUrl + drupalSettings.path.pathPrefix + 'autologout_ajax_set_last',
+         event: 'autologout.refresh',
+         error: function (XMLHttpRequest, textStatus) {
+           // Disable error reporting to the screen.

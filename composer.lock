@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c8551b6d183ec139f179fc3271b5797",
+    "content-hash": "2b5150d6c220338ed80dc3e69e718267",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2272,6 +2272,94 @@
             }
         },
         {
+            "name": "drupal/autologout",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/autologout.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/autologout-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "f751062f463d0b52df81764f67cee3a0be97825e"
+            },
+            "require": {
+                "drupal/core": "^9.2 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1658168199",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AjitS",
+                    "homepage": "https://www.drupal.org/user/981944"
+                },
+                {
+                    "name": "AjK",
+                    "homepage": "https://www.drupal.org/user/39030"
+                },
+                {
+                    "name": "boshtian",
+                    "homepage": "https://www.drupal.org/user/1773456"
+                },
+                {
+                    "name": "dandrews",
+                    "homepage": "https://www.drupal.org/user/2014490"
+                },
+                {
+                    "name": "darksnow",
+                    "homepage": "https://www.drupal.org/user/391915"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "johnennew",
+                    "homepage": "https://www.drupal.org/user/1150042"
+                },
+                {
+                    "name": "jrglasgow",
+                    "homepage": "https://www.drupal.org/user/36590"
+                },
+                {
+                    "name": "kmasood",
+                    "homepage": "https://www.drupal.org/user/1262860"
+                },
+                {
+                    "name": "levelos",
+                    "homepage": "https://www.drupal.org/user/54135"
+                },
+                {
+                    "name": "prabeen.giri",
+                    "homepage": "https://www.drupal.org/user/913078"
+                },
+                {
+                    "name": "str8",
+                    "homepage": "https://www.drupal.org/user/2865063"
+                }
+            ],
+            "description": "Adds automated timed logout.",
+            "homepage": "http://drupal.org/project/autologout",
+            "support": {
+                "source": "https://git.drupalcode.org/project/autologout"
+            }
+        },
+        {
             "name": "drupal/cache_control_override",
             "version": "1.1.0",
             "source": {
@@ -3396,6 +3484,77 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/diff",
                 "issues": "https://www.drupal.org/project/issues/diff"
+            }
+        },
+        {
+            "name": "drupal/disable_messages",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/disable_messages.git",
+                "reference": "2.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/disable_messages-2.1.1.zip",
+                "reference": "2.1.1",
+                "shasum": "7fb6a915eefe7c834c713e8e1dcd8f4a6bd279eb"
+            },
+            "require": {
+                "drupal/core": ">=8"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.1",
+                    "datestamp": "1651204825",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Zyxware Technologies (zyxware)",
+                    "homepage": "https://www.drupal.org/u/zyxware",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "binnythomas",
+                    "homepage": "https://www.drupal.org/user/3123091"
+                },
+                {
+                    "name": "jijojoseph_zyxware",
+                    "homepage": "https://www.drupal.org/user/3561263"
+                },
+                {
+                    "name": "varunity",
+                    "homepage": "https://www.drupal.org/user/273530"
+                },
+                {
+                    "name": "vimaljoseph",
+                    "homepage": "https://www.drupal.org/user/817380"
+                },
+                {
+                    "name": "zyxware",
+                    "homepage": "https://www.drupal.org/user/222163"
+                }
+            ],
+            "description": "Allows filtering messages shown to the end user using regular expression patterns.",
+            "homepage": "https://drupal.org/project/disable_messages",
+            "keywords": [
+                "content",
+                "display",
+                "messages"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/disable_messages",
+                "issues": "https://drupal.org/project/issues/disable_messages"
             }
         },
         {
@@ -4864,20 +5023,20 @@
         },
         {
             "name": "drupal/helfi_atv",
-            "version": "0.9.2",
+            "version": "0.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv.git",
-                "reference": "aa3411d47254f952b32c8a11eb840dc2a1048672"
+                "reference": "0ce9c0bfcb16331c038952f01f42c88d09770f9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/aa3411d47254f952b32c8a11eb840dc2a1048672",
-                "reference": "aa3411d47254f952b32c8a11eb840dc2a1048672",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-atv/zipball/0ce9c0bfcb16331c038952f01f42c88d09770f9e",
+                "reference": "0ce9c0bfcb16331c038952f01f42c88d09770f9e",
                 "shasum": ""
             },
             "require": {
-                "drupal/helfi_helsinki_profiili": "^0.9"
+                "drupal/helfi_helsinki_profiili": "*"
             },
             "type": "drupal-module",
             "autoload": {
@@ -4890,10 +5049,10 @@
             ],
             "description": "ATV integration module",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/0.9.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/tree/0.9.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-atv/issues"
             },
-            "time": "2023-02-17T08:47:39+00:00"
+            "time": "2023-03-21T05:33:47+00:00"
         },
         {
             "name": "drupal/helfi_audit_log",
@@ -4983,17 +5142,46 @@
             "time": "2023-02-03T07:01:52+00:00"
         },
         {
-            "name": "drupal/helfi_helsinki_profiili",
-            "version": "0.9.5",
+            "name": "drupal/helfi_gdpr_api",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
-                "reference": "650ebff8e6bd633a1e63cac1fc3e939f6258bd6b"
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api.git",
+                "reference": "263207c07ac16ec9103849548f354cacdd000695"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/650ebff8e6bd633a1e63cac1fc3e939f6258bd6b",
-                "reference": "650ebff8e6bd633a1e63cac1fc3e939f6258bd6b",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-gdpr-api/zipball/263207c07ac16ec9103849548f354cacdd000695",
+                "reference": "263207c07ac16ec9103849548f354cacdd000695",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\HelfiGdprApi\\": "src/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "support": {
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api/tree/0.9.3",
+                "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api/issues"
+            },
+            "time": "2023-03-16T07:36:17+00:00"
+        },
+        {
+            "name": "drupal/helfi_helsinki_profiili",
+            "version": "0.9.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili.git",
+                "reference": "137e4a696db78dbec8a763297f42331cac755f0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/zipball/137e4a696db78dbec8a763297f42331cac755f0d",
+                "reference": "137e4a696db78dbec8a763297f42331cac755f0d",
                 "shasum": ""
             },
             "require": {
@@ -5018,10 +5206,10 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/0.9.5",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/tree/AU-XX-add-all-envs",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-helsinki-profiili/issues"
             },
-            "time": "2023-02-16T06:06:58+00:00"
+            "time": "2023-03-22T12:03:07+00:00"
         },
         {
             "name": "drupal/helfi_media_formtool",

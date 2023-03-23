@@ -168,3 +168,33 @@ function form_tool_profile_user_predelete(UserInterface $account) {
 
   }
 }
+
+/**
+ * Implements hook_language_switch_links_alter().
+ */
+function form_tool_profile_language_switch_links_alter(array &$links, $type, Url &$url) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $parent_request = \Drupal::requestStack()->getParentRequest();
+
+  if ($route_name === 'system.403' && $parent_request !== NULL) {
+    $node = $parent_request->get('node');
+
+    if (!$node) {
+      return;
+    }
+
+    foreach ($links as $langcode => &$link) {
+      $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['language' => $langcode]);
+      $lang = \Drupal::languageManager()->getLanguage($langcode);
+      try {
+        $node->getTranslation($langcode);
+      }
+      catch (Exception $e) {
+        $link['no_translation'] = TRUE;
+      }
+      $url = Url::fromRoute('entity.node.canonical', ['node' => $node->id()], ['language' => $lang]);
+      $link['url'] = $url;
+      $link['altered'] = TRUE;
+    }
+  }
+}

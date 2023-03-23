@@ -1,0 +1,28 @@
+{% if language == 'en' %}
+Hello!
+
+New {{ title }} submission has been received.
+
+Go to the submission page: {{url}}
+
+Best regards,
+
+City of Helsinki
+Form tool
+
+This is an automatic message. Please do not reply to this message.
+{% elseif language == 'fi' %}
+Hei!
+
+{{ title }} on saapunut käsiteltäväksi.
+
+Siirry lomakkeelle: {{ url }}
+
+
+Ystävällisin terveisin,
+
+Helsingin Kaupunki
+Lomakepalvelu
+
+Tämä on automaattinen heräteviesti. Ethän vastaa tähän viestiin, sillä vastauksia ei käsitellä.
+{% endif %}
