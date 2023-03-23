@@ -1,7 +1,10 @@
 # Changelog
 
 ## 2023.4
-
+- refactor: Update HP version (#161)
+- fix: Update changelog
+- docs: Add changelog
+- fix: LOM-451: Added phone number to be seen in postiennakko delivery method (#160)
 - feat: LOM-249: Auto logout extends and overrides
 - fix: LOM-382 debugging why test fails
 - fix: LOM-382 debugging why test fails
