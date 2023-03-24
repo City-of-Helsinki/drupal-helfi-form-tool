@@ -1,5 +1,10 @@
 # Changelog
 
+## 2023.5
+- fix: AU-820: ATV version update (#162)
+- fix: Gdpr api version
+- fix: HP version to support development env
+
 ## 2023.4
 - refactor: Update HP version (#161)
 - fix: Update changelog
