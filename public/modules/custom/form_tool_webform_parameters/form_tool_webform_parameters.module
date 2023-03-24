@@ -73,7 +73,8 @@ function _form_tool_webform_parameters_get_default_privacy_policy_link(array $fo
  * Implememts hook_form_alter()
  */
 function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if (!Drupal::service('router.admin_context')->isAdminRoute()) {
+  // Commented out temporarily (?)
+  /*if (!Drupal::service('router.admin_context')->isAdminRoute()) {
     if (array_key_exists('#webform_id', $form)) {
       $webform = Webform::load($form['#webform_id']);
       $formsettings = $webform->getThirdPartySettings('form_tool_webform_parameters');
@@ -101,7 +102,7 @@ function form_tool_webform_parameters_form_alter(&$form, FormStateInterface $for
       }
     }
 
-  }
+  }*/
   if ($form_id == 'webform_settings_form' || $form_id == 'webform_add_form' || $form_id == 'webform_duplicate_form') {
 
     $bundle = $form_state->getFormObject()->getEntity();
