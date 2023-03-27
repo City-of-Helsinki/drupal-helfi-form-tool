@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2023.5
+- fix: LOM-461: Change logout urls to check if they need a prefixed address (#164)
 - fix: AU-820: ATV version update (#162)
 - fix: Gdpr api version
 - fix: HP version to support development env
