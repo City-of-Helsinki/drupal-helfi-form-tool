@@ -2,8 +2,8 @@ _core:
   default_config_hash: Ra1wCOv-XTOsjio08D1i49hzjcUlin66zuciiPtpV44
 disable_messages_enable: '1'
 disable_messages_exclude_users: ''
-disable_messages_filter_by_page: 0
-disable_messages_page_filter_paths: ''
+disable_messages_filter_by_page: 1
+disable_messages_page_filter_paths: 'admin/*'
 disable_messages_enable_debug: '0'
 disable_messages_debug_visible_div: '0'
 disable_messages_ignore_patterns: "User logged in and data fetched\r\nTo log in to this site, your browser must accept cookies from the domain\r\nYou have already submitted this webform.+\r\nYour message has been sent.\r\nViestisi on lähetetty.\r\nDitt meddelande har skickats.\r\nUnable to send email. Contact the site administrator if the problem persists.\r\nThere was a problem sending.+\r\nKunde inte skicka e-post. Kontakta webbplatsens administratör om problemet kvarstår. \r\nSähköpostin lähettäminen epäonnistui. Ota yhteyttä sivuston ylläpitäjään, jos ongelma toistuu."
