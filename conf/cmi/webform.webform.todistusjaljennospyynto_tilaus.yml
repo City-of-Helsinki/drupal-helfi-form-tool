@@ -109,10 +109,39 @@ elements: |-
   rekisteriseloste:
     '#type': webform_section
     '#title': Rekisteriseloste
+    valitse_ensin_tilattava_todistus_:
+      '#type': label
+      '#title': 'Valitse ensin tilattava todistus.'
+      '#states':
+        visible:
+          ':input[name="valitse_tilattava_todistus"]':
+            unchecked: true
+    tutustu_rekisteriselosteeseen:
+      '#type': label
+      '#title': 'Tutustu <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Perusopetuksen%20opintohallinnon%20rekisteri.pdf" target="_blank">rekisteriselosteeseen</a> (linkki avautuu uuteen välilehteen)'
+      '#states':
+        visible:
+          - ':input[name="valitse_tilattava_todistus"]':
+              value: 'Peruskoulun päättötodistus'
+          - or
+          - ':input[name="valitse_tilattava_todistus"]':
+              value: 'Peruskoulun erotodistus'
+          - or
+          - ':input[name="valitse_tilattava_todistus"]':
+              value: 'Lisäopetuksen 10.lk todistus'
+    tutustu_rekisteriselosteeseen_lukio:
+      '#type': label
+      '#title': 'Tutustu <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Lukiokoulutuksen%20opintohallintorekisteri.pdf" target="_blank">rekisteriselosteeseen</a> (linkki avautuu uuteen välilehteen)'
+      '#states':
+        visible:
+          - ':input[name="valitse_tilattava_todistus"]':
+              value: 'Lukion päättötodistus'
+          - or
+          - ':input[name="valitse_tilattava_todistus"]':
+              value: 'Lukion erotodistus'
     olen_tutustunut_rekisteriselosteeseen:
       '#type': checkbox
-      '#title': 'Olen tutustunut rekisteriselosteeseen'
-      '#description': 'Tutustu <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Perusopetuksen%20opintohallinnon%20rekisteri.pdf" target="_blank">rekisteriselosteeseen</a> (linkki avautuu uuteen v&auml;lilehteen)'
+      '#title': 'Olen tutustunut rekisteriselosteeseen *'
       '#description_display': before
       '#required': true
       '#states':
@@ -127,8 +156,7 @@ elements: |-
               value: 'Lisäopetuksen 10.lk todistus'
     olen_tutustunut_rekisteriselosteeseen_lukio:
       '#type': checkbox
-      '#title': 'Olen tutustunut rekisteriselosteeseen'
-      '#description': 'Tutustu <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Lukiokoulutuksen%20opintohallintorekisteri.pdf" target="_blank">rekisteriselosteeseen</a> (linkki avautuu uuteen v&auml;lilehteen)'
+      '#title': 'Olen tutustunut rekisteriselosteeseen *'
       '#description_display': before
       '#required': true
       '#states':
