@@ -28,5 +28,3 @@ elements: |
     '#title': 'L&auml;s mer om <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administrationen%20av%20studier%20inom%20gymnasieutbildningen.pdf" target="_blank">registerbeskrivningen</a> (l&auml;nken &ouml;ppnas i en ny flik)'
   olen_tutustunut_rekisteriselosteeseen:
     '#title': 'Jag har läst registerbeskrivningen'
-  olen_tutustunut_rekisteriselosteeseen_lukio:
-    '#title': 'Jag har läst registerbeskrivningen'

@@ -146,26 +146,8 @@ elements: |-
       '#required': true
       '#states':
         visible:
-          - ':input[name="valitse_tilattava_todistus"]':
-              value: 'Peruskoulun päättötodistus'
-          - or
-          - ':input[name="valitse_tilattava_todistus"]':
-              value: 'Peruskoulun erotodistus'
-          - or
-          - ':input[name="valitse_tilattava_todistus"]':
-              value: 'Lisäopetuksen 10.lk todistus'
-    olen_tutustunut_rekisteriselosteeseen_lukio:
-      '#type': checkbox
-      '#title': 'Olen tutustunut rekisteriselosteeseen *'
-      '#description_display': before
-      '#required': true
-      '#states':
-        visible:
-          - ':input[name="valitse_tilattava_todistus"]':
-              value: 'Lukion päättötodistus'
-          - or
-          - ':input[name="valitse_tilattava_todistus"]':
-              value: 'Lukion erotodistus'
+          ':input[name="valitse_tilattava_todistus"]':
+            checked: true
   actions:
     '#type': webform_actions
     '#title': 'Paina nappia'
