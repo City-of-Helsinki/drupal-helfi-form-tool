@@ -68,7 +68,7 @@ elements: |-
     valitse_tilattava_todistus:
       '#type': radios
       '#title': 'Valitse tilattava todistus'
-      '#description': 'Valinta vaikuttaa rekisteriselosteesen, joka pit&auml;&auml; hyv&auml;ksy&auml;.'
+      '#description': 'Valinta vaikuttaa rekisteriselosteeseen, joka pit&auml;&auml; hyv&auml;ksy&auml;.'
       '#options':
         'Peruskoulun päättötodistus': 'Peruskoulun päättötodistus'
         'Peruskoulun erotodistus': 'Peruskoulun erotodistus'
