@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023.6
+- 5b93825 fix: update hp version
+- d436023 fix: LOM-XX: Privacy policy typo (#169)
+
 ## 2023.5
 - fix: LOM-453: Configuration update to disable disable_messages on admin pages (#167)
 - fix: LOM-449: Added conditional privacy policy link (#163)
