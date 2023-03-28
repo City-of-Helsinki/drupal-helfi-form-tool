@@ -226,14 +226,14 @@
 
       function logout() {
         if (localSettings.use_alt_logout_method) {
-          var logoutUrl = drupalSettings.path.baseUrl + "autologout_alt_logout";
+          var logoutUrl = getAjaxPath("autologout_alt_logout");
           triggerLogoutEvent('alternative', logoutUrl);
 
           window.location = logoutUrl;
         }
         else {
           $.ajax({
-            url: drupalSettings.path.baseUrl + "autologout_ajax_logout",
+            url: getAjaxPath("autologout_ajax_logout"),
             type: "POST",
             beforeSend: function (xhr) {
               xhr.setRequestHeader('X-Requested-With', {

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2023.5
+- fix: LOM-453: Configuration update to disable disable_messages on admin pages (#167)
+- fix: LOM-449: Added conditional privacy policy link (#163)
+- fix: Added missing dependencies for autologout & audit log modules (#165)
+- fix: LOM-461: Change logout urls to check if they need a prefixed address (#164)
+- fix: AU-820: ATV version update (#162)
+- fix: Gdpr api version
+- fix: HP version to support development env
+
 ## 2023.4
 - refactor: Update HP version (#161)
 - fix: Update changelog
