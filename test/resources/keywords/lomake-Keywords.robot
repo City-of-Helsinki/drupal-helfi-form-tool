@@ -38,7 +38,7 @@ Select url depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-chrome'             Open Browser    ${lomake_url}   gc
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Open Browser    ${lomake_url}   edge
     ...     ELSE IF             '${TYPE}' == 'local'                    Open Browser    ${lomake_url}   edge
-    ...     ELSE                '${TYPE}' == 'null'                        Open Browser    ${lomake_url}   gc      #temp
+    ...     ELSE                '${TYPE}' == 'null'                     Open Browser    ${lomake_url}   gc      #temp
     #Maximize Browser Window
     #Set Window Size             1920    1024
 
@@ -55,7 +55,7 @@ Select test data depending on the selected env
     ...     ELSE IF             '${TYPE}' == 'stage-firefox'            Select stage env test data and urls
     ...     ELSE IF             '${TYPE}' == 'stage-chrome'             Select stage env test data and urls
     ...     ELSE IF             '${TYPE}' == 'stage-edge'               Select stage env test data and urls
-    ...     ELSE IF             '${TYPE}' == 'local'                  Select local env test data and urls
+    ...     ELSE IF             '${TYPE}' == 'local'                    Select local env test data and urls
     ...     ELSE                '${TYPE}' == '7'                        temp
 
 Select local test data and urls
@@ -103,7 +103,7 @@ Select test env test data and urls
 
 Select stage env test data and urls
     # Env
-    Set Suite Variable          ${lomake-selected-env}                            stage-
+    Set Suite Variable          ${lomake-selected-env}                  stage-
     
     # Url
     Set Suite Variable          ${lomake_url}                           ${stage_lomake-todistusjaljennospyynto-tilaus-direct_url}
