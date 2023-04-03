@@ -104,7 +104,7 @@ ${lomake-tjpt-toimitustapa-puhelinnumero-field-FI}              id=edit-valitse-
 ${lomake-tjpt-lisätiedot-field}                                 id=edit-mahdolliset-lisatiedot
 
 # Rekisteri seloste
-${lomake-tjpt-rekisteriseloste-checkbox}                        //input[@data-drupal-selector='edit-privacy-policy-acceptance']
+${lomake-tjpt-rekisteriseloste-checkbox}                        //input[@data-drupal-selector='edit-olen-tutustunut-rekisteriselosteeseen']    #//input[@data-drupal-selector='edit-privacy-policy-acceptance']
 
 # Lähetä lomake
 ${lomake-tjpt-laheta-lomake-button}                             id=edit-actions-submit      # Oli edit-submit
