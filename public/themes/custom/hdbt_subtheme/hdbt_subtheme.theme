@@ -75,3 +75,18 @@ function hdbt_subtheme_theme_suggestions_menu_alter(&$suggestions, $variables) {
 function hdbt_subtheme_preprocess_block__user_login_block(&$variables, $hook) {
   $variables['content']['user_links'] = NULL;
 }
+
+/**
+ * Implwments hook_page_attachments_alter().
+ */
+function hdbt_subtheme_page_attachments_alter(array &$attachments) {
+  $noindexTag = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'robots',
+      'content' => 'noindex',
+    ],
+  ];
+
+  $attachments['#attached']['html_head'][] = [$noindexTag, 'robots'];
+}
