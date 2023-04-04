@@ -1,5 +1,23 @@
 # Changelog
 
+## 2023.7
+- 480d55d fix: LOM-471: Update rekisteriseloste locator changed (#173)
+- e70518f feat: LOM-465: Update smtp sender and from info
+- 245b327 feat: LOM-463: Add noindex tag
+- af58018 fix--LOM-469: fix: LOM-469: robotoptions lines removed (#170)
+- d436023 fix: LOM-XX: Privacy policy typo (#169)
+- db8aa01 docs: Version update.
+- b55e4ca fix: LOM-453: Configuration update to disable disable_messages on admin pages (#167)
+- 4b6f94f fix: LOM-449: Added conditional privacy policy link (#163)
+- 7a3b988 fix: Added missing dependencies for autologout & audit log modules (#165)
+- c1abb76 docs: Changelog.
+- e301f4d fix: LOM-461: Change logout urls to check if they need a prefixed address (#164)
+- e5af397 fix: update ATV version
+- ffdb6a5 docs: Changelog & version bump.
+- acb39d5 fix: AU-820: ATV version update (#162)
+- 435ac12 fix: Gdpr api version
+- 8ae8340 fix: HP version to support development env
+
 ## 2023.5
 - fix: LOM-453: Configuration update to disable disable_messages on admin pages (#167)
 - fix: LOM-449: Added conditional privacy policy link (#163)
