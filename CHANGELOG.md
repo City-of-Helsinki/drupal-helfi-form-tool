@@ -1,5 +1,8 @@
 # Changelog
 
+## 2023.8
+- cb83c51 config: Update configuration, initial big merge. (#166)
+
 ## 2023.7
 - 480d55d fix: LOM-471: Update rekisteriseloste locator changed (#173)
 - e70518f feat: LOM-465: Update smtp sender and from info
