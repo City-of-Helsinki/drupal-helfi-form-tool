@@ -1,3 +1,11 @@
+<section aria-label="Notification" class="hds-notification hds-notification--notification container">
+  <div class="hds-notification__content">
+    <div class="hds-notification__label" role="heading" aria-level="2">
+      <span class="hel-icon hel-icon--alert-circle-fill" aria-hidden="true"></span>
+      <span>{{ 'Fields marked with an asterisk * are required, that need to be filled before saving.'|t }} </span>
+    </div>
+  </div>
+</section>
 {% for item in items %}
   {% block paragraph %}
     {% embed "@hdbt/misc/component.twig" with { component_classes: [ 'component--webform' ], } %}
