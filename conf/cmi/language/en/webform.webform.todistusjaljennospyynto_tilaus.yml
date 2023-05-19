@@ -1,53 +1,59 @@
 title: 'Requesting copies of certificates'
 elements: |
+  tietoja_tasta_lomakkeesta:
+    '#title': 'About this form'
+  tietoja_todistusjaljennoksesta_markup:
+    '#markup': 'Use this form to order comprehensive school certificates issued after 1995 and general upper secondary school certificates issued after 2005.'
   tilaaja:
-    '#title': 'The person requesting a copy'
+    '#title': Orderer
   profile_fields:
     '#title': 'The following personal information has been fetched from your Helsinki-profile.'
   tilattava_todistus:
-    '#title': 'Report copy requested'
+    '#title': Certificate
   valitse_tilattava_todistus:
-    '#title': 'Choose school report'
+    '#title': 'Select the desired certificate'
     '#options':
       'Peruskoulun päättötodistus': 'Comprehensive school certificate'
-      'Peruskoulun erotodistus': 'Comprehensive school report, studies not completed'
-      'Lisäopetuksen 10.lk todistus': 'Certificate of additional studies, 10th form'
-      'Lukion päättötodistus': 'Upper secondary school certificate'
-      'Lukion erotodistus': 'Upper secondary school report, studies not completed'
+      'Peruskoulun erotodistus': 'Certificate of termination of studies, comprehensive school'
+      'Lisäopetuksen 10.lk todistus': 'Certificate of voluntary additional basic education, 10th grade'
+      'Lukion päättötodistus': 'General upper secondary school certificate'
+      'Lukion erotodistus': 'Certificate of resignation, general upper secondary school'
   todistuksen_antanut_helsinkilainen_koulu:
-    '#title': 'School in Helsinki that issued the report'
-    '#description': 'Enter the name of the school, at the time when the school report was issued.&nbsp;'
+    '#title': 'Helsinki school that issued the certificate'
+    '#description': 'Enter the school&rsquo;s name as it was called when you studied there.'
   toimitustapa:
-    '#title': 'Manner of delivery'
+    '#title': 'Delivery method'
   valitse_toimitustapa:
-    '#title': 'Select delivery method'
-    '#Toimitustapa: Postiennakko__title': 'Cash on delivery'
-    '#Toimitustapa: Nouto__title': Collect
+    '#title': 'Select the delivery method'
     '#Nouto -teksti__title': 'Collect from Educational Division''s archive, Töysänkatu 2 D, 00510 Helsinki'
     '#Info__title': ''
     '#Toimitustapa: Email__title': E-mail
     '#Toimitustapa: Postitoimitus__title': 'Postal delivery'
+    '#Toimitustapa: Postiennakko__title': 'Sent by cash on delivery'
+    '#Toimitustapa: Nouto__title': Collect
     '#delivery_method__title': ''
-    '#first_name__title': 'First Name'
-    '#last_name__title': 'Last Name'
-    '#street_address__title': 'Street Address'
-    '#zip_code__title': 'Zip Code'
-    '#city__title': City
-    '#phone_number__title': 'Phone Number'
+    '#first_name__title': ''
+    '#last_name__title': ''
+    '#street_address__title': ''
+    '#zip_code__title': ''
+    '#city__title': ''
+    '#phone_number__title': ''
     '#cod__title': ''
-    '#cod_first_name__title': 'First Name'
-    '#cod_last_name__title': 'Last Name'
-    '#cod_street_address__title': 'Street Address'
-    '#cod_zip_code__title': 'Zip Code'
-    '#cod_city__title': City
-    '#cod_phone_number__title': 'Phone Number'
+    '#cod_first_name__title': ''
+    '#cod_last_name__title': ''
+    '#cod_street_address__title': ''
+    '#cod_zip_code__title': ''
+    '#cod_city__title': ''
+    '#cod_phone_number__title': ''
     '#pickup__title': ''
-    '#email__title': 'Email Address'
-    '#Postiennakko -teksti__title': 'Cost of the cash on delivery is 9,20 €'
+    '#email__title': ''
+    '#Postiennakko -teksti__title': 'Sending the document by cash on delivery will cost €9.20'
   lisatiedot:
     '#title': 'Additional information'
   mahdolliset_lisatiedot:
     '#title': 'Possible additional information'
+  rekisteriseloste:
+    '#title': 'Privacy policy'
 description: 'Requesting copies of certificates MVP-version.'
 settings:
-  confirmation_title: 'Request has been sent'
+  confirmation_title: 'Your certificate copy request has been sent'

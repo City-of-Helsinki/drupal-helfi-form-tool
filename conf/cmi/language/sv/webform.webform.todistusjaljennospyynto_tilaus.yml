@@ -1,9 +1,34 @@
 title: 'SV Todistusjäljennöspyyntö, tilaus'
 elements: |
+  tietoja_tasta_lomakkeesta:
+    '#title': 'Information om denna blankett'
+  tietoja_todistusjaljennoksesta_markup:
+    '#markup': 'Med denna blankett kan du best&auml;lla avg&aring;ngs- och skiljebetyg fr&aring;n grundskolan som f&aring;tts efter 1995 samt avg&aring;ngs- och skiljebetyg fr&aring;n gymnasiet som f&aring;tts efter 2005.'
+  tilaaja:
+    '#title': Beställare
   profile_fields:
     '#title': 'Följande personuppgifter har hämtats från din Helsingfors-profil.'
+  tilattava_todistus:
+    '#title': 'Betyg som beställs'
+  valitse_tilattava_todistus:
+    '#title': 'Välj det betyg som ska beställas'
+    '#options':
+      'Peruskoulun päättötodistus': 'Avgångsbetyg från grundskolan'
+      'Peruskoulun erotodistus': 'Skiljebetyg från grundskolan'
+      'Lisäopetuksen 10.lk todistus': 'Betyg för påbyggnadsundervisning i årskurs 10'
+      'Lukion päättötodistus': 'Avgångsbetyg från gymnasiet'
+      'Lukion erotodistus': 'Skiljebetyg från gymnasiet'
+  todistuksen_antanut_helsinkilainen_koulu:
+    '#title': 'Den skola i Helsingfors som gett betyget'
+    '#description': 'Ange skolans namn i den form som g&auml;llde n&auml;r du studerade d&auml;r.'
+  toimitustapa:
+    '#title': Leveransmetod
   valitse_toimitustapa:
+    '#title': 'Välj leveransmetod'
+    '#Nouto -teksti__title': 'Hämtas från fostrans- och utbildningssektorns arkiv. Töysänkatu 2 D, 00510 Helsinki'
     '#Info__title': ''
+    '#Toimitustapa: Postiennakko__title': Postförskott
+    '#Toimitustapa: Nouto__title': Upphämtning
     '#delivery_method__title': ''
     '#first_name__title': ''
     '#last_name__title': ''
@@ -20,11 +45,18 @@ elements: |
     '#cod_phone_number__title': ''
     '#pickup__title': ''
     '#email__title': ''
+    '#Postiennakko -teksti__title': 'Postförskottet kostar 9,20 euro för den som beställer dokumentet.'
+  lisatiedot:
+    '#title': 'Ytterligare information'
   mahdolliset_lisatiedot:
     '#title': 'Om ditt namn eller din personbeteckning har ändrats, ange här namn och personbeteckning för tidpunkten då betyget utfärdades.'
+  rekisteriseloste:
+    '#title': Registerbeskrivning
   tutustu_rekisteriselosteeseen:
     '#title': 'L&auml;s mer om <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administration%20av%20grundl%C3%A4ggande%20utbildning.pdf" target="_blank">registerbeskrivningen</a> (l&auml;nken &ouml;ppnas i en ny flik)'
   tutustu_rekisteriselosteeseen_lukio:
     '#title': 'L&auml;s mer om <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administrationen%20av%20studier%20inom%20gymnasieutbildningen.pdf" target="_blank">registerbeskrivningen</a> (l&auml;nken &ouml;ppnas i en ny flik)'
   olen_tutustunut_rekisteriselosteeseen:
     '#title': 'Jag har läst registerbeskrivningen'
+settings:
+  confirmation_title: 'Begäran om betygskopia har skickats'
