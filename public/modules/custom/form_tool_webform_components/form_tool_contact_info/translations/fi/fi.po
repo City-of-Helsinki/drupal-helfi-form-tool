@@ -46,8 +46,8 @@ msgstr "Puhelinnumero"
 msgid "Cash on delivery price is 9,20 €"
 msgstr "Postiennakon hinta asiakirjan tilaajalle 9,20 €"
 
-msgid "Pick-up from Töysänkatu 2 D, 00510 Helsinki."
-msgstr "Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki."
+msgid "Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."
+msgstr "Nouto. Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki."
 
 msgctxt "Notification inside a webform"
 msgid "Notification"
