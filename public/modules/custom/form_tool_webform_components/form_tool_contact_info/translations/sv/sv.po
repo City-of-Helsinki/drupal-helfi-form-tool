@@ -4,3 +4,6 @@ msgstr ""
 msgctxt "Notification inside a webform"
 msgid "Notification"
 msgstr "Meddelande"
+
+msgid "Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."
+msgstr "Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysänkatu 2 D, 00510 Helsinki."
