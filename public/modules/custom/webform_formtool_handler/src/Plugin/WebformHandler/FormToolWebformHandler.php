@@ -269,6 +269,10 @@ class FormToolWebformHandler extends WebformHandlerBase {
 
     $appParam = self::getAppEnv();
 
+    if ($appParam === '') {
+      return 'HEL-' . strtoupper($thirdPartySettings['form_code']) . '-' . sprintf('%08d', $submission->id());
+    }
+
     return 'HEL-' . strtoupper($thirdPartySettings['form_code']) . '-' . sprintf('%08d', $submission->id()) . '-' . $appParam;
 
   }
