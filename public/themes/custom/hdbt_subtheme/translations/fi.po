@@ -15,3 +15,6 @@ msgstr "Kirjaudu lomakkeelle"
 
 msgid "Below is the data of a submitted form."
 msgstr "Alla on lähetetyn lomakkeen tiedot."
+
+msgid "Yes"
+msgstr "Kyllä"
