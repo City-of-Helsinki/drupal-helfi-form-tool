@@ -21,3 +21,6 @@ msgstr "Nedan finns uppgifterna för ett inlämnat formulär."
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Fields marked with an asterisk * are required, that need to be filled before saving."
+msgstr "Fält markerade med en asterisk * är obligatoriska, som måste fyllas i innan du sparar."

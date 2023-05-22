@@ -18,3 +18,6 @@ msgstr "Alla on lähetetyn lomakkeen tiedot."
 
 msgid "Yes"
 msgstr "Kyllä"
+
+msgid "Fields marked with an asterisk * are required, that need to be filled before saving."
+msgstr "Tähdellä * merkityt kentät ovat pakollisia tietoja, jotka sinun on täytettävä ennen tietojen tallentamista."
