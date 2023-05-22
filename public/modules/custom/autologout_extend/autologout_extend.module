@@ -5,6 +5,8 @@
  * Automated Logout extend - Module.
  */
 
+use Drupal\Core\Url;
+
 /**
  * Implements hook_page_attachments_alter().
  */
@@ -21,6 +23,10 @@ function autologout_extend_page_attachments_alter(array &$attachments) {
   if (!$openid_expire) {
     return;
   }
+
+  $redirect_logout_url = Url::fromRoute('user.logout');
+
+  $attachments['#attached']['drupalSettings']['autologout']['redirect_url'] = $redirect_logout_url->toString();
 
   $session_time_left = $openid_expire - REQUEST_TIME;
   $time_remaining_threshold = \Drupal::config('autologout_extend.settings')
