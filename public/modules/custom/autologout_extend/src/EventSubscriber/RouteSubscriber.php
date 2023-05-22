@@ -14,9 +14,11 @@ class RouteSubscriber extends RouteSubscriberBase {
    * {@inheritdoc}
    */
   protected function alterRoutes(RouteCollection $collection) {
-    // Change the route associated with the user profile page (/user, /user/{uid}).
     if ($route = $collection->get('autologout.ajax_logout')) {
-      $route->setDefault('_controller', '\Drupal\autologout_extend\Controller\LogoutController::ajaxLogout');
+      $route->setDefault(
+        '_controller',
+        '\Drupal\autologout_extend\Controller\LogoutController::ajaxLogout'
+      );
     }
   }
 

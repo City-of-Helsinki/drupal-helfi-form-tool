@@ -39,4 +39,5 @@ class LogoutController extends ControllerBase {
     $response->setStatusCode(200);
     return $response;
   }
+
 }
