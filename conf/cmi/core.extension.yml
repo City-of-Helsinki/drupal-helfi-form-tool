@@ -6,6 +6,7 @@ module:
   allowed_formats: 0
   autologout: 0
   autologout_extend: 0
+  basic_auth: 0
   block: 0
   block_content: 0
   breakpoint: 0

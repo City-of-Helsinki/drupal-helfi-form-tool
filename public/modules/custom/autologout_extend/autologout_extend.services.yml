@@ -8,3 +8,7 @@ services:
     ]
     tags:
       - { name: event_subscriber }
+  autologout_extend.route_subscriber:
+    class: 'Drupal\autologout_extend\EventSubscriber\RouteSubscriber'
+    tags:
+      - { name: event_subscriber }
