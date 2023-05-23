@@ -13,6 +13,10 @@ msgctxt "Log in block title on error pages"
 msgid "Login to the form"
 msgstr "Kirjaudu lomakkeelle"
 
+msgctxt "Log in block title on error pages"
+msgid "Login to the form: @webform_label"
+msgstr "Kirjaudu lomakkeelle: @webform_label"
+
 msgid "Below is the data of a submitted form."
 msgstr "Alla on lähetetyn lomakkeen tiedot."
 

@@ -21,7 +21,9 @@
             {{ link(feedback_link_title, error_page_feedback_link, link_attributes) }}
           {% endif %}
           {% if user_not_logged_in %}
-            <h1 class="error-page__login-title">{{ 'Login to the form'|t({}, {'context': 'Log in block title on error pages'}) }}</h1>
+            <h1 class="error-page__login-title">{{ 'Login to the form'|t({}, {'context': 'Log in block title on error pages'}) }}
+            {{-": " ~ page.webform_label }}
+            </h1>
           {% endif %}
           {% if user_not_logged_in %}
             <div class="user-login-block__container">
