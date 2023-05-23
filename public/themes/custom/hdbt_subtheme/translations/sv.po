@@ -16,6 +16,10 @@ msgctxt "Log in block title on error pages"
 msgid "Login to the form"
 msgstr "Logga in i formuläret"
 
+msgctxt "Log in block title on error pages"
+msgid "Login to the form: @webform_label"
+msgstr "Logga in i formuläret: @webform_label"
+
 msgid "Below is the data of a submitted form."
 msgstr "Nedan finns uppgifterna för ett inlämnat formulär."
 
