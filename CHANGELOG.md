@@ -1,6 +1,9 @@
 # Changelog
 
-## 2023.8
+## 2023.10
+- 7318295 hotfix: LOM-470: Update gdpr module to fix user deletion.
+
+## 2023.9
 - 8df0d2d config: Update configuration (#185)
 - d5f7c07 fix: LOM-492: Webform name to 403 page and title (#183)
 - 3c88fce fix: LOM-347, LOM-454, LOM-456: change webform fields (#179)
