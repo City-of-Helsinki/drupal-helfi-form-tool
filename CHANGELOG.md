@@ -1,6 +1,17 @@
 # Changelog
 
 ## 2023.8
+- 8df0d2d config: Update configuration (#185)
+- d5f7c07 fix: LOM-492: Webform name to 403 page and title (#183)
+- 3c88fce fix: LOM-347, LOM-454, LOM-456: change webform fields (#179)
+- 62528c8 feat:  LOM-458: autologout end profiili session (#182)
+- bf54935 fix: LOM-472: Fix formId if appEnv is prod (#177)
+- 9605941 config: Update configuration (#175)
+- e283647 feat: LOM-462: Autologout style changes from AVUS
+- 59e8257 fix: LOM-480: add asterisk notification (#178)
+- 3a93959 fix: LOM-440: autologout translations (#176)
+
+## 2023.8
 - cb83c51 config: Update configuration, initial big merge. (#166)
 
 ## 2023.7
