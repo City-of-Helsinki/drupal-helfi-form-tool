@@ -55,27 +55,25 @@
     <div role="contentinfo" aria-labelledby="{{ title_ids[type] }}" class="{{ classes|without('messages-list__item')|join(' ') }}">
       {% if is_message_with_title or is_message_with_icon %}
         {% if is_message_with_title %}
-          <div class="hds-notification__label" role="heading" aria-level="2">
-            {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
-            <span id="{{ title_ids[type] }}">{{ status_headings[type] }}</span>
-          </div>
+          {% if messages|length > 1 %}
+            {% for message in messages %}
+              <div class="hds-notification__label" role="heading" aria-level="2">
+                {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
+                <span id="{{ title_ids[type] }}">{{ message }}</span>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="hds-notification__label" role="heading" aria-level="2">
+              {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
+              <span id="{{ title_ids[type] }}">{{ messages|first }}</span>
+            </div>
+          {% endif %}
         {% else %}
           <div class="hds-notification__label" role="heading" aria-hidden="true">
             {% include "@hdbt/misc/icon.twig" with {icon: notification_icon} %}
           </div>
         {% endif %}
       {% endif %}
-      <div class="hds-notification__body">
-        {% if messages|length > 1 %}
-          <ul class="messages__list">
-            {% for message in messages %}
-              <li class="messages__item">{{ message }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          {{ messages|first }}
-        {% endif %}
-      </div>
     </div>
     {# Remove type specific classes. #}
     {% if attributes.toast %}
