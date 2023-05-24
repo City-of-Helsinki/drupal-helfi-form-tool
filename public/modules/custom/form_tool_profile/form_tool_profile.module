@@ -108,6 +108,34 @@ function form_tool_profile_page_attachments(array &$attachments) {
 }
 
 /**
+ * Implements hook_metatags_attachments_alter().
+ */
+function form_tool_profile_metatags_attachments_alter(array &$metatag_attachments) {
+
+  $node = \Drupal::routeMatch()->getMasterRouteMatch()->getParameter('node');
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  if ($node && $node->getType() === 'webform' && $route_name === 'system.403') {
+    foreach ($metatag_attachments['#attached']['html_head'] as $key => &$attachment) {
+      if (!empty($attachment[1]) && strpos($attachment[1], 'title') !== FALSE) {
+        $titleExploded = explode('|', $attachment[0]['#attributes']['content']);
+
+        $webform_relation = $node->get('webform')->getValue()[0];
+        $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']);
+
+        $titleExploded[0] = t(
+          'Login to the form: @webform_label',
+         ['@webform_label' => ' ' . $webform->label()],
+         ['context' => 'Log in block title on error pages']
+        );
+        $newTitle = implode('|', $titleExploded);
+        $attachment[0]['#attributes']['content'] = $newTitle;
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function form_tool_profile_preprocess_page(&$vars) {
@@ -123,8 +151,8 @@ function form_tool_profile_preprocess_page(&$vars) {
 
     $webform_relation = $node->get('webform')->getValue()[0];
     $webform = \Drupal::entityTypeManager()->getStorage('webform')->load($webform_relation['target_id']);
+    $vars['page']['webform_label'] = $webform->label();
     $login_type = $webform->getThirdPartySetting('form_tool_webform_parameters', 'login_type');
-
     $block_ids = \Drupal::entityQuery('block_content')
       ->condition('field_login_type', $login_type)
       ->execute();

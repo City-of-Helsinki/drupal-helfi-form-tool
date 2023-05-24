@@ -1,0 +1,5 @@
+dialog_title: 'Istunto on päättymässä'
+yes_button: 'Jatka käyttöä'
+no_button: 'Kirjaudu ulos'
+message: 'Istuntosi on päättymässä. Haluatko jatkaa?'
+inactivity_message: 'Istuntosi on päättymässä. Haluatko jatkaa?'

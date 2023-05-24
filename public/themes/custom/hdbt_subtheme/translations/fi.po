@@ -13,5 +13,15 @@ msgctxt "Log in block title on error pages"
 msgid "Login to the form"
 msgstr "Kirjaudu lomakkeelle"
 
+msgctxt "Log in block title on error pages"
+msgid "Login to the form: @webform_label"
+msgstr "Kirjaudu lomakkeelle: @webform_label"
+
 msgid "Below is the data of a submitted form."
 msgstr "Alla on lähetetyn lomakkeen tiedot."
+
+msgid "Yes"
+msgstr "Kyllä"
+
+msgid "Fields marked with an asterisk * are required, that need to be filled before saving."
+msgstr "Tähdellä * merkityt kentät ovat pakollisia tietoja, jotka sinun on täytettävä ennen tietojen tallentamista."

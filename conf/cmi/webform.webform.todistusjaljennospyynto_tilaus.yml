@@ -85,6 +85,11 @@ elements: |-
       '#counter_minimum': 1
       '#counter_maximum': 100
       '#counter_maximum_message': ' '
+    todistuksen_antamisvuosi:
+      '#type': textfield
+      '#title': 'Todistuksen antamisvuosi'
+      '#description': 'Todistuksia etsit&auml;&auml;n annetusta vuodesta +/- 3 vuoden s&auml;teell&auml;'
+      '#required': true
   toimitustapa:
     '#type': webform_section
     '#title': Toimitustapa
@@ -93,8 +98,6 @@ elements: |-
       '#title': 'Valitse toimitustapa'
       '#Toimitustapa: Email__access': false
       '#Toimitustapa: Postitoimitus__access': false
-      '#Toimitustapa: Postiennakko__title': Postiennakko
-      '#Toimitustapa: Nouto__title': Nouto
       '#Nouto -teksti__title': 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki'
   lisatiedot:
     '#type': webform_section

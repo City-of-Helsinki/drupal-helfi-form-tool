@@ -65,7 +65,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['Toimitustapa: Nouto'] = [
       '#type' => 'checkbox',
-      '#title' => t('Pickup'),
+      '#title' => t("Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."),
       '#title_display' => 'before',
     ];
     $elements['delivery_method'] = [
@@ -76,7 +76,7 @@ class FormToolContactInfo extends WebformCompositeBase {
         'email' => t('Email Address'),
         'postal' => t('Postal Delivery'),
         'cod' => t('Cash on Delivery'),
-        'pickup' => t('Pick Up'),
+        'pickup' => t("Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."),
       ],
       '#required' => TRUE,
       '#after_build' => [[get_called_class(), 'deliveryOptions']],
@@ -202,11 +202,6 @@ class FormToolContactInfo extends WebformCompositeBase {
         ],
       ],
     ];
-    $elements['pickup'] = [
-      '#type' => 'item',
-      '#markup' => 'Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta. Töysänkatu 2 D, 00510 Helsinki.',
-      '#after_build' => [[get_called_class(), 'pickup']],
-    ];
     $elements['email'] = [
       '#type' => 'textfield',
       '#title' => t('Email Address'),
@@ -216,10 +211,6 @@ class FormToolContactInfo extends WebformCompositeBase {
     $elements['Postiennakko -teksti'] = [
       '#type' => 'item',
       '#title' => t('Cash on delivery price is 9,20 €'),
-    ];
-    $elements['Nouto -teksti'] = [
-      '#type' => 'textfield',
-      '#title' => t('Pick-up from Töysänkatu 2 D, 00510 Helsinki.'),
     ];
 
     return $elements;
@@ -343,10 +334,6 @@ class FormToolContactInfo extends WebformCompositeBase {
     }
     $element['delivery_method']['#title'] = $element['#title'];
     unset($element['Toimitustapa: Nouto']);
-    if ($element['Nouto -teksti']['#title'] != '') {
-      $element['pickup']['#markup'] = $element['Nouto -teksti']['#title'];
-    }
-    unset($element['Nouto -teksti']);
     if ($element['Postiennakko -teksti']['#title'] != '') {
       $element['cod']['#markup'] = $element['Postiennakko -teksti']['#title'];
     }
@@ -369,7 +356,7 @@ class FormToolContactInfo extends WebformCompositeBase {
     ];
     $elements['Toimitustapa: Nouto'] = [
       '#type' => 'checkbox',
-      '#title' => t('Pickup'),
+      '#title' => t("Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."),
       '#title_display' => 'before',
     ];
 
