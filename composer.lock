@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47a4f3d2936a2c1f6c1c5375c7d68134",
+    "content-hash": "d3fdd8b333f39570cf71fd4ce8cd94ff",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5151,16 +5151,16 @@
         },
         {
             "name": "drupal/helfi_gdpr_api",
-            "version": "0.9.4",
+            "version": "0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api.git",
-                "reference": "3c24e47c9693ff5337ebb50bcf6b83bb643b42c9"
+                "reference": "fb16a76d5334c960f43b64eb22ab3931bfa23abc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-gdpr-api/zipball/3c24e47c9693ff5337ebb50bcf6b83bb643b42c9",
-                "reference": "3c24e47c9693ff5337ebb50bcf6b83bb643b42c9",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-gdpr-api/zipball/fb16a76d5334c960f43b64eb22ab3931bfa23abc",
+                "reference": "fb16a76d5334c960f43b64eb22ab3931bfa23abc",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5173,10 +5173,10 @@
                 "GPL-2.0-or-later"
             ],
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api/tree/0.9.4",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api/tree/LOM-470-gdpr-delete",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-gdpr-api/issues"
             },
-            "time": "2023-03-24T12:21:19+00:00"
+            "time": "2023-05-24T11:28:31+00:00"
         },
         {
             "name": "drupal/helfi_helsinki_profiili",
