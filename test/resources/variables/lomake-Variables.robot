@@ -88,7 +88,8 @@ ${lomake-tjpt-vtt-lukion-paattotodistus-radiobutton-FI}         //label[contains
 ${lomake-tjpt-vtt-lukion-erotodistus-radiobutton-FI}            //label[contains(.,'Lukion erotodistus')]
 # Todistuksen antanut Helsinkiläinen koulu
 ${lomake-koulun-nimi-input}                                     //input[@data-drupal-selector='edit-todistuksen-antanut-helsinkilainen-koulu']
-
+# Todistuksen antamisvuosi
+${lomake-tjpt-vtt-todistuksen-antamisvuosi-input}               //input[@data-drupal-selector='edit-todistuksen-antamisvuosi']
 # Toimitustapa
 ${lomake-tjpt-toimitustapa-postiennakko-radiobutton-FI}         //label[contains(.,'Postiennakko')]
 ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}                //label[contains(.,'Nouto')]

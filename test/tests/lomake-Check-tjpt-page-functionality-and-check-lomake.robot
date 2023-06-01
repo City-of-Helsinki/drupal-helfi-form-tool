@@ -15,6 +15,7 @@ Force Tags      regression
 *** Variables ***
 
 ${lomake-testdata-koulunnimi}                               Mauri Makkaran ala-aste
+${lomake-testdata-todistuksen-antamisvuosi}                 2001
 ${lomake-testdata-lisatiedot}                               Ei mulla mitään lisätietoja ole
 
 
@@ -66,6 +67,9 @@ Verify all buttons, selections and fields
     Capture Page Screenshot
     # Lisää koulun nimi
     Input Text                                              ${lomake-koulun-nimi-input}                                 ${lomake-testdata-koulunnimi}
+    Capture Page Screenshot
+    # Lisää todistuksen antamisvuosi
+    Input Text                                              ${lomake-tjpt-vtt-todistuksen-antamisvuosi-input}           ${lomake-testdata-todistuksen-antamisvuosi}      
     Capture Page Screenshot
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
