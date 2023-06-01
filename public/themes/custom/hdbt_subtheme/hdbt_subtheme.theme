@@ -33,7 +33,6 @@ function hdbt_subtheme_preprocess_page(&$variables) {
   $variables['proxy_url'] = \Drupal::config('helfi_proxy.settings')->get('asset_path');
 }
 
-
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
