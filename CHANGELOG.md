@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023.11
+- 295fb40 config: Update configuration (#186)
+- 54ecbca fix: LOM-496: re-style status message (#187)
+
 ## 2023.10
 - 7318295 hotfix: LOM-470: Update gdpr module to fix user deletion.
 
