@@ -1,4 +1,4 @@
-title: 'SV Todistusjäljennöspyyntö, tilaus'
+title: 'Att beställa kopior av avgångsbetyg'
 elements: |
   tietoja_tasta_lomakkeesta:
     '#title': 'Information om denna blankett'
@@ -12,6 +12,7 @@ elements: |
     '#title': 'Betyg som beställs'
   valitse_tilattava_todistus:
     '#title': 'Välj det betyg som ska beställas'
+    '#description': "<pre data-placeholder=\"Käännös\" dir=\"ltr\" id=\"tw-target-text\">\r\nValet p&aring;verkar registreringsutl&aring;tandet som ska godk&auml;nnas.</pre>"
     '#options':
       'Peruskoulun päättötodistus': 'Avgångsbetyg från grundskolan'
       'Peruskoulun erotodistus': 'Skiljebetyg från grundskolan'
@@ -21,6 +22,8 @@ elements: |
   todistuksen_antanut_helsinkilainen_koulu:
     '#title': 'Den skola i Helsingfors som gett betyget'
     '#description': 'Ange skolans namn i den form som g&auml;llde n&auml;r du studerade d&auml;r.'
+  todistuksen_antamisvuosi:
+    '#description': "<pre data-placeholder=\"Käännös\" dir=\"ltr\" id=\"tw-target-text\">\r\nIntyg s&ouml;ks inom +/- 3 &aring;r fr&aring;n det givna &aring;ret</pre>"
   toimitustapa:
     '#title': Leveransmetod
   valitse_toimitustapa:
@@ -57,5 +60,7 @@ elements: |
     '#title': 'L&auml;s mer om <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administrationen%20av%20studier%20inom%20gymnasieutbildningen.pdf" target="_blank">registerbeskrivningen</a> (l&auml;nken &ouml;ppnas i en ny flik)'
   olen_tutustunut_rekisteriselosteeseen:
     '#title': 'Jag har läst registerbeskrivningen'
+  actions:
+    '#title': 'Tryck på knappen'
 settings:
   confirmation_title: 'Begäran om betygskopia har skickats'
