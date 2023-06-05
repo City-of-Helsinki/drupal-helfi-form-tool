@@ -1,6 +1,12 @@
 # Changelog
 
 ## 2023.11
+- 8d73533 fix: ATV module version -> 0.9.9
+- d861744 fix: LOM-508: fix img in login page (#188)
+- 5f29989 fix: LOM-507: hide login (#189)
+- 376578a fix: LOM-506: Patch languagemanager as backport is breaking our link alters (#191)
+- 5a28d74 revert: Update configuration (#190) with (#192)
+- 9632c49 config: Update configuration (#190)
 - 295fb40 config: Update configuration (#186)
 - 54ecbca fix: LOM-496: re-style status message (#187)
 
