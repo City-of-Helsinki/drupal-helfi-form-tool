@@ -42,6 +42,10 @@ class FormCompletionController extends ControllerBase {
    *
    * @return array
    *   Render array.
+   *
+   * @throws \Drupal\helfi_atv\AtvDocumentNotFoundException
+   * @throws \Drupal\helfi_atv\AtvFailedToConnectException
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function build(string $submission_id): array {
     /** @var \Drupal\webform\Entity\WebformSubmission $entity */
@@ -51,7 +55,7 @@ class FormCompletionController extends ControllerBase {
 
     $confirmationTitle = t('Thank you');
     $confirmationMessage = [
-      '#markup' => '<p>' . t('We will try to process your submission as quickly as possible.') . '</p>',
+      '#markup' => '',
     ];
 
     if (array_key_exists('confirmation_title', $webformSettings) && !empty($webformSettings['confirmation_title'])) {
