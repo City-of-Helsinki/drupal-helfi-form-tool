@@ -12,7 +12,7 @@ elements: |
     '#title': 'Betyg som beställs'
   valitse_tilattava_todistus:
     '#title': 'Välj det betyg som ska beställas'
-    '#description': "<pre data-placeholder=\"Käännös\" dir=\"ltr\" id=\"tw-target-text\">\r\nValet p&aring;verkar registreringsutl&aring;tandet som ska godk&auml;nnas.</pre>"
+    '#description': 'Valet p&aring;verkar registreringsutl&aring;tandet som ska godk&auml;nnas.'
     '#options':
       'Peruskoulun päättötodistus': 'Avgångsbetyg från grundskolan'
       'Peruskoulun erotodistus': 'Skiljebetyg från grundskolan'
@@ -23,7 +23,8 @@ elements: |
     '#title': 'Den skola i Helsingfors som gett betyget'
     '#description': 'Ange skolans namn i den form som g&auml;llde n&auml;r du studerade d&auml;r.'
   todistuksen_antamisvuosi:
-    '#description': "<pre data-placeholder=\"Käännös\" dir=\"ltr\" id=\"tw-target-text\">\r\nIntyg s&ouml;ks inom +/- 3 &aring;r fr&aring;n det givna &aring;ret</pre>"
+    '#title': 'Året då betyget utfärdats'
+    '#description': 'Betygen s&ouml;ks +/-3 &aring;r fr&aring;n det angivna &aring;rtalet'
   toimitustapa:
     '#title': Leveransmetod
   valitse_toimitustapa:
@@ -33,19 +34,19 @@ elements: |
     '#Toimitustapa: Postiennakko__title': Postförskott
     '#Toimitustapa: Nouto__title': 'Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysänkatu 2 D, 00510 Helsinki.'
     '#delivery_method__title': ''
-    '#first_name__title': 'Förnamn'
-    '#last_name__title': 'Efternamn'
-    '#street_address__title': 'Gatuadress'
-    '#zip_code__title': 'Postnummer'
-    '#city__title': 'Stad'
-    '#phone_number__title': 'Telefonnummer'
+    '#first_name__title': Förnamn
+    '#last_name__title': Efternamn
+    '#street_address__title': Gatuadress
+    '#zip_code__title': Postnummer
+    '#city__title': Stad
+    '#phone_number__title': Telefonnummer
     '#cod__title': ''
-    '#cod_first_name__title': 'Förnamn'
-    '#cod_last_name__title': 'Efternamn'
-    '#cod_street_address__title': 'Gatuadress'
-    '#cod_zip_code__title': 'Postnummer'
-    '#cod_city__title': 'Stad'
-    '#cod_phone_number__title': 'Telefonnummer'
+    '#cod_first_name__title': Förnamn
+    '#cod_last_name__title': Efternamn
+    '#cod_street_address__title': Gatuadress
+    '#cod_zip_code__title': aPostnummer
+    '#cod_city__title': Stad
+    '#cod_phone_number__title': Telefonnummer
     '#email__title': ''
     '#Postiennakko -teksti__title': 'Postförskottet kostar 9,20 euro för den som beställer dokumentet.'
   lisatiedot:
@@ -54,6 +55,8 @@ elements: |
     '#title': 'Om ditt namn eller din personbeteckning har ändrats, ange här namn och personbeteckning för tidpunkten då betyget utfärdades.'
   rekisteriseloste:
     '#title': Registerbeskrivning
+  valitse_ensin_tilattava_todistus_:
+    '#title': 'Välj först det betyg som ska beställas.'
   tutustu_rekisteriselosteeseen:
     '#title': 'L&auml;s mer om <a href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kasko/Register%20f%C3%B6r%20administration%20av%20grundl%C3%A4ggande%20utbildning.pdf" target="_blank">registerbeskrivningen</a> (l&auml;nken &ouml;ppnas i en ny flik)'
   tutustu_rekisteriselosteeseen_lukio:

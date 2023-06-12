@@ -45,3 +45,8 @@
 .error-page .profile__login-link {
   display: none;
 }
+
+.language-links a.language-link:lang(en),
+.language-links .language-link.is-disabled {
+  display: none;
+}
