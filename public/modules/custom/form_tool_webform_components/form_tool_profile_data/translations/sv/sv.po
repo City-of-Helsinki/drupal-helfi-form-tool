@@ -11,19 +11,19 @@ msgid "Primary phone"
 msgstr "Primär Telefon"
 
 msgid "Verified first name"
-msgstr "Verifierat förnamn"
+msgstr "Bekräftad förnamn"
 
 msgid "Verified last name"
-msgstr " efternamn"
+msgstr "Bekräftad efternamn"
 
 msgid "Verified given name"
-msgstr "Verifierat kristet namn"
+msgstr "Bekräftad kristet namn"
 
-msgid "Verified social security number"
-msgstr "Verifierat personnummer"
+msgid "Verified SSN"
+msgstr "Bekräftad personbeteckning"
 
 msgid "Verified permanent address"
-msgstr "Verifierad permanent adress"
+msgstr "Bekräftad permanent bostadsort"
 
 msgid "Profile data updated"
 msgstr "Profildata uppdaterad"
