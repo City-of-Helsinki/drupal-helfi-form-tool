@@ -44,7 +44,7 @@ elements: |
     '#cod_first_name__title': Förnamn
     '#cod_last_name__title': Efternamn
     '#cod_street_address__title': Gatuadress
-    '#cod_zip_code__title': aPostnummer
+    '#cod_zip_code__title': Postnummer
     '#cod_city__title': Stad
     '#cod_phone_number__title': Telefonnummer
     '#email__title': ''
