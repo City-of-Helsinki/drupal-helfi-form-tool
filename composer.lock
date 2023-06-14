@@ -5078,16 +5078,16 @@
         },
         {
             "name": "drupal/helfi_audit_log",
-            "version": "0.9.2",
+            "version": "0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log.git",
-                "reference": "1f9cfcd46b30cc96a5f569f771ddc4cb7766c065"
+                "reference": "4c738477445edce9e417b1ca0ca2ced25546bcc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-audit-log/zipball/1f9cfcd46b30cc96a5f569f771ddc4cb7766c065",
-                "reference": "1f9cfcd46b30cc96a5f569f771ddc4cb7766c065",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-audit-log/zipball/4c738477445edce9e417b1ca0ca2ced25546bcc2",
+                "reference": "4c738477445edce9e417b1ca0ca2ced25546bcc2",
                 "shasum": ""
             },
             "require-dev": {
@@ -5100,23 +5100,23 @@
             ],
             "description": "Helfi - Audit log",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/tree/0.9.2",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/tree/0.9.3",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-audit-log/issues"
             },
-            "time": "2023-03-15T08:27:54+00:00"
+            "time": "2023-06-14T05:33:56+00:00"
         },
         {
             "name": "drupal/helfi_azure_fs",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs.git",
-                "reference": "64f25bd440989af6c7d5bfa93a6d4788203acbdc"
+                "reference": "e20fbe6a0ddf32641614e0439a37e6d2e474e8e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-azure-fs/zipball/64f25bd440989af6c7d5bfa93a6d4788203acbdc",
-                "reference": "64f25bd440989af6c7d5bfa93a6d4788203acbdc",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-azure-fs/zipball/e20fbe6a0ddf32641614e0439a37e6d2e474e8e5",
+                "reference": "e20fbe6a0ddf32641614e0439a37e6d2e474e8e5",
                 "shasum": ""
             },
             "require": {
@@ -5132,10 +5132,10 @@
             ],
             "description": "Helfi - Azure FS",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/tree/1.2.1",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/tree/1.2.2",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-azure-fs/issues"
             },
-            "time": "2023-04-03T09:18:06+00:00"
+            "time": "2023-06-08T07:10:39+00:00"
         },
         {
             "name": "drupal/helfi_drupal_tools",
@@ -5143,12 +5143,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-tools.git",
-                "reference": "84877a51a195e42e8a46addae37dcc451297762c"
+                "reference": "9e34e3f97a8bc9d56f58d8a5228ae850d209549c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/84877a51a195e42e8a46addae37dcc451297762c",
-                "reference": "84877a51a195e42e8a46addae37dcc451297762c",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-tools/zipball/9e34e3f97a8bc9d56f58d8a5228ae850d209549c",
+                "reference": "9e34e3f97a8bc9d56f58d8a5228ae850d209549c",
                 "shasum": ""
             },
             "default-branch": true,
@@ -5161,7 +5161,7 @@
                 "source": "https://github.com/City-of-Helsinki/drupal-tools/tree/main",
                 "issues": "https://github.com/City-of-Helsinki/drupal-tools/issues"
             },
-            "time": "2023-05-25T13:39:12+00:00"
+            "time": "2023-06-07T07:33:29+00:00"
         },
         {
             "name": "drupal/helfi_gdpr_api",
@@ -5463,16 +5463,16 @@
         },
         {
             "name": "drupal/helfi_tpr",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr.git",
-                "reference": "56f629cc8a7c22e91a4e93806e76a9d32e38bdca"
+                "reference": "05b3296463e89d44d72cb9965cdae1fc61ffbb1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/56f629cc8a7c22e91a4e93806e76a9d32e38bdca",
-                "reference": "56f629cc8a7c22e91a4e93806e76a9d32e38bdca",
+                "url": "https://api.github.com/repos/City-of-Helsinki/drupal-module-helfi-tpr/zipball/05b3296463e89d44d72cb9965cdae1fc61ffbb1e",
+                "reference": "05b3296463e89d44d72cb9965cdae1fc61ffbb1e",
                 "shasum": ""
             },
             "require": {
@@ -5498,10 +5498,10 @@
             ],
             "description": "TPR integration",
             "support": {
-                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.2.3",
+                "source": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/tree/2.2.4",
                 "issues": "https://github.com/City-of-Helsinki/drupal-module-helfi-tpr/issues"
             },
-            "time": "2023-05-25T05:40:47+00:00"
+            "time": "2023-06-08T05:46:07+00:00"
         },
         {
             "name": "drupal/helfi_tunnistamo",
@@ -7214,17 +7214,17 @@
         },
         {
             "name": "drupal/simple_sitemap",
-            "version": "4.1.4",
+            "version": "4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/simple_sitemap.git",
-                "reference": "4.1.4"
+                "reference": "4.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/simple_sitemap-4.1.4.zip",
-                "reference": "4.1.4",
-                "shasum": "55986f9819c60216ad6401941ca4176a1e086c8b"
+                "url": "https://ftp.drupal.org/files/projects/simple_sitemap-4.1.6.zip",
+                "reference": "4.1.6",
+                "shasum": "5ea5ee97ab4d59b43db86dd6279c3ac5ecbe69b9"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10",
@@ -7233,8 +7233,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.1.4",
-                    "datestamp": "1674226567",
+                    "version": "4.1.6",
+                    "datestamp": "1686288643",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
