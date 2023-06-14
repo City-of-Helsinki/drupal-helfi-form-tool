@@ -6,4 +6,7 @@ msgid "Notification"
 msgstr "Meddelande"
 
 msgid "Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."
-msgstr "Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysänkatu 2 D, 00510 Helsinki."
+msgstr "Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysägatan 2 D, 00510 Helsingfors."
+
+msgid "Selecting a delivery method may prompt further questions"
+msgstr "Valet av leveransmetod kan kräva att du fyller i extra fält"
