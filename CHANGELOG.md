@@ -1,13 +1,15 @@
 # Changelog
 
 ## 2023.13
-
+- 8cf1893 docs: Version bump + changelog
+- 6d9cd99 fix: LOM-468: Add translations (#198)
+- c2fc4a4 config: Update configuration (#197)
 
 
 ## 2023.12
-4fde1a0 fix: LOM-516: Hide english translation link (#195)
-7b5ca6c cpnfig: Update configuration (#193)
-544bfb2 fix: LOM-514: Fix banner & other translations (#194)
+- 4fde1a0 fix: LOM-516: Hide english translation link (#195)
+- 7b5ca6c config: Update configuration (#193)
+- 544bfb2 fix: LOM-514: Fix banner & other translations (#194)
 
 ## 2023.11
 - 8d73533 fix: ATV module version -> 0.9.9
