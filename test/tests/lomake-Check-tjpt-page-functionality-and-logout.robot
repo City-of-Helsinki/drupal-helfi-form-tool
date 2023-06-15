@@ -63,6 +63,9 @@ Verify all buttons, selections and fields
     # Lisää koulun nimi
     Input Text                                              ${lomake-koulun-nimi-input}                                 Mauri Makkaran ala-aste
     Capture Page Screenshot
+    # Lisää todistuksen antamisvuosi
+    Input Text                                              ${lomake-tjpt-vtt-todistuksen-antamisvuosi-input}           2002      
+    Capture Page Screenshot
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
     Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta   20
