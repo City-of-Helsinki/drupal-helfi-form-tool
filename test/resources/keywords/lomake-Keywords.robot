@@ -2,6 +2,7 @@
 
 Select test data and open browser
     Select test data depending on the selected env  ${environment}
+    Sleep                                           10
     Select url depending on the selected env        ${environment}
     Sleep                                           ${azure-browser-sleep}
     Browser specific sleep                          ${environment}    
