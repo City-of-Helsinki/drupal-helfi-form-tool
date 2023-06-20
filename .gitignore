@@ -25,7 +25,3 @@ public/sites/default/local.settings.php
 !*.gitkeep
 !*.keepme
 .phpunit.*
-
-# Ignore some Robot framework files
-test/logit/*
-test/tests/Draft*
