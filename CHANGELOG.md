@@ -1,5 +1,12 @@
 # Changelog
 
+## 2023.14
+- e70bc8 config: Update configuration (#204)
+- d4a33f0 fix: LOM-521: Sleep added when open browser (#203)
+- b2212f2 fix: LOM-520: Selenium version changed (#202)
+- e1f61e3 config: Update configuration (#200)
+- 76cb774 fix:LOM-511: fix: LOM-511: Todistuksen antamisvuosi steps added (#201)
+
 ## 2023.13
 - 8cf1893 docs: Version bump + changelog
 - 6d9cd99 fix: LOM-468: Add translations (#198)

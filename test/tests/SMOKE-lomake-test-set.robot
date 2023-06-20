@@ -54,6 +54,9 @@ Fill and send form
     # Lisää koulun nimi
     Input Text                                              ${lomake-koulun-nimi-input}                                 SMOKE testi koulun nimi kenttä
     Capture Page Screenshot
+    # Lisää todistuksen antamisvuosi
+    Input Text                                              ${lomake-tjpt-vtt-todistuksen-antamisvuosi-input}           2005      
+    Capture Page Screenshot
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
     Wait Until Page Contains                                Noudetaan kasvatuksen ja koulutuksen toimialan arkistolta   20

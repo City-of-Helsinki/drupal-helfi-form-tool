@@ -34,7 +34,7 @@ jobs:
           versionSpec: "$(python.version)"
           architecture: "x64"
 
-      - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager
+      - script: pip install robotframework robotframework-pabot robotframework-seleniumlibrary webdrivermanager selenium==4.9.1
         displayName: "Install dependencies"
 
       #- powershell: Get-ChildItem -Filter *.robot -Recurse

@@ -64,6 +64,9 @@ Fill form and send
     # Lisää koulun nimi
     Input Text                                              ${lomake-koulun-nimi-input}                                 ${koulun-nimi}
     Capture Page Screenshot
+    # Lisää todistuksen antamisvuosi
+    Input Text                                              ${lomake-tjpt-vtt-todistuksen-antamisvuosi-input}           2004      
+    Capture Page Screenshot
     # Valitse toimitustavaksi nouto
     Click Element                                           ${lomake-tjpt-toimitustapa-nouto-radiobutton-FI}
     Wait Until Page Contains                                ${nouto-viesti}                                             20
