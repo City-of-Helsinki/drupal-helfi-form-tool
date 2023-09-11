@@ -3,7 +3,6 @@
 namespace Drupal\webform_formtool_handler\EventSubscriber;
 
 use Drupal\Core\Logger\LoggerChannelFactory;
-use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\webform_formtool_handler\Event\WebformSubmissionEvent;
 use GuzzleHttp\ClientInterface;
@@ -38,9 +37,10 @@ class WebformSubmissionSubscriber implements EventSubscriberInterface {
   /**
    * Send POST request to service.
    *
-   * @param WebformSubmissionEvent $event
+   * @param \Drupal\webform_formtool_handler\Event\WebformSubmissionEvent $event
    *   A WebformSubmissionEvent event.
-   * @throws GuzzleException
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function onSubmissionCreate(WebformSubmissionEvent $event) {
 

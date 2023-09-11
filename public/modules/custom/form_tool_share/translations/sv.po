@@ -28,4 +28,4 @@ msgid "Submit error"
 msgstr "Skicka fel"
 
 msgid "Form information"
-msgstr "Forminformation"
+msgstr "Blanketinformation"

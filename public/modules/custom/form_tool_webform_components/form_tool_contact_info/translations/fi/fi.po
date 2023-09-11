@@ -43,6 +43,9 @@ msgstr "Kaupunki"
 msgid "Phone Number"
 msgstr "Puhelinnumero"
 
+msgid "Pick-up from Töysänkatu 2 D, 00510 Helsinki."
+msgstr "Nouto osoitteesta Töysänkatu 2 D, 00510 Helsinki."
+
 msgid "Cash on delivery price is 9,20 €"
 msgstr "Postiennakon hinta asiakirjan tilaajalle 9,20 €"
 
