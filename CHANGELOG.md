@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023.15
+- 26cdd44 fix: LOM-523: fix missing swedish translations (#206)
+- 343949a Update configuration (#205)
+
 ## 2023.14
 - e70bc8 config: Update configuration (#204)
 - d4a33f0 fix: LOM-521: Sleep added when open browser (#203)

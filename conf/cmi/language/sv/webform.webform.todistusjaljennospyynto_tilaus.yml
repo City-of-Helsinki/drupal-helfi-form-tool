@@ -29,10 +29,10 @@ elements: |
     '#title': Leveransmetod
   valitse_toimitustapa:
     '#title': 'Välj leveransmetod'
-    '#Nouto -teksti__title': 'Hämtas från fostrans- och utbildningssektorns arkiv. Töysänkatu 2 D, 00510 Helsinki'
+    '#Nouto -teksti__title': 'Hämtas från fostrans- och utbildningssektorns arkiv. Töysägatan 2 D, 00510 Helsingfors'
     '#Info__title': ''
     '#Toimitustapa: Postiennakko__title': Postförskott
-    '#Toimitustapa: Nouto__title': 'Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysänkatu 2 D, 00510 Helsinki.'
+    '#Toimitustapa: Nouto__title': 'Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysägatan 2 D, 00510 Helsingfors.'
     '#delivery_method__title': ''
     '#first_name__title': Förnamn
     '#last_name__title': Efternamn

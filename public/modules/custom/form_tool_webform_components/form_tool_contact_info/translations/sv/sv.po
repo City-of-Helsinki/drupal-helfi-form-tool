@@ -5,6 +5,9 @@ msgctxt "Notification inside a webform"
 msgid "Notification"
 msgstr "Meddelande"
 
+msgid "Pick-up from Töysänkatu 2 D, 00510 Helsinki."
+msgstr "Upphämtning från Töysägatan 2 D, 00510 Helsingfors."
+
 msgid "Collect. The document will be picked up from the Education Division's archive. Töysänkatu 2 D, 00510 Helsinki."
 msgstr "Upphämtning. Hämtas från fostrans- och utbildningssektorns arkiv. Töysägatan 2 D, 00510 Helsingfors."
 
