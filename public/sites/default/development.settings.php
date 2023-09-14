@@ -8,3 +8,5 @@ $config['helfi_proxy.settings']['prefixes'] = [
   'fi' => 'dev-lomakkeet',
   'sv' => 'dev-blanketter'
 ];
+
+$config['webform.webform.todistusjaljennospyynto_tilaus']['third_party_settings']['form_tool_webform_parameters']['form_tool_webform_parameters']['email_notify'] = 'janne.suominen@siili.com';
