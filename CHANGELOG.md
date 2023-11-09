@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023.16
+- ef96d13 config: Update configuration (#209)
+- d9976ce fix: LOM-531: Update smtp server to relay.hel.fi (#211)
+- 27e3211 fix: LOM-527: Add email overrides for form email (#210)
+
+
 ## 2023.15
 - 26cdd44 fix: LOM-523: fix missing swedish translations (#206)
 - 343949a Update configuration (#205)
