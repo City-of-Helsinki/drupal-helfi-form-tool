@@ -18,7 +18,7 @@ third_party_settings:
     login_type: '2'
     sensitive: '1'
     form_code: TODISTUS
-    email_notify: arkisto.kasvatusjakoulutus@hel.fi
+    email_notify: janne.suominen@siili.com
     status: wip
     tos_function_id: f917d43aab76420bb2ec53f6684da7f7
     tos_record_id: 89837a682b5d410e861f8f3688154163
