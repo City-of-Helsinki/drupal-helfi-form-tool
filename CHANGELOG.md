@@ -1,5 +1,11 @@
 # Changelog
 
+## 2024.1
+- ebb07d0 fix: LOM-539: Update HP module (#228)
+- b9f5bcc Update FormToolWebformHandler.php
+- 40ee2da Hotfix LOM-XX-remove-mail-address
+- 7038b8f fix: Remove email from form config
+
 ## 2023.16
 - ef96d13 config: Update configuration (#209)
 - d9976ce fix: LOM-531: Update smtp server to relay.hel.fi (#211)
