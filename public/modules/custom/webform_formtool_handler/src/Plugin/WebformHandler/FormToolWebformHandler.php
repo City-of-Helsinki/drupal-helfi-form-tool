@@ -196,7 +196,7 @@ class FormToolWebformHandler extends WebformHandlerBase {
   public function preSave(WebformSubmissionInterface $webform_submission) {
     $this->submittedFormData = $webform_submission->getData();
 
-    // Because our submission storage is not used (WHY!?!?!?!?)
+    // Because our submission storage is not used
     // we need to empty this manually.
     $webform_submission->setData([]);
     // don't save ip address.
